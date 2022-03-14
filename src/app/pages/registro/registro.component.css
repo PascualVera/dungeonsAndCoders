@@ -1,0 +1,83 @@
+.contenedor {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+    width: 100vw;
+    height: 82vh;
+    background-image: url('../../../assets/images/pergamine.jpg');
+    background-size: cover;
+}
+
+.texto {
+    width: 40vw;
+    height: 60vh;    
+}
+
+.texto p {
+    font-family: 'fable';
+    font-size: 1.5rem;
+    text-indent: 1.5rem;
+    font-weight: bold;
+    color: var(--textMain)
+}
+
+.registro {
+    width: 30vw;
+    height: 60vh;
+    background-color: var(--bluemain);
+    border: 0.8vh solid var(--redmain);
+    border-radius: 1vh;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 58.4vh;
+    padding-top: 4vh;
+    padding-bottom: 2vh;
+}
+
+.formContainer a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: var(--textMain)
+}
+
+.formContainer input {
+    width: 20vw;
+    height: 7vh;
+    padding: 0 1vw;
+    background-color: var(--inputBg);
+    color: white;
+    font-size: 1.8rem;
+    border-style: none;
+    border-radius: 0.8vh;
+    border: .5vh solid var(--redmain);
+}
+
+.invalid {
+    border-color: red !important;
+    /* outline: -webkit-focus-ring-color auto 1px; */
+}
+
+.formContainer input::placeholder {
+    color: var(--placeHolder);    
+}
+
+.formContainer button {    
+    border-style: none;
+    width: 15vw;
+    height: 7vh;
+    font-size: 2rem;
+    color: var(--textMain);
+    background-color: var(--redmain);
+    border-radius: 0.8vh;    
+    -webkit-text-stroke: 0.05rem black;
+}
+
+.formContainer button:active {
+    box-shadow: 0 0 10px black;
+}

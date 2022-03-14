@@ -30,7 +30,6 @@
 .formContainer a {
     text-decoration: none;
     font-size: 1.5rem;
-    /* margin: 2vh 0; */
     color: var(--textMain)
 }
 
@@ -38,7 +37,6 @@
     width: 20vw;
     height: 7vh;
     padding: 0 1vw;
-    /* margin-bottom: 2vh; */
     background-color: var(--inputBg);
     color: white;
     font-size: 1.8rem;
@@ -56,10 +54,10 @@
     width: 15vw;
     height: 7vh;
     font-size: 2rem;
-    /* padding: 0 5%; */
     color: var(--textMain);
     background-color: var(--redmain);
-    border-radius: 0.8vh;
+    border-radius: 0.8vh;    
+    -webkit-text-stroke: 0.05rem black;
 }
 
 .formContainer button:active {

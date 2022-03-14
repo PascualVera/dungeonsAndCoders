@@ -28,6 +28,16 @@
   src: url('../src/assets/fonts/DwarvenAxe.ttf');
 }
 
+@font-face {
+  font-family: "dungeon";
+  src: url("../src/assets/fonts/DUNGRG__.TTF");
+}
+
+@font-face {
+  font-family: "fable";
+  src: url("../src/assets/fonts/Fable_W01_Smooth.ttf");
+}
+
 * {
   font-family: 'dwarf';
 }
