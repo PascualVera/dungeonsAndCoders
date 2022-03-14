@@ -19,12 +19,13 @@
   /*textColors*/
   --textMain: white;
 }
+
 @font-face {
   font-family: 'dwarf';
   src: url('../src/assets/fonts/DwarvenAxe.ttf');
 }
 
-html{
+* {
   font-family: 'dwarf';
 }
 

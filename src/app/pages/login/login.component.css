@@ -1,0 +1,6 @@
+.contenedor {
+    position: fixed;
+    background-image: url('../../../assets/images/pergamine.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}

@@ -1,13 +1,3 @@
-
-@font-face {
-    font-family: 'dwarf';
-    src: url('../../../assets/fonts/DwarvenAxe.ttf');
-  }
-
-* {
-    font-family: 'dwarf';
-}
-
 .cabecera {
     display: flex;
     justify-content: space-between;
