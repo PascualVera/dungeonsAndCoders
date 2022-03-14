@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+:root {
+  /*mainColors*/
+  --bluemain: #264c5e;
+  --redmain: #a34c50;
+  --beige: #cec2ae;
+  --auxiliarRed:#e8443c
+  /*characterColors*/
+  --barbarian: #e7623e;
+  --warrior: #7f513e;
+  --wizard: #2a50a1;
+  --ranger: #507f62;
+  --cleric: #91a1b2;
+  --rogue: #555752;
+}
+@font-face {
+  font-family: 'dwarf';
+  src: url('../src/assets/fonts/DwarvenAxe.ttf');
+}
+
+html{
+  font-family: 'dwarf';
+}
+
