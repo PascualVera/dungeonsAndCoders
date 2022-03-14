@@ -16,6 +16,8 @@
   --ranger: #507f62;
   --cleric: #91a1b2;
   --rogue: #555752;
+  /*textColors*/
+  --textMain: white;
 }
 @font-face {
   font-family: 'dwarf';

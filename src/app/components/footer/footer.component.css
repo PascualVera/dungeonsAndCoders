@@ -16,7 +16,7 @@
     width: 100vw;
     height: 8vh;
     background-color: var(--bluemain);
-    color: white;
+    color: var(--textMain);
     padding: 0 1.5vw 0 1vw;
 }
 
@@ -78,5 +78,5 @@
 .creditos a {
     font-size: 3rem;
     text-decoration: none;
-    color: white;
+    color: var(--textMain);
 }
