@@ -1,0 +1,82 @@
+@font-face {
+    font-family: 'dwarf';
+    src: url('../../../assets/fonts/DwarvenAxe.ttf');
+  }
+
+* {
+    font-family: 'dwarf';
+}
+
+.pie {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 8vh;
+    background-color: var(--bluemain);
+    color: white;
+    padding: 0 1.5vw 0 1vw;
+}
+
+.social a {
+    padding: 0 1vw;
+}
+
+.facebook {
+    color: rgb(6, 118, 228);
+    font-size: 3rem;
+    transition: all 0.5s ease-in-out;
+}
+
+.facebook:hover {
+    color: rgb(84, 160, 236);
+    transform: scale(1.2) rotate(360deg);
+}
+
+.instagram {
+    color: rgb(195, 48, 93);
+    font-size: 3rem;
+    transition: all 0.5s ease-in-out;
+}
+
+.instagram:hover {
+    color: rgb(212, 85, 123);
+    transform: scale(1.2) rotate(360deg);
+}
+
+.linkedin {
+    color: rgb(49, 134, 231);
+    font-size: 3rem;
+    transition: all 0.5s ease-in-out;
+}
+
+.linkedin:hover {
+    color: rgb(87, 154, 231);
+    transform: scale(1.2) rotate(360deg);
+}
+
+.copyright {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    height: 100%;
+}
+
+.creditos {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 2vw;
+}
+
+.creditos:hover {
+    background-color: var(--redmain);
+}
+
+.creditos a {
+    font-size: 3rem;
+    text-decoration: none;
+    color: white;
+}
