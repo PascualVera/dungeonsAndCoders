@@ -1,52 +1,51 @@
 .cabecera {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100vw;
-    height: 10vh;
-    background-color: var(--bluemain);
-    padding: 0 1.5vw 0 1vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 10vh;
+  background-color: var(--bluemain);
+  padding: 0 1.5vw 0 1vw;
 }
 
 .logodyc {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    width: auto;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: auto;
 }
 
 .logodyc img {
-    height: 90%;
-    width: auto;
-    /* filter: brightness(1.1); */
+  height: 90%;
+  width: auto;
+  /* filter: brightness(1.1); */
 }
 
 .navHeader {
-    height: 100%; 
+  height: 100%;
 }
 
 .navList {
-    display: flex;
-    justify-items: center;
-    padding-left: 0;
-    height: 100%;
-    
+  display: flex;
+  justify-items: center;
+  padding-left: 0;
+  height: 100%;
 }
 
 .navItem {
-    display: flex;
-    align-items: center;
-    list-style-type: none;
-    font-size: 3rem;
-    height: 100%;
-    padding: 0 2vw;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  font-size: 2rem;
+  height: 100%;
+  padding: 0 2vw;
 }
 
 .navItem:hover {
-    background-color: var(--redmain);
+  background-color: var(--redmain);
 }
 
 .navItem a {
-    text-decoration: none;
-    color: var(--textMain);
+  text-decoration: none;
+  color: var(--textMain);
 }
