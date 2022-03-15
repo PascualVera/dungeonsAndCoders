@@ -1,1 +1,140 @@
-<p>vista-master works!</p>
+<div>
+    <nav class="menu">
+        <p>Codigo partida: Sdecd234SA</p>
+        <div>
+            <a href="">Pausar</a>
+            <a href="">Finalizar</a>
+        </div>
+    </nav>
+    <div class="contenedor" >
+        <div style="height: 100%; width: 35%;">
+            <header class="titulo">
+                <p>Titulo de la campaña</p>
+            </header>
+            <div class="campain">
+                <article>
+                    <span>La pequeña casa del pequeño Lord</span><br>
+                    <p><span>L</span>os personajes llegarán con las primeras luces
+                        de la mañana, cuando los goblins ya se han
+                        asegurado de que los muertos están muy
+                        muertos, y han empezado a empacar todo lo
+                        que les venía en gana llevarse, según su
+                        acuerdo con Evan.
+                    </p>
+                    <div>Pensar que estabais más cerca de lo que creíais os hizo
+                        aprovechar los últimos rayos de sol, y el ansia por llegar os
+                        ha tenido entretenidos hasta encontraros con la isla al punto
+                        de caer la noche.
+                        Un pequeño sendero casi borrado sube por una ladera
+                        que acaba en un risco. Al borde de este, una pasarela de
+                        madera lleva a la isla encrespada, dominada por una casa de
+                        dos pisos amurallada.
+                        Al borde de la pasarela hay un cesto con frutas.
+                    </div>
+                    <p>
+                        <span>S</span>alvo que tus jugadores quieran echar un vistazo
+                        activamente, utiliza su Percepción pasiva contra CD 12
+                        para ver si alguno ve a Ion a punto de cruzar la pasarela
+                        con otro cesto, este lleno de embutidos y carne seca.
+                        Si los personaje se esconden, recuerda que Ion tiene
+                        visión en la oscuridad para ver si los detecta, caso en el
+                        cual dejará caer la cesta al suelo y saldrá corriendo de
+                        vuelta a la casa.
+                    </p>
+                </article>
+            </div>
+            <div>
+                <section class="fichas">
+                    <section class="enemigos">
+                        <label style="width: 5vw;">Monstruos: &nbsp;&nbsp;</label>
+                        <select name="enemigos" style="width: 9vw;"> <!--Desplegable con los enemigos *-->
+                            <option value="1">enemigo 1</option> 
+                            <option value="2">enemigo 2</option> 
+                            <option value="3">enemigo 3</option>
+                            <option value="10">enemigo 4</option> 
+                            <option value="11">enemigo 5</option> 
+                            <option value="12">enemigo 6</option> 
+                         </select>
+                    </section>
+                    <section class="heroes" >
+                        <label style="width: 5vw;">Personajes: &nbsp;</label>
+                        <select name="personajes"  style="width: 9vw;"> <!--Desplegable con los jugadores *-->
+                            <option value="1">personaje 1</option> 
+                            <option value="2">personaje 2</option> 
+                            <option value="3">personaje 3</option>
+                            <option value="10">personaje 4</option> 
+                            <option value="11">personaje 5</option> 
+                            <option value="12">personaje 6</option> 
+                         </select>
+                    </section>
+                </section>
+            </div>
+            <div class="calculadora">
+                <div class="superior">
+                    <section class="defensor">
+                        <label style="width: 5vw;">Defensor: &nbsp;</label>
+                        <select name="personajes"  style="width: 9vw;">
+                            <option value="1">personaje 1</option> 
+                            <option value="2">personaje 2</option> 
+                            <option value="3">personaje 3</option>
+                            <option value="10">personaje 4</option> 
+                            <option value="11">personaje 5</option> 
+                            <option value="12">personaje 6</option> 
+                         </select>
+                    </section>
+                    <section>
+                        <i class="fas fa-arrow-alt-left">Arrow</i>
+                    </section>
+                    <section class="atacante">
+                        <label style="width: 5vw;">Atacante: &nbsp;</label>
+                        <select name="personajes"  style="width: 9vw;">
+                            <option value="1">personaje 1</option> 
+                            <option value="2">personaje 2</option> 
+                            <option value="3">personaje 3</option>
+                            <option value="10">personaje 4</option> 
+                            <option value="11">personaje 5</option> 
+                            <option value="12">personaje 6</option> 
+                         </select>
+                    </section>
+                </div>
+                <div class="inferiror">
+                    <div class="valor">
+                        <div>
+                            <input type="text">
+                        </div>
+                        <button class="fantasy">
+                            Calcular
+                        </button>
+                        <div>
+                            <input type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style=" height: 100%; width: 65%;">
+            <div class="mapa" >
+                <img src="../../../assets/images/mapa.jpeg" alt="">
+            </div>
+            <div style="display:flex; border: 0.1rem solid var(--bluemain); height: 32vh;">
+                <section class="chat">
+                    <app-chat></app-chat>
+                </section>
+                <section class="players" style=" height: 30vh; width: 20%;">
+                    <div>
+                        <label style="color: var(--barbarian);" for="player 1">Player 1 <i class="fa-thin fa-square"></i></label>
+                    </div>
+                    <div>
+                        <label style="color: var(--wizard);" for="player 2">Player 1</label>
+                    </div>
+                    <div>
+                        <label style="color: var(--ranger);" for="player 3">Player 1</label>
+                    </div>
+                    <div>
+                        <label style="color: var(--cleric);" for="player 4">Player 1</label>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
