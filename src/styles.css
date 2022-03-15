@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
@@ -8,7 +8,7 @@
   --bluemain: #264c5e;
   --redmain: #a34c50;
   --beige: #cec2ae;
-  --auxiliarRed:#e8443c
+  --auxiliarRed: #e8443c;
   /*characterColors*/
   --barbarian: #e7623e;
   --warrior: #7f513e;
@@ -18,11 +18,10 @@
   --rogue: #555752;
 }
 @font-face {
-  font-family: 'dwarf';
-  src: url('../src/assets/fonts/DwarvenAxe.ttf');
+  font-family: "dwarf";
+  src: url("../src/assets/fonts/DwarvenAxe.ttf");
 }
 
-html{
-  font-family: 'dwarf';
+html {
+  font-family: "dwarf";
 }
-
