@@ -11,7 +11,7 @@
             <header class="titulo">
                 <p>Titulo de la campaña</p>
             </header>
-            <div class="campaing">
+            <div class="campain">
                 <article>
                     <span>La pequeña casa del pequeño Lord</span><br>
                     <p><span>L</span>os personajes llegarán con las primeras luces
@@ -73,7 +73,7 @@
                 <div class="superior">
                     <section class="defensor">
                         <label style="width: 5vw;">Defensor: &nbsp;</label>
-                        <select name="personajes"  style="width: 9vw;"> <!--Desplegable con los jugadores *-->
+                        <select name="personajes"  style="width: 9vw;">
                             <option value="1">personaje 1</option> 
                             <option value="2">personaje 2</option> 
                             <option value="3">personaje 3</option>
@@ -86,8 +86,8 @@
                         <i class="fas fa-arrow-alt-left">Arrow</i>
                     </section>
                     <section class="atacante">
-                        <label style="width: 5vw;">Defensor: &nbsp;</label>
-                        <select name="personajes"  style="width: 9vw;"> <!--Desplegable con los jugadores *-->
+                        <label style="width: 5vw;">Atacante: &nbsp;</label>
+                        <select name="personajes"  style="width: 9vw;">
                             <option value="1">personaje 1</option> 
                             <option value="2">personaje 2</option> 
                             <option value="3">personaje 3</option>
@@ -102,14 +102,12 @@
                         <div>
                             <input type="text">
                         </div>
-                        <div>
-                            <input type="text">
-                        </div>
-                    </div>
-                    <div style="display: flex; justify-content: center;">
                         <button class="fantasy">
                             Calcular
                         </button>
+                        <div>
+                            <input type="text">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -122,7 +120,20 @@
                 <section class="chat">
                     <app-chat></app-chat>
                 </section>
-                <section class="players" style=" height: 30vh; width: 20%;"></section>
+                <section class="players" style=" height: 30vh; width: 20%;">
+                    <div>
+                        <label style="color: var(--barbarian);" for="player 1">Player 1 <i class="fa-thin fa-square"></i></label>
+                    </div>
+                    <div>
+                        <label style="color: var(--wizard);" for="player 2">Player 1</label>
+                    </div>
+                    <div>
+                        <label style="color: var(--ranger);" for="player 3">Player 1</label>
+                    </div>
+                    <div>
+                        <label style="color: var(--cleric);" for="player 4">Player 1</label>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
