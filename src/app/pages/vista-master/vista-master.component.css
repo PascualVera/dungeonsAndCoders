@@ -1,0 +1,127 @@
+.contenedor{
+    height: 94vh; 
+    width: 100%; 
+    display: flex; 
+    flex-direction: row;
+}
+
+.menu{
+    height: 6vh; 
+    width: 100%; 
+    background-color: var(--bluemain); 
+    display: flex; 
+    justify-content: space-between; 
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    color: var(--beige);
+}
+
+a:link, a:visited, a:active{
+    text-decoration: none;
+    color: var(--beige);
+    padding-right: 0.8rem;
+}
+
+.titulo{
+    height: 10vh;
+    background-color: var(--redmain);
+    color: var(--beige);
+    font-size: 2rem;
+    text-align: center;
+    
+}
+
+.campaing{
+    background-image: url(../../../assets/images/pergamine.jpg);
+    overflow: hidden;
+    background-size: cover; 
+    height: 52vh;
+    padding: 1rem;
+    font-size: 1rem;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+/**ScrollBar specs**/
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f17a;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--bluemain);
+    opacity: 0.7;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+span{
+    font-size: 2rem;
+    text-transform: capitalize;
+}
+
+.campaing div{
+    border: 0.2rem solid var(--bluemain);
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    background-color: rgba(73, 78, 83, 0.158);
+}
+
+.fichas{
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 1rem; 
+    padding: 0.6rem; 
+    background-color: var(--redmain);
+}
+
+.fichas section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.fichas section label{
+    height: 4.5vh;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    text-align: center;
+    color: var(--beige);
+    font-size: 1.1rem;
+}
+
+.mapa{
+    height: 62vh;
+    image-rendering: auto;
+    display: flex;
+    justify-content: center;
+    background-color: var(--beige);
+}
+
+.mapa img{
+    width: auto;
+    height: 100%;
+}
+
+.chat{
+    width: 80%; 
+    height: 100%;
+    border-right: 0.1rem solid var(--bluemain);
+}
+
+.calculadora{
+    background-color: var(--bluemain);
+    height: 24.4vh;
+}
