@@ -1,12 +1,12 @@
 <main class="contenedor">
     <div class="menu">
         <picture class="fotoPerfil">
-            <img src="../../../assets/images/borrar/fotoPerfil.png" alt="Foto perfil">
+            <img src="../../../assets/images/avatares/avatar10.png" alt="Foto perfil">
         </picture>
         <div class="opciones">
             <a href="#">Detalles de la cuenta</a>
             <a href="#">Tus campañas</a>
-            <a href="#">Cambiar Avatar</a>
+            <a (click)="modalAvatar(veloModal, true)" href="#">Cambiar Avatar</a>
             <a href="#">Cerrar sesión</a>
         </div>
     </div>
@@ -102,3 +102,39 @@
         </div>
     </div>
 </main>
+
+<div #veloModal class="veloModal">
+    <div class="modal1">
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar01.png" alt="Avatar">
+        </picture>
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar02.png" alt="Avatar">
+        </picture>
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar03.png" alt="Avatar">
+        </picture>
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar04.png" alt="Avatar">
+        </picture>
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar05.png" alt="Avatar">
+        </picture>
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar06.png" alt="Avatar">
+        </picture>
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar07.png" alt="Avatar">
+        </picture>
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar08.png" alt="Avatar">
+        </picture>
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar09.png" alt="Avatar">
+        </picture>
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar10.png" alt="Avatar">
+        </picture>
+        <button (click)="modalAvatar(veloModal, false)" class="botonElegir">Elegir</button>
+    </div>
+</div>
