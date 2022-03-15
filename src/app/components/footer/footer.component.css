@@ -1,23 +1,18 @@
-@font-face {
-    font-family: 'dwarf';
-    src: url('../../../assets/fonts/DwarvenAxe.ttf');
-  }
-
-* {
-    font-family: 'dwarf';
-}
-
 .pie {
-    position: fixed;
-    bottom: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100vw;
     height: 8vh;
     background-color: var(--bluemain);
-    color: white;
+    color: var(--textMain);
     padding: 0 1.5vw 0 1vw;
+}
+
+.social {
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .social a {
@@ -26,7 +21,7 @@
 
 .facebook {
     color: rgb(6, 118, 228);
-    font-size: 3rem;
+    font-size: 2rem;
     transition: all 0.5s ease-in-out;
 }
 
@@ -37,7 +32,7 @@
 
 .instagram {
     color: rgb(195, 48, 93);
-    font-size: 3rem;
+    font-size: 2rem;
     transition: all 0.5s ease-in-out;
 }
 
@@ -48,7 +43,7 @@
 
 .linkedin {
     color: rgb(49, 134, 231);
-    font-size: 3rem;
+    font-size: 2rem;
     transition: all 0.5s ease-in-out;
 }
 
@@ -60,7 +55,7 @@
 .copyright {
     display: flex;
     align-items: center;
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     height: 100%;
 }
 
@@ -76,7 +71,7 @@
 }
 
 .creditos a {
-    font-size: 3rem;
+    font-size: 2.5rem;
     text-decoration: none;
-    color: white;
+    color: var(--textMain);
 }

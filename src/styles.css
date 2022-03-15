@@ -8,7 +8,7 @@
   --bluemain: #264c5e;
   --redmain: #a34c50;
   --beige: #cec2ae;
-  --auxiliarRed:#e8443c
+  --auxiliarRed: #e8443c;
   /*characterColors*/
   --barbarian: #e7623e;
   --warrior: #7f513e;
@@ -16,13 +16,40 @@
   --ranger: #507f62;
   --cleric: #91a1b2;
   --rogue: #555752;
+  /*textColors*/
+  --textMain: white;
+  /*inputsColors*/
+  --inputBg: #744954;
+  --placeHolder: lightgray;
 }
+
 @font-face {
   font-family: 'dwarf';
   src: url('../src/assets/fonts/DwarvenAxe.ttf');
 }
 
-html{
+@font-face {
+  font-family: "dungeon";
+  src: url("../src/assets/fonts/DUNGRG__.TTF");
+}
+
+@font-face {
+  font-family: "fable";
+  src: url("../src/assets/fonts/Fable_W01_Smooth.ttf");
+}
+
+* {
   font-family: 'dwarf';
 }
 
+@media screen and  (min-width: 1920px) {
+  html {
+    font-size: 24px;
+  }
+}
+
+@media screen and  (min-width: 3840px) {
+  html {
+    font-size: 48px;
+  }
+}

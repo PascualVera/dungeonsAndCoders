@@ -1,13 +1,3 @@
-
-@font-face {
-    font-family: 'dwarf';
-    src: url('../../../assets/fonts/DwarvenAxe.ttf');
-  }
-
-* {
-    font-family: 'dwarf';
-}
-
 .cabecera {
     display: flex;
     justify-content: space-between;
@@ -28,6 +18,7 @@
 .logodyc img {
     height: 90%;
     width: auto;
+    /* filter: brightness(1.1); */
 }
 
 .navHeader {
@@ -46,7 +37,7 @@
     display: flex;
     align-items: center;
     list-style-type: none;
-    font-size: 3.8rem;
+    font-size: 3rem;
     height: 100%;
     padding: 0 2vw;
 }
@@ -57,5 +48,5 @@
 
 .navItem a {
     text-decoration: none;
-    color: white;
+    color: var(--textMain);
 }
