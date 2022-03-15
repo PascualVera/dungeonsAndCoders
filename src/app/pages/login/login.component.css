@@ -1,65 +1,65 @@
 .contenedor {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    width: 100vw;
-    height: 82vh;
-    background-image: url('../../../assets/images/pergamine.jpg');
-    background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100vw;
+  height: 82vh;
+  background-image: url("../../../assets/images/pergamine.jpg");
+  background-size: cover;
 }
 
 .login {
-    width: 30vw;
-    height: 50vh;
-    background-color: var(--bluemain);
-    border: 0.8vh solid var(--redmain);
-    border-radius: 1vh;
+  width: 30vw;
+  height: 50vh;
+  background-color: var(--bluemain);
+  border: 0.8vh solid var(--redmain);
+  border-radius: 1vh;
 }
 
 .formContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 48.4vh;
-    padding-top: 4vh;
-    padding-bottom: 2vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 48.4vh;
+  padding-top: 4vh;
+  padding-bottom: 2vh;
 }
 
 .formContainer a {
-    text-decoration: none;
-    font-size: 1.5rem;
-    color: var(--textMain)
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: var(--textMain);
 }
 
 .formContainer input {
-    width: 20vw;
-    height: 7vh;
-    padding: 0 1vw;
-    background-color: var(--inputBg);
-    color: white;
-    font-size: 1.8rem;
-    border-style: none;
-    border-radius: 0.8vh;
-    border: .5vh solid var(--redmain);
+  width: 20vw;
+  height: 7vh;
+  padding: 0 1vw;
+  background-color: var(--inputBg);
+  color: white;
+  font-size: 1.8rem;
+  border-style: none;
+  border-radius: 0.8vh;
+  border: 0.5vh solid var(--redmain);
 }
 
 .formContainer input::placeholder {
-    color: var(--placeHolder);    
+  color: var(--placeHolder);
 }
 
-.formContainer button {    
-    border-style: none;
-    width: 15vw;
-    height: 7vh;
-    font-size: 2rem;
-    color: var(--textMain);
-    background-color: var(--redmain);
-    border-radius: 0.8vh;    
-    -webkit-text-stroke: 0.05rem black;
+.formContainer button {
+  border-style: none;
+  width: 15vw;
+  height: 7vh;
+  font-size: 2rem;
+  color: var(--textMain);
+  background-color: var(--redmain);
+  border-radius: 0.8vh;
+  -webkit-text-stroke: 0.05rem black;
 }
 
 .formContainer button:active {
-    box-shadow: 0 0 10px black;
+  box-shadow: 0 0 10px black;
 }
