@@ -125,3 +125,59 @@ span{
     background-color: var(--bluemain);
     height: 24.4vh;
 }
+
+.superior{ 
+    height: 35%; 
+    display: flex; 
+    flex-direction: row; 
+    justify-content: center; 
+    text-align: center; 
+    align-content: flex-start;
+    gap: 1rem;
+    color: var(--beige);
+    font-size: 1rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.5rem;
+}
+
+.superior section{
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    text-align: center; 
+    align-items: center;
+    padding-bottom: 0;
+}
+
+.valor{
+    display: flex; 
+    justify-content: space-around; 
+    gap: 3rem; 
+    flex-wrap: wrap; 
+    align-content: center; 
+    padding-top: 0.5rem;
+}
+
+.valor input{
+    background-color: var(--beige); 
+    width: 5rem; 
+    height: 2rem; 
+    box-shadow: inset -0.2rem -0.2rem rgba(128, 128, 128, 0.342);
+    border-radius: 0.5rem;
+}
+
+button {
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.5rem;
+    font-size:1.5rem;
+    text-align: center;
+    width: auto;
+    height: 2.8rem;
+    font-size: 2rem;
+    color: var(--textMain);
+    background-color: var(--redmain);
+    border-radius: 0.8vh;
+    border-style: none;
+    -webkit-text-stroke: 0.05rem black;
+}

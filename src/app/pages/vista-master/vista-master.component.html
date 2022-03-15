@@ -70,8 +70,8 @@
                 </section>
             </div>
             <div class="calculadora">
-                <div class="superrior" style="border: 5px solid yellow; height: 50%; display: flex; flex-direction: row; justify-content: center; text-align: center; align-items: center; gap: 1rem;">
-                    <section class="defensor" style="display: flex; flex-direction: column; justify-content: center; text-align: center; align-items: center;">
+                <div class="superior">
+                    <section class="defensor">
                         <label style="width: 5vw;">Defensor: &nbsp;</label>
                         <select name="personajes"  style="width: 9vw;"> <!--Desplegable con los jugadores *-->
                             <option value="1">personaje 1</option> 
@@ -82,11 +82,10 @@
                             <option value="12">personaje 6</option> 
                          </select>
                     </section>
-                    <section style="border: 2px solid red; width: 2rem;">
-                        <i class="fas fa-arrow-alt-left"></i>
-                        <p>aaa</p>
+                    <section>
+                        <i class="fas fa-arrow-alt-left">Arrow</i>
                     </section>
-                    <section class="atacante" style="display: flex; flex-direction: column; justify-content: center; text-align: center; align-items: center;">
+                    <section class="atacante">
                         <label style="width: 5vw;">Defensor: &nbsp;</label>
                         <select name="personajes"  style="width: 9vw;"> <!--Desplegable con los jugadores *-->
                             <option value="1">personaje 1</option> 
@@ -97,6 +96,21 @@
                             <option value="12">personaje 6</option> 
                          </select>
                     </section>
+                </div>
+                <div class="inferiror">
+                    <div class="valor">
+                        <div>
+                            <input type="text">
+                        </div>
+                        <div>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <button class="fantasy">
+                            Calcular
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
