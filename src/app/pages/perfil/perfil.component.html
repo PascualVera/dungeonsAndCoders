@@ -1,1 +1,140 @@
-<p>perfil works!</p>
+<main class="contenedor">
+    <div class="menu">
+        <picture class="fotoPerfil">
+            <img src="../../../assets/images/avatares/avatar10.png" alt="Foto perfil">
+        </picture>
+        <div class="opciones">
+            <a href="#">Detalles de la cuenta</a>
+            <a href="#">Tus campañas</a>
+            <a (click)="modalAvatar(veloModal, true)" href="#">Cambiar Avatar</a>
+            <a href="#">Cerrar sesión</a>
+        </div>
+    </div>
+    <div *ngIf="detalles" class="detalles">
+        <div class="personales">
+            <label class="titulo">Información personal</label>
+            <div class="perCuerpo">
+                <label class="perLabel1">Nombre de usuario</label>
+                <label class="perLabel2">ajurado301</label>
+                <label class="perLabel1">Correo electrónico</label>
+                <label class="perLabel2">ajurado301@gmail.com</label>
+            </div>
+        </div>
+        <div class="password">
+            <label class="titulo">Modificar contraseña</label>
+            <form>
+                <div class="pasCuerpo">
+                    <label class="pasLabel">Antigua contraseña</label>
+                    <input class="pasInput" type="password">
+                    <span class="separador"></span>
+                    <label class="pasLabel">Nueva contraseña</label>
+                    <input class="pasInput" type="password">
+                    <label class="pasLabel">Repetir contraseña</label>
+                    <input class="pasInput" type="password">
+                    <button class="botonCambiar" type="button">Cambiar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="!detalles" class="campaigns">
+        <div class="fila1">
+            <span class="columna1tit">Campaña</span>
+            <span class="columna2tit">Rol</span>
+        </div>
+        <div class="campaignsCuerpo">
+            <table class="tabla">
+                <tr class="filas">
+                    <td class="columna1">Lorem ipsum dolor sit</td>
+                    <td class="columna2">Master</td>
+                    <td class="columna3"><button class="botonEntrar" type="button">Entrar</button></td>
+                </tr>
+                <tr class="filas">
+                    <td class="columna1">Consectetur adipisicing elit</td>
+                    <td class="columna2">Player</td>
+                    <td class="columna3"><button class="botonEntrar" type="button">Entrar</button></td>
+                </tr>
+                <tr class="filas">
+                    <td class="columna1">Voluptates aut vero tempore</td>
+                    <td class="columna2">Master</td>
+                    <td class="columna3"><button class="botonEntrar" type="button">Entrar</button></td>
+                </tr>
+                <tr class="filas">
+                    <td class="columna1">Alias velit qui dolor</td>
+                    <td class="columna2">Player</td>
+                    <td class="columna3"><button class="botonEntrar" type="button">Entrar</button></td>
+                </tr>
+                <tr class="filas">
+                    <td class="columna1">Voluptates aut vero tempore</td>
+                    <td class="columna2">Player</td>
+                    <td class="columna3"><button class="botonEntrar" type="button">Entrar</button></td>
+                </tr>
+                <tr class="filas">
+                    <td class="columna1">Quas id culpa quasi</td>
+                    <td class="columna2">Master</td>
+                    <td class="columna3"><button class="botonEntrar" type="button">Entrar</button></td>
+                </tr>
+                <tr class="filas">
+                    <td class="columna1">Neque sunt quod recusandae</td>
+                    <td class="columna2">Player</td>
+                    <td class="columna3"><button class="botonEntrar" type="button">Entrar</button></td>
+                </tr>
+                <tr class="filas">
+                    <td class="columna1">Lorem ipsum dolor sit</td>
+                    <td class="columna2">Player</td>
+                    <td class="columna3"><button class="botonEntrar" type="button">Entrar</button></td>
+                </tr>
+                <tr class="filas">
+                    <td class="columna1">Voluptates aut vero tempore</td>
+                    <td class="columna2">Player</td>
+                    <td class="columna3"><button class="botonEntrar" type="button">Entrar</button></td>
+                </tr>           
+                <tr class="filas">
+                    <td class="columna1">Alias velit qui dolor</td>
+                    <td class="columna2">Master</td>
+                    <td class="columna3"><button class="botonEntrar" type="button">Entrar</button></td>
+                </tr>
+                <tr class="filas">
+                    <td class="columna1">Neque sunt quod recusandae</td>
+                    <td class="columna2">Player</td>
+                    <td class="columna3"><button class="botonEntrar" type="button">Entrar</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</main>
+
+<div #veloModal class="veloModal">
+    <div class="modal1">
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar01.png" alt="Avatar">
+        </picture>
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar02.png" alt="Avatar">
+        </picture>
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar03.png" alt="Avatar">
+        </picture>
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar04.png" alt="Avatar">
+        </picture>
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar05.png" alt="Avatar">
+        </picture>
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar06.png" alt="Avatar">
+        </picture>
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar07.png" alt="Avatar">
+        </picture>
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar08.png" alt="Avatar">
+        </picture>
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar09.png" alt="Avatar">
+        </picture>
+        <picture class="avatar">
+            <img src="../../../assets/images/avatares/avatar10.png" alt="Avatar">
+        </picture>
+        <button (click)="modalAvatar(veloModal, false)" class="botonElegir">Elegir</button>
+    </div>
+</div>
