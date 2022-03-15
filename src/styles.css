@@ -7,7 +7,9 @@
 :root {
   /*mainColors*/
   --bluemain: #264c5e;
+  --bluemainT: #264c5e7f;
   --redmain: #a34c50;
+  --redmainT: #a34c507f;
   --beige: #cec2ae;
   --auxiliarRed: #e8443c;
   /*characterColors*/

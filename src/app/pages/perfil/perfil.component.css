@@ -1,0 +1,336 @@
+.contenedor {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 8vh;
+    overflow: hidden;
+    width: 100vw;
+    height: 82vh;
+    background-image: url('../../../assets/images/bgperfil.jpg');
+    background-size: 100% 100%;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20vw;
+    height: 50vh;
+    background-color: var(--bluemainT);
+}
+
+.fotoPerfil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin: 2vh;
+    width: 10vw;
+    height: 10vw;
+}
+
+.fotoPerfil img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.opciones {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5vh;
+    width: 100%;
+    height: 60%;
+}
+
+.opciones a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: var(--textMain);
+    height: 5vh;
+    background-color: var(--bluemain);
+}
+
+.opciones a:hover {
+    background-color: var(--redmain);
+}
+
+.detalles {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50vw;
+    height: 66vh;
+}
+
+.personales {
+    width: 50vw;
+    height: 20vh;
+    background-color: var(--bluemainT);
+}
+
+.password {
+    width: 50vw;
+    height: 40vh;
+    background-color: var(--bluemainT);
+}
+
+.titulo {
+    display: flex;
+    align-items: center;
+    padding: 0 2vw;
+    width: 50vw;
+    height: 6vh;
+    font-size: 1.8rem;
+    background-color: var(--bluemain);
+    color: var(--textMain);
+}
+
+.perCuerpo {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50vw;
+    height: 14vh;
+    padding: 2vh 0;
+}
+
+.perLabel1 {
+    color: var(--textMain);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    padding: 0 2vw;
+    width: 20vw;
+    height: 5vh;
+}
+
+.perLabel2 {
+    color: var(--textMain);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    padding: 0 2vw;
+    width: 30vw;
+    height: 5vh;
+}
+
+.pasCuerpo {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50vw;
+    height: 34vh;
+    padding-top: 2vh;
+}
+
+.pasLabel {
+    color: var(--textMain);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    padding: 0 2vw;
+    width: 20vw;
+    height: 5vh;
+}
+
+.pasInput {
+    color: var(--textMain);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    background-color: var(--redmainT);
+    color: white;
+    padding: 0 1vw;
+    margin-right: 2vw;
+    width: 28vw;
+    height: 5vh;
+    border-style: none;
+    border-radius: 0.8vh;
+    border: .5vh solid var(--redmain);
+}
+
+.separador {
+    width: 50vw;
+    margin-bottom: 1vh;
+}
+
+.botonCambiar {
+    border-style: none;
+    width: 15vw;
+    height: 7vh;
+    margin-left: auto;
+    margin-right: 2vw;
+    font-size: 2rem;
+    color: var(--textMain);
+    background-color: var(--redmain);
+    border-radius: 0.8vh;
+    -webkit-text-stroke: 0.05rem black;
+}
+
+.botonCambiar:active {
+    box-shadow: 0 0 10px black;
+}
+
+.campaigns {
+    width: 50vw;
+    height: 66vh;
+    background-color: var(--bluemainT);
+    overflow: hidden;
+}
+
+.campaignsCuerpo {
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    overflow-y: scroll;
+}
+
+.tabla {
+    border-collapse: separate;
+    border-spacing: 0 1vh;
+}
+
+.fila1 {
+    display: flex;
+    align-items: center;
+    width: 50vw;
+    height: 6vh;
+    font-size: 1.8rem;
+    background-color: var(--bluemain);
+    color: var(--textMain);
+}
+
+.filas {
+    width: 100%;
+    height: 6vh;
+    padding: 0;;
+    font-size: 1.5rem;
+    color: var(--textMain);
+}
+
+.columna1tit {
+    width: 49%;
+    padding: 0 1vw;
+}
+.columna2tit {
+    text-align: center;
+    width: 15%;
+    border-left: 1px solid var(--textMain);
+    border-right: 1px solid var(--textMain);
+}
+
+.columna1  {
+    width: 50%;
+    padding: 0 1vw;
+    background-color: var(--redmain);
+}
+
+.columna2 {
+    text-align: center;
+    width: 15%;
+    padding: 0 1vw;
+    border-left: 1px solid var(--textMain);
+    background-color: var(--redmain);    
+}
+
+.columna3 {
+    text-align: center;
+}
+
+.botonEntrar {
+    border-style: none;
+    width: 60%;
+    height: 6.5vh;
+    margin-left: auto;
+    font-size: 2rem;
+    color: var(--textMain);
+    background-color: var(--redmain);
+    border-radius: 0.8vh;
+    -webkit-text-stroke: 0.05rem black;
+}
+
+.botonEntrar:active {
+    box-shadow: 0 0 10px black;
+}
+
+/**ScrollBar specs**/
+
+::-webkit-scrollbar {
+    width: 0.8vw;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f17f;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bluemain);
+    opacity: 0.7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.veloModal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.modal1 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 50vw;
+    height: auto;
+    background-image: url('../../../assets/images/pergamine2.png');
+    background-size: 100% 100%;
+    border: .8vh solid var(--bluemain);
+    border-radius: 1.6vh;
+    margin-bottom: 5vh;
+}
+
+.avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8vw;
+    height: 8vw;
+    margin: 1vh;
+    padding: 1vh;
+}
+
+.avatar:hover {
+    border: 0.3vh solid var(--bluemain);
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.botonElegir {
+    border-style: none;
+    width: 15vw;
+    height: 7vh;
+    font-size: 2rem;
+    color: var(--textMain);
+    background-color: var(--redmain);
+    border-radius: 0.8vh;
+    -webkit-text-stroke: 0.05rem black;
+    margin-bottom: 2vh;
+}
+
+.botonElegir:active {
+    box-shadow: 0 0 10px black;
+}
