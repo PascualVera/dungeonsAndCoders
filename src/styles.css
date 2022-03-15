@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
@@ -24,8 +24,8 @@
 }
 
 @font-face {
-  font-family: 'dwarf';
-  src: url('../src/assets/fonts/DwarvenAxe.ttf');
+  font-family: "dwarf";
+  src: url("../src/assets/fonts/DwarvenAxe.ttf");
 }
 
 @font-face {
@@ -39,17 +39,20 @@
 }
 
 * {
-  font-family: 'dwarf';
+  font-family: "dwarf";
 }
 
-@media screen and  (min-width: 1920px) {
+@media screen and (min-width: 1920px) {
   html {
     font-size: 24px;
   }
 }
 
-@media screen and  (min-width: 3840px) {
+@media screen and (min-width: 3840px) {
   html {
     font-size: 48px;
   }
+}
+html {
+  font-family: "dwarf";
 }
