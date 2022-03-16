@@ -3,13 +3,13 @@
 <main class="contenedor">
     <div class="menu">
         <picture class="fotoPerfil">
-            <img src="../../../assets/images/avatares/avatar10.png" alt="Foto perfil">
+            <img [src]="urlAvatar" alt="Foto perfil">
         </picture>
         <div class="opciones">
-            <a>Detalles de la cuenta</a>
-            <a>Tus campañas</a>
-            <a (click)="modalAvatar(veloModalAvatar, true)" >Cambiar Avatar</a>
-            <a routerLink=''>Cerrar sesión</a>
+            <a (click)="activarOpcion(1)" [ngClass]="{'opcionActiva': opcionActiva == 1}">Detalles de la cuenta</a>
+            <a (click)="activarOpcion(2)" [ngClass]="{'opcionActiva': opcionActiva == 2}">Tus campañas</a>
+            <a (click)="modalAvatar(veloModalAvatar, true)" [ngClass]="{'opcionActiva': opcionActiva == 3}">Cambiar Avatar</a>
+            <a routerLink="">Cerrar sesión</a>
         </div>
     </div>
     <div *ngIf="detalles" class="detalles">
@@ -28,7 +28,6 @@
                 <div class="pasCuerpo">
                     <label class="pasLabel">Antigua contraseña</label>
                     <input class="pasInput" type="password">
-                    <span class="separador"></span>
                     <label class="pasLabel">Nueva contraseña</label>
                     <input class="pasInput" type="password">
                     <label class="pasLabel">Repetir contraseña</label>
@@ -110,37 +109,15 @@
         <button (click)="modalAvatar(veloModalAvatar, false)" class="closeModal">
             <i class="fa-solid fa-square-xmark closeModal"></i>
         </button>
-        <picture class="avatar">
-            <img src="../../../assets/images/avatares/avatar01.png" alt="Avatar">
-        </picture>
-        <picture class="avatar">
-            <img src="../../../assets/images/avatares/avatar02.png" alt="Avatar">
-        </picture>
-        <picture class="avatar">
-            <img src="../../../assets/images/avatares/avatar03.png" alt="Avatar">
-        </picture>
-        <picture class="avatar">
-            <img src="../../../assets/images/avatares/avatar04.png" alt="Avatar">
-        </picture>
-        <picture class="avatar">
-            <img src="../../../assets/images/avatares/avatar05.png" alt="Avatar">
-        </picture>
-        <picture class="avatar">
-            <img src="../../../assets/images/avatares/avatar06.png" alt="Avatar">
-        </picture>
-        <picture class="avatar">
-            <img src="../../../assets/images/avatares/avatar07.png" alt="Avatar">
-        </picture>
-        <picture class="avatar">
-            <img src="../../../assets/images/avatares/avatar08.png" alt="Avatar">
-        </picture>
-        <picture class="avatar">
-            <img src="../../../assets/images/avatares/avatar09.png" alt="Avatar">
-        </picture>
-        <picture class="avatar">
-            <img src="../../../assets/images/avatares/avatar10.png" alt="Avatar">
-        </picture>
-        <button class="botonElegir">Elegir</button>
+
+        <ng-container *ngFor="let avatar of arrayAvatares, let i = index">
+            <picture (click)="seleccionarAvatar(i)" class="avatar" [ngClass]="{'avatarSeleccionado': indiceAvatarSeleccionado == i}">
+                <img [src]="avatar" alt="Avatar">
+            </picture>
+        </ng-container>
+
+        <button (click)="elegirAvatar(veloModalAvatar)" class="botonElegir"
+            [disabled]="!avatarSeleccionado">Elegir</button>
     </div>
 </div>
 
