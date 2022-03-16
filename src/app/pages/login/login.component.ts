@@ -12,4 +12,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // TODO: Provisionalpara abrir modal
+  modalPass(veloModalPass: HTMLElement, visible: boolean) {
+    veloModalPass.style.display = (visible) ? 'flex' : 'none';
+  }
 }
