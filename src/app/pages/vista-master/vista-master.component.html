@@ -39,7 +39,7 @@
             <div>
                 <section class="fichas">
                     <section class="enemigos">
-                        <label>Monstruos: &nbsp;&nbsp;</label>
+                        <label type="button" (click)="modalEnemigos(modalEnemy, true)" >Monstruos: </label>
                         <select name="enemigos"> <!--Desplegable con los enemigos *-->
                             <option value="1">enemigo 1</option> 
                             <option value="2">enemigo 2</option> 
@@ -50,7 +50,7 @@
                          </select>
                     </section>
                     <section class="heroes" >
-                        <label>Personajes: &nbsp;</label>
+                        <label type="button" (click)="modalEnemigos(modalEnemy, true)"  >Personajes: </label>
                         <select name="personajes"> <!--Desplegable con los jugadores *-->
                             <option value="1">personaje 1</option> 
                             <option value="2">personaje 2</option> 
@@ -131,3 +131,76 @@
         </div>
     </div>
 </div>
+
+<!-- Modal enemigos -->
+<div #modalEnemy class="veloModal">
+    <div class="contenedor">
+        <div class="left">
+            <div class="nombre">
+                <label>Nombre</label>
+                <p>raza</p>
+            </div>
+            <div class="info">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="atributos">
+                <div>
+                    <section>FUE</section>
+                    <section></section>
+                </div>
+                <div>
+                    <section>DES</section>
+                    <section></section>
+                </div>
+                <div>
+                    <section>CON</section>
+                    <section></section>
+                </div>
+                <div>
+                    <section>INT</section>
+                    <section></section>
+                </div>
+                <div>
+                    <section>SAB</section>
+                    <section></section>
+                </div>
+                <div>
+                    <section>CAR</section>
+                    <section></section>
+                </div>
+            </div>
+        </div>
+        <div class="habilidades">
+            <ul>
+                <li>Habilidades: </li>
+                <li>Sentidos: </li>
+                <li>Idiomas: </li>
+            </ul>
+        </div>
+        <div class="conjuros">
+            <ul>
+                <li>Conjuro 1</li>
+                <li>Conjuro 2</li>
+            </ul>
+        </div>
+        <div class="right">
+            <div class="acciones">
+            <span>
+                <b>Cimitarra.</b> Ataque con arma cuerpo a cuerpo: +4 a
+                impactar, alcance 5 pies, un objetivo. Impacto: 5
+                (1d6 + 2) de daño cortante.
+            </span>
+            <span>
+                <b>Arco corto.</b> Ataque con arma a distancia: +4 a
+                impactar, alcance 80/320 pies, un objetivo.
+                Impacto: 5 (1d6 + 2) de daño perforante.
+            </span>
+            </div>
+        </div>
+        <button type="button"  (click)="modalEnemigos(modalEnemy, false)">Large modal</button>
+    </div>
+    </div>

@@ -17,6 +17,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { CharacterComponent } from './components/character/character.component';
+import { EnemyComponent } from './components/enemy/enemy.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CharacterComponent } from './components/character/character.component';
     HeaderComponent,
     FooterComponent,
     ChatComponent,
-    CharacterComponent
+    CharacterComponent,
+    EnemyComponent
   ],
   imports: [
     BrowserModule,

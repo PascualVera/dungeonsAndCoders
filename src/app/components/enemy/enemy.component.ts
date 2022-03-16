@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-vista-master',
-  templateUrl: './vista-master.component.html',
-  styleUrls: ['./vista-master.component.css']
+  selector: 'app-enemy',
+  templateUrl: './enemy.component.html',
+  styleUrls: ['./enemy.component.css']
 })
-export class VistaMasterComponent implements OnInit {
+export class EnemyComponent implements OnInit {
 
   constructor() { }
 
+ 
   ngOnInit(): void {
   }
 

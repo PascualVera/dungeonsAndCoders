@@ -2,18 +2,18 @@
     overflow: visible;
 }
 .contenedor{
-    height: 100vh; 
+    height: 92vh; 
     width: 100%; 
     display: flex; 
     flex-direction: row;
 }
 
 .nombre{
-    height: 8vh;
+    height: 6vh;
     background-color: var(--redmain);
     border: 0.1rem solid var(--bluemain);
     color: var(--beige);
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-align: center;
     -webkit-text-stroke: 0.5px black;  
 }
@@ -22,7 +22,7 @@
     background-image: url(../../../assets/images/pergamine.jpg);
     background-size: cover;
     border-right: 0.1rem solid var(--bluemain); 
-    height: 62vh;
+    height: 56vh;
     padding: 1rem;
     font-size: 1rem;
     z-index: 1;
@@ -51,7 +51,7 @@
   } */
 
 .mapa{
-    height: 70vh;
+    height: 62vh;
     image-rendering: auto;
     display: flex;
     justify-content: center;
