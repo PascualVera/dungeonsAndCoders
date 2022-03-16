@@ -6,10 +6,10 @@
             <img [src]="urlAvatar" alt="Foto perfil">
         </picture>
         <div class="opciones">
-            <a href="#" (click)="activarOpcion(1)" [ngClass]="{'opcionActiva': opcionActiva == 1}">Detalles de la cuenta</a>
-            <a href="#" (click)="activarOpcion(2)" [ngClass]="{'opcionActiva': opcionActiva == 2}">Tus campañas</a>
-            <a href="#" (click)="modalAvatar(veloModalAvatar, true)" [ngClass]="{'opcionActiva': opcionActiva == 3}">Cambiar Avatar</a>
-            <a href="#">Cerrar sesión</a>
+            <a (click)="activarOpcion(1)" [ngClass]="{'opcionActiva': opcionActiva == 1}">Detalles de la cuenta</a>
+            <a (click)="activarOpcion(2)" [ngClass]="{'opcionActiva': opcionActiva == 2}">Tus campañas</a>
+            <a (click)="modalAvatar(veloModalAvatar, true)" [ngClass]="{'opcionActiva': opcionActiva == 3}">Cambiar Avatar</a>
+            <a routerLink="">Cerrar sesión</a>
         </div>
     </div>
     <div *ngIf="detalles" class="detalles">
@@ -112,7 +112,7 @@
 
         <ng-container *ngFor="let avatar of arrayAvatares, let i = index">
             <picture (click)="seleccionarAvatar(i)" class="avatar" [ngClass]="{'avatarSeleccionado': indiceAvatarSeleccionado == i}">
-                <img [src]="arrayAvatares[i]" alt="Avatar">
+                <img [src]="avatar" alt="Avatar">
             </picture>
         </ng-container>
 
