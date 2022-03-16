@@ -67,7 +67,7 @@
     background: #555;
   }
 
-span{
+.campin span{
     font-size: 2rem;
     text-transform: capitalize;
 }
@@ -243,14 +243,121 @@ span{
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 10%;
+    left: 20%;
+    width: 40vw;
+    height: auto;
     z-index: 1;
-    background: rgba(0, 0, 0, 0.4);
+    background-image: url(../../../assets/images/pergamine2.png);
+    border: 0.2rem solid var(--bluemain);
 }
 
-.modal{
-    width: 80vw;
-    height: auto;
+.enemyInfo{
+    height: 100%;
+    width: 100%;
+    /* font-size: 1rem; */
+}
+
+.enemyInfo ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.enemyInfo .nombre{
+    font-size: 1.2rem;
+    height: 5vh;
+    margin: 0;
+    border-width: 0 0 3px 0;
+    padding-bottom: 0%;
+    padding-top: 0%;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    border-style: solid;
+    border-image: linear-gradient(to right, var(--redmain), var(--bluemain)) 1;
+}
+
+.enemyInfo .nombre label{
+    width: 100%;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+.enemyInfo .nombre span{
+    font-size: 0.9rem;
+    margin-top: 0;
+}
+
+.info{
+    font-size: 0.9rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    border-width: 0 0 3px 0;
+    border-style: solid;
+    border-image: linear-gradient(to right, var(--redmain), var(--bluemain)) 1;
+}
+
+.atributos{
+    display: flex;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    border-width: 0 0 3px 0;
+    border-style: solid;
+    border-image: linear-gradient(to right, var(--redmain), var(--bluemain)) 1;
+}
+
+.atributos div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.habilidades{
+    font-size: 0.9rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    border-width: 0 0 3px 0;
+    border-style: solid;
+    border-image: linear-gradient(to right, var(--redmain), var(--bluemain)) 1;
+}
+
+.conjuros{
+    font-size: 0.9rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    border-width: 0 0 3px 0;
+    border-style: solid;
+    border-image: linear-gradient(to right, var(--redmain), var(--bluemain)) 1;
+}
+
+.acciones{
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    border-width: 0 0 3px 0;
+    border-style: solid;
+    border-image: linear-gradient(to right, var(--redmain), var(--bluemain)) 1;
+}
+
+.cerrarModal{
+    cursor: pointer;
+    margin: 0.5rem;
+    text-align: center;
+    width: auto;
+    height: 1.5rem;
+    font-size: 1rem;
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    color: var(--textMain);
+    background-color: var(--redmain);
+    border-radius: 0.8vh;
+    border-style: none;
+    -webkit-text-stroke: 0.05rem black;
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+.cerrarModal:hover{
+    box-shadow: 0 0 10px lightyellow;
 }

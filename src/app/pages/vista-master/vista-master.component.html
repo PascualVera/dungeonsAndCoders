@@ -51,7 +51,7 @@
                          </select>
                     </section>
                     <section class="heroes" >
-                        <label type="button" (click)="modalEnemigos(modalEnemy, true)"  >Personajes: </label>
+                        <label type="button" (click)="modalPersonaje(modalHero, true)"  >Personajes: </label>
                         <select name="personajes"> <!--Desplegable con los jugadores *-->
                             <option value="1">personaje 1</option> 
                             <option value="2">personaje 2</option> 
@@ -135,73 +135,161 @@
 
 <!-- Modal enemigos -->
 <div #modalEnemy class="veloModal">
-    <div class="modal">
+    <div class="enemyInfo">
         <div class="left">
             <div class="nombre">
-                <label>Nombre</label>
-                <p>raza</p>
+                <label><b>Ion </b> <span>(Humanoide Pequeño (trasgo), neutral malvado)</span></label> 
             </div>
             <div class="info">
                 <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+                    <li><b>Clase de armadura: </b> 13 (armadura de cuero)</li>
+                    <li><b>Puntos de golpe: </b> 8 (2d6)</li>
+                    <li><b>Velocidad: </b> 30 pies</li>
                 </ul>
             </div>
             <div class="atributos">
                 <div>
-                    <section>FUE</section>
-                    <section></section>
+                    <section>FUE:</section>
+                    <section> 8 (-1)</section>
                 </div>
                 <div>
-                    <section>DES</section>
-                    <section></section>
+                    <section>DES:</section>
+                    <section> 14 (+2)</section>
                 </div>
                 <div>
-                    <section>CON</section>
-                    <section></section>
+                    <section>CON:</section>
+                    <section> 10 (+0)</section>
                 </div>
                 <div>
-                    <section>INT</section>
-                    <section></section>
+                    <section>INT:</section>
+                    <section> 10 (+0)</section>
                 </div>
                 <div>
-                    <section>SAB</section>
-                    <section></section>
+                    <section>SAB:</section>
+                    <section> 10 (+0)</section>
                 </div>
                 <div>
-                    <section>CAR</section>
-                    <section></section>
+                    <section>CAR:</section>
+                    <section> 8 (-1)</section>
                 </div>
             </div>
-        </div>
-        <div class="habilidades">
-            <ul>
-                <li>Habilidades: </li>
-                <li>Sentidos: </li>
-                <li>Idiomas: </li>
-            </ul>
-        </div>
-        <div class="conjuros">
-            <ul>
-                <li>Conjuro 1</li>
-                <li>Conjuro 2</li>
-            </ul>
+            <div class="habilidades">
+                <ul>
+                    <li><b>Habilidades: </b> Sigilo +6</li>
+                    <li><b>Sentidos: </b> visión en la oscuridad 60 pies, Percepción pasiva 10</li>
+                    <li><b>Idiomas: </b> común, goblin</li>
+                </ul>
+            </div>
         </div>
         <div class="right">
+            <div class="conjuros">
+                <ul>
+                    <li><b>Huida veloz. </b> Ion puede, en cada uno de sus
+                        turnos, usar una acción adicional para
+                        Destrabarse o Esconderse.
+                    </li>
+                </ul>
+            </div>
             <div class="acciones">
             <span>
-                <b>Cimitarra.</b> Ataque con arma cuerpo a cuerpo: +4 a
+                <b>- Cimitarra.</b> Ataque con arma cuerpo a cuerpo: +4 a
                 impactar, alcance 5 pies, un objetivo. Impacto: 5
                 (1d6 + 2) de daño cortante.
             </span>
             <span>
-                <b>Arco corto.</b> Ataque con arma a distancia: +4 a
+                <b>- Arco corto.</b> Ataque con arma a distancia: +4 a
                 impactar, alcance 80/320 pies, un objetivo.
                 Impacto: 5 (1d6 + 2) de daño perforante.
             </span>
             </div>
+            <button class="cerrarModal" type="button" (click)="modalEnemigos(modalEnemy, false)">Cerrar</button>
         </div>
-        <button type="button"  (click)="modalEnemigos(modalEnemy, false)">Large modal</button>
     </div>
+</div>
+
+<!-- Modal personajes -->
+
+<div #modalHero class="veloModal">
+    <div class="enemyInfo">
+        <div class="left">
+            <div class="nombre">
+                <label><b>Picaro </b> <span>(Mediano piesligeros)</span></label> 
+            </div>
+            <div class="info">
+                <ul>
+                    <li><b>Clase de armadura: </b> 14 (armadura de cuero)</li>
+                    <li><b>Iniciativa: </b> +3</li>
+                    <li><b>Velocidad: </b> 25 pies</li>
+                    <li><b>Puntos de golpe máximos: </b> 9</li>
+                    <li><b>Puntos de golpe actuales: </b> 9</li>
+                </ul>
+            </div>
+            <div class="atributos">
+                <div>
+                    <section>FUE:</section>
+                    <section> 8 (-1)</section>
+                </div>
+                <div>
+                    <section>DES:</section>
+                    <section> 16 (+3)</section>
+                </div>
+                <div>
+                    <section>CON:</section>
+                    <section> 12 (+1)</section>
+                </div>
+                <div>
+                    <section>INT:</section>
+                    <section> 13 (+1)</section>
+                </div>
+                <div>
+                    <section>SAB:</section>
+                    <section> 10 (+0)</section>
+                </div>
+                <div>
+                    <section>CAR:</section>
+                    <section> 16 (+3)</section>
+                </div>
+            </div>
+            <div class="habilidades">
+                <ul>
+                    <li>
+                        <b>Tiradas de salvacion: </b>
+                        <select name="tSalvacion"  style="width: 9vw;">
+                            <option value="1">Fuerza: -1</option> 
+                            <option value="2"><b>Destreza: </b> +5</option> 
+                            <option value="3">Constitución: +1</option>
+                            <option value="10"><b>Inteligencia: </b>+3</option> 
+                            <option value="11">Sabiduria: +0</option> 
+                            <option value="12">Carisma: +3</option> 
+                         </select>
+                    </li>
+                    <li><b>Habilidades: </b> /li>
+                    <li><b>Idiomas: </b> común, goblin</li>
+                </ul>
+            </div>
+        </div>
+        <div class="right">
+            <div class="conjuros">
+                <ul>
+                    <li><b>Huida veloz. </b> Ion puede, en cada uno de sus
+                        turnos, usar una acción adicional para
+                        Destrabarse o Esconderse.
+                    </li>
+                </ul>
+            </div>
+            <div class="acciones">
+            <span>
+                <b>- Cimitarra.</b> Ataque con arma cuerpo a cuerpo: +4 a
+                impactar, alcance 5 pies, un objetivo. Impacto: 5
+                (1d6 + 2) de daño cortante.
+            </span>
+            <span>
+                <b>- Arco corto.</b> Ataque con arma a distancia: +4 a
+                impactar, alcance 80/320 pies, un objetivo.
+                Impacto: 5 (1d6 + 2) de daño perforante.
+            </span>
+            </div>
+            <button class="cerrarModal" type="button" (click)="modalPersonaje(modalHero, false)">Cerrar</button>
+        </div>
     </div>
+</div>

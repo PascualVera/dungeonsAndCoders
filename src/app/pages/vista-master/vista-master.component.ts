@@ -16,4 +16,8 @@ export class VistaMasterComponent implements OnInit {
     modalEnemigos.style.display = (visible) ? 'flex' : 'none';
   }
 
+  modalPersonaje(modalPersonaje: HTMLElement, visible: boolean) {
+    modalPersonaje.style.display = (visible) ? 'flex' : 'none';
+  }
+
 }
