@@ -224,7 +224,7 @@
 .columna1  {
     width: 50%;
     padding: 0 1vw;
-    background-color: var(--redmain);
+    background-color: rgba(163, 76, 80, .75);
 }
 
 .columna2 {
@@ -232,7 +232,7 @@
     width: 15%;
     padding: 0 1vw;
     border-left: 1px solid var(--textMain);
-    background-color: var(--redmain);    
+    background-color: rgba(163, 76, 80, .75);
 }
 
 .columna3 {
@@ -246,7 +246,7 @@
     margin-left: auto;
     font-size: 2rem;
     color: var(--textMain);
-    background-color: var(--redmain);
+    background-color: rgba(163, 76, 80, .75);
     border-radius: 0.8vh;
     -webkit-text-stroke: 0.05rem black;
 }
@@ -255,26 +255,7 @@
     box-shadow: 0 0 10px black;
 }
 
-/**ScrollBar specs**/
-
-::-webkit-scrollbar {
-    width: 0.8vw;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f17f;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--bluemain);
-    opacity: 0.7;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-
-.veloModal {
+.veloModalAvatar {
     display: none;
     justify-content: center;
     align-items: center;
@@ -286,7 +267,8 @@
     background: rgba(0, 0, 0, 0.4);
 }
 
-.modal1 {
+.modalAvatar {
+    position: relative;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -294,8 +276,8 @@
     height: auto;
     background-image: url('../../../assets/images/pergamine2.png');
     background-size: 100% 100%;
-    border: .8vh solid var(--bluemain);
-    border-radius: 1.6vh;
+    border-radius: 1.5vh;
+    border: 1vh solid var(--bluemain);
     margin-bottom: 5vh;
 }
 
@@ -333,4 +315,39 @@
 
 .botonElegir:active {
     box-shadow: 0 0 10px black;
+}
+
+.closeModal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 2rem;
+    width: 1.8vw;
+    height: 1.8vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: none;
+    color: var(--bluemain);
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+/**ScrollBar specs**/
+
+::-webkit-scrollbar {
+    width: 0.8vw;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f17f;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bluemain);
+    opacity: 0.7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
