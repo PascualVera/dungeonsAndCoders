@@ -1,0 +1,120 @@
+*{
+    overflow: visible;
+}
+.contenedor{
+    height: 100vh; 
+    width: 100%; 
+    display: flex; 
+    flex-direction: row;
+}
+
+.nombre{
+    height: 8vh;
+    background-color: var(--redmain);
+    border: 0.1rem solid var(--bluemain);
+    color: var(--beige);
+    font-size: 2rem;
+    text-align: center;
+    -webkit-text-stroke: 0.5px black;  
+}
+
+.personaje{
+    background-image: url(../../../assets/images/pergamine.jpg);
+    background-size: cover;
+    border-right: 0.1rem solid var(--bluemain); 
+    height: 62vh;
+    padding: 1rem;
+    font-size: 1rem;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    /* overflow-y: scroll; */
+}
+
+/**ScrollBar specs**/
+/* 
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f17a;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--bluemain);
+    opacity: 0.7;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  } */
+
+.mapa{
+    height: 70vh;
+    image-rendering: auto;
+    display: flex;
+    justify-content: center;
+    background-color: var(--beige);
+}
+
+.mapa img{
+    width: auto;
+    height: 100%;
+}
+
+.chat{
+    width: 80%; 
+    height: 100%;
+    border-right: 0.1rem solid var(--bluemain);
+}
+
+.habilidades{
+    height: 30vh;
+}
+
+.info{
+    height: 25%;
+    width: 100%;
+    border: 1px solid black;
+    background-color: var(--bluemain);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info section select{
+    width: 30vw;
+    height: 4.5vh;
+    font-size: 1.5rem;
+    background-color: var(--redmain);
+    color: var(--beige);
+    -webkit-text-stroke: 0.5px black;
+}
+
+.players{
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    align-content: center;
+    padding-left: 0.5rem;
+    padding-top: 0.5rem;
+    font-size: 1rem;
+    gap: 0.2rem;
+    height: 30vh;
+    width: 20%;
+}
+
+.players div{
+    box-shadow: #555 0.1rem 0.1rem;
+    display: flex;
+    padding-left: 0.3rem;
+    justify-content: start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 90%;
+    height: 5vh;
+    border-radius: 0 1rem 1rem 0;
+    border: 0.1rem solid var(--bluemain);
+}
+
