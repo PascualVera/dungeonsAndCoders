@@ -1,1 +1,124 @@
-<p>character-select works!</p>
+<header class="headChar"></header>
+<main class="main_char_container">
+  <article class="character_selection">
+    <div class="title_container"><p>Choose your hero</p></div>
+
+    <section class="set_characters">
+      <div (click)="showCharacter(img, name)" class="img_container">
+        <img src="../../../assets/images/characters/rogue.png" alt="" />
+        <div class="sombra"></div>
+      </div>
+      <div class="img_container">
+        <img src="../../../assets/images/characters/warrior.png" alt="" />
+        <div class="sombra"></div>
+      </div>
+      <div class="img_container">
+        <img src="../../../assets/images/characters/cleric.png" alt="" />
+        <div class="sombra"></div>
+      </div>
+      <div class="img_container">
+        <img src="../../../assets/images/characters/mage.png" alt="" />
+        <div class="sombra"></div>
+      </div>
+      <div class="img_container">
+        <img src="../../../assets/images/characters/archer.png" alt="" />
+        <div class="sombra"></div>
+      </div>
+      <div class="img_container">
+        <img src="../../../assets/images/characters/barbarian.png" alt="" />
+        <div class="sombra"></div>
+      </div>
+    </section>
+  </article>
+  <article class="character_specs">
+    <section class="character_stats">
+      <div class="stats1">
+        <div class="stat">
+          <div id="name"><p>Fuerza</p></div>
+          <p class="value">-1</p>
+          <div class="circle">8</div>
+        </div>
+        <div class="stat">
+          <div id="name"><p>Inteligencia</p></div>
+          <p class="value">+1</p>
+          <div class="circle">13</div>
+        </div>
+        <div class="stat">
+          <div id="name"><p>Destreza</p></div>
+          <p class="value">+3</p>
+          <div class="circle">8</div>
+        </div>
+        <div class="stat">
+          <div id="name"><p>Sabiduria</p></div>
+          <p class="value">+0</p>
+          <div class="circle">10</div>
+        </div>
+        <div class="stat">
+          <div id="name"><p>Constitución</p></div>
+          <p class="value">+1</p>
+          <div class="circle">13</div>
+        </div>
+        <div class="stat">
+          <div id="name"><p>Carisma</p></div>
+          <p class="value">+3</p>
+          <div class="circle">16</div>
+        </div>
+        <div class="stat">
+          <div id="name"><p>Velocidad</p></div>
+          <p class="value">4</p>
+        </div>
+        <div class="stat">
+          <div id="name"><p>Armadura</p></div>
+          <p class="value">4</p>
+        </div>
+        <div class="stat">
+          <div id="name"><p>Iniciativa</p></div>
+          <p class="value">4</p>
+        </div>
+      </div>
+      <div class="imgStats">
+        <img #img src="" alt="" />
+        <p #name></p>
+      </div>
+      <div class="stats2">
+        <div class="statAlt">
+          <div id="stats2_title">Puntos de Golpe</div>
+          <p>23</p>
+        </div>
+        <div class="statAlt">
+          <div id="stats2_title">Dados de golpe</div>
+          <p>1d8</p>
+        </div>
+        <div class="statAlt">
+          <div id="stats2_title">Equipo</div>
+          <p>Espada corta</p>
+          <p>Arco corto</p>
+        </div>
+      </div>
+    </section>
+    <section class="character_lore">
+      <header class="lore_title">
+        <p>Lore</p>
+      </header>
+      <div class="loreBody">
+        <div #lore class="lore_contain">
+          <div class="loreSection">Rasgos Personales</div>
+          <div class="loreSection">Ideales</div>
+          <div class="loreSection">Vinculos</div>
+          <div class="loreSection">Defectos</div>
+        </div>
+      </div>
+
+      <button class="up" #up (click)="loreScrollUp(lore, up, down)" disabled>
+        <i class="fas fa-angle-double-up"></i>
+      </button>
+      <button class="down" #down (click)="loreScrollDown(lore, up, down)">
+        <i class="fas fa-angle-double-down"></i>
+      </button>
+    </section>
+    <div class="button_container">
+      <button>Regresar</button>
+      <button>Elegir</button>
+    </div>
+  </article>
+</main>

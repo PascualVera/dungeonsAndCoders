@@ -89,6 +89,9 @@ main {
   justify-content: space-between;
   height: 10%;
   width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 .header_list div {
   display: flex;
@@ -181,7 +184,7 @@ main {
 }
 /*********Modal**********/
 #modal {
-  background-color: rgba(0, 0, 0, 0.452);
+  background-color: rgba(0, 0, 0, 0.4);
   position: absolute;
   width: 100vw;
   height: 90vh;
@@ -256,7 +259,7 @@ main {
 /***********ScrollBar specs*********/
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 0.8vw;
 }
 
 ::-webkit-scrollbar-track {
