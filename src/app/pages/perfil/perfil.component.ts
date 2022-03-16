@@ -16,7 +16,7 @@ export class PerfilComponent implements OnInit {
   }
   
   // TODO: Provisionalpara abrir modal
-  modalAvatar(veloModal: HTMLElement, visible: boolean) {
-    veloModal.style.display = (visible) ? 'flex' : 'none';
+  modalAvatar(veloModalAvatar: HTMLElement, visible: boolean) {
+    veloModalAvatar.style.display = (visible) ? 'flex' : 'none';
   }
 }

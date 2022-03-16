@@ -6,7 +6,7 @@
         <div class="opciones">
             <a href="#">Detalles de la cuenta</a>
             <a href="#">Tus campañas</a>
-            <a (click)="modalAvatar(veloModal, true)" href="#">Cambiar Avatar</a>
+            <a (click)="modalAvatar(veloModalAvatar, true)" href="#">Cambiar Avatar</a>
             <a href="#">Cerrar sesión</a>
         </div>
     </div>
@@ -87,7 +87,7 @@
                     <td class="columna1">Voluptates aut vero tempore</td>
                     <td class="columna2">Player</td>
                     <td class="columna3"><button class="botonEntrar" type="button">Entrar</button></td>
-                </tr>           
+                </tr>
                 <tr class="filas">
                     <td class="columna1">Alias velit qui dolor</td>
                     <td class="columna2">Master</td>
@@ -103,8 +103,11 @@
     </div>
 </main>
 
-<div #veloModal class="veloModal">
-    <div class="modal1">
+<div #veloModalAvatar class="veloModalAvatar">
+    <div class="modalAvatar">
+        <button (click)="modalAvatar(veloModalAvatar, false)" class="closeModal">
+            <i class="fa-solid fa-square-xmark closeModal"></i>
+        </button>
         <picture class="avatar">
             <img src="../../../assets/images/avatares/avatar01.png" alt="Avatar">
         </picture>
@@ -135,6 +138,6 @@
         <picture class="avatar">
             <img src="../../../assets/images/avatares/avatar10.png" alt="Avatar">
         </picture>
-        <button (click)="modalAvatar(veloModal, false)" class="botonElegir">Elegir</button>
+        <button class="botonElegir">Elegir</button>
     </div>
 </div>
