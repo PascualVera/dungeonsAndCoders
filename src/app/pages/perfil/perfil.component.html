@@ -6,10 +6,10 @@
             <img src="../../../assets/images/avatares/avatar10.png" alt="Foto perfil">
         </picture>
         <div class="opciones">
-            <a href="#">Detalles de la cuenta</a>
-            <a href="#">Tus campañas</a>
-            <a (click)="modalAvatar(veloModalAvatar, true)" href="#">Cambiar Avatar</a>
-            <a href="#">Cerrar sesión</a>
+            <a>Detalles de la cuenta</a>
+            <a>Tus campañas</a>
+            <a (click)="modalAvatar(veloModalAvatar, true)" >Cambiar Avatar</a>
+            <a routerLink=''>Cerrar sesión</a>
         </div>
     </div>
     <div *ngIf="detalles" class="detalles">
