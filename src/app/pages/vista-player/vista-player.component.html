@@ -1,1 +1,76 @@
-<p>vista-player works!</p>
+<div>
+    <div class="contenedor" >
+        <div style="height: 100vh; width: 35%;">
+            <header class="nombre">
+                <p>Nombre del personaje</p>
+            </header>
+            <div class="personaje">
+                <p>Ficha del personaje</p>
+            </div>
+            <div class="habilidades">
+                <div class="info">
+                    <section>
+                        <select name="Ataques y conjuros">
+                            <option value="0" selected>Ataques y Conjuros</option> 
+                            <option value="1">Conjuro 1</option>
+                            <option value="2">Conjuro 2</option> 
+                            </select>
+                    </section>
+                </div>
+                <div class="info">
+                    <section>
+                        <select name="Habilidades">
+                            <option selected value="0">Habilidades</option> 
+                            <option value="1">Habilidad 1</option>
+                            <option value="2">Habilidad 2</option> 
+                        </select>
+                    </section>
+                </div>
+                <div class="info">
+                    <section>
+                        <select name="basicos y atributos">
+                            <option selected value="0">Basicos y Atributos</option> 
+                            <option value="1">Atributo 1</option>
+                            <option value="2">Atributo 2</option>
+                            <option value="3">Atributo 3</option>  
+                        </select>
+                    </section>
+                </div>
+                <div class="info">
+                    <section>
+                        <select name="equipo">
+                            <option selected value="0">Equipo</option> 
+                            <option value="1">Equipo 1</option>
+                            <option value="2">Equipo 2</option> 
+                        </select>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div style=" height: 100%; width: 65%;">
+            <div class="mapa" >
+                <img src="../../../assets/images/mapa.jpeg" alt="">
+            </div>
+            <div style="display:flex; border: 0.1rem solid var(--bluemain); height: 32vh;">
+                <section class="chat">
+                    <app-chat></app-chat>
+                </section>
+                <section class="players" >
+                    <div>
+                        <label style="color: var(--barbarian);" for="player 1">Player 1 </label>
+                    </div>
+                    <div>
+                        <label style="color: var(--wizard);" for="player 2">Player 1</label>
+                    </div>
+                    <div>
+                        <label style="color: var(--ranger);" for="player 3">Player 1</label>
+                    </div>
+                    <div>
+                        <label style="color: var(--cleric);" for="player 4">Player 1</label>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
