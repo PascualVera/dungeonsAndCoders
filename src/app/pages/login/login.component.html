@@ -1,13 +1,28 @@
+<app-header></app-header>
+
 <main class="contenedor">
     <div class="login">
         <form>
             <div class="formContainer">
                 <input type="text" placeholder="Usuario o correo">
                 <input type="password" placeholder="Contraseña">
-                <a href="#">¿Has olvidado la contraseña?</a>
-                <button type="button">Iniciar sesión</button>
+                <a (click)="modalPass(veloModalPass, true)" href="#">¿Has olvidado la contraseña?</a>
+                <button class="botonIniciar" type="button">Iniciar sesión</button>
                 <a href="#">Volver al inicio</a>
             </div>
         </form>
     </div>
 </main>
+
+<div #veloModalPass class="veloModalPass">
+    <div class="modalPass">
+        <button (click)="modalPass(veloModalPass, false)" class="closeModal">
+            <i class="fa-solid fa-square-xmark closeModal"></i>
+        </button>
+        <input type="email" placeholder="Introduzca correo electrónico">
+        <button class="botonSolPass">Solicitar nueva</button>
+        <p>Si el correo existe recibirá una contraseña temporal</p>
+    </div>
+</div>
+
+<app-footer></app-footer>

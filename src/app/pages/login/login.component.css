@@ -33,8 +33,8 @@
   color: var(--textMain);
 }
 
-.formContainer input {
-  width: 20vw;
+input {
+  width: 75%;
   height: 7vh;
   padding: 0 1vw;
   background-color: var(--inputBg);
@@ -43,13 +43,14 @@
   border-style: none;
   border-radius: 0.8vh;
   border: 0.5vh solid var(--redmain);
+  letter-spacing: .1vw
 }
 
-.formContainer input::placeholder {
+input::placeholder {
   color: var(--placeHolder);
 }
 
-.formContainer button {
+.botonIniciar {
   border-style: none;
   width: 15vw;
   height: 7vh;
@@ -60,6 +61,76 @@
   -webkit-text-stroke: 0.05rem black;
 }
 
-.formContainer button:active {
+.botonIniciar:active {
+  box-shadow: 0 0 10px black;
+}
+
+.veloModalPass {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modalPass {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 50vw;
+  height: 30vh;
+  background-image: url('../../../assets/images/pergamine2.png');
+  background-size: 100% 100%;
+  border-radius: 1.5vh;
+  border: 1vh solid var(--bluemain);
+  margin-bottom: 5vh;
+  padding-top: 5vh;
+}
+
+.modalPass input {
+  margin-bottom: 0;
+}
+
+.modalPass p {
+  color: var(--bluemain);
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+.closeModal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+  width: 1.8vw;
+  height: 1.8vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: none;
+  color: var(--bluemain);
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.botonSolPass {
+  border-style: none;
+  width: 15vw;
+  height: 7vh;
+  font-size: 2rem;
+  margin-top: 4vh;
+  color: var(--textMain);
+  background-color: var(--redmain);
+  border-radius: 0.8vh;
+  -webkit-text-stroke: 0.05rem black;
+}
+
+.botonSolPass:active {
   box-shadow: 0 0 10px black;
 }

@@ -1,0 +1,31 @@
+.cabecera {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 8vh;
+    background-color: var(--bluemain);
+    padding: 0 1.5vw 0 1vw;
+  }
+
+  .sala, .pausar, .finalizar {
+      display: flex;
+      align-items: center;
+      height: 8vh;
+      font-size: 2.5rem;
+      color: var(--textMain);
+  }
+
+  .pausar, .finalizar {
+      padding: 0 2vw;
+  }
+  .pausar {
+    margin-left: auto;
+  }
+
+  .pausar:hover, .finalizar:hover {
+    background-color: var(--redmain);
+  }
+
+  .sala span {
+      color: var(--redmain);
+  }

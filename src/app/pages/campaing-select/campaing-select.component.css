@@ -1,0 +1,275 @@
+.contenedor {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    overflow: hidden;
+    width: 100vw;
+    height: 90vh;
+    padding-top: 10vh;
+    background-image: url('../../../assets/images/tavern.webp');
+    background-size: 100% 100%;
+}
+
+.campaings {
+    display: flex;
+    flex-direction: column;
+    width: 25vw;
+    height: auto;
+    overflow: hidden;
+}
+
+.titulo {
+    background-color: rgba(163, 76, 80, .85);
+    color: var(--textMain);
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    height: 6vh;
+    padding: 0 2vh;
+}
+
+.resumen {
+    width: 45vw;
+    height: 65vh;
+    background-color: rgba(196, 196, 196, 0.2);
+}
+
+.resumenCuerpo {
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--textMain);
+    width: 100%;
+    height: 59vh;
+    overflow-y: scroll;
+}
+
+.campaingItem {
+    background-color: rgba(196, 196, 196, 0.2);
+    color: var(--textMain);
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    height: 6vh;
+    padding: 0 2vh;
+    margin-top: 2vh;
+}
+
+.campaingItem:hover {
+    background-color: rgba(196, 196, 196, 0.5);
+}
+
+.volver {
+    position: absolute;
+    left: 5vw;
+    bottom: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7vw;
+    height: 3vw;
+    border: 0.25vw solid whitesmoke;
+    background: none;
+    color: whitesmoke;
+    font-size: 1.5rem;
+    text-align: center;
+    border-radius: .75vw;
+    opacity: 0.7;
+    letter-spacing: .1vw;    
+}
+
+.crear {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    margin-top: 4vh;
+    width: 9vw;
+    height: 5vw;
+    border: 0.25vw solid whitesmoke;
+    background: none;
+    color: whitesmoke;
+    font-size: 2rem;
+    text-align: center;
+    border-radius: .75vw;
+    opacity: 0.7;
+    letter-spacing: .1vw;
+}
+
+.iniciar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    width: 17vw;
+    height: 4vw;
+    border: 0.25vw solid whitesmoke;
+    background: none;
+    color: whitesmoke;
+    font-size: 2rem;
+    text-align: center;
+    border-radius: .75vw;
+    opacity: 0.7;
+    letter-spacing: .1vw;
+}
+
+.volver:hover, .crear:hover, .iniciar:hover {
+    opacity: 1;
+}
+
+.veloModalCrear {
+    display: none;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.modalCrear {
+    width: 70vw;
+    height: 65vh;
+    margin-top: 15vh;
+}
+
+.modalResumen {
+    position: relative;
+    width: 100%;
+    height: 55vh;
+    background-image: url('../../../assets/images/pergamine2.png');
+    background-size: 100% 100%;
+    overflow-y: scroll;
+}
+
+.modalOpciones {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    background-color: var(--redmain);
+}
+
+.closeModal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 2rem;
+    width: 1.8vw;
+    height: 1.8vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: none;
+    color: var(--bluemain);
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  .textSwitch {
+    color: var(--textMain);
+    font-size: 1.5rem;
+    margin: 0 1vw;
+  }
+
+/* Select players */
+.selectPlayers {
+  width: 15vw;
+  height: 4vh;
+  font-size: 1.2rem;
+  background-color: var(--bluemain);
+  color: var(--textMain);
+  padding: 0 1vw;
+}
+
+.selectPlayers option {
+  background-color: var(--bluemainT);
+}
+
+/**ScrollBar specs**/
+::-webkit-scrollbar {
+    width: 0.8vw;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f17f;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bluemain);
+    opacity: 0.7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+/* Switch tipo partida */
+.divSwitch {
+  display: flex;
+  align-items: center;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 3vw;
+    height: 1.7vw;
+  }
+
+  .inputPublica {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 1.3vw;
+    width: 1.3vw;
+    left: 0.2vw;
+    bottom: 0.2vw;
+    background-color: black;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .inputPublica:checked + .slider {
+    background-color: var(--bluemain);
+  }
+
+  .inputPublica:checked + .slider:before {
+    background-color: var(--textMain);
+  }
+
+  .inputPublica:checked + .slider:before {
+    -webkit-transform: translateX(1.3vw);
+    -ms-transform: translateX(1.3vw);
+    transform: translateX(1.3vw);
+  }
+
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 1.7vw;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
