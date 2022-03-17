@@ -12,7 +12,7 @@ export class CampaingSelectComponent implements OnInit {
   ngOnInit(): void {
   }
 
-// TODO: Provisional para abrir modal
+// para abrir modal
 modalCrear(veloModalCrear: HTMLElement, visible: boolean) {
   veloModalCrear.style.display = (visible) ? 'flex' : 'none';
 }

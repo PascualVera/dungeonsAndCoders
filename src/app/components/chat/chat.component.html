@@ -1,8 +1,41 @@
 <div class="contenedor">
-    <div class="mensajes">
-        <span class="player1"><span>Player 1:</span> Lorem, ipsum dolor.</span>
+
+    <div class="chatMensajes">
+        <div #mensajes class="mensajes">
+            <ng-container *ngFor="let item of arrayMensajes, let i = index"
+                [ngClass]="(i == arrayMensajes.length -1) ? scrollAbajo(mensajes) : ''">
+                <div *ngIf="nuevaFecha(item.fecha)" class="mensaje fecha">
+                    <p class="noselect">{{item.fecha | date}}</p>
+                </div>
+                <div class="mensaje" [ngClass]="{'yo': miUsuario == item.emisor}">
+                    <p class="noselect" [ngStyle]="{'background-color': getColorEmisor(item.emisor) + '12'}">
+                        <span [ngStyle]="{'color': getColorEmisor(item.emisor)}">{{item.emisor}}: </span>
+                        {{item.mensaje}}
+                    </p>
+                </div>
+            </ng-container>
+        </div>
+        <div class="enviarMensaje">
+            <input #mensaje (keyup)="enviarMensaje(mensaje, $event.keyCode)" type="text" class="inputMensaje" placeholder="Introduzca Mensaje...">
+            <button (click)="enviarMensaje(mensaje)" class="botonEnviar">Enviar</button>
+        </div>
     </div>
-    <div class="enviarMensaje">
-        <input type="text" class="inputMensaje">
+
+    <div class="chatPlayers">
+        <div class="players">
+            <ng-container *ngFor="let item of arrayUsuarios">
+                <div>
+                    <span [ngStyle]="{'color': getColorEmisor(item)}">{{item}}</span>
+                </div>
+            </ng-container>
+        </div>
+        <div class="dados">
+        <button (click)="modalCrear(veloModalDados, true)" class="botonDados">Tirar dados</button>
+        </div>
     </div>
+</div>
+
+
+<div #veloModalDados class="veloModalDados">
+    <app-dados></app-dados>
 </div>
