@@ -28,7 +28,7 @@ export class CharacterSelectComponent implements OnInit {
         0,
         3,
         14,
-        3,
+        30,
         25,
         `Nunca tengo un plan, pero se me da bien
         improvisar sobre la marcha. Además, la
@@ -201,8 +201,8 @@ export class CharacterSelectComponent implements OnInit {
         pueblo próspero. Habrá una estatua mía en
         su plaza.`,
         `Estoy convencido de la importancia de
-        mi destino, haciendo caso omiso de mis
-        defectos o la posibilidad de fracasar.`,
+mi destino, haciendo caso omiso de mis
+defectos o la posibilidad de fracasar.`,
         ['Espadon', 'Hacha grande'],
         19,
         '1d10'
@@ -223,6 +223,64 @@ export class CharacterSelectComponent implements OnInit {
     buttomDown.disabled = this.scrollCount == 3 ? true : false;
     buttomUp.disabled = this.scrollCount == 0 ? true : false;
   }
-  showCharacter(info: any, name: any) {}
+  showCharacter(
+    character: Character,
+    rasgos: HTMLElement,
+    ideales: HTMLElement,
+    vinculos: HTMLElement,
+    defectos: HTMLElement,
+    name: HTMLElement,
+    img: any,
+    fuerzaMod: any,
+    fuerza: any,
+    intMod: any,
+    int: any,
+    dexMod: any,
+    dex: any,
+    sabMod: any,
+    sab: any,
+    constMod: any,
+    constitucion: any,
+    carMod: any,
+    car: any,
+    speed: any,
+    armor: any,
+    iniciativa: any,
+    golpe: any,
+    dados: any,
+    equipo: any
+  ) {
+    let armas = '';
+    for (const arma of character.equipo) {
+      armas += `<div class='equipo_item'>${arma}<div>`;
+    }
+
+    rasgos.innerHTML = character.rasgos;
+    ideales.innerHTML = character.ideales;
+    vinculos.innerHTML = character.vinculos;
+    defectos.innerHTML = character.defectos;
+    name.innerHTML = character.clase;
+    fuerzaMod.innerHTML = character.fuerzaMod;
+    fuerza.innerHTML = character.fuerza;
+    intMod.innerHTML = character.inteligenciaMod;
+    int.innerHTML = character.inteligencia;
+    dexMod.innerHTML = character.destrezaMod;
+    dex.innerHTML = character.destreza;
+    sabMod.innerHTML = character.sabiduríaMod;
+    sab.innerHTML = character.sabiduría;
+    constMod.innerHTML = character.constitucionMod;
+    constitucion.innerHTML = character.constitucion;
+    carMod.innerHTML = character.carismaMod;
+    car.innerHTML = character.carisma;
+    speed.innerHTML = character.velocidad;
+    armor.innerHTML = character.armadura;
+    iniciativa.innerHTML = character.iniciativa;
+    golpe.innerHTML = character.golpe;
+    dados.innerHTML = character.dados;
+    equipo.innerHTML = armas;
+    img.src = character.imagen;
+    img.style.display = 'block';
+    console.log(img);
+  }
   ngOnInit(): void {}
 }

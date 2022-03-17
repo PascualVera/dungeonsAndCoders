@@ -21,7 +21,7 @@
   height: 80vh;
   display: flex;
   flex-direction: column-reverse;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 .title_container {
@@ -30,7 +30,7 @@
 }
 .title_container p {
   color: white;
-  font-size: 3rem;
+  font-size: 3.5rem;
 }
 .set_characters {
   display: flex;
@@ -39,7 +39,6 @@
   flex-wrap: wrap;
   overflow: visible;
   justify-content: space-between;
-  align-items: flex-end;
 }
 .imagenContainer {
   width: 12vw;
@@ -161,12 +160,11 @@ img {
 }
 .imgStats img {
   width: 10vw;
-  display: none;
   border-top-left-radius: 50%;
   border-top-right-radius: 50%;
+  display: none;
 }
 .imgStats p {
-  display: none;
   font-size: 2.3rem;
   color: white;
 }
@@ -183,8 +181,10 @@ img {
 }
 
 .stats2 div:last-child {
+  display: flex;
+  align-items: center;
   height: 14vh;
-  width: 14vh;
+  width: 18vh;
   border-radius: 2vh;
 }
 .statAlt {
@@ -203,6 +203,13 @@ img {
 .statAlt:last-child p {
   font-size: 1.1rem;
 }
+.equipo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 10vh;
+  width: 10vh;
+}
 
 .character_lore {
   width: 44vw;
@@ -210,8 +217,6 @@ img {
   background-image: url("../../../assets/images/pergamine2.png");
   background-repeat: no-repeat;
   background-size: cover;
-  justify-content: space-around;
-  align-items: center;
   position: relative;
   overflow: hidden;
 }
@@ -238,7 +243,7 @@ img {
   height: 80vh;
   transition: all 1s;
 }
-.lore_contain div {
+.lore_section {
   width: 35vw;
   height: 20vh;
   background-color: #c4c4c438;
@@ -246,6 +251,9 @@ img {
   margin: auto;
   padding: 1vh 1vh 1vh 2vh;
   font-size: 1.3rem;
+}
+.lore_section div {
+  font-size: 1.2rem;
 }
 .up {
   position: absolute;
