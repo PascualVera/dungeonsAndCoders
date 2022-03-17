@@ -248,7 +248,8 @@ defectos o la posibilidad de fracasar.`,
     iniciativa: any,
     golpe: any,
     dados: any,
-    equipo: any
+    equipo: any,
+    index: number
   ) {
     let armas = '';
     for (const arma of character.equipo) {
@@ -280,7 +281,24 @@ defectos o la posibilidad de fracasar.`,
     equipo.innerHTML = armas;
     img.src = character.imagen;
     img.style.display = 'block';
-    console.log(img);
+    ////Mostrar Imagen Effects////
+    this.shadow(img, index);
+  }
+  shadow(img: any, index: number) {
+    console.log(index);
+    if (index == 0) {
+      img.setAttribute('class', 'imagen_rogue');
+    } else if (index == 1) {
+      img.setAttribute('class', 'imagen_warrior');
+    } else if (index == 2) {
+      img.setAttribute('class', 'imagen_cleric');
+    } else if (index == 3) {
+      img.setAttribute('class', 'imagen_mage');
+    } else if (index == 4) {
+      img.setAttribute('class', 'imagen_ranger');
+    } else if (index == 5) {
+      img.setAttribute('class', 'imagen_barbarian');
+    }
   }
   ngOnInit(): void {}
 }

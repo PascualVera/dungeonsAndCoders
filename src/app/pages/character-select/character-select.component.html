@@ -5,7 +5,9 @@
 
     <section class="set_characters">
       <div
-        *ngFor="let character of this.characters"
+        tabindex="0"
+        #container
+        *ngFor="let character of this.characters; let i = index"
         (click)="
           showCharacter(
             character,
@@ -32,13 +34,14 @@
             iniciativa,
             golpe,
             dados,
-            equipo
+            equipo,
+            i
           )
         "
         class="img_container"
       >
         <img src="{{ character.imagen }}" alt="" />
-        <div class="sombra"></div>
+        <div #sombra class="sombra"></div>
       </div>
     </section>
   </article>
@@ -89,7 +92,7 @@
         </div>
       </div>
       <div class="imgStats">
-        <img #img src="" alt="" />
+        <img #img class="imagen" src="" alt="" />
         <p #name></p>
       </div>
       <div class="stats2">
