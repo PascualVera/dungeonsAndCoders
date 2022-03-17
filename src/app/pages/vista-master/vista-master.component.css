@@ -67,7 +67,7 @@
     background: #555;
   }
 
-.campin span{
+.campain span{
     font-size: 2rem;
     text-transform: capitalize;
 }
@@ -136,9 +136,9 @@
 }
 
 .chat{
-    width: 80%; 
+    width: 100%; 
     height: 23.7vh;
-    border-right: 0.1rem solid var(--bluemain);
+    /* border-right: 0.1rem solid var(--bluemain); */
 }
 
 .calculadora{
@@ -212,7 +212,8 @@
     box-shadow: 0 0 10px lightyellow;
 }
 
-.players{
+/* Comentado por Ander por traslado a chat component */
+/* .players{
     display: flex;
     justify-content: left;
     flex-direction: column;
@@ -236,7 +237,7 @@
     height: 5vh;
     border-radius: 0 1rem 1rem 0;
     border: 0.1rem solid var(--bluemain);
-}
+} */
 
 .veloModal {
     display: none;
