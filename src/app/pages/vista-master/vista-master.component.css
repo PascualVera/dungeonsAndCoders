@@ -249,6 +249,7 @@
     height: auto;
     z-index: 1;
     background-image: url(../../../assets/images/pergamine2.png);
+    background-size: cover;
     border: 0.2rem solid var(--bluemain);
 }
 

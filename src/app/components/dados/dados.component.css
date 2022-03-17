@@ -1,0 +1,132 @@
+.padre{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background-image: url(../../../assets/images/pergamine2.png);
+    background-size: cover;
+    width: 50vw;
+    height: 35vh;
+    border: 0.5rem solid var(--bluemain);
+}
+.selector{ 
+    width: 60%;
+    margin-top: 20px;
+}
+
+.selector form{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px; 
+}
+
+.contenedor{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: visible;
+    width: 100%;
+    height: 10vh;
+    margin-bottom: 1rem;
+    
+}
+.dados{ 
+    width: auto;
+    padding: 0%;
+    margin: 0%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; 
+}
+.d6{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0%;
+    padding: 0%;
+
+}
+
+.dados img{
+    width: 50%;
+    height: auto;
+    padding-right: 0;
+}
+
+.caja{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0%;
+    padding: 0%;
+    width: 8vw;
+}
+
+.caja img{
+    width: 50%;
+    height: auto;
+}
+
+.valor{
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+    background-color: transparent;
+    font-size: 1rem;
+    color: rgb(255, 255, 255);
+    display: block;
+    position: absolute;
+    top: 28%;
+    left: 45%;
+}
+
+.valor:focus{
+    outline: none;
+}
+
+.footer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    height: auto;
+    width: auto;
+}
+
+.boton{
+    cursor: pointer;
+    margin: 0.5rem;
+    text-align: center;
+    width: auto;
+    height: 1.5rem;
+    font-size: 1rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+    color: var(--textMain);
+    background-color: var(--redmain);
+    border-radius: 0.8vh;
+    border-style: none;
+    -webkit-text-stroke: 0.05rem black;
+}
+
+.boton:hover{
+    box-shadow: 0 0 10px lightyellow;
+}
+
+.result{
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+    background-color: rgba(128, 128, 128, 0.342);
+    font-size: 2rem;
+    color: var(--bluemain);
+    text-align: center;
+    width: 5vw;
+    height: 7vh;
+}
