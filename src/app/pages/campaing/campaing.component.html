@@ -1,11 +1,10 @@
 <app-header></app-header>
-
 <main>
   <article #modal id="modal">
     <div class="codeModal">
       <label for="code">Introduce el código de la sala</label>
       <input type="text" />
-      <button class="modalButton">Unirse</button>
+      <button routerLink="/characterList" class="modalButton">Unirse</button>
       <button (click)="closeModal(modal)" class="closeModal">
         <i class="fa-solid fa-square-xmark"></i>
       </button>
@@ -13,7 +12,7 @@
   </article>
   <div class="background_filter"></div>
   <span class="upbar">
-    <button class="btn_create">Crear campaña</button>
+    <button routerLink="/campaingDetails" class="btn_create">Crear campaña</button>
     <div>
       <button class="filtrar">
         <i class="fa-solid fa-magnifying-glass"></i>
@@ -138,5 +137,5 @@
   <div class="code_container">
     <button (click)="openModal(modal)">Unirse con código</button>
   </div>
-  <button class="join">JOIN</button>
+  <button routerLink="/characterList" class="join">JOIN</button>
 </main>

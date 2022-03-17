@@ -6,9 +6,9 @@
             <div class="formContainer">
                 <input type="text" placeholder="Usuario o correo">
                 <input type="password" placeholder="Contraseña">
-                <a (click)="modalPass(veloModalPass, true)" href="#">¿Has olvidado la contraseña?</a>
-                <button class="botonIniciar" type="button">Iniciar sesión</button>
-                <a href="#">Volver al inicio</a>
+                <a (click)="modalPass(veloModalPass, true)">¿Has olvidado la contraseña?</a>
+                <button routerLink="/inicio" class="botonIniciar" type="button">Iniciar sesión</button>
+                <a routerLink="">Volver al inicio</a>
             </div>
         </form>
     </div>
