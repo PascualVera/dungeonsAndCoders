@@ -4,28 +4,12 @@
     <div class="title_container"><p>Choose your hero</p></div>
 
     <section class="set_characters">
-      <div (click)="showCharacter(img, name)" class="img_container">
-        <img src="../../../assets/images/characters/rogue.png" alt="" />
-        <div class="sombra"></div>
-      </div>
-      <div class="img_container">
-        <img src="../../../assets/images/characters/warrior.png" alt="" />
-        <div class="sombra"></div>
-      </div>
-      <div class="img_container">
-        <img src="../../../assets/images/characters/cleric.png" alt="" />
-        <div class="sombra"></div>
-      </div>
-      <div class="img_container">
-        <img src="../../../assets/images/characters/mage.png" alt="" />
-        <div class="sombra"></div>
-      </div>
-      <div class="img_container">
-        <img src="../../../assets/images/characters/archer.png" alt="" />
-        <div class="sombra"></div>
-      </div>
-      <div class="img_container">
-        <img src="../../../assets/images/characters/barbarian.png" alt="" />
+      <div
+        *ngFor="let character of this.characters"
+        (click)="showCharacter(img, name)"
+        class="img_container"
+      >
+        <img src="{{ character.imagen }}" alt="" />
         <div class="sombra"></div>
       </div>
     </section>
@@ -35,12 +19,12 @@
       <div class="stats1">
         <div class="stat">
           <div id="name"><p>Fuerza</p></div>
-          <p class="value">-1</p>
-          <div class="circle">8</div>
+          <p class="value"></p>
+          <div class="circle"></div>
         </div>
         <div class="stat">
           <div id="name"><p>Inteligencia</p></div>
-          <p class="value">+1</p>
+          <p class="value"></p>
           <div class="circle">13</div>
         </div>
         <div class="stat">
