@@ -1,14 +1,19 @@
 <header class="cabecera">
-    <picture class="logodyc">
-        <img src="../../../assets/images/dcLogoHome.jpg" alt="Logo dyc">
-    </picture>
+  <picture class="logodyc">
+    <img src="../../../assets/images/dcLogoHome.jpg" alt="Logo dyc" />
+  </picture>
 
-    <nav class="navHeader">
-        <ul class="navList">
-            <li class="navItem"><a routerLink="/inicio">Home</a></li>
-            <li class="navItem"><a routerLink="/campaing">Campañas</a></li>
-            <li class="navItem"><a routerLink="/perfil">Perfil</a></li>
-        </ul>
-    </nav>
+  <nav class="navHeader">
+    <ul class="navList">
+      <li [ngStyle]="{background : (this.router.routerState.snapshot.url) === '/inicio' ? '#a34c50':'#264c5e'}" class="navItem">
+        <a #home  routerLink="/inicio">Home</a>
+      </li>
+      <li  [ngStyle]="{background : (this.router.routerState.snapshot.url) === '/campaing' ? '#a34c50':'#264c5e'}" class="navItem">
+        <a #campaing  routerLink="/campaing">Campañas</a>
+      </li>
+      <li [ngStyle]="{background : (this.router.routerState.snapshot.url) === '/perfil' ? '#a34c50':'#264c5e'}"
+      class="navItem"><a #perfil routerLink="/perfil">Perfil</a>
+    </li>
+    </ul>
+  </nav>
 </header>
-
