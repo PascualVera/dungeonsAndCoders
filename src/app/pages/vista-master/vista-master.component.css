@@ -2,7 +2,7 @@
     overflow: visible;
 }
 .contenedor{
-    height: 100vh; 
+    height: 92vh; 
     width: 100%; 
     display: flex; 
     flex-direction: row;
@@ -28,10 +28,10 @@
 } */
 
 .titulo{
-    height: 8vh;
+    height: 6vh;
     background-color: var(--redmain);
     color: var(--beige);
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-align: center;
     
 }
@@ -39,7 +39,7 @@
 .campain{
     background-image: url(../../../assets/images/pergamine.jpg);
     background-size: cover; 
-    height: 60vh;
+    height: 62vh;
     padding: 1rem;
     font-size: 1rem;
     z-index: 1;
@@ -67,7 +67,7 @@
     background: #555;
   }
 
-span{
+.campin span{
     font-size: 2rem;
     text-transform: capitalize;
 }
@@ -81,11 +81,16 @@ span{
 
 .fichas{
     display: flex; 
-    justify-content: center; 
+    justify-content: space-around; 
     flex-wrap: wrap; 
-    gap: 1rem; 
+    gap: 0.5rem; 
     padding: 0.6rem; 
     background-color: var(--redmain);
+}
+
+.fichas button{
+    width: 0.5rem;
+    height: 0.5rem;
 }
 
 .fichas section{
@@ -96,13 +101,21 @@ span{
 }
 
 .fichas section label{
-    width: 5vw;
+    width: auto;
     height: 4.5vh;
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
     margin-right: 0.5rem;
     margin-left: 0.5rem;
     text-align: center;
     color: var(--beige);
-    font-size: 1.1rem;
+    font-size: 1rem;
+    border: 0.2rem solid var(--bluemain);
+    border-radius: 0.2rem;
+}
+
+.fichas section label:hover{
+    background-color: rgba(128, 128, 128, 0.349);
 }
 
 .fichas section select{
@@ -124,13 +137,13 @@ span{
 
 .chat{
     width: 80%; 
-    height: 31.6vh;
+    height: 23.7vh;
     border-right: 0.1rem solid var(--bluemain);
 }
 
 .calculadora{
     background-color: var(--bluemain);
-    height: 24.4vh;
+    height: 24vh;
 }
 
 .superior{ 
@@ -156,6 +169,11 @@ span{
     padding-bottom: 0;
 }
 
+.inferior{
+    display: flex;
+    justify-content: space-around;
+}
+
 .valor{
     display: flex; 
     justify-content: center; 
@@ -168,26 +186,30 @@ span{
 .valor input{
     background-color: var(--beige); 
     width: 6rem; 
-    height: 2rem; 
+    height: 1.5rem; 
     box-shadow: inset -0.2rem -0.2rem rgba(128, 128, 128, 0.342);
     border-radius: 0.5rem;
     text-align: center;
 }
 
-button {
+.valor button {
     cursor: pointer;
-    line-height: 1;
-    padding: 0.5rem;
-    font-size:1.5rem;
     text-align: center;
     width: auto;
-    height: 2.8rem;
-    font-size: 2rem;
+    height: 1.5rem;
+    font-size: 1rem;
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
     color: var(--textMain);
     background-color: var(--redmain);
     border-radius: 0.8vh;
     border-style: none;
     -webkit-text-stroke: 0.05rem black;
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+.valor button:hover{
+    box-shadow: 0 0 10px lightyellow;
 }
 
 .players{
@@ -199,7 +221,7 @@ button {
     padding-top: 0.5rem;
     font-size: 1rem;
     gap: 0.2rem;
-    height: 31.6vh;
+    height: 23.7vh;
     width: 20%;
 }
 
@@ -216,3 +238,126 @@ button {
     border: 0.1rem solid var(--bluemain);
 }
 
+.veloModal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 5%;
+    left: 20%;
+    width: 40vw;
+    height: auto;
+    z-index: 1;
+    background-image: url(../../../assets/images/pergamine2.png);
+    border: 0.2rem solid var(--bluemain);
+}
+
+.enemyInfo{
+    height: 100%;
+    width: 100%;
+    /* font-size: 1rem; */
+}
+
+.enemyInfo ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.enemyInfo .nombre{
+    font-size: 1.2rem;
+    height: 5vh;
+    margin: 0;
+    border-width: 0 0 3px 0;
+    padding-bottom: 0%;
+    padding-top: 0%;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    border-style: solid;
+    border-image: linear-gradient(to right, var(--redmain), var(--bluemain)) 1;
+}
+
+.enemyInfo .nombre label{
+    width: 100%;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+.enemyInfo .nombre span{
+    font-size: 0.9rem;
+    margin-top: 0;
+}
+
+.info{
+    font-size: 0.9rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    border-width: 0 0 3px 0;
+    border-style: solid;
+    border-image: linear-gradient(to right, var(--redmain), var(--bluemain)) 1;
+}
+
+.atributos{
+    display: flex;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    border-width: 0 0 3px 0;
+    border-style: solid;
+    border-image: linear-gradient(to right, var(--redmain), var(--bluemain)) 1;
+}
+
+.atributos div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.habilidades{
+    font-size: 0.9rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    border-width: 0 0 3px 0;
+    border-style: solid;
+    border-image: linear-gradient(to right, var(--redmain), var(--bluemain)) 1;
+}
+
+.conjuros{
+    font-size: 0.9rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    border-width: 0 0 3px 0;
+    border-style: solid;
+    border-image: linear-gradient(to right, var(--redmain), var(--bluemain)) 1;
+}
+
+.acciones{
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    border-width: 0 0 3px 0;
+    border-style: solid;
+    border-image: linear-gradient(to right, var(--redmain), var(--bluemain)) 1;
+}
+
+.cerrarModal{
+    cursor: pointer;
+    margin: 0.5rem;
+    text-align: center;
+    width: auto;
+    height: 1.5rem;
+    font-size: 1rem;
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    color: var(--textMain);
+    background-color: var(--redmain);
+    border-radius: 0.8vh;
+    border-style: none;
+    -webkit-text-stroke: 0.05rem black;
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+.cerrarModal:hover{
+    box-shadow: 0 0 10px lightyellow;
+}

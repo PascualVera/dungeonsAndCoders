@@ -1,4 +1,5 @@
 <div>
+    <app-game-header></app-game-header>
     <div class="contenedor" >
         <div style="height: 100%; width: 35%;">
             <header class="titulo">
@@ -39,25 +40,25 @@
             <div>
                 <section class="fichas">
                     <section class="enemigos">
-                        <label>Monstruos: &nbsp;&nbsp;</label>
+                        <label type="button" (click)="modalEnemigos(modalEnemy, true)" >Monstruos: </label>
                         <select name="enemigos"> <!--Desplegable con los enemigos *-->
                             <option value="1">enemigo 1</option> 
                             <option value="2">enemigo 2</option> 
                             <option value="3">enemigo 3</option>
-                            <option value="10">enemigo 4</option> 
-                            <option value="11">enemigo 5</option> 
-                            <option value="12">enemigo 6</option> 
+                            <option value="4">enemigo 4</option> 
+                            <option value="5">enemigo 5</option> 
+                            <option value="6">enemigo 6</option> 
                          </select>
                     </section>
                     <section class="heroes" >
-                        <label>Personajes: &nbsp;</label>
+                        <label type="button" (click)="modalPersonaje(modalHero, true)"  >Personajes: </label>
                         <select name="personajes"> <!--Desplegable con los jugadores *-->
                             <option value="1">personaje 1</option> 
                             <option value="2">personaje 2</option> 
                             <option value="3">personaje 3</option>
-                            <option value="10">personaje 4</option> 
-                            <option value="11">personaje 5</option> 
-                            <option value="12">personaje 6</option> 
+                            <option value="4">personaje 4</option> 
+                            <option value="5">personaje 5</option> 
+                            <option value="6">personaje 6</option> 
                          </select>
                     </section>
                 </section>
@@ -70,9 +71,9 @@
                             <option value="1">personaje 1</option> 
                             <option value="2">personaje 2</option> 
                             <option value="3">personaje 3</option>
-                            <option value="10">personaje 4</option> 
-                            <option value="11">personaje 5</option> 
-                            <option value="12">personaje 6</option> 
+                            <option value="4">personaje 4</option> 
+                            <option value="5">personaje 5</option> 
+                            <option value="6">personaje 6</option> 
                          </select>
                     </section>
                     <section style="padding-top: 1.5rem; font-size: 1.5rem;">
@@ -84,9 +85,9 @@
                             <option value="1">personaje 1</option> 
                             <option value="2">personaje 2</option> 
                             <option value="3">personaje 3</option>
-                            <option value="10">personaje 4</option> 
-                            <option value="11">personaje 5</option> 
-                            <option value="12">personaje 6</option> 
+                            <option value="4">personaje 4</option> 
+                            <option value="5">personaje 5</option> 
+                            <option value="6">personaje 6</option> 
                          </select>
                     </section>
                 </div>
@@ -128,6 +129,206 @@
                     </div>
                 </section>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal enemigos -->
+<div #modalEnemy class="veloModal">
+    <div class="enemyInfo">
+        <div class="left">
+            <div class="nombre">
+                <label><b>Ion </b> <span>(Humanoide Pequeño (trasgo), neutral malvado)</span></label> 
+            </div>
+            <div class="info">
+                <ul>
+                    <li><b>Clase de armadura: </b> 13 (armadura de cuero)</li>
+                    <li><b>Puntos de golpe: </b> 8 (2d6)</li>
+                    <li><b>Velocidad: </b> 30 pies</li>
+                </ul>
+            </div>
+            <div class="atributos">
+                <div>
+                    <section>FUE:</section>
+                    <section> 8 (-1)</section>
+                </div>
+                <div>
+                    <section>DES:</section>
+                    <section> 14 (+2)</section>
+                </div>
+                <div>
+                    <section>CON:</section>
+                    <section> 10 (+0)</section>
+                </div>
+                <div>
+                    <section>INT:</section>
+                    <section> 10 (+0)</section>
+                </div>
+                <div>
+                    <section>SAB:</section>
+                    <section> 10 (+0)</section>
+                </div>
+                <div>
+                    <section>CAR:</section>
+                    <section> 8 (-1)</section>
+                </div>
+            </div>
+            <div class="habilidades">
+                <ul>
+                    <li><b>Habilidades: </b> Sigilo +6</li>
+                    <li><b>Sentidos: </b> visión en la oscuridad 60 pies, Percepción pasiva 10</li>
+                    <li><b>Idiomas: </b> común, goblin</li>
+                </ul>
+            </div>
+        </div>
+        <div class="right">
+            <div class="conjuros">
+                <ul>
+                    <li><b>Huida veloz. </b> Ion puede, en cada uno de sus
+                        turnos, usar una acción adicional para
+                        Destrabarse o Esconderse.
+                    </li>
+                </ul>
+            </div>
+            <div class="acciones">
+            <span>
+                <b>- Cimitarra.</b> Ataque con arma cuerpo a cuerpo: +4 a
+                impactar, alcance 5 pies, un objetivo. Impacto: 5
+                (1d6 + 2) de daño cortante.
+            </span>
+            <span>
+                <b>- Arco corto.</b> Ataque con arma a distancia: +4 a
+                impactar, alcance 80/320 pies, un objetivo.
+                Impacto: 5 (1d6 + 2) de daño perforante.
+            </span>
+            </div>
+            <button class="cerrarModal" type="button" (click)="modalEnemigos(modalEnemy, false)">Cerrar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal personajes -->
+
+<div #modalHero class="veloModal">
+    <div class="enemyInfo">
+        <div class="left">
+            <div class="nombre">
+                <label><b>Picaro </b> <span>(Mediano piesligeros)</span></label> 
+            </div>
+            <div class="info">
+                <ul>
+                    <li><b>Clase de armadura: </b> 14 (armadura de cuero)</li>
+                    <li><b>Iniciativa: </b> +3</li>
+                    <li><b>Velocidad: </b> 25 pies</li>
+                    <li><b>Dados de Golpe: </b> 1d8</li>
+                    <li><b>Puntos de golpe máximos: </b> 9</li>
+                    <li><b>Puntos de golpe actuales: </b> 9</li>
+                </ul>
+            </div>
+            <div class="atributos">
+                <div>
+                    <section>FUE:</section>
+                    <section> 8 (-1)</section>
+                </div>
+                <div>
+                    <section>DES:</section>
+                    <section> 16 (+3)</section>
+                </div>
+                <div>
+                    <section>CON:</section>
+                    <section> 12 (+1)</section>
+                </div>
+                <div>
+                    <section>INT:</section>
+                    <section> 13 (+1)</section>
+                </div>
+                <div>
+                    <section>SAB:</section>
+                    <section> 10 (+0)</section>
+                </div>
+                <div>
+                    <section>CAR:</section>
+                    <section> 16 (+3)</section>
+                </div>
+            </div>
+            <div class="habilidades">
+                <ul>
+                    <li>
+                        <b>Tiradas de salvacion: </b>
+                        <select name="tSalvacion"  style="width: 9vw;">
+                            <option value="1">Fuerza: -1</option> 
+                            <option value="2"><b>Destreza: </b> +5</option> 
+                            <option value="3">Constitución: +1</option>
+                            <option value="4"><b>Inteligencia: </b>+3</option> 
+                            <option value="5">Sabiduria: +0</option> 
+                            <option value="6">Carisma: +3</option> 
+                         </select>
+                    </li>
+                    <li><b>Habilidades: </b>
+                        <select name="habilidades"  style="width: 9vw;">
+                            <option value="1"><b>Acrobacias: </b> +5 (Des)</option> 
+                            <option value="2">Atletismo: -1 (Fue)</option> 
+                            <option value="3">C. Arcano: +1 (Int)</option>
+                            <option value="4"><b>Engaño: </b>+5 (Car)</option> 
+                            <option value="5">Historia: +1 (Int)</option> 
+                            <option value="6"><b>Interpretacion:</b> +5 (Car)</option>
+                            <option value="7">Intimidación: +3 (Car)</option>  
+                            <option value="8"><b>Investigación:</b> +3 (Int)</option> 
+                            <option value="9"><b>Juego de Manos:</b> +5 (Des)</option> 
+                            <option value="10">Medicina: +0 (Sab)</option> 
+                            <option value="11">Naturaleza: +1 (Int)</option>
+                            <option value="12">Percepción: +0 (Sab)</option> 
+                            <option value="13">Perpicacia: +0 (Sab)</option> 
+                            <option value="14">Persuasión: +3 (Car)</option> 
+                            <option value="15">Religión: +1 (Int)</option> 
+                            <option value="16"><b>Sigilo: </b> +7 (Des)</option> 
+                            <option value="17">Supervivencia: +0 (Sab)</option> 
+                            <option value="18">T. con Animales: +0 (Sab)</option> 
+                         </select> 
+                    </li>
+                    <li><b>Idiomas: </b> común, mediano</li>
+                </ul>
+            </div>
+        </div>
+        <div class="right">
+            <div class="conjuros">
+                <ul>
+                    <li><b>Ataque Furtivo.</b> Una vez por turno, cuando
+                        impactes a una criatura con un ataque basado en
+                        Destreza (como con tu espada corta y arco corto),
+                        si tienes ventaja en la tirada de ataque, puedes
+                        hacer 1d6 de daño extra al objetivo. No necesitas
+                        tener ventaja si otro enemigo del objetivo, que no
+                        esté incapacitado, se encuentra a 5 pies o menos
+                        de él. Eso sí, no podrás provocar este daño extra si
+                        tienes desventaja en la tirada de ataque.
+                    </li>
+                </ul>
+            </div>
+            <div class="acciones">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Bonificador</th>
+                        <th>Daño/Tipo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Espada corta</td>
+                        <td>+5</td>
+                        <td>1d6 + 3 perforante</td>
+                    </tr>
+                    <tr>
+                        <td>Arco Corto</td>
+                        <td>+5</td>
+                        <td>1d6 +3 perforante</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <button class="cerrarModal" type="button" (click)="modalPersonaje(modalHero, false)">Cerrar</button>
         </div>
     </div>
 </div>

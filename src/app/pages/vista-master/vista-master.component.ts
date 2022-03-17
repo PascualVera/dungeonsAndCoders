@@ -12,4 +12,12 @@ export class VistaMasterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  modalEnemigos(modalEnemigos: HTMLElement, visible: boolean) {
+    modalEnemigos.style.display = (visible) ? 'flex' : 'none';
+  }
+
+  modalPersonaje(modalPersonaje: HTMLElement, visible: boolean) {
+    modalPersonaje.style.display = (visible) ? 'flex' : 'none';
+  }
+
 }

@@ -1,33 +1,34 @@
 * {
   overflow: visible;
 }
-.contenedor {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
+.contenedor{
+    height: 92vh; 
+    width: 100%; 
+    display: flex; 
+    flex-direction: row;
 }
 
-.nombre {
-  height: 8vh;
-  background-color: var(--redmain);
-  border: 0.1rem solid var(--bluemain);
-  color: var(--beige);
-  font-size: 2rem;
-  text-align: center;
-  -webkit-text-stroke: 0.5px black;
+.nombre{
+    height: 6vh;
+    background-color: var(--redmain);
+    border: 0.1rem solid var(--bluemain);
+    color: var(--beige);
+    font-size: 1.5rem;
+    text-align: center;
+    -webkit-text-stroke: 0.5px black;  
 }
 
-.personaje {
-  background-image: url(../../../assets/images/pergamine2.png);
-  background-size: cover;
-  border-right: 0.1rem solid var(--bluemain);
-  height: 62vh;
-  font-size: 1rem;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  /* overflow-y: scroll; */
+.personaje{
+    background-image: url(../../../assets/images/pergamine.jpg);
+    background-size: cover;
+    border-right: 0.1rem solid var(--bluemain); 
+    height: 56vh;
+    padding: 1rem;
+    font-size: 1rem;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    /* overflow-y: scroll; */
 }
 
 /**ScrollBar specs**/
@@ -49,12 +50,12 @@
     background: #555;
   } */
 
-.mapa {
-  height: 70vh;
-  image-rendering: auto;
-  display: flex;
-  justify-content: center;
-  background-color: var(--beige);
+.mapa{
+    height: 62vh;
+    image-rendering: auto;
+    display: flex;
+    justify-content: center;
+    background-color: var(--beige);
 }
 
 .mapa img {
