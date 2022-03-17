@@ -4,29 +4,44 @@
     <div class="title_container"><p>Choose your hero</p></div>
 
     <section class="set_characters">
-      <div (click)="showCharacter(img, name)" class="img_container">
-        <img src="../../../assets/images/characters/rogue.png" alt="" />
-        <div class="sombra"></div>
-      </div>
-      <div class="img_container">
-        <img src="../../../assets/images/characters/warrior.png" alt="" />
-        <div class="sombra"></div>
-      </div>
-      <div class="img_container">
-        <img src="../../../assets/images/characters/cleric.png" alt="" />
-        <div class="sombra"></div>
-      </div>
-      <div class="img_container">
-        <img src="../../../assets/images/characters/mage.png" alt="" />
-        <div class="sombra"></div>
-      </div>
-      <div class="img_container">
-        <img src="../../../assets/images/characters/archer.png" alt="" />
-        <div class="sombra"></div>
-      </div>
-      <div class="img_container">
-        <img src="../../../assets/images/characters/barbarian.png" alt="" />
-        <div class="sombra"></div>
+      <div
+        tabindex="0"
+        #container
+        *ngFor="let character of this.characters; let i = index"
+        (click)="
+          showCharacter(
+            character,
+            rasgos,
+            ideales,
+            vinculos,
+            defectos,
+            name,
+            img,
+            fuerzaMod,
+            fuerza,
+            intMod,
+            int,
+            dexMod,
+            dex,
+            sabMod,
+            sab,
+            constMod,
+            constitucion,
+            carMod,
+            car,
+            speed,
+            armor,
+            iniciativa,
+            golpe,
+            dados,
+            equipo,
+            i
+          )
+        "
+        class="img_container"
+      >
+        <img src="{{ character.imagen }}" alt="" />
+        <div #sombra class="sombra"></div>
       </div>
     </section>
   </article>
@@ -35,64 +50,63 @@
       <div class="stats1">
         <div class="stat">
           <div id="name"><p>Fuerza</p></div>
-          <p class="value">-1</p>
-          <div class="circle">8</div>
+          <p #fuerzaMod class="value"></p>
+          <div #fuerza class="circle"></div>
         </div>
         <div class="stat">
           <div id="name"><p>Inteligencia</p></div>
-          <p class="value">+1</p>
-          <div class="circle">13</div>
+          <p #intMod class="value"></p>
+          <div #int class="circle"></div>
         </div>
         <div class="stat">
           <div id="name"><p>Destreza</p></div>
-          <p class="value">+3</p>
-          <div class="circle">8</div>
+          <p #dexMod class="value"></p>
+          <div #dex class="circle"></div>
         </div>
         <div class="stat">
           <div id="name"><p>Sabiduria</p></div>
-          <p class="value">+0</p>
-          <div class="circle">10</div>
+          <p #sabMod class="value"></p>
+          <div #sab class="circle"></div>
         </div>
         <div class="stat">
           <div id="name"><p>Constitución</p></div>
-          <p class="value">+1</p>
-          <div class="circle">13</div>
+          <p #constMod class="value"></p>
+          <div #constitucion class="circle"></div>
         </div>
         <div class="stat">
           <div id="name"><p>Carisma</p></div>
-          <p class="value">+3</p>
-          <div class="circle">16</div>
+          <p #carMod class="value"></p>
+          <div #car class="circle"></div>
         </div>
         <div class="stat">
           <div id="name"><p>Velocidad</p></div>
-          <p class="value">4</p>
+          <p #speed class="value"></p>
         </div>
         <div class="stat">
           <div id="name"><p>Armadura</p></div>
-          <p class="value">4</p>
+          <p #armor class="value"></p>
         </div>
         <div class="stat">
           <div id="name"><p>Iniciativa</p></div>
-          <p class="value">4</p>
+          <p #iniciativa class="value"></p>
         </div>
       </div>
       <div class="imgStats">
-        <img #img src="" alt="" />
+        <img #img class="imagen" src="" alt="" />
         <p #name></p>
       </div>
       <div class="stats2">
         <div class="statAlt">
           <div id="stats2_title">Puntos de Golpe</div>
-          <p>23</p>
+          <p #golpe></p>
         </div>
         <div class="statAlt">
           <div id="stats2_title">Dados de golpe</div>
-          <p>1d8</p>
+          <p #dados></p>
         </div>
         <div class="statAlt">
           <div id="stats2_title">Equipo</div>
-          <p>Espada corta</p>
-          <p>Arco corto</p>
+          <div class="equipo" #equipo></div>
         </div>
       </div>
     </section>
@@ -102,10 +116,22 @@
       </header>
       <div class="loreBody">
         <div #lore class="lore_contain">
-          <div class="loreSection">Rasgos Personales</div>
-          <div class="loreSection">Ideales</div>
-          <div class="loreSection">Vinculos</div>
-          <div class="loreSection">Defectos</div>
+          <div class="lore_section">
+            <p>Rasgos Personales:</p>
+            <div #rasgos></div>
+          </div>
+          <div class="lore_section">
+            <p>Ideales:</p>
+            <div #ideales></div>
+          </div>
+          <div class="lore_section">
+            <p>Vinculos:</p>
+            <div #vinculos></div>
+          </div>
+          <div class="lore_section">
+            <p>Defectos:</p>
+            <div #defectos></div>
+          </div>
         </div>
       </div>
 
