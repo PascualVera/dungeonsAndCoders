@@ -30,15 +30,18 @@
   justify-items: center;
   padding-left: 0;
   height: 100%;
+  width: 27vw;
 }
 
 .navItem {
+  width: 9vw;
   display: flex;
   align-items: center;
+  justify-content: center;
   list-style-type: none;
   font-size: 2rem;
   height: 100%;
-  padding: 0 2vw;
+  
 }
 
 .navItem:hover {
@@ -48,4 +51,15 @@
 .navItem a {
   text-decoration: none;
   color: var(--textMain);
+}
+
+.navItemAlt{
+  width: 9vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style-type: none;
+  font-size: 2rem;
+  height: 100%;
+  background-color: var(--redmain);
 }
