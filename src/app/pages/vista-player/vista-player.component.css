@@ -19,7 +19,7 @@
 }
 
 .personaje{
-    background-image: url(../../../assets/images/pergamine.jpg);
+    background-image: url(../../../assets/images/pergamine2.png);
     background-size: cover;
     border-right: 0.1rem solid var(--bluemain); 
     height: 62vh;

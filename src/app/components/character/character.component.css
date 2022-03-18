@@ -4,7 +4,7 @@
   margin: 0;
 }
 .character_body {
-  height: 62vh;
+  height: 56vh;
   width: 100%;
   background-color: #cec2ae9c;
   backdrop-filter: brightness(0.8);
@@ -79,7 +79,7 @@
   justify-content: space-around;
   align-items: center;
 
-  height: 27vh;
+  height: 19vh;
   width: 100%;
 }
 .statsAlt {
