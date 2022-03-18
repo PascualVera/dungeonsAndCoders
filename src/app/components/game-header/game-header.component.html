@@ -1,14 +1,13 @@
 <header class="cabecera">
   <div class="sala">
-    <div>
-      Código de sala:
-      <span>{{codigoSala}}<span (click)="copyCode(confirmCopy)"><i class="fas fa-copy"></i></span><div id="copyClip"> <p #confirmCopy>Copiar código</p> 
-        <div></div>
+      <span class="codigoSala">Código de sala:</span>
+      <span class="codigo"><p>{{codigoSala}}</p><span class="code_copy" (click)="copyCode(confirmCopy)">
+        <i class="fas fa-copy"></i></span>
+        <div id="copyClip"><p #confirmCopy>Copiar código</p> 
+        <div>
+        </div>
       </div>
     </span>
-      
-    </div>
-    
   </div>
   <div class="navbar_contenedor">
     <div *ngIf="this.router.url == '/master'" class="pausar">Pausar</div>

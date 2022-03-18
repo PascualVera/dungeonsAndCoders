@@ -5,7 +5,6 @@
     width: 100vw;
     height: 8vh;
     background-color: var(--bluemain);
-    padding: 0 0vw 0 1vw;
   }
   .navbar_contenedor{
     display: flex;
@@ -13,18 +12,57 @@
   .sala{
     position: relative;
     overflow: visible;
+    display: flex;
+    max-width: 25vw;
+    gap:1vw;
+    height: 8vh;
+    justify-content: space-evenly;  
+      
+  }
+  .codigoSala{
+    display: flex;
+    color: white;
+    height: 8vh;
+    width: max-content;
+    justify-content: center;
+    align-items: center;
+  }
+  .codigo{
+    color: var(--redmain);
+    height: 8vh;
+    width: max-content;
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    gap: 1vh;
+  }
+  .codigo p{
+    margin: 0;
+  }
+  .code_copy{
+    font-size: 1.6rem;
+  }
+  .code_copy:hover{
+    
+    color: var(--beige);
+  }
+  .code_copy:hover + #copyClip{
+    visibility: visible;
+    
   }
   #copyClip{
-    width:  8vw;
+    width:  max-content;
     height: 5vh;
     position: absolute;
-    right: -7.8vw;
+    top:1vh;
+    right: calc(100vw * -0.095);
     background-color: var(--beige);
     border-radius: 1vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.4s;
     overflow: visible;
     color: black;
     font-size: 1.4rem;
@@ -33,16 +71,20 @@
   #copyClip p{
     margin: 0;
     color: black;
+    padding-left: 1vw;
+    padding-right: 1vw;
+  
   }
   #copyClip div{
     position: absolute;
     width: 1.5vh;
     height: 1.5vh;
-    
     transform: rotateZ(45deg);
     left: -0.5vh;
     background-color: var(--beige);
   }
+ 
+  
   .sala, .pausar, .opcion {
       display: flex;
       align-items: center;
@@ -62,34 +104,7 @@
   .pausar:hover, .opcion:hover {
     background-color: var(--redmain);
   }
-  .sala div{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 23vw;
-  }
-  .sala div span{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 11vw;
-  }
-  .sala div span span{
-    padding: 0;
-    margin: 0;
-    font-size: 1.8rem;
-  }
-  .sala div span span:hover{
-   color: var(--beige);
-  }
-  .sala div span span:hover + #copyClip {
-    color: var(--beige);
-    visibility: visible;
-    
-   }
-  .sala span {
-      color: var(--redmain);
-  }
+ 
 
 /* Modal */
 .veloModalFinalizar {
