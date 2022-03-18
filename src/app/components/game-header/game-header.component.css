@@ -7,7 +7,7 @@
     padding: 0 1.5vw 0 1vw;
   }
 
-  .sala, .pausar, .finalizar {
+  .sala, .pausar, .opcion {
       display: flex;
       align-items: center;
       height: 8vh;
@@ -15,17 +15,124 @@
       color: var(--textMain);
   }
 
-  .pausar, .finalizar {
+  .pausar, .opcion {
       padding: 0 2vw;
   }
   .pausar {
     margin-left: auto;
   }
 
-  .pausar:hover, .finalizar:hover {
+  .pausar:hover, .opcion:hover {
     background-color: var(--redmain);
   }
 
   .sala span {
       color: var(--redmain);
   }
+
+/* Modal */
+.veloModalFinalizar {
+  display: none;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modalFinalizar {
+  width: 70vw;
+  height: 65vh;
+  margin-top: 15vh;
+}
+
+.modalResumen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5vh 5vw;
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  background-image: url('../../../assets/images/pergamine2.png');
+  background-size: 100% 100%;
+}
+
+.texto {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  height: auto;    
+}
+
+.texto span {
+  font-family: 'fable';
+  font-size: 2.5rem;
+  letter-spacing: .1rem;
+  font-style: italic;
+  font-weight: bold;
+  align-self: center;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 3vh;
+  color: var(--redmain);
+}
+
+.texto p {
+  font-family: 'fable';
+  font-size: 1.5rem;
+  text-indent: 1.5rem;
+  letter-spacing: .1rem;
+  font-style: italic;
+  font-weight: bold;
+  color: var(--bluemain);
+}
+
+.modalOpciones {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 10vh;
+  background-color: var(--redmain);
+}
+
+.closeModal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+  width: 1.8vw;
+  height: 1.8vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: none;
+  color: var(--bluemain);
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.botonModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  width: 20vw;
+  height: 4vw;
+  border: 0.25vw solid whitesmoke;
+  background: none;
+  color: whitesmoke;
+  font-size: 2rem;
+  text-align: center;
+  border-radius: .75vw;
+  opacity: 0.7;
+  letter-spacing: .1vw;
+}
+
+.botonModal:hover {
+  opacity: 1;
+}
