@@ -23,7 +23,6 @@
     background-size: cover;
     border-right: 0.1rem solid var(--bluemain); 
     height: 62vh;
-    padding: 1rem;
     font-size: 1rem;
     z-index: 1;
     display: flex;
