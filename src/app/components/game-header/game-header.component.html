@@ -16,10 +16,10 @@
 <!-- Modal finalizar campaña -->
 <div #veloModalFinalizar class="veloModalFinalizar">
     <div class="modalFinalizar">
+        <button (click)="modalFinalizar(veloModalFinalizar, false)" class="closeModal">
+            <i class="fa-solid fa-square-xmark closeModal"></i>
+        </button>
         <div class="modalResumen">
-            <button (click)="modalFinalizar(veloModalFinalizar, false)" class="closeModal">
-                <i class="fa-solid fa-square-xmark closeModal"></i>
-            </button>
             <div class="texto">
                 <span>¡ Advertencia !</span>
                 <p>Si pulsa <b>Finalizar campaña</b> esta será eliminada definitivamente de la plataforma y no podrá ser accesible desde ese momento.</p>
