@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-game-header',
   templateUrl: './game-header.component.html',
@@ -9,7 +9,7 @@ export class GameHeaderComponent implements OnInit {
 
   public codigoSala: string;
 
-  constructor() { 
+  constructor(public router:Router) { 
     this.codigoSala = 'HRDsd234u'
   }
 
@@ -18,6 +18,7 @@ export class GameHeaderComponent implements OnInit {
 
   modalFinalizar(veloModal: HTMLElement, visible: boolean) {
     veloModal.style.display = (visible) ? 'flex' : 'none';
+    
   }
 
 }

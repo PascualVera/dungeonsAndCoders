@@ -1,18 +1,23 @@
 .cabecera {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 100vw;
     height: 8vh;
     background-color: var(--bluemain);
-    padding: 0 1.5vw 0 1vw;
+    padding: 0 0vw 0 1vw;
+  }
+  .navbar_contenedor{
+    display: flex;
   }
 
   .sala, .pausar, .opcion {
       display: flex;
       align-items: center;
       height: 8vh;
-      font-size: 2.5rem;
+      font-size: 2rem;
       color: var(--textMain);
+      cursor: pointer;
   }
 
   .pausar, .opcion {

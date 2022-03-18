@@ -2,15 +2,12 @@
     <div class="sala">
         <div>Código de sala: <span>{{codigoSala}}</span></div>
     </div>
-    <div class="pausar">
-        Pausar
-    </div>
-    <div (click)="modalFinalizar(veloModalFinalizar, true)" class="opcion">
-        Finalizar
-    </div>
-    <div class="opcion">
-        Abandonar
-    </div>
+    <div class="navbar_contenedor"> 
+    <div *ngIf="this.router.url == '/master'" class="pausar">Pausar</div>
+    <div *ngIf="this.router.url == '/master'" (click)="modalFinalizar(veloModalFinalizar, true)" class="opcion">Finalizar</div>
+    <div *ngIf="this.router.url == '/player'" class="opcion">Abandonar</div>
+</div>
+  
 </header>
 
 <!-- Modal finalizar campaña -->
