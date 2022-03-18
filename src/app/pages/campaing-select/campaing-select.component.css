@@ -54,6 +54,7 @@
     height: 6vh;
     padding: 0 2vh;
     margin-top: 2vh;
+    cursor: pointer;
 }
 
 .campaingItem:hover {
