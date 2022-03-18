@@ -8,7 +8,7 @@
       <li [ngStyle]="{background : (this.router.routerState.snapshot.url) === '/inicio' ? '#a34c50':'#264c5e'}" class="navItem">
         <a #home  routerLink="/inicio">Home</a>
       </li>
-      <li  [ngStyle]="{background : (this.router.routerState.snapshot.url) === '/campaing' ? '#a34c50':'#264c5e'}" class="navItem">
+      <li  [ngStyle]="{background : ((this.router.routerState.snapshot.url) === '/campaing' || (this.router.routerState.snapshot.url) === '/campaingDetails' ) ? '#a34c50':'#264c5e'}" class="navItem">
         <a #campaing  routerLink="/campaing">Campañas</a>
       </li>
       <li [ngStyle]="{background : (this.router.routerState.snapshot.url) === '/perfil' ? '#a34c50':'#264c5e'}"
