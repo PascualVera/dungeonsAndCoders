@@ -26,8 +26,9 @@
 
 .letrero{
     border:3px solid black; 
-    position: absolute; 
-    left: 20%; 
+    position: absolute;
+    top: 7%; 
+    left: 45%; 
     margin-top: -2rem; 
     width: 13rem; 
     height: 3rem; 
@@ -36,22 +37,24 @@
     background: url(../../../assets/images/letrero.png) no-repeat center center ;
     font-size: 1.5rem;
     text-align: center;
+    color: var(--beige);
 }
 
 .left{
     height: 70vh;
+    position: relative;
 }
 
 .tablon
 {
     border-radius: 5px; 
     border: 8px solid rgb(133, 66, 11);
-    padding-top: -10px; 
+    margin-top: 2rem;
     height: auto; 
     margin-left: 8rem;
     width: 40vw;
     font-family: 'dwarf';
-    font-size: 1.5rem;
+    font-size: 1rem;
     background: url(../../../assets/images/205192.png) repeat center center;
     background-blend-mode:darken;
 }
@@ -62,19 +65,25 @@
     padding: 20px;
     border-collapse: separate;
     border-spacing: 10px 5px;
+    color: var(--beige);
 }
 
 .table th
 {
-    background: rgba(128, 128, 128, 0.61);
-    margin: 10px;    
+    background: var(--bluemainT);
+    border-bottom: 3px solid var(--redmain);
+    margin: 10px;
+    color: var(--beige);
+    font-size: 1.5rem;
+    font-weight: normal;  
 }
 
 .table td
 {
-    background: rgba(128, 128, 128, 0.61);
+    background: rgba(99, 98, 98, 0.685);
     margin: 10px;
     border-radius: 20px 0 20px 0;
+    font-weight: normal;
 }
 
 .right{
