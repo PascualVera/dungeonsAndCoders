@@ -6,11 +6,12 @@
     flex-direction: column;
     background-image: url(../../../assets/images/pergamine2.png);
     background-size: cover;
-    position: absolute;
+    position: relative;
     width: 50vw;
     height: 35vh;
     border: 0.5rem solid var(--bluemain);
 }
+
 .selector{ 
     width: 100%;
     margin-top: 20px;
@@ -31,9 +32,9 @@
     overflow: visible;
     width: 100%;
     height: 10vh;
-    margin-bottom: 1rem;
-    
+    margin-bottom: 1rem;    
 }
+
 .dados{ 
     width: auto;
     padding: 0%;

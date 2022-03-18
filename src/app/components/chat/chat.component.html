@@ -16,7 +16,8 @@
             </ng-container>
         </div>
         <div class="enviarMensaje">
-            <input #mensaje (keyup)="enviarMensaje(mensaje, $event.keyCode)" type="text" class="inputMensaje" placeholder="Introduzca Mensaje...">
+            <input #mensaje (keyup)="enviarMensaje(mensaje, $event.keyCode)" type="text" class="inputMensaje"
+                placeholder="Introduzca Mensaje...">
             <button (click)="enviarMensaje(mensaje)" class="botonEnviar">Enviar</button>
         </div>
     </div>
@@ -29,13 +30,13 @@
                 </div>
             </ng-container>
         </div>
-        <div class="dados">
-        <button (click)="modalCrear(veloModalDados, true)" class="botonDados">Tirar dados</button>
+        <div class="lanzarDados">
+            <button (click)="modalDados(veloModalDados, true)" class="botonDados">Tirar dados</button>
         </div>
     </div>
 </div>
 
 
 <div #veloModalDados class="veloModalDados">
-    <app-dados></app-dados>
+    <app-dados (onEnviarValor)="valorAchat($event, veloModalDados)"></app-dados>
 </div>
