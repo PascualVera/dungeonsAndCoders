@@ -17,12 +17,12 @@
 
 .texto p {
     font-family: 'fable';
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     text-indent: 1.5rem;
     letter-spacing: .1rem;
     font-style: italic;
-    /* font-weight: bold; */
-    color: var(--blueMain)
+    font-weight: bold;
+    color: var(--bluemain)
 }
 
 .registro {
@@ -67,8 +67,7 @@
 
 .formContainer button {    
     border-style: none;
-    width: 15vw;
-    height: 7vh;
+    padding: 0 3vw;
     font-size: 2rem;
     color: var(--textMain);
     background-color: var(--redmain);
@@ -79,3 +78,7 @@
 .formContainer button:active {
     box-shadow: 0 0 10px black;
 }
+
+.formContainer button:hover {
+    filter: brightness(1.1);
+  }

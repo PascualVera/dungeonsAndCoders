@@ -43,8 +43,12 @@
 }
 
 .modalFinalizar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
   width: 70vw;
-  height: 65vh;
+  height: 60vh;
   margin-top: 15vh;
 }
 
@@ -53,12 +57,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5vh 5vw;
-  position: relative;
   width: 100%;
   height: 50vh;
   background-image: url('../../../assets/images/pergamine2.png');
   background-size: 100% 100%;
+}
+
+.modalOpciones {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 10vh;
+  background-color: var(--redmain);
 }
 
 .texto {
@@ -70,7 +81,7 @@
 
 .texto span {
   font-family: 'fable';
-  font-size: 2.5rem;
+  font-size: 2rem;
   letter-spacing: .1rem;
   font-style: italic;
   font-weight: bold;
@@ -85,19 +96,10 @@
   font-family: 'fable';
   font-size: 1.5rem;
   text-indent: 1.5rem;
-  letter-spacing: .1rem;
+  letter-spacing: .075vw;
   font-style: italic;
   font-weight: bold;
   color: var(--bluemain);
-}
-
-.modalOpciones {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 100%;
-  height: 10vh;
-  background-color: var(--redmain);
 }
 
 .closeModal {
@@ -116,21 +118,16 @@
   background-color: rgba(0, 0, 0, 0);
 }
 
-.botonModal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-  width: 20vw;
-  height: 4vw;
+.botonModal { 
   border: 0.25vw solid whitesmoke;
-  background: none;
+  background: transparent;
   color: whitesmoke;
-  font-size: 2rem;
+  font-size: 1.8rem;
   text-align: center;
+  padding: 0 3vw;
   border-radius: .75vw;
   opacity: 0.7;
-  letter-spacing: .1vw;
+  letter-spacing: .075vw;
 }
 
 .botonModal:hover {
