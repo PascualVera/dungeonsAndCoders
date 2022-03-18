@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,11 @@ import { ChatComponent } from './components/chat/chat.component';
 import { CharacterComponent } from './components/character/character.component';
 import { GameHeaderComponent } from './components/game-header/game-header.component';
 import { DadosComponent } from './components/dados/dados.component';
+
+// Idioma Español
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeEs, 'es');
 
 @NgModule({
   declarations: [
@@ -44,7 +49,7 @@ import { DadosComponent } from './components/dados/dados.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'es'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

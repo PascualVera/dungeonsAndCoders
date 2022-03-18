@@ -5,7 +5,30 @@
     <div class="pausar">
         Pausar
     </div>
-    <div class="finalizar">
+    <div (click)="modalFinalizar(veloModalFinalizar, true)" class="opcion">
         Finalizar
     </div>
+    <div class="opcion">
+        Abandonar
+    </div>
 </header>
+
+<!-- Modal finalizar campaña -->
+<div #veloModalFinalizar class="veloModalFinalizar">
+    <div class="modalFinalizar">
+        <div class="modalResumen">
+            <button (click)="modalFinalizar(veloModalFinalizar, false)" class="closeModal">
+                <i class="fa-solid fa-square-xmark closeModal"></i>
+            </button>
+            <div class="texto">
+                <span>¡ Advertencia !</span>
+                <p>Si pulsa <b>Finalizar campaña</b> esta será eliminada definitivamente de la plataforma y no podrá ser accesible desde ese momento.</p>
+                <p>Le recomendamos <b>Guardar historial</b> de la campaña para disponer de una copia de todos los mensajes del chat a modo de resumen del desarrollo de la campaña.</p>
+            </div>
+        </div>
+        <div class="modalOpciones">
+            <button routerLink="/perfil" class="botonModal">Finalizar campaña</button>
+            <button class="botonModal">Guardar historial</button>
+        </div>
+    </div>
+</div>

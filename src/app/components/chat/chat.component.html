@@ -24,7 +24,7 @@
     <div class="chatPlayers">
         <div class="players">
             <ng-container *ngFor="let item of arrayUsuarios">
-                <div>
+                <div *ngIf="item != '[System]'">
                     <span [ngStyle]="{'color': getColorEmisor(item)}">{{item}}</span>
                 </div>
             </ng-container>
