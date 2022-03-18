@@ -21,7 +21,8 @@ const routes: Routes = [
   { path: 'campaingDetails', component:CampaingSelectComponent },
   { path: 'characterList', component: CharacterSelectComponent },
   { path: 'master', component: VistaMasterComponent },
-  { path: 'player', component: VistaPlayerComponent }
+  { path: 'player', component: VistaPlayerComponent },
+  { path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
 @NgModule({

@@ -16,4 +16,8 @@ export class GameHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  modalFinalizar(veloModal: HTMLElement, visible: boolean) {
+    veloModal.style.display = (visible) ? 'flex' : 'none';
+  }
+
 }
