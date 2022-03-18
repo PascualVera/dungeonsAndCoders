@@ -1,46 +1,49 @@
-<div class="padre">
-    <div class="selector">
-        <form>  
-            <label style="margin-left: 30px;" class="gen-txt">Número de dados : 
-                <select #des name="des">
-                    <option value="1">1 dado</option>  
-                    <option value="2">2 dados</option> 
-                    <option value="3">3 dados</option>
-                    <option value="4">4 dados</option>
-                    <option value="5">5 dados</option>
-                    <option value="6">6 dados</option>
-                </select>
-            </label>
 
-            <label class="gen-txt">Número de caras : 
-                <select #faces name="faces">
-                    <option value="4">4 caras</option>
-                    <option value="6">6 caras</option>
-                    <option value="8">8 caras</option>
-                    <option value="10">10 caras</option>
-                    <option value="12">12 caras</option>
-                    <option value="20">20 caras</option>
-                </select>
-            </label>
-        </form> 
-    </div>
-    <div class="contenedor">
-        <div *ngIf="this.faces.value == '6'; else dados" class="dados">
-            <div *ngFor="let dado of arrayD6" class="d6">
-                <img src="{{dado}}" alt="">
-            </div>
+<div class="veloModal">
+    <div class="padre">
+        <div class="selector">
+            <form>  
+                <label style="margin-left: 30px;" class="gen-txt">Número de dados : 
+                    <select #des name="des">
+                        <option value="1">1 dado</option>  
+                        <option value="2">2 dados</option> 
+                        <option value="3">3 dados</option>
+                        <option value="4">4 dados</option>
+                        <option value="5">5 dados</option>
+                        <option value="6">6 dados</option>
+                    </select>
+                </label>
+    
+                <label class="gen-txt">Número de caras : 
+                    <select #faces name="faces">
+                        <option value="4">4 caras</option>
+                        <option value="6">6 caras</option>
+                        <option value="8">8 caras</option>
+                        <option value="10">10 caras</option>
+                        <option value="12">12 caras</option>
+                        <option value="20">20 caras</option>
+                    </select>
+                </label>
+            </form> 
         </div>
-        <ng-template #dados>
-            <div *ngFor="let dado of arrayDados" class="dados">
-                <div class="caja">
-                    <img src="{{dado.img}}" alt="">
-                    <input type="text" value="{{dado.valor}}"  class="valor" disabled>
+        <div class="contenedor">
+            <div *ngIf="this.faces.value == '6'; else dados" class="dados">
+                <div *ngFor="let dado of arrayD6" class="d6">
+                    <img src="{{dado}}" alt="">
                 </div>
             </div>
-        </ng-template>
-    </div>
-    <div class="footer">
-        <button class="boton"  type="button" (click)="lanzarDados()">Lanzar dados</button>
-        <input class="result" type="text" value="{{sumDados}}" disabled>
+            <ng-template #dados>
+                <div *ngFor="let dado of arrayDados" class="dados">
+                    <div class="caja">
+                        <img src="{{dado.img}}" alt="">
+                        <input type="text" value="{{dado.valor}}"  class="valor" disabled>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+        <div class="footer">
+            <button class="boton"  type="button" (click)="lanzarDados()">Lanzar dados</button>
+            <input class="result" type="text" value="{{sumDados}}" disabled>
+        </div>
     </div>
 </div>

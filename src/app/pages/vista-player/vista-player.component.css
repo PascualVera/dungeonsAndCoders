@@ -117,3 +117,59 @@
   border-radius: 0 1rem 1rem 0;
   border: 0.1rem solid var(--bluemain);
 }
+/* Modal de abandonar campaña */
+.veloModal {
+  /* display: none; */
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modalAban {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 30vw;
+  height: 25vh;
+  background-image: url('../../../assets/images/pergamine2.png');
+  background-size: 100% 100%;
+  border-radius: 1.5vh;
+  border: 1vh solid var(--bluemain);
+  margin-bottom: 5vh;
+  padding-top: 5vh;
+}
+
+.modalAban p {
+  color: var(--bluemain);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.botonera{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.boton {
+  border-style: none;
+  width: 5vw;
+  height: 5vh;
+  font-size: 1.5rem;
+  margin-top: 4vh;
+  color: var(--textMain);
+  background-color: var(--redmain);
+  border-radius: 0.8vh;
+  -webkit-text-stroke: 0.05rem black;
+}
+
+.boton:hover {
+  box-shadow: 0 0 10px lightyellow;
+}
