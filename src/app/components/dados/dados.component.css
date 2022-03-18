@@ -6,21 +6,22 @@
     flex-direction: column;
     background-image: url(../../../assets/images/pergamine2.png);
     background-size: cover;
+    position: absolute;
     width: 50vw;
     height: 35vh;
     border: 0.5rem solid var(--bluemain);
 }
 .selector{ 
-    width: 60%;
+    width: 100%;
     margin-top: 20px;
 }
 
 .selector form{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 10px; 
+    gap: 40px; 
 }
 
 .contenedor{
@@ -48,13 +49,13 @@
     flex-wrap: wrap;
     margin: 0%;
     padding: 0%;
+    width: 8vw;
 
 }
 
 .dados img{
     width: 50%;
     height: auto;
-    padding-right: 0;
 }
 
 .caja{
@@ -129,4 +130,12 @@
     text-align: center;
     width: 5vw;
     height: 7vh;
+}
+
+.botonCerrar{
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 2%;
+    left: 97%;
 }

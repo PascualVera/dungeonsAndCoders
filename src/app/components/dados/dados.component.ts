@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { Dado } from 'src/app/models/dado';
 
 @Component({
@@ -8,6 +8,7 @@ import { Dado } from 'src/app/models/dado';
 })
 export class DadosComponent implements OnInit {
 
+  @Output() onEnviarValor = new EventEmitter<number>();
   @ViewChild('des') des!: ElementRef;
   @ViewChild('faces') faces!: ElementRef;
 
@@ -17,8 +18,15 @@ export class DadosComponent implements OnInit {
   public numDados: number[] = [];
   public sumDados: number = 0;
   public valor: number = 0;
+  public status: boolean = false;
+  public lanzado: boolean = false
   
   constructor() {}
+enviarValor()
+{
+  this.onEnviarValor.emit(this.sumDados)
+}
+
  lanzarDados():any 
  {
     let des = this.des.nativeElement.value;
@@ -106,6 +114,14 @@ export class DadosComponent implements OnInit {
         this.sumDados += this.valor;
         }
     }
+    
+    this.lanzado = true;
+    this.status = true;
+ }
+
+ cerrarModal(cerrar:HTMLElement, visible:boolean)
+ {
+    cerrar.style.display = (visible) ? 'flex' : 'none';
  }
   ngOnInit(): void {
   }

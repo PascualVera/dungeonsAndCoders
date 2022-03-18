@@ -22,7 +22,7 @@
     background-image: url(../../../assets/images/pergamine.jpg);
     background-size: cover;
     border-right: 0.1rem solid var(--bluemain); 
-    height: 56vh;
+    height: 62vh;
     padding: 1rem;
     font-size: 1rem;
     z-index: 1;
@@ -51,7 +51,7 @@
   } */
 
 .mapa{
-    height: 62vh;
+    height: 68vh;
     image-rendering: auto;
     display: flex;
     justify-content: center;
@@ -70,7 +70,7 @@
 }
 
 .habilidades {
-  height: 30vh;
+  height: 24vh;
 }
 
 .info {
