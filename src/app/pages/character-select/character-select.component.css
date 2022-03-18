@@ -9,10 +9,9 @@
   height: 100vh;
   background-image: url("../../../assets/images/BonfireDarkSouls.jpg");
   background-size: cover;
-  background-position: 10vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly
 }
 
 /*******Seleccion de personaje********/
@@ -96,8 +95,8 @@ img {
   justify-content: space-around;
 }
 .stats1 div {
-  width: 4.8vw;
-  height: 4.8vw;
+  width: 4.9vw;
+  height: 4.9vw;
 }
 .stat {
   border-radius: 1vh;
@@ -131,7 +130,8 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  
   padding-top: 0.7vh;
 }
 .circle {
@@ -163,7 +163,7 @@ img {
   width: 10vw;
   border-top-left-radius: 50%;
   border-top-right-radius: 50%;
-  display: none;
+  
 }
 .imgStats p {
   font-size: 2.3rem;
