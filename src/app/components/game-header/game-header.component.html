@@ -13,12 +13,14 @@
     <div *ngIf="this.router.url == '/master'" class="pausar">Pausar</div>
     <div
       *ngIf="this.router.url == '/master'"
-      (click)="modalFinalizar(veloModalFinalizar, true)"
-      class="opcion"
-    >
+      (click)="modal(veloModalFinalizar, true)"
+      class="opcion">
       Finalizar
     </div>
-    <div *ngIf="this.router.url == '/player'" class="opcion">Abandonar</div>
+    <div *ngIf="this.router.url == '/player'" routerLink="/perfil" class="opcion">Salir</div>
+    <div *ngIf="this.router.url == '/player'"
+         (click)="modal(veloModalAbandonar, true)"
+         class="opcion">Abandonar</div>
   </div>
 </header>
 
@@ -26,7 +28,7 @@
 <div #veloModalFinalizar class="veloModalFinalizar">
   <div class="modalFinalizar">
     <button
-      (click)="modalFinalizar(veloModalFinalizar, false)"
+      (click)="modal(veloModalFinalizar, false)"
       class="closeModal"
     >
       <i class="fa-solid fa-square-xmark closeModal"></i>
@@ -48,6 +50,25 @@
     <div class="modalOpciones">
       <button routerLink="/perfil" class="botonModal">Finalizar campaña</button>
       <button class="botonModal">Guardar historial</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal abandonar campaña -->
+<div #veloModalAbandonar class="veloModalAbandonar">
+  <div class="modalAbandonar">
+    <div class="modalResumen">
+      <div class="texto">
+        <span>¡ Advertencia !</span>
+        <p>
+          Si pulsa <b>Abandonar campaña</b> será eliminado de esta campaña definitivamente sin opción de volver a retomarla.
+        </p>
+        <span>¿Desea abandonar la campaña?</span>
+      </div>
+    </div>
+    <div class="modalOpciones">      
+      <button routerLink="/perfil" class="botonModal">Abandonar campaña</button>
+      <button (click)="modal(veloModalAbandonar, false)" class="botonModal">Volver</button>
     </div>
   </div>
 </div>

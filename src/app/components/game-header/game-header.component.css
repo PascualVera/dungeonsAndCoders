@@ -106,7 +106,7 @@
   }
  
 
-/* Modal */
+/* Modales */
 .veloModalFinalizar {
   display: none;
   justify-content: center;
@@ -119,6 +119,47 @@
 }
 
 .modalFinalizar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  width: 70vw;
+  height: 60vh;
+  margin-top: 15vh;
+}
+.veloModalFinalizar {
+  display: none;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modalFinalizar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  width: 70vw;
+  height: 60vh;
+  margin-top: 15vh;
+}
+
+.veloModalAbandonar {
+  display: none;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modalAbandonar {
   display: flex;
   flex-direction: column;
   justify-content: center;

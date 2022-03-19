@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PerfilComponent implements OnInit {
 
   // TODO: Provisional para alternar true false entre elección de detalles y campañas
-  public detalles: boolean = false;
+  public detalles: boolean = true;
 
   public opcionActiva: number;
   public ultimaOpcionActiva: number;
