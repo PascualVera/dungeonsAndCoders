@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
        if(data.ok){
        this.router.navigate(['/inicio'])
        this.userService.user = data
-       console.log(data)
       }else{
         this.checkPassword(pass,validate)
       }
