@@ -314,7 +314,12 @@ img {
   justify-content: center;
   align-items: center;
   color: white;
-  background-color: var(--redmain);
+  background: rgb(163, 76, 80);
+  background: linear-gradient(
+    13deg,
+    rgba(163, 76, 80, 1) 50%,
+    rgb(168, 81, 85) 50%
+  );
   border: none;
   border-radius: 1vh;
 }
