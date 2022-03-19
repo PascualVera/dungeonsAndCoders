@@ -24,44 +24,61 @@ export class RegistroComponent implements OnInit {
   //********//
   //Validacion//
   //********//
-
+  //Email
    validateEmail(correo:any) {
 
-    const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-  
-    if (correo.value.match(validRegex)) {
-  
-      alert("Valid email address!");
-  
-      return true;
-  
+    const validate = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (correo.value.match(validate)) {
+      return true  
     } else {
-  
       alert("Invalid email address!");
-  
       return false;
-  
     }
   
+  }
+  //Contraseña
+  validatePassword(password:any){
+    const validate = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/
+    if(password.value.match(validate)&&/\s/g.test(password.value) == false){ 
+      return true
+    }else{
+      alert('contraseña invalida')
+      return false
+    }
+  }
+  validatePassword2(password: HTMLInputElement, password2: HTMLInputElement){
+    if (password.value == password2.value ){
+      return true
+    }
+    else{
+      alert('no coincide perro')
+      return false
+    }
+  }
+  //Validar Usuario
+  validateUser(nombre:HTMLInputElement){
+    
+    if(/\s/g.test(nombre.value)){
+      alert('No spaces')
+      return false
+
+    }else if(nombre.value.length < 6){
+      alert('nombre muy corto')
+      return false
+    }else{
+      return true
+    }
   }
   //********//
   //Registro//
   //********//
   registro(nombre:any, correo:any, pass:any, passConf:any){
-
-    if(nombre.value.length < 6){
-      alert('nombre cortisimo chaval')
-    }else if(pass.value.length < 8){
-      alert('que haces con tu vida?')
-    }else if(pass.value == passConf.value && this.validateEmail(correo)){
+    if( this.validateUser(nombre) && this.validatePassword(pass) && this.validateEmail(correo) && this.validatePassword2(pass,passConf) ){
       let user = new User(nombre.value,correo.value, pass.value)
       this.userService.register(user).subscribe()
       this.router.navigate(['/login'])
-    }else {
-        alert('Contraseñas no coincidentes perro')
+      console.log(user)
     }
-     
-
   }
   ngOnInit(): void {
   }
