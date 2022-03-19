@@ -80,24 +80,24 @@
 }
 .verify{
     position: absolute;
-    right: 3.6vh;
+    right: 4.6vh;
     top:0;
     bottom: 0;
-    width: 4vh;
-    height: 4vh;
+    width: 3vh;
+    height: 3vh;
     border-radius: 50%;
     background-color: aliceblue;
     margin:auto;
-    visibility:hidden
+    visibility: hidden;
 }
 
 .error{
     position: absolute;
-    right: 3.6vh;
+    right: 4.6vh;
     top:0;
     bottom: 0;
-    width: 4vh;
-    height: 4vh;
+    width: 3vh;
+    height: 3vh;
     border-radius: 50%;
     background: rgb(232,68,60);
     background: radial-gradient(circle, rgba(232,68,60,1) 33%, rgba(163,76,80,1) 46%);
@@ -105,11 +105,11 @@
 } 
 .valid{
     position: absolute;
-    right: 3.6vh;
+    left: 4.6vh;
     top:0;
     bottom: 0;
-    width: 4vh;
-    height: 4vh;
+    width: 3vh;
+    height: 3vh;
     border-radius: 50%;
     background: rgb(1,124,1);
     background: radial-gradient(circle, rgba(1,124,1,1) 31%, rgba(9,112,4,1) 46%);

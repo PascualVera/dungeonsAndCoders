@@ -26,9 +26,7 @@ export class RegistroComponent implements OnInit {
   //********//
     //Validar Usuario
     validateUser(nombre:HTMLInputElement){
-      let checkName = this.userService.users.filter((val)=>{
-        return val.name == nombre.value
-      })
+     
       let check : any= nombre.nextSibling
       let error = check.setAttribute('class','error')
       if(nombre.value == ''){
@@ -41,7 +39,7 @@ export class RegistroComponent implements OnInit {
       }else if(nombre.value.length < 6){
         error
         return false
-      }else if(checkName.length != 0){
+      }else if(nombre.value.length > 10){
         error
         return false
       }else{
@@ -61,7 +59,7 @@ export class RegistroComponent implements OnInit {
       return false
     }
     
-    const validate = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const validate =/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
      if(checkMail.length != 0){
       error
       return false
@@ -93,7 +91,7 @@ export class RegistroComponent implements OnInit {
   }
   validatePassword2(password: HTMLInputElement, password2: HTMLInputElement){
     let check : any= password2.nextSibling
-    if(password.value == ''){
+    if(password2.value == ''){
       check.setAttribute('class','check')
       return false
     }
