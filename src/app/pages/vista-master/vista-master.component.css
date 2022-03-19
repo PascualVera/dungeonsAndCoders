@@ -1,6 +1,7 @@
 *{
     overflow: visible;
 }
+
 .contenedor{
     height: 92vh; 
     width: 100%; 
@@ -198,8 +199,8 @@
     width: auto;
     height: 1.5rem;
     font-size: 1rem;
-    padding-left: 0.1rem;
-    padding-right: 0.1rem;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
     color: var(--textMain);
     background-color: var(--redmain);
     border-radius: 0.8vh;
@@ -244,20 +245,27 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 5%;
-    left: 20%;
+    background: rgba(0, 0, 0, 0.4);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+.enemyInfo{
+    position: absolute;
     width: 40vw;
     height: auto;
     z-index: 1;
     background-image: url(../../../assets/images/pergamine2.png);
     background-size: cover;
     border: 0.2rem solid var(--bluemain);
+    /* font-size: 1rem; */
 }
 
-.enemyInfo{
-    height: 100%;
-    width: 100%;
-    /* font-size: 1rem; */
+.enemyInfo b{
+    letter-spacing: 2px;
 }
 
 .enemyInfo ul{
