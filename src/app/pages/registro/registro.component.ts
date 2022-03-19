@@ -24,11 +24,36 @@ export class RegistroComponent implements OnInit {
   //********//
   //Validacion//
   //********//
+    //Validar Usuario
+    validateUser(nombre:HTMLInputElement){
+      let checkName = this.userService.users.filter((val)=>{
+        return val.userName == nombre.value
+      })
+      if(/\s/g.test(nombre.value)){
+        alert('No spaces')
+        return false
+  
+      }else if(nombre.value.length < 6){
+        alert('nombre muy corto')
+        return false
+      }else if(checkName.length != 0){
+        alert('Nombre no disponible')
+        return false
+      }else{
+        return true
+      }
+    }
   //Email
    validateEmail(correo:any) {
-
+    let checkMail = this.userService.users.filter((val)=>{
+      return val.email == correo.value
+    })
+    console.log(checkMail)
     const validate = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (correo.value.match(validate)) {
+     if(checkMail.length != 0){
+      alert('Correo ya existe')
+      return false
+    } else if (correo.value.match(validate)) {
       return true  
     } else {
       alert("Invalid email address!");
@@ -55,20 +80,7 @@ export class RegistroComponent implements OnInit {
       return false
     }
   }
-  //Validar Usuario
-  validateUser(nombre:HTMLInputElement){
-    
-    if(/\s/g.test(nombre.value)){
-      alert('No spaces')
-      return false
 
-    }else if(nombre.value.length < 6){
-      alert('nombre muy corto')
-      return false
-    }else{
-      return true
-    }
-  }
   //********//
   //Registro//
   //********//

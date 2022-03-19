@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({
@@ -16,14 +17,20 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   login(identificador:any,pass:any){
-    for (const user of this.userService.users){
-      if((user.userName == identificador.value || user.email == identificador.value)&& user.password == pass.value){
-        this.router.navigate(['/inicio'])
-      }else{
-        alert('buen intento crack')
-      }
-    }
-
+   let checkUser = this.userService.users.filter((val)=>{
+     if((val.email == identificador.value || val.userName ==identificador.value) && val.password == pass.value){
+       return val
+     }else{
+       return null
+     }
+   })
+   if(checkUser[0]== null){
+     alert('usuario o contraseña incorrectas')
+   }else{
+     this.userService.user = checkUser[0]
+     this.userService.logueado = true
+     this.router.navigate(['/inicio'])
+   }
   }
 
   // TODO: Provisionalpara abrir modal
