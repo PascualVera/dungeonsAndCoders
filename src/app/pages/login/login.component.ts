@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
@@ -13,28 +14,33 @@ export class LoginComponent implements OnInit {
   constructor(public userService:UserService,private router:Router) { 
     
   }
-
-  ngOnInit(): void {
-  }
-  login(identificador:any,pass:any){
-   let checkUser = this.userService.users.filter((val)=>{
-     if((val.email == identificador.value || val.userName ==identificador.value) && val.password == pass.value){
-       return val
-     }else{
-       return null
-     }
-   })
-   if(checkUser[0]== null){
-     alert('usuario o contraseña incorrectas')
-   }else{
-     this.userService.user = checkUser[0]
-     this.userService.logueado = true
-     this.router.navigate(['/inicio'])
-   }
-  }
-
   // TODO: Provisionalpara abrir modal
   modalPass(veloModalPass: HTMLElement, visible: boolean) {
     veloModalPass.style.display = (visible) ? 'flex' : 'none';
   }
-}
+  login(identificador:any,pass:any){
+    let user = {
+      nameEmail : identificador.value,
+      password: pass.value
+    }
+  this.userService.login(user).subscribe((data:any)=>{
+       if(data.ok){
+       this.router.navigate(['/inicio'])
+       this.userService.user = data
+       console.log(data)
+      }else{
+         alert('buen intento crack')
+      }
+    }
+  )
+      
+       
+     }
+
+  ngOnInit(): void {
+  }
+
+  }
+
+  
+

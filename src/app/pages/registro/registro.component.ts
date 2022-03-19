@@ -27,19 +27,25 @@ export class RegistroComponent implements OnInit {
     //Validar Usuario
     validateUser(nombre:HTMLInputElement){
       let checkName = this.userService.users.filter((val)=>{
-        return val.userName == nombre.value
+        return val.name == nombre.value
       })
-      if(/\s/g.test(nombre.value)){
-        alert('No spaces')
+      let check : any= nombre.nextSibling
+      let error = check.setAttribute('class','error')
+      if(nombre.value == ''){
+        check.setAttribute('class','check')
         return false
-  
+      }
+      if(/\s/g.test(nombre.value)){
+        error
+        return false
       }else if(nombre.value.length < 6){
-        alert('nombre muy corto')
+        error
         return false
       }else if(checkName.length != 0){
-        alert('Nombre no disponible')
+        error
         return false
       }else{
+        check.setAttribute('class','valid')
         return true
       }
     }
@@ -48,15 +54,22 @@ export class RegistroComponent implements OnInit {
     let checkMail = this.userService.users.filter((val)=>{
       return val.email == correo.value
     })
-    console.log(checkMail)
+    let check : any= correo.nextSibling
+    let error = check.setAttribute('class','error')
+    if(correo.value == ''){
+      check.setAttribute('class','check')
+      return false
+    }
+    
     const validate = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
      if(checkMail.length != 0){
-      alert('Correo ya existe')
+      error
       return false
     } else if (correo.value.match(validate)) {
+      check.setAttribute('class','valid')
       return true  
     } else {
-      alert("Invalid email address!");
+      error 
       return false;
     }
   
@@ -64,19 +77,33 @@ export class RegistroComponent implements OnInit {
   //Contraseña
   validatePassword(password:any){
     const validate = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/
+    let check : any= password.nextSibling
+    let error = check.setAttribute('class','error')
+    if(password.value == ''){
+      check.setAttribute('class','check')
+      return false
+    }
     if(password.value.match(validate)&&/\s/g.test(password.value) == false){ 
+      check.setAttribute('class','valid')
       return true
     }else{
-      alert('contraseña invalida')
+      error
       return false
     }
   }
   validatePassword2(password: HTMLInputElement, password2: HTMLInputElement){
+    let check : any= password2.nextSibling
+    if(password.value == ''){
+      check.setAttribute('class','check')
+      return false
+    }
+    let error = check.setAttribute('class','error')
     if (password.value == password2.value ){
+      check.setAttribute('class','valid')
       return true
     }
     else{
-      alert('no coincide perro')
+      error
       return false
     }
   }
@@ -87,6 +114,7 @@ export class RegistroComponent implements OnInit {
   registro(nombre:any, correo:any, pass:any, passConf:any){
     if( this.validateUser(nombre) && this.validatePassword(pass) && this.validateEmail(correo) && this.validatePassword2(pass,passConf) ){
       let user = new User(nombre.value,correo.value, pass.value)
+      user.urlAvatar = '../../../assets/images/avatares/avatar00.png'
       this.userService.register(user).subscribe()
       this.router.navigate(['/login'])
       console.log(user)

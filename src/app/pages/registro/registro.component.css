@@ -1,3 +1,6 @@
+*{
+    overflow: visible;
+}
 .contenedor {
     display: flex;
     justify-content: space-around;
@@ -27,7 +30,7 @@
 
 .registro {
     width: 30vw;
-    height: 60vh;
+    height: 62vh;
     background-color: var(--bluemain);
     border: 0.8vh solid var(--redmain);
     border-radius: 1vh;
@@ -48,14 +51,78 @@
     font-size: 1.5rem;
     color: var(--textMain)
 }
+.input_container_nombre{
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+}
+.input_container_email{
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    
+}
+.input_container_pass{
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    
+}
+.input_container_pass2{
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.verify{
+    position: absolute;
+    right: 3.6vh;
+    top:0;
+    bottom: 0;
+    width: 4vh;
+    height: 4vh;
+    border-radius: 50%;
+    background-color: aliceblue;
+    margin:auto;
+    visibility:hidden
+}
+
+.error{
+    position: absolute;
+    right: 3.6vh;
+    top:0;
+    bottom: 0;
+    width: 4vh;
+    height: 4vh;
+    border-radius: 50%;
+    background: rgb(232,68,60);
+    background: radial-gradient(circle, rgba(232,68,60,1) 33%, rgba(163,76,80,1) 46%);
+    margin:auto
+} 
+.valid{
+    position: absolute;
+    right: 3.6vh;
+    top:0;
+    bottom: 0;
+    width: 4vh;
+    height: 4vh;
+    border-radius: 50%;
+    background: rgb(1,124,1);
+    background: radial-gradient(circle, rgba(1,124,1,1) 31%, rgba(9,112,4,1) 46%);
+    margin:auto
+}
 
 .formContainer input {
     width: 20vw;
-    height: 7vh;
+    height: 6vh;
     padding: 0 1vw;
     background-color: var(--inputBg);
     color: white;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     border-style: none;
     border-radius: 0.8vh;
     border: .5vh solid var(--redmain);
@@ -68,7 +135,7 @@
 .formContainer button {    
     border-style: none;
     padding: 0 3vw;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--textMain);
     background-color: var(--redmain);
     border-radius: 0.8vh;    
