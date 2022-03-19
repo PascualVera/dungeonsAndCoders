@@ -1,14 +1,14 @@
 <header class="cabecera">
   <picture class="logodyc">
-    <img src="../../../assets/images/dcLogoHome.jpg" alt="Logo dyc" />
+    <img src="../../../assets/images/dcLogoHeader.png" alt="Logo dyc" />
   </picture>
 
-  <nav class="navHeader">
-    <ul class="navList">
+  <nav *ngIf="(this.router.routerState.snapshot.url != '/login' && this.router.routerState.snapshot.url != '/registro') " class="navHeader">
+    <ul   class="navList">
       <li [ngStyle]="{background : (this.router.routerState.snapshot.url) === '/inicio' ? '#a34c50':'#264c5e'}" class="navItem">
         <a #home  routerLink="/inicio">Home</a>
       </li>
-      <li  [ngStyle]="{background : (this.router.routerState.snapshot.url) === '/campaing' ? '#a34c50':'#264c5e'}" class="navItem">
+      <li  [ngStyle]="{background : ((this.router.routerState.snapshot.url) === '/campaing' || (this.router.routerState.snapshot.url) === '/campaingDetails' ) ? '#a34c50':'#264c5e'}" class="navItem">
         <a #campaing  routerLink="/campaing">Campañas</a>
       </li>
       <li [ngStyle]="{background : (this.router.routerState.snapshot.url) === '/perfil' ? '#a34c50':'#264c5e'}"

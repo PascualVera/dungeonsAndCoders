@@ -3,6 +3,8 @@
   padding: 0px;
   box-sizing: border-box;
   overflow: hidden;
+  outline: none;
+  
 }
 :root {
   /*mainColors*/

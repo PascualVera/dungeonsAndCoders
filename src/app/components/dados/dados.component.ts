@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { Dado } from 'src/app/models/dado';
+import { Tirada } from 'src/app/models/tirada';
 
 @Component({
   selector: 'app-dados',
@@ -8,7 +9,7 @@ import { Dado } from 'src/app/models/dado';
 })
 export class DadosComponent implements OnInit {
 
-  @Output() onEnviarValor = new EventEmitter<number>();
+  @Output() onEnviarValor = new EventEmitter<Tirada>();
   @ViewChild('des') des!: ElementRef;
   @ViewChild('faces') faces!: ElementRef;
 
@@ -19,12 +20,30 @@ export class DadosComponent implements OnInit {
   public sumDados: number = 0;
   public valor: number = 0;
   public status: boolean = false;
-  public lanzado: boolean = false
+  public lanzado: boolean = false;
+  public tirada: Tirada = new Tirada();
   
   constructor() {}
+
 enviarValor()
 {
-  this.onEnviarValor.emit(this.sumDados)
+  this.tirada.cantidad = this.des.nativeElement.value;
+  this.tirada.caras = this.faces.nativeElement.value;
+  this.tirada.valor = this.sumDados;
+  this.onEnviarValor.emit(this.tirada);
+  this.resetDados();
+}
+
+resetDados() {
+  this.imgDado = "";
+  this.arrayDados = [];
+  this.arrayD6 = [];
+  this.numDados = [];
+  this.sumDados = 0;
+  this.valor = 0;
+  this.status = false;
+  this.lanzado = false;
+  this.tirada = new Tirada();
 }
 
  lanzarDados():any 
@@ -119,10 +138,13 @@ enviarValor()
     this.status = true;
  }
 
- cerrarModal(cerrar:HTMLElement, visible:boolean)
- {
-    cerrar.style.display = (visible) ? 'flex' : 'none';
+ cerrarModal()
+ {   
+    this.sumDados = 0;  
+    this.enviarValor()
  }
+
+
   ngOnInit(): void {
   }
 

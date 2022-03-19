@@ -208,33 +208,36 @@ h1 {
 .fireEffects{
   width: 70vh;
   height: 55.5vh;
-  
-  margin: auto;
   position: absolute;
-  top: 25vh;
-  bottom: 0;
-  left: 25vh;
-  right: 0;
+  top: calc(100vh * 0.3) ;
+  
+  left: calc(100vw *0.4);
+  
   border-top-right-radius:50% ;
   border-top-left-radius:50% ;
   border-bottom-left-radius:30% ;
   border-bottom-right-radius:30% ;
-  animation: fireblink 2s infinite alternate;
-  border: 1px solid rgba(255, 0, 0, 0);
+  animation: fireblink 1s infinite alternate;
+  filter: brightness(1);
   
   
 }
+
 @keyframes fireblink {
   0%{
     backdrop-filter: brightness(1);
-
   }
   20%{
     backdrop-filter: brightness(1.025);
-
+    opacity: 0.5;
   }
-  60%{
-    backdrop-filter: brightness(1.025);
+  40%{
+    backdrop-filter: brightness(1);
+  }
+
+  90%{
+    backdrop-filter: brightness(1.015);
+    opacity: 0.5;
   }
   100%{
     backdrop-filter: brightness(1.00);

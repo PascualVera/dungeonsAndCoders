@@ -73,6 +73,10 @@ input::placeholder {
   box-shadow: 0 0 10px black;
 }
 
+.botonIniciar:hover {
+  filter: brightness(1.1);
+}
+
 .veloModalPass {
   display: none;
   justify-content: center;
@@ -141,4 +145,8 @@ input::placeholder {
 
 .botonSolPass:active {
   box-shadow: 0 0 10px black;
+}
+
+.botonSolPass:hover {
+  filter: brightness(1.1);
 }
