@@ -1,6 +1,5 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
@@ -19,6 +18,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { CharacterComponent } from './components/character/character.component';
 import { GameHeaderComponent } from './components/game-header/game-header.component';
 import { DadosComponent } from './components/dados/dados.component';
+import { HttpClientModule} from '@angular/common/http'
 
 // Idioma Español
 import localeEs from '@angular/common/locales/es';
@@ -47,7 +47,8 @@ registerLocaleData(localeEs, 'es');
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es'}],
   bootstrap: [AppComponent]
