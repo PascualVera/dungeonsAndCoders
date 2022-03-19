@@ -18,7 +18,12 @@ export class LoginComponent implements OnInit {
   modalPass(veloModalPass: HTMLElement, visible: boolean) {
     veloModalPass.style.display = (visible) ? 'flex' : 'none';
   }
-  login(identificador:any,pass:any){
+  checkPassword(password:HTMLInputElement,verificacion:HTMLElement){
+    password.setAttribute('class','error')
+    verificacion.setAttribute('class','check_err')
+  }
+  login(identificador:any,pass:any,validate:HTMLElement){
+    
     let user = {
       nameEmail : identificador.value,
       password: pass.value
@@ -29,7 +34,7 @@ export class LoginComponent implements OnInit {
        this.userService.user = data
        console.log(data)
       }else{
-         alert('buen intento crack')
+        this.checkPassword(pass,validate)
       }
     }
   )

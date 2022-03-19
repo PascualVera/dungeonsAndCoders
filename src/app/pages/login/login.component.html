@@ -4,11 +4,19 @@
     <div class="login">
         <form>
             <div class="formContainer">
-                <input #identificador type="text" placeholder="Usuario o correo">
-                <input #password type="password" placeholder="Contraseña">
+                <div class="input_container">
+                    <input #identificador type="text" placeholder="Usuario o correo">
+                    <input #password type="password" placeholder="Contraseña">
+                    <div #validate class="validate">
+                        <i class="fa-solid fa-circle-exclamation"></i> ¡Usuario o contraseña no válidos!
+                    </div>
+                </div>
+                <div class="button_container">
                 <a (click)="modalPass(veloModalPass, true)">¿Has olvidado la contraseña?</a>
-                <button (click)="login(identificador,password)" class="botonIniciar" type="button">Iniciar sesión</button>
+                <button (click)="login(identificador,password,validate)" class="botonIniciar" type="button">Iniciar sesión</button>
                 <a routerLink="">Volver al inicio</a>
+                </div>
+                
             </div>
         </form>
     </div>
