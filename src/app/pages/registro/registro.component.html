@@ -7,11 +7,11 @@
     <div class="registro">
         <form>
             <div class="formContainer">
-                <input type="text" placeholder="Nombre de usuario">                
-                <input type="email" placeholder="Correo electrónico">                
-                <input type="password" placeholder="Contraseña">                
-                <input type="password" placeholder="Repetir contraseña">                
-                <button routerLink="/login" type="button">Registrase</button>
+                <input #nombre type="text" placeholder="Nombre de usuario">                
+                <input #email type="email" placeholder="Correo electrónico">                
+                <input #pass type="password" placeholder="Contraseña">                
+                <input #pass2 type="password" placeholder="Repetir contraseña">                
+                <button (click)="registro(nombre,email,pass,pass2)" type="button">Registrase</button>
                 <a routerLink="">Volver al inicio</a>
             </div>
         </form>

@@ -13,14 +13,17 @@ export class UserService {
   constructor(private http: HttpClient) { 
     this.users = []
     this.logueado = false
-    this.url = 'https://dungeons-and-coders-api.herokuapp.com/'
+    this.url = 'https://dungeons-and-coders-api.herokuapp.com'
   }
   register(usuario:User){
     this.users.push(usuario)
+    console.log(this.http.post(this.url,usuario + '/usuario'))
+    console.log(this.users)
+    return this.http.post(this.url + '/usuario/',usuario)
   }
   login(usuario:User){
     this.logueado = true
-    console.log(this.http.post(this.url,usuario).subscribe())
-    return this.http.post(this.url,usuario).subscribe()
+    console.log(this.http.post(this.url,usuario + '/login'))
+    return this.http.post(this.url,usuario)
   }
 }
