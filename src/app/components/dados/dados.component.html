@@ -12,7 +12,7 @@
                 </select>
             </label>
 
-            <label>Número de caras :
+            <label style="margin-right: 30px;">Número de caras :
                 <select #faces name="faces">
                     <option value="4">4 caras</option>
                     <option value="6">6 caras</option>
@@ -25,28 +25,41 @@
         </form>
     </div>
     <div class="contenedor">
-        <div *ngIf="this.faces.value == '6'; else dados" class="dados">
-            <div *ngFor="let dado of arrayD6" class="animate__animated animate__flipInX d6">
-                <img src="{{dado}}" alt="">
+        <div *ngIf="status == false; else lanzado">
+            <div class="dados" class="animate__animated animate__flipInX caja">
+                <img  src="../../../assets/images/dados/dado-interrogante.png" alt="">
             </div>
         </div>
-        <ng-template #dados>
-            <div *ngFor="let dado of arrayDados" class="dados">
-                <div class="animate__animated animate__flipInX caja">
-                    <img src="{{dado.img}}" alt="">
-                    <input type="text" value="{{dado.valor}}" class="valor" disabled>
+        <ng-template #lanzado>
+            <div *ngIf="this.faces.value == '6'; else dados" class="dados">
+                <div *ngFor="let dado of arrayD6" class="animate__animated animate__flipInX d6">
+                    <img src="{{dado}}" alt="">
                 </div>
             </div>
+            <ng-template #dados>
+                <div *ngFor="let dado of arrayDados" class="dados">
+                    <div class="animate__animated animate__flipInX caja">
+                        <img src="{{dado.img}}" alt="">
+                        <input type="text" value="{{dado.valor}}" class="valor" disabled>
+                    </div>
+                </div>
+            </ng-template>
         </ng-template>
     </div>
-    <div class="footer">
-        <button class="boton" type="button" (click)="lanzarDados()" [disabled]="status" #lanzar>Lanzar
-            dados</button>
+    <div class="footer" >
+        <span *ngIf="status == false; else enviar">
+            <button class="boton" type="button" (click)="lanzarDados()" #lanzar>
+                Lanzar
+            </button>
+        </span>
+        <ng-template #enviar>
+            <button class="boton" (click)="enviarValor()">Enviar</button>
+        </ng-template>
         <input class="result" type="text" value="{{sumDados}}" disabled>
     </div>
-    <span *ngIf="status == true">
-        <button class="boton" (click)="enviarValor()">Enviar</button>
-    </span>
+    
+        
+    
     <button class="botonCerrar" (click)="cerrarModal()" [disabled]="status">
         <i class="fa-solid fa-xmark"></i>
     </button>
