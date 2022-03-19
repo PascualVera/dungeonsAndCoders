@@ -2,7 +2,7 @@
     <div class="selector">
         <form>
             <label style="margin-left: 30px;">Número de dados :
-                <select #des name="des">
+                <select #des name="des" [disabled]="status">
                     <option value="1">1 dado</option>
                     <option value="2">2 dados</option>
                     <option value="3">3 dados</option>
@@ -13,7 +13,7 @@
             </label>
 
             <label style="margin-right: 30px;">Número de caras :
-                <select #faces name="faces">
+                <select #faces name="faces" [disabled]="status">
                     <option value="4">4 caras</option>
                     <option value="6">6 caras</option>
                     <option value="8">8 caras</option>
