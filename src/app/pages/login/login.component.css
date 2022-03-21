@@ -135,8 +135,8 @@ input::placeholder {
   top: 0;
   right: 0;
   font-size: 2rem;
-  width: 1.8vw;
-  height: 1.8vw;
+  width: 1.9vw;
+  height: 1.9vw;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -144,8 +144,12 @@ input::placeholder {
   border: none;
   color: var(--bluemain);
   background-color: rgba(0, 0, 0, 0);
+  padding: 0;
+  border-radius: 1vh;
 }
-
+.closeModal:hover{
+  color: var(--redmain);
+}
 .botonSolPass {
   border-style: none;
   width: 15vw;
@@ -164,6 +168,18 @@ input::placeholder {
 
 .botonSolPass:hover {
   filter: brightness(1.1);
+}
+.verify{
+  position: absolute;
+  bottom:24vh;
+  width: max-content;
+  background-color: aqua;
+  padding: 2vh;
+  border-radius: 1vh;
+  font-size: 1.2rem;
+  color: var(--redmain);
+  background-color: var(--beige);
+  visibility: hidden;
 }
 
 .validate{

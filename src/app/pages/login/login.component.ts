@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  recuperarPass(mail: HTMLInputElement) {
+  recuperarPass(mail: HTMLInputElement, verify:HTMLElement) {
     let mailObj = { email: mail.value };
     let addTempPass = {
       idUser: '',
@@ -59,6 +59,7 @@ export class LoginComponent implements OnInit {
       console.log(addTempPass);
       this.userService.userEdit(addTempPass).subscribe((data) => {
         console.log(data);
+        verify.style.visibility = 'visible'
       });
     }, 2200);
   }

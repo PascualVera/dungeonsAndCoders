@@ -28,9 +28,10 @@
             <i class="fa-solid fa-square-xmark closeModal"></i>
         </button>
         <input #mail type="email" placeholder="Introduzca correo electrónico">
-        <button (click)="recuperarPass(mail)" class="botonSolPass">Solicitar nueva</button>
+        <button (click)="recuperarPass(mail,verify)" class="botonSolPass">Solicitar nueva</button>
         <p>Si el correo existe recibirá una contraseña temporal</p>
     </div>
+    <div #verify class="verify">Se ha enviado un correo a tu direccion con un pin temporal para acceder a tu cuenta</div>
 </div>
 
 <app-footer></app-footer>
