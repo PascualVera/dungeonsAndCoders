@@ -77,7 +77,8 @@ export class ChatComponent implements OnInit {
         mensaje: `Resultado tirada '${tirada.cantidad}d${tirada.caras}' para '${this.us.user.name}': ${tirada.valor}`,
         fecha: new Date()
       }
-      this.mcs.mensajesChat.push(mensajeChat)
+      this.mcs.mensajesChat.push(mensajeChat);
+      this.wss.emite('send-message', mensajeChat);
     }
   }
 
