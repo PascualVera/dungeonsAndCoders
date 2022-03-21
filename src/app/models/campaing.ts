@@ -1,5 +1,5 @@
 export class Campaing {
-  constructor(name:string,maps:object[]){
+  constructor(public name:string,public maps:object[]){
 
   }
 }

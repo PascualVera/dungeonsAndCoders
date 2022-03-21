@@ -125,16 +125,12 @@
 
 .mapa{
     height: 68vh;
-    image-rendering: auto;
     display: flex;
     justify-content: center;
     background-color: var(--beige);
 }
 
-.mapa img{
-    width: auto;
-    height: 100%;
-}
+
 
 .chat{
     width: 100%; 

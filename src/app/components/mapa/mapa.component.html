@@ -1,1 +1,7 @@
-<p>mapa works!</p>
+<article class="map">
+  <img #img class="img" src={{this.maps[0].url}} alt="">
+  <div class="button_container">
+    <button (click)="changeImg(img,map.url)" class="button" *ngFor="let map of this.maps">{{map.name}}</button>
+  </div>
+  
+</article>
