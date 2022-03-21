@@ -15,10 +15,10 @@ a {
 .menu {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   width: 20vw;
-  height: 50vh;
+  height: 60vh;
   background-color: var(--bluemainT);
 }
 
@@ -27,9 +27,9 @@ a {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  margin-top: 3vh;
-  width: 10vw;
-  height: 10vw;
+  margin-top: 2vh;
+  width: 14vw;
+  height: 14vw;
 }
 
 .fotoPerfil img {
@@ -44,7 +44,6 @@ a {
   justify-content: flex-end;
   gap: 0.5vh;
   width: 100%;
-  height: 60%;
 }
 
 .opciones a {
@@ -206,7 +205,7 @@ a {
 }
 
 .columna1tit {
-  width: 52%;
+  width: 54.8%;
   padding: 0 1vw;
 }
 .columna2tit {
@@ -224,7 +223,7 @@ a {
 }
 
 .columna1 {
-  width: 55%;
+  width: 58%;
   padding: 0 1vw;
   background-color: rgba(163, 76, 80, 0.75);
 }
@@ -298,7 +297,7 @@ a {
   justify-content: center;
   align-items: center;
   width: 8vw;
-  height: 8vw;
+  height: 7.5vw;
   margin: 1vh;
   padding: 1vh;
 }

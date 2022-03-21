@@ -31,6 +31,31 @@
 </main>
 
 <div #veloModalCrear class="veloModalCrear">
+    <div class="modalOpciones">
+        <button (click)="modalCrear(veloModalCrear, false)" class="closeModal">
+            <i class="fa-solid fa-square-xmark closeModal"></i>
+        </button>
+        <div class="divSwitch">
+            <span class="textSwitch">Pública</span>
+            <label class="switch">
+                <input class="inputPublica" type="checkbox" checked>
+                <span class="slider round"></span>
+            </label>
+            <span class="textSwitch">Privada</span>
+        </div>
+        <select class="selectPlayers">
+            <option selected value="">Número de jugadores</option>
+            <option value="1">1 Jugador</option>
+            <option value="2">2 Jugadores</option>
+            <option value="3">3 Jugadores</option>
+            <option value="4">4 Jugadores</option>
+            <option value="5">5 Jugadores</option>
+            <option value="6">6 Jugadores</option>
+        </select>
+        <button routerLink="/master" class="iniciar">Iniciar campaña</button>
+    </div>
+</div>
+<!-- <div #veloModalCrear class="veloModalCrear">
     <div class="modalCrear">
         <div class="modalResumen">
             <button (click)="modalCrear(veloModalCrear, false)" class="closeModal">
@@ -58,4 +83,4 @@
             <button routerLink="/master" class="iniciar">Iniciar campaña</button>
         </div>
     </div>
-</div>
+</div> -->

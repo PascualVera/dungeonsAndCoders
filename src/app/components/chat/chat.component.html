@@ -4,7 +4,7 @@
         <div #mensajes class="mensajes">
             <ng-container *ngFor="let item of arrayMensajes, let i = index"
                 [ngClass]="(i == arrayMensajes.length -1) ? scrollAbajo(mensajes) : ''">
-                <div *ngIf="nuevaFecha(item.fecha)" class="mensaje fecha">
+                <div *ngIf="nuevaFecha(item.fecha, i)" class="mensaje fecha">
                     <p class="noselect">{{item.fecha | date}}</p>
                 </div>
                 <div class="mensaje" [ngClass]="{'yo': miUsuario == item.emisor}">

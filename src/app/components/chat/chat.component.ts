@@ -13,7 +13,6 @@ export class ChatComponent implements OnInit {
   public arrayUsuarios: string[];
   public arrayColores: string[];
   public arrayMensajes: MensajeChat[] = [];
-  public fechaControl: Date;
 
   constructor() {
     this.arrayUsuarios = ['[System]', 'player1', 'player2', 'player3', 'player4', 'player5', 'player6'];
@@ -67,8 +66,6 @@ export class ChatComponent implements OnInit {
         'player1',
         'Pensar que estabais más cerca de lo que creíais os hizo aprovechar los últimos rayos de sol, y el ansia por llegar os ha tenido entretenidos hasta encontraros con la isla al punto de caer la noche. Un pequeño sendero casi borrado sube por una ladera que acaba en un risco. Al borde de este, una pasarela de madera lleva a la isla encrespada, dominada por una casa de dos pisos amurallada. Al borde de la pasarela hay un cesto con frutas.',
         new Date('2022-03-17')));
-
-    this.fechaControl = new Date('0000-00-00');
   }
 
   ngOnInit(): void {
@@ -79,10 +76,13 @@ export class ChatComponent implements OnInit {
     return color;
   }
 
-  nuevaFecha(fecha: Date): boolean {
+  nuevaFecha(fecha: Date, i: number): boolean {
     let resp: boolean = false;
-    if (fecha.toDateString() != this.fechaControl.toDateString()) {
-      this.fechaControl = fecha;
+    if (i > 0) {
+      if (fecha.toDateString() != this.arrayMensajes[i-1].fecha.toDateString()) {
+        resp = true;
+      }      
+    }else {
       resp = true;
     }
     return resp;
