@@ -74,7 +74,7 @@
     height: 4vh;
     color: var(--textMain);
     background-color: var(--redmain);    
-    letter-spacing: 0.1vw;
+    letter-spacing: 0.075vw;
     padding: 0 1vw;
 }
 
@@ -120,7 +120,7 @@
 
 .players div{
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: flex-start;    
     width: 40%;
     height: auto;

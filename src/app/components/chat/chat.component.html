@@ -2,12 +2,12 @@
 
     <div class="chatMensajes">
         <div #mensajes class="mensajes">
-            <ng-container *ngFor="let item of arrayMensajes, let i = index"
-                [ngClass]="(i == arrayMensajes.length -1) ? scrollAbajo(mensajes) : ''">
+            <ng-container *ngFor="let item of mcs.mensajesChat, let i = index"
+                [ngClass]="(i == mcs.mensajesChat.length -1) ? scrollAbajo(mensajes) : ''">
                 <div *ngIf="nuevaFecha(item.fecha, i)" class="mensaje fecha">
                     <p class="noselect">{{item.fecha | date}}</p>
                 </div>
-                <div class="mensaje" [ngClass]="{'yo': miUsuario == item.emisor}">
+                <div class="mensaje" [ngClass]="{'yo': us.user.name == item.emisor}">
                     <p class="noselect" [ngStyle]="{'background-color': getColorEmisor(item.emisor) + '12'}">
                         <span [ngStyle]="{'color': getColorEmisor(item.emisor)}">{{item.emisor}}: </span>
                         {{item.mensaje}}
@@ -24,9 +24,9 @@
 
     <div class="chatPlayers">
         <div class="players">
-            <ng-container *ngFor="let item of arrayUsuarios">
-                <div *ngIf="item != '[System]'">
-                    <span [ngStyle]="{'color': getColorEmisor(item)}">{{item}}</span>
+            <ng-container *ngFor="let item of ps.players">
+                <div *ngIf="item != '[System]'" [ngStyle]="{'background-color': (item == ps.player) ? 'blue' : ''}">
+                    <span [ngStyle]="{'color': (item == ps.player) ? 'white' : getColorEmisor(item)}">{{item}}</span>
                 </div>
             </ng-container>
         </div>

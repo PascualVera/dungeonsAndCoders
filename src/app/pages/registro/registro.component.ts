@@ -115,7 +115,6 @@ export class RegistroComponent implements OnInit {
       user.urlAvatar = '../../../assets/images/avatares/avatar00.png'
       this.userService.register(user).subscribe()
       this.router.navigate(['/login'])
-      console.log(user)
     }
   }
   ngOnInit(): void {
