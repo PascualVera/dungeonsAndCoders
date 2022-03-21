@@ -27,8 +27,8 @@
         <button (click)="modalPass(veloModalPass, false)" class="closeModal">
             <i class="fa-solid fa-square-xmark closeModal"></i>
         </button>
-        <input type="email" placeholder="Introduzca correo electrónico">
-        <button class="botonSolPass">Solicitar nueva</button>
+        <input #mail type="email" placeholder="Introduzca correo electrónico">
+        <button (click)="recuperarPass(mail)" class="botonSolPass">Solicitar nueva</button>
         <p>Si el correo existe recibirá una contraseña temporal</p>
     </div>
 </div>

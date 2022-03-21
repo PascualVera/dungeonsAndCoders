@@ -14,7 +14,6 @@
     overflow: visible;
     display: flex;
     width: 23vw;
-   
     height: 8vh;
   }
   .codigoSala{
@@ -22,12 +21,10 @@
     color: white;
     height: 8vh;
     width: 13vw;
-    
     justify-content: center;
     align-items: center;
   }
   .codigo{
-    
     color: var(--redmain);
     height: 8vh;
     width: 10vw;

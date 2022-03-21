@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.css']
+  styleUrls: ['./perfil.component.css'],
 })
 export class PerfilComponent implements OnInit {
-
   // TODO: Provisional para alternar true false entre elección de detalles y campañas
   public detalles: boolean = true;
-
   public opcionActiva: number;
   public ultimaOpcionActiva: number;
-
   public urlAvatar: string;
   public indiceAvatarSeleccionado: number = -1;
   public avatarSeleccionado: boolean = false;
   public arrayAvatares: string[];
-
-  constructor() { 
-    this.urlAvatar = '../../../assets/images/avatares/avatar00.png';
+  public user: User;
+  constructor(public userService: UserService) {
+    this.user = userService.user;
+    this.urlAvatar = this.user.urlAvatar;
     this.opcionActiva = 1;
     this.ultimaOpcionActiva = 1;
     this.arrayAvatares = [
@@ -32,19 +32,18 @@ export class PerfilComponent implements OnInit {
       '../../../assets/images/avatares/avatar07.png',
       '../../../assets/images/avatares/avatar08.png',
       '../../../assets/images/avatares/avatar09.png',
-      '../../../assets/images/avatares/avatar10.png'
-    ]
+      '../../../assets/images/avatares/avatar10.png',
+    ];
   }
-  
-  ngOnInit(): void {
-  }
-    
+
+  ngOnInit(): void {}
+
   modalAvatar(veloModalAvatar: HTMLElement, visible: boolean) {
     if (visible) {
       this.ultimaOpcionActiva = this.opcionActiva;
       veloModalAvatar.style.display = 'flex';
       this.opcionActiva = 3;
-    }else {
+    } else {
       this.opcionActiva = this.ultimaOpcionActiva;
       veloModalAvatar.style.display = 'none';
     }
@@ -66,9 +65,17 @@ export class PerfilComponent implements OnInit {
     this.avatarSeleccionado = true;
   }
 
-  elegirAvatar(veloModalAvatar: HTMLElement) {
+  async elegirAvatar(veloModalAvatar: HTMLElement) {
     this.urlAvatar = this.arrayAvatares[this.indiceAvatarSeleccionado];
-    this.modalAvatar(veloModalAvatar, false)
+    this.modalAvatar(veloModalAvatar, false);
+    let avatar = {
+      idUser: this.user.idUser,
+      urlAvatar: this.urlAvatar,
+    };
+    console.log(this.user);
+    let edit = this.userService.userEdit(avatar);
+    edit.subscribe((data) => {
+      console.log(data);
+    });
   }
-
 }
