@@ -18,10 +18,19 @@ export class UserService {
     this.user = new User('','','')
     
   }
+   getUsers(){
+    return this.http.get(this.url+ `/usuario`)
+  }
   register(usuario:User){
     return this.http.post(this.url + '/usuario',usuario)
   }
   login(usuario:object){
     return this.http.post(this.url +'/login',usuario)
+  }
+   userEdit(usuario:object){
+    return this.http.put(this.url + '/usuario', usuario)
+  }
+   recuperarPass(mail:object){
+    return this.http.post(this.url + `/sendMail`, mail)
   }
 }

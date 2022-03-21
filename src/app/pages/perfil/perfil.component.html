@@ -17,9 +17,9 @@
             <label class="titulo">Información personal</label>
             <div class="perCuerpo">
                 <label class="perLabel1">Nombre de usuario</label>
-                <label class="perLabel2">ajurado301</label>
+                <label class="perLabel2">{{user.name}}</label>
                 <label class="perLabel1">Correo electrónico</label>
-                <label class="perLabel2">ajurado301@gmail.com</label>
+                <label class="perLabel2">{{user.email}}</label>
             </div>
         </div>
         <div class="password">
@@ -27,14 +27,15 @@
             <form>
                 <div class="pasCuerpo">
                     <label class="pasLabel">Antigua contraseña</label>
-                    <input class="pasInput" type="password">
+                    <input #oldPass class="pasInput" type="password">
                     <label class="pasLabel">Nueva contraseña</label>
-                    <input class="pasInput" type="password">
+                    <input (keyup)="validatePassword(newPass)" #newPass class="pasInput" type="password">
                     <label class="pasLabel">Repetir contraseña</label>
-                    <input class="pasInput" type="password">
-                    <button class="botonCambiar" type="button">Cambiar</button>
+                    <input (keyup)="validatePassword2(newPass,newPass2)"  #newPass2 class="pasInput" type="password">
+                    <button (click)="changePass(oldPass,newPass,newPass2,verify)" class="botonCambiar" type="button">Cambiar</button>
                 </div>
             </form>
+            <div #verify class="verify"><p>Tu contraseña ha sido actualizada correctamente</p></div>
         </div>
     </div>
     <div *ngIf="!detalles" class="campaigns">
