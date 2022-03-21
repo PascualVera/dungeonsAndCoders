@@ -65,7 +65,7 @@ export class PerfilComponent implements OnInit {
     this.avatarSeleccionado = true;
   }
 
-  async elegirAvatar(veloModalAvatar: HTMLElement) {
+  elegirAvatar(veloModalAvatar: HTMLElement) {
     this.urlAvatar = this.arrayAvatares[this.indiceAvatarSeleccionado];
     this.modalAvatar(veloModalAvatar, false);
     let avatar = {
@@ -78,4 +78,53 @@ export class PerfilComponent implements OnInit {
       console.log(data);
     });
   }
+  changePass( oldPass: HTMLInputElement, newPass: HTMLInputElement, newPass2: HTMLInputElement, verify:HTMLElement ) {
+      if(this.validatePassword(newPass) && this.validatePassword2(newPass,newPass2)){
+          let credentials = {
+            nameEmail: this.user.email,
+            password: oldPass.value
+          }
+          this.userService.login(credentials).subscribe((data:any)=>{
+            console.log(data)
+            if(data.ok){
+              let changPass = {
+                idUser: this.user.idUser,
+                password: newPass.value
+              }
+              this.userService.userEdit(changPass).subscribe((data)=>{
+                console.log(data)
+                verify.style.visibility = 'visible'
+                verify.innerHTML = 'Tu constraseña ha sido actualizada correctamente'
+              })
+            }else{
+              verify.style.visibility = 'visible'
+              verify.style.background = 'rgba(255, 0, 0, 0.795)'
+              verify.innerHTML = 'Contraseña Incorrecta'
+              oldPass.style.border='2px solid red'
+            }
+          })
+        }
+    }
+    validatePassword(password:HTMLInputElement){
+      const validate = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/
+      if(password.value == ''){
+        return false
+      }
+      if(password.value.match(validate)&&/\s/g.test(password.value) == false){ 
+        password.style.border = '0.5vh solid green'
+        return true
+      }else{
+        password.style.border = '0.5vh solid red'
+        return false
+      }
+    }
+    validatePassword2(pass:HTMLInputElement,pass2:HTMLInputElement){
+      if(pass.value == pass2.value){
+        pass2.style.border = '0.5vh solid green'
+        return true
+      }else{
+        pass2.style.border = '0.5vh solid red'
+        return false
+      }
+    }
 }
