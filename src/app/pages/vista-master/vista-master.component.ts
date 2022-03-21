@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CampaingService } from 'src/app/shared/campaing.service';
+
 
 @Component({
   selector: 'app-vista-master',
@@ -6,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vista-master.component.css']
 })
 export class VistaMasterComponent implements OnInit {
-
-  constructor() { }
+ 
+  constructor(public campaingService:CampaingService) { }
 
   ngOnInit(): void {
   }
@@ -19,5 +21,4 @@ export class VistaMasterComponent implements OnInit {
   modalPersonaje(modalPersonaje: HTMLElement, visible: boolean) {
     modalPersonaje.style.display = (visible) ? 'flex' : 'none';
   }
-
 }

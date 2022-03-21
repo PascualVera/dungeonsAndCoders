@@ -1,6 +1,5 @@
-export class CampaingPre {
-  
-  constructor(public name:string, public description: string,public maps: string[],public enemies: string[],public historia: string){
+export class Campaing {
+  constructor(name:string,maps:object[]){
 
-    }
+  }
 }

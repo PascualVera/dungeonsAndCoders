@@ -23,6 +23,7 @@ import { HttpClientModule} from '@angular/common/http'
 // Idioma Español
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import { MapaComponent } from './components/mapa/mapa.component';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -43,7 +44,8 @@ registerLocaleData(localeEs, 'es');
     ChatComponent,
     CharacterComponent,
     GameHeaderComponent,
-    DadosComponent
+    DadosComponent,
+    MapaComponent
   ],
   imports: [
     BrowserModule,
