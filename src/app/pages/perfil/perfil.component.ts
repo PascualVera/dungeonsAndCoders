@@ -79,6 +79,11 @@ export class PerfilComponent implements OnInit {
     });
   }
   changePass( oldPass: HTMLInputElement, newPass: HTMLInputElement, newPass2: HTMLInputElement, verify:HTMLElement ) {
+    if(oldPass.value == "" || newPass.value == "" || newPass2.value == ""){
+              verify.style.visibility = 'visible'
+              verify.style.background = 'rgba(255, 0, 0, 0.795)'
+              verify.innerHTML = 'Introduce todos los datos'
+    }else{
       if(this.validatePassword(newPass) && this.validatePassword2(newPass,newPass2)){
           let credentials = {
             nameEmail: this.user.email,
@@ -95,6 +100,7 @@ export class PerfilComponent implements OnInit {
                 console.log(data)
                 verify.style.visibility = 'visible'
                 verify.innerHTML = 'Tu constraseña ha sido actualizada correctamente'
+                verify.style.background = 'rgba(0, 128, 0, 0.692)'
               })
             }else{
               verify.style.visibility = 'visible'
@@ -103,7 +109,7 @@ export class PerfilComponent implements OnInit {
               oldPass.style.border='2px solid red'
             }
           })
-        }
+        }}
     }
     validatePassword(password:HTMLInputElement){
       const validate = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/

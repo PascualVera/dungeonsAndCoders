@@ -7,10 +7,10 @@
     <div class="registro">
         <form>
             <div class="formContainer">
-                <div class="input_container_nombre"><input (keyup)="validateUser(nombre)" #nombre type="text" placeholder="Nombre de usuario"><div #verifyName class="verify"></div></div>               
-                <div class="input_container_email"><input (keyup)="validateEmail(email)" #email type="email" placeholder="Correo electrónico"><div #verifyEmail class="verify"></div></div>               
-                <div class="input_container_pass"><input (keyup)="validatePassword(pass)" #pass type="password" placeholder="Contraseña"><div #verifyPass class="verify"></div></div>              
-                <div class="input_container_pass2"><input (keyup)="validatePassword2(pass,pass2)" #pass2 type="password" placeholder="Repetir contraseña"><div #verifyPass2 class="verify"></div></div>                
+                <div class="input_container_nombre"><input (keyUp.enter)="registro(nombre,email,pass,pass2)" (keyup)="validateUser(nombre)" #nombre type="text" placeholder="Nombre de usuario"><div #verifyName class="verify"></div></div>               
+                <div class="input_container_email"><input (keyUp.enter)="registro(nombre,email,pass,pass2)" (keyup)="validateEmail(email)" #email type="email" placeholder="Correo electrónico"><div #verifyEmail class="verify"></div></div>               
+                <div class="input_container_pass"><input (keyUp.enter)="registro(nombre,email,pass,pass2)" (keyup)="validatePassword(pass)" #pass type="password" placeholder="Contraseña"><div #verifyPass class="verify"></div></div>              
+                <div class="input_container_pass2"><input (keyUp.enter)="registro(nombre,email,pass,pass2)" (keyup)="validatePassword2(pass,pass2)" #pass2 type="password" placeholder="Repetir contraseña"><div #verifyPass2 class="verify"></div></div>                
                 <button (click)="registro(nombre,email,pass,pass2)" type="button">Registrase</button>
                 <a routerLink="">Volver al inicio</a>
             </div>

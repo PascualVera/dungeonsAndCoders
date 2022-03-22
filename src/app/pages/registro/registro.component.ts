@@ -111,7 +111,7 @@ export class RegistroComponent implements OnInit {
   //********//
   registro(nombre:any, correo:any, pass:any, passConf:any){
     if( this.validateUser(nombre) && this.validatePassword(pass) && this.validateEmail(correo) && this.validatePassword2(pass,passConf) ){
-      let user = new User(nombre.value,correo.value, pass.value)
+      let user = new User(nombre.value,correo.value.toLowerCase(), pass.value)
       user.urlAvatar = '../../../assets/images/avatares/avatar00.png'
       this.userService.register(user).subscribe()
       this.router.navigate(['/login'])
