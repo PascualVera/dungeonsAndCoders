@@ -7,6 +7,7 @@ import { Character } from '../models/character';
 export class CharacterService {
   public characters: Character[]
   public character: Character
+  public life:number
   constructor() {
     
     this.characters = [
@@ -150,7 +151,7 @@ export class CharacterService {
       new Character(
         'Ranger',
         '../../../assets/images/characters/archer.png',
-        12,
+        +12,
         10,
         16,
         10,
@@ -207,7 +208,7 @@ defectos o la posibilidad de fracasar.`,
       ),
     ];
     this.character = this.characters[0]
-    
+    this.life = this.character.golpe
    }
    
 }

@@ -3,32 +3,32 @@
     <div class="stats">
       <div class="stat">
         <div id="name"><p>Fuerza</p></div>
-        <p class="value">{{this.character.fuerzaMod}}</p>
+        <p class="value">{{this.character.fuerzaMod |transformAtt}}</p>
         <div class="circle">{{this.character.fuerza}}</div>
       </div>
       <div class="stat">
         <div id="name"><p>Destreza</p></div>
-        <p class="value">{{this.character.destrezaMod}}</p>
+        <p class="value">{{this.character.destrezaMod |transformAtt}}</p>
         <div class="circle">{{this.character.destreza}}</div>
       </div>
       <div class="stat">
         <div id="name"><p>Constitución</p></div>
-        <p class="value">{{this.character.constitucionMod}}</p>
+        <p class="value">{{this.character.constitucionMod |transformAtt}}</p>
         <div class="circle">{{this.character.constitucion}}</div>
       </div>
       <div class="stat">
         <div id="name"><p>Inteligencia</p></div>
-        <p class="value">{{this.character.inteligenciaMod}}</p>
+        <p class="value">{{this.character.inteligenciaMod |transformAtt}}</p>
         <div class="circle">{{this.character.inteligencia}}</div>
       </div>
       <div class="stat">
         <div id="name"><p>Sabiduría</p></div>
-        <p class="value">{{this.character.sabiduriaMod}}</p>
+        <p class="value">{{this.character.sabiduriaMod |transformAtt}}</p>
         <div class="circle">{{this.character.sabiduria}}</div>
       </div>
       <div class="stat">
         <div id="name"><p>Carisma</p></div>
-        <p class="value">{{this.character.carismaMod}}</p>
+        <p class="value">{{this.character.carismaMod |transformAtt}}</p>
         <div class="circle">{{this.character.carisma}}</div>
       </div>
     </div>
@@ -54,7 +54,9 @@
         <div id="name"><p>Velocidad</p></div>
         <p class="value">{{this.character.velocidad}}</p>
       </div>
+      <div class="vida_container"><label class="hp" for="vida">Hp:</label> <div #vida class="vida"><p>{{this.lifePoints}}</p></div></div>
     </div>
+    
     <div class="salvacion_container">
       <div class="salvacion_title">Tiradas de salvación</div>
       <div class="salvacion_stat">
@@ -83,4 +85,5 @@
       </div>
     </div>
   </div>
+  <button (click)="hit(vida)"  class="test">Hit</button>
 </article>
