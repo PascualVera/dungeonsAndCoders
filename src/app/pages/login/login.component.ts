@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({
@@ -11,30 +9,35 @@ import { UserService } from 'src/app/shared/user.service';
 })
 export class LoginComponent implements OnInit {
   constructor(public userService: UserService, private router: Router) {}
-  // TODO: Provisionalpara abrir modal
+
   modalPass(veloModalPass: HTMLElement, visible: boolean) {
     veloModalPass.style.display = visible ? 'flex' : 'none';
   }
-  checkPassword(password: HTMLInputElement, verificacion: HTMLElement) {
-    password.setAttribute('class', 'error');
-    verificacion.setAttribute('class', 'check_err');
-  }
-  login(identificador: any, pass: any, validate: HTMLElement) {
-    let user = {
-      nameEmail: identificador.value,
-      password: pass.value,
-    };
-    this.userService.login(user).subscribe((data: any) => {
-      if (data.ok) {
-        this.router.navigate(['/inicio']);
-        this.userService.user = data.resultado;
-      } else {
-        this.checkPassword(pass, validate);
-      }
-    });
+
+  login(identificador: any, pass: any, validate: HTMLElement, tecla?: number) {
+    identificador.setAttribute('class', '');
+    pass.setAttribute('class', '');
+    validate.setAttribute('class', 'validate');
+    if ((!tecla) || (tecla == 13)) {
+      let user = {
+        nameEmail: identificador.value,
+        password: pass.value,
+      };
+      this.userService.login(user).subscribe((data: any) => {
+        if (data.ok) {
+          this.router.navigate(['/inicio']);
+          this.userService.user = data.resultado;
+        } else {
+          identificador.setAttribute('class', 'error');
+          pass.setAttribute('class', 'error');
+          validate.setAttribute('class', 'check_err');
+        }
+      });
+    }
   }
 
   recuperarPass(mail: HTMLInputElement, verify: HTMLElement) {
+
     let mailObj = { email: mail.value };
     let addTempPass = {
       idUser: '',
@@ -57,8 +60,6 @@ export class LoginComponent implements OnInit {
         });
       });
     });
-
-  
   }
 
   ngOnInit(): void {}
