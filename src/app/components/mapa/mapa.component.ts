@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CampaingService } from 'src/app/shared/campaing.service';
 
 @Component({
   selector: 'app-mapa',
@@ -6,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mapa.component.css']
 })
 export class MapaComponent implements OnInit {
+  
+  constructor(public campaingService:CampaingService,public router: Router) {
+    
+   }
+  
+  
+  changeImg(img: any){
+    this.campaingService.activeMap = img
 
-  constructor() { }
-
+  }
   ngOnInit(): void {
   }
 
