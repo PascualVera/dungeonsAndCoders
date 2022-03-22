@@ -14,22 +14,10 @@
                           <th >Campaña</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody *ngFor="let playing of partida">
                         <tr>
-                          <td>Mark</td>
-                          <td>Campaña 1</td>
-                        </tr>
-                        <tr>
-                          <td>Jacob</td>
-                          <td>Campaña 2</td>
-                        </tr>
-                        <tr>
-                          <td>Larry the Bird</td>
-                          <td>Campaña 3</td>
-                        </tr>
-                        <tr>
-                          <td>Perry</td>
-                          <td>Campaña 4</td>
+                          <td>{{playing.masterName}}</td>
+                          <td>{{playing.campaignName}}</td>
                         </tr>
                       </tbody>
                     </table>
