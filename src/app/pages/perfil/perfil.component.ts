@@ -72,46 +72,70 @@ export class PerfilComponent implements OnInit {
       idUser: this.user.idUser,
       urlAvatar: this.urlAvatar,
     };
-    console.log(this.user);
+    console.log(avatar);
     let edit = this.userService.userEdit(avatar);
     edit.subscribe((data) => {
       console.log(data);
     });
   }
-  changePass( oldPass: HTMLInputElement, newPass: HTMLInputElement, newPass2: HTMLInputElement, verify:HTMLElement ) {
-    if(oldPass.value == "" || newPass.value == "" || newPass2.value == ""){
-              verify.style.visibility = 'visible'
-              verify.style.background = 'rgba(255, 0, 0, 0.795)'
-              verify.innerHTML = 'Introduce todos los datos'
-    }else{
-      if(this.validatePassword(newPass) && this.validatePassword2(newPass,newPass2)){
+
+  changePass(oldPass: HTMLInputElement, newPass: HTMLInputElement, newPass2: HTMLInputElement, verify: HTMLElement, tecla?: number) {
+    if (!tecla || tecla == 13) {
+      if (oldPass.value == "" || newPass.value == "" || newPass2.value == "") {
+        verify.style.visibility = 'visible'
+        verify.style.background = 'rgba(255, 0, 0, 0.795)'
+        verify.innerHTML = 'Introduce todos los datos'
+        if (oldPass.value == '') {
+          oldPass.style.border = '0.5vh solid red'
+        }
+        if (newPass.value == '' || newPass2.value == '') {
+          newPass.style.border = '0.5vh solid red'
+          newPass2.style.border = '0.5vh solid red'
+        }
+      } else {
+        if (this.validatePassword(newPass) && this.validatePassword2(newPass, newPass2)) {
           let credentials = {
             nameEmail: this.user.email,
             password: oldPass.value
           }
-          this.userService.login(credentials).subscribe((data:any)=>{
+          this.userService.login(credentials).subscribe((data: any) => {
             console.log(data)
-            if(data.ok){
+            if (data.ok) {
               let changPass = {
                 idUser: this.user.idUser,
                 password: newPass.value
               }
-              this.userService.userEdit(changPass).subscribe((data)=>{
+              this.userService.userEdit(changPass).subscribe((data) => {
                 console.log(data)
                 verify.style.visibility = 'visible'
                 verify.innerHTML = 'Tu constraseña ha sido actualizada correctamente'
                 verify.style.background = 'rgba(0, 128, 0, 0.692)'
+                oldPass.value = '';
+                newPass.value = '';
+                newPass2.value = '';
+                newPass.style.border = '0.5vh solid #a34c50';
+                newPass2.style.border = '0.5vh solid #a34c50';
+                oldPass.focus();
               })
-            }else{
+            } else {
               verify.style.visibility = 'visible'
               verify.style.background = 'rgba(255, 0, 0, 0.795)'
               verify.innerHTML = 'Contraseña Incorrecta'
-              oldPass.style.border='2px solid red'
+              oldPass.style.border = '0.5vh solid red';
             }
           })
-        }}
+        }
+      }
     }
-    validatePassword(password:HTMLInputElement){
+  }
+
+    validatePassword(password:HTMLInputElement, oldPass?: HTMLInputElement, verify?:HTMLElement){
+      if (oldPass) {
+        oldPass.style.border = '0.5vh solid #a34c50';        
+      }
+      if (verify) {
+        verify.style.visibility = 'hidden'
+      }
       const validate = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/
       if(password.value == ''){
         return false
@@ -124,7 +148,13 @@ export class PerfilComponent implements OnInit {
         return false
       }
     }
-    validatePassword2(pass:HTMLInputElement,pass2:HTMLInputElement){
+    validatePassword2( pass:HTMLInputElement,pass2:HTMLInputElement,oldPass?: HTMLInputElement, verify?:HTMLElement){
+      if (oldPass) {
+        oldPass.style.border = '0.5vh solid #a34c50';
+      }
+      if (verify) {
+        verify.style.visibility = 'hidden'
+      }
       if(pass.value == pass2.value){
         pass2.style.border = '0.5vh solid green'
         return true

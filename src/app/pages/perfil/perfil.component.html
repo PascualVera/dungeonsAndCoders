@@ -27,11 +27,18 @@
             <form>
                 <div class="pasCuerpo">
                     <label class="pasLabel">Antigua contraseña</label>
-                    <input #oldPass class="pasInput" type="password">
+                    <input (keyup)="changePass(oldPass,newPass,newPass2,verify, $event.keyCode)"
+                            #oldPass class="pasInput" type="password">
+
                     <label class="pasLabel">Nueva contraseña</label>
-                    <input (keyup)="validatePassword(newPass)" #newPass class="pasInput" type="password">
+                    <input (keyup)="validatePassword(newPass,oldPass,verify)"
+                           (keyup.enter)="changePass(oldPass,newPass,newPass2,verify)"
+                            #newPass class="pasInput" type="password">
+
                     <label class="pasLabel">Repetir contraseña</label>
-                    <input (keyup)="validatePassword2(newPass,newPass2)"  #newPass2 class="pasInput" type="password">
+                    <input (keyup)="validatePassword2(newPass,newPass2,oldPass,verify)"
+                           (keyup.enter)="changePass(oldPass,newPass,newPass2,verify)"
+                            #newPass2 class="pasInput" type="password">
                     <button (click)="changePass(oldPass,newPass,newPass2,verify)" class="botonCambiar" type="button">Cambiar</button>
                 </div>
             </form>
