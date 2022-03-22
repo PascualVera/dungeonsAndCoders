@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CampaignPlayin } from 'src/app/models/campaign-playin';
 import { CampaingService } from 'src/app/shared/campaing.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { CampaingService } from 'src/app/shared/campaing.service';
 export class HomePageComponent implements OnInit {
 
   public letrero: string = "assets/images/letrero.png"
-  public partida: string[] = [];
+  public partida: CampaignPlayin[] = [];
   constructor(private campaignService: CampaingService) { }
 
   ///Mostrar las 5 ultimas partidas
