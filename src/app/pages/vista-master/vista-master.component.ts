@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CampaingService } from 'src/app/shared/campaing.service';
+import { CharacterService } from 'src/app/shared/character.service';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { CampaingService } from 'src/app/shared/campaing.service';
 })
 export class VistaMasterComponent implements OnInit {
  
-  constructor(public campaingService:CampaingService) { }
+  constructor(public campaingService:CampaingService, public characterService:CharacterService) { }
 
   ngOnInit(): void {
   }

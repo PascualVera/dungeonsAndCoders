@@ -250,7 +250,8 @@ defectos o la posibilidad de fracasar.`,
     golpe: any,
     dados: any,
     equipo: any,
-    index: number
+    index: number,
+    button:any
   ) {
     let armas = '';
     for (const arma of character.equipo) {
@@ -286,6 +287,7 @@ defectos o la posibilidad de fracasar.`,
     this.shadow(img, index);
     //Cargar personaje///
     this.characterService.character = character
+    button.disabled = false
   }
   shadow(img: any, index: number) {
     console.log(index);

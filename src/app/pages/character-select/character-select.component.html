@@ -35,7 +35,8 @@
             golpe,
             dados,
             equipo,
-            i
+            i,
+            button
           )
         "
         class="img_container"
@@ -148,8 +149,8 @@
       </button>
     </section>
     <div class="button_container">
-      <button routerLink="/campaing">Regresar</button>
-      <button routerLink="/player">Elegir</button>
+      <button class="button" routerLink="/campaing">Regresar</button>
+      <button #button [ngClass]="button.disabled == true ? 'button_disabled' : 'button'" disabled routerLink="/player">Elegir</button>
     </div>
   </article>
 </main>
