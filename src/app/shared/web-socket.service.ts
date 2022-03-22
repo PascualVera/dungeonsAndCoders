@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class WebSocketService {
 
   public socket: any;
+  // public server = 'http://localhost:3000/';
   public server = 'https://dnc-socket.herokuapp.com/';
 
   constructor() { 

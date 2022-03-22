@@ -126,10 +126,17 @@
     height: auto;
     padding: 0 0.3vw 0 0.3vw;
     border-radius: 0 1rem 1rem 0;
-    border: 0.1rem solid var(--bluemain);
+    border: 0.2vw solid transparent;
     box-shadow:  0.1vw 0.1vw 0.3vw rgb(0, 0, 0);
     background-color: white;
     font-size: 0.8rem;
+}
+.playerBorder {
+    outline:.2vw solid var(--redmain) !important;
+}
+
+.playerWriting {
+    outline:.2vw solid lightgreen !important;
 }
 
 .lanzarDados {

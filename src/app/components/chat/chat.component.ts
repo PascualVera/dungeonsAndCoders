@@ -13,14 +13,13 @@ import { MensajesChatService } from '../../shared/mensajes-chat.service';
 })
 export class ChatComponent implements OnInit {
 
-  // public arrayMensajes: MensajeChat[] = [];
+  private delayKeyUp: any;
 
   constructor(public ps: PlayersService,
               public us: UserService,
               public mcs: MensajesChatService,
               private wss: WebSocketService
               ) {
-    this.ps.setPlayer(this.us.user.name)
   }
 
   ngOnInit(): void {
@@ -28,10 +27,14 @@ export class ChatComponent implements OnInit {
       const { campaignCode, emisor, mensaje, fecha } = data;
       this.mcs.mensajesChat.push(new MensajeChat(campaignCode, emisor, mensaje, new Date(fecha)));
     })  
+    this.wss.escucha('new-escribiendo').subscribe((data: any) => {
+      const { campaignCode, player, estado } = data;
+      this.ps.setEscribiendo(campaignCode, player, estado);
+    })  
   }
 
   getColorEmisor(emisor: string): string {
-    let color = this.ps.playerColors[this.ps.players.findIndex((usuario) => usuario == emisor)];
+    let color = this.ps.playerColors[this.ps.players.findIndex((usuario) => usuario.name == emisor)];
     return color;
   }
 
@@ -54,18 +57,30 @@ export class ChatComponent implements OnInit {
 
 
   enviarMensaje(input: any, tecla?: number) {
-    if ((!tecla) || (tecla == 13)) {
-      let mensajeChat = {
-        campaignCode: 'campañaPrueba',
-        emisor: this.us.user.name,
-        mensaje: input.value,
-        fecha: new Date()
+    if (this.delayKeyUp) {
+        clearTimeout(this.delayKeyUp);
+    };
+    let estadoEscribiento = {
+      campaignCode: 'campañaPrueba',
+      player: this.us.user.name,
+      estado: true
+    };
+    this.wss.emite('send-escribiendo', estadoEscribiento);
+    this.delayKeyUp = setTimeout(() => {
+      estadoEscribiento.estado = false;
+      this.wss.emite('send-escribiendo', estadoEscribiento);
+      if ((!tecla) || (tecla == 13)) {
+        let mensajeChat = {
+          campaignCode: 'campañaPrueba',
+          emisor: this.us.user.name,
+          mensaje: input.value,
+          fecha: new Date()
+        }
+        this.mcs.mensajesChat.push(mensajeChat);
+        this.wss.emite('send-message', mensajeChat);
+        input.value = '';
       }
-      this.mcs.mensajesChat.push(mensajeChat);
-      this.wss.emite('send-message', mensajeChat);
-      input.value = '';
-    }
-
+    }, 250)
   }
 
   valorAchat(tirada: Tirada, veloModalDados: any) {
