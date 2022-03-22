@@ -124,11 +124,15 @@ main {
 }
 .campaings_items div {
   display: flex;
+  align-items: center;
   height: 100%;
   padding-left: 2vw;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   width: 100%;
   color: white;
+}
+.campaings_items div p {
+  margin: 0;
 }
 .campaings_items div:nth-child(1) {
   background-color: #c4c4c433;
