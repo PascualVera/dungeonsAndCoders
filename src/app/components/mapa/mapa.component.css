@@ -2,9 +2,6 @@
   position: relative;
   height: 68vh;
   width: 65vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border: 1vh solid var(--redmain);
 }
 .img{
@@ -42,4 +39,12 @@
   opacity: 1;
   filter: brightness(1.2);
   background-color: rgba(128, 128, 128, 0.575);
+}
+.map_name{
+  position: absolute;
+  bottom: 1vh;
+  left:1vw;
+  font-size: 3rem;
+  font-family: 'fable';
+  color: white;
 }
