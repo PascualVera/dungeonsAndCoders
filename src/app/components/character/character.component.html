@@ -2,40 +2,40 @@
   <div class="character_upper">
     <div class="stats">
       <div class="stat">
-        <div id="name"><p>Carisma</p></div>
-        <p class="value">+3</p>
-        <div class="circle">16</div>
+        <div id="name"><p>Fuerza</p></div>
+        <p class="value">{{this.character.fuerzaMod}}</p>
+        <div class="circle">{{this.character.fuerza}}</div>
+      </div>
+      <div class="stat">
+        <div id="name"><p>Destreza</p></div>
+        <p class="value">{{this.character.destrezaMod}}</p>
+        <div class="circle">{{this.character.destreza}}</div>
+      </div>
+      <div class="stat">
+        <div id="name"><p>Constitución</p></div>
+        <p class="value">{{this.character.constitucionMod}}</p>
+        <div class="circle">{{this.character.constitucion}}</div>
+      </div>
+      <div class="stat">
+        <div id="name"><p>Inteligencia</p></div>
+        <p class="value">{{this.character.inteligenciaMod}}</p>
+        <div class="circle">{{this.character.inteligencia}}</div>
+      </div>
+      <div class="stat">
+        <div id="name"><p>Sabiduría</p></div>
+        <p class="value">{{this.character.sabiduriaMod}}</p>
+        <div class="circle">{{this.character.sabiduria}}</div>
       </div>
       <div class="stat">
         <div id="name"><p>Carisma</p></div>
-        <p class="value">+3</p>
-        <div class="circle">16</div>
-      </div>
-      <div class="stat">
-        <div id="name"><p>Carisma</p></div>
-        <p class="value">+3</p>
-        <div class="circle">16</div>
-      </div>
-      <div class="stat">
-        <div id="name"><p>Carisma</p></div>
-        <p class="value">+3</p>
-        <div class="circle">16</div>
-      </div>
-      <div class="stat">
-        <div id="name"><p>Carisma</p></div>
-        <p class="value">+3</p>
-        <div class="circle">16</div>
-      </div>
-      <div class="stat">
-        <div id="name"><p>Carisma</p></div>
-        <p class="value">+3</p>
-        <div class="circle">16</div>
+        <p class="value">{{this.character.carismaMod}}</p>
+        <div class="circle">{{this.character.carisma}}</div>
       </div>
     </div>
     <div class="contenedor_imagen">
       <img
         class="character_img"
-        src="../../../assets/images/characters/mage.png"
+        src={{this.character.imagen}}
         alt=""
       />
     </div>
@@ -43,16 +43,16 @@
   <div class="character_below">
     <div class="statsAlt">
       <div class="stat2">
-        <div id="name"><p>Carisma</p></div>
-        <p class="value">+3</p>
+        <div id="name"><p>Iniciativa</p></div>
+        <p class="value">{{this.character.iniciativa}}</p>
       </div>
       <div class="stat2">
-        <div id="name"><p>Carisma</p></div>
-        <p class="value">+3</p>
+        <div id="name"><p>Armadura</p></div>
+        <p class="value">{{this.character.armadura}}</p>
       </div>
       <div class="stat2">
-        <div id="name"><p>Carisma</p></div>
-        <p class="value">+3</p>
+        <div id="name"><p>Velocidad</p></div>
+        <p class="value">{{this.character.velocidad}}</p>
       </div>
     </div>
     <div class="salvacion_container">
