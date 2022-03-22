@@ -1,12 +1,12 @@
 <app-header></app-header>
 
-<main class="contenedor">
-    <div class="login">
+<main  class="contenedor">
+    <div  class="login">
         <form>
             <div class="formContainer">
                 <div class="input_container">
-                    <input #identificador type="text" placeholder="Usuario o correo">
-                    <input #password type="password" placeholder="Contraseña">
+                    <input (keyup.enter)="login(identificador,password,validate)" #identificador type="text" placeholder="Usuario o correo">
+                    <input (keyup.enter)="login(identificador,password,validate)" #password type="password" placeholder="Contraseña">
                     <div #validate class="validate">
                         <i class="fa-solid fa-circle-exclamation"></i> ¡Usuario o contraseña no válidos!
                     </div>

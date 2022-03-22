@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  recuperarPass(mail: HTMLInputElement, verify:HTMLElement) {
+  recuperarPass(mail: HTMLInputElement, verify: HTMLElement) {
     let mailObj = { email: mail.value };
     let addTempPass = {
       idUser: '',
@@ -45,23 +45,21 @@ export class LoginComponent implements OnInit {
     this.userService.recuperarPass(mailObj).subscribe((data: any) => {
       addTempPass.passTemp = String(data.tempPass);
       addTempPass.passTimeOut = data.timeOutDate;
-    });
-    setTimeout(() => {
       this.userService.getUsers().subscribe((data: any) => {
         for (const user of data.resultado) {
-          if (user.email == mail.value) {
+          if (user.email == mail.value.toLowerCase()) {
             addTempPass.idUser = user.idUser;
           }
         }
+        this.userService.userEdit(addTempPass).subscribe((data) => {
+          console.log(data);
+          verify.style.visibility = 'visible';
+        });
       });
-    }, 2000);
-    setTimeout(() => {
-      console.log(addTempPass);
-      this.userService.userEdit(addTempPass).subscribe((data) => {
-        console.log(data);
-        verify.style.visibility = 'visible'
-      });
-    }, 2200);
+    });
+
+  
   }
+
   ngOnInit(): void {}
 }
