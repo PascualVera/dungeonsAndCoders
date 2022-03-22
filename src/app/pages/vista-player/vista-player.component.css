@@ -91,29 +91,3 @@
   -webkit-text-stroke: 0.5px black;
 }
 
-/* Comentado por Ander por traslado a chat component */
-/* .players {
-  display: flex;
-  justify-content: left;
-  flex-direction: column;
-  align-content: center;
-  padding-left: 0.5rem;
-  padding-top: 0.5rem;
-  font-size: 1rem;
-  gap: 0.2rem;
-  height: 30vh;
-  width: 20%;
-}
-
-.players div {
-  box-shadow: #555 0.1rem 0.1rem;
-  display: flex;
-  padding-left: 0.3rem;
-  justify-content: start;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  width: 90%;
-  height: 5vh;
-  border-radius: 0 1rem 1rem 0;
-  border: 0.1rem solid var(--bluemain);
-} */

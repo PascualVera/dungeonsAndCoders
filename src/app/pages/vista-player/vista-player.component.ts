@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { WebSocketService } from '../../shared/web-socket.service';
+import { CampaingService } from '../../shared/campaing.service';
 
 @Component({
   selector: 'app-vista-player',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VistaPlayerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private wss: WebSocketService, private cs: CampaingService) { }
 
   ngOnInit(): void {
+    this.wss.escucha('new-map').subscribe((data: any) => {
+      const { campaingCode, activeMap } = data;
+      this.cs.activeMap = activeMap;
+    })  
   }
-
 }
