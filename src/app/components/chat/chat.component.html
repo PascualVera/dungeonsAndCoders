@@ -2,8 +2,7 @@
 
     <div class="chatMensajes">
         <div #mensajes class="mensajes">
-            <ng-container *ngFor="let item of mcs.mensajesChat, let i = index"
-                [ngClass]="(i == mcs.mensajesChat.length -1) ? scrollAbajo(mensajes) : ''">
+            <ng-container *ngFor="let item of mcs.mensajesChat, let i = index">
                 <div *ngIf="nuevaFecha(item.fecha, i)" class="mensaje fecha">
                     <p class="noselect">{{item.fecha | date}}</p>
                 </div>
@@ -13,6 +12,7 @@
                         {{item.mensaje}}
                     </p>
                 </div>
+                <ng-container [ngClass]="(i == mcs.mensajesChat.length -1) ? scrollAbajo(mensajes) : ''"></ng-container>
             </ng-container>
         </div>
         <div class="enviarMensaje">

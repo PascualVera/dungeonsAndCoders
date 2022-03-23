@@ -10,13 +10,13 @@
                   <table class="table">
                       <thead>
                         <tr>
-                          <th  style="width: 30%;">Master</th>
+                          <th style="width: 30%;">Master</th>
                           <th >Campaña</th>
                         </tr>
                       </thead>
-                      <tbody *ngFor="let playing of partida">
+                      <tbody *ngFor="let playing of partidas">
                         <tr>
-                          <td>{{playing.masterName}}</td>
+                          <td>{{playing.name}}</td>
                           <td>{{playing.campaignName}}</td>
                         </tr>
                       </tbody>

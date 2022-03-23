@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { flush } from '@angular/core/testing';
 import { User } from '../models/user';
 
 @Injectable({

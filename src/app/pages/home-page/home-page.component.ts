@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CampaignPlayin } from 'src/app/models/campaign-playin';
-import { CampaingService } from 'src/app/shared/campaing.service';
+import { CampaignHome } from '../../models/campaign-home';
+import { CampaignHomeService } from '../../shared/campaign-home.service';
 
 @Component({
   selector: 'app-home-page',
@@ -10,20 +10,19 @@ import { CampaingService } from 'src/app/shared/campaing.service';
 export class HomePageComponent implements OnInit {
 
   public letrero: string = "assets/images/letrero.png"
-  public partida: CampaignPlayin[] = [];
-  constructor(private campaignService: CampaingService) { }
-
-  ///Mostrar las 5 ultimas partidas
-  mostarPartidas()
-  {
-    this.campaignService.getCampaign().subscribe((dato: any) => 
-    {
-      this.partida = dato;
-      console.log(dato);
-    })
+  public partidas: CampaignHome[];
+  constructor(private chs: CampaignHomeService) { 
+    this.mostarPartidas();
   }
-
+ 
   ngOnInit(): void {
   }
-
+  
+  ///Mostrar las 5 ultimas partidas
+  mostarPartidas() {
+    this.chs.getLastCampaigns().subscribe((resp: any) => 
+    {    
+      this.partidas = resp.resultado
+    })
+  }
 }

@@ -6,7 +6,7 @@ import { Campaing } from '../models/campaing';
   providedIn: 'root'
 })
 export class CampaingService {
-  [x: string]: any;
+  // [x: string]: any;
   public campaing: Campaing
   public activeMap: any
   public campaingCode:string
