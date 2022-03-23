@@ -8,7 +8,7 @@ import { CharacterService } from 'src/app/shared/character.service';
   styleUrls: ['./character.component.css'],
 })
 export class CharacterComponent implements OnInit {
-  public character: any;
+  public character: Character;
   public lifePoints: number;
   constructor(public characterService: CharacterService) {
     this.character = characterService.character;

@@ -9,7 +9,7 @@ import { CharacterService } from 'src/app/shared/character.service';
 })
 export class CharacterSelectComponent implements OnInit {
   public scrollCount: number;
-  public characters: any[];
+  public characters: Character[];
   constructor(public characterService: CharacterService) {
     this.scrollCount = 0;
     this.getCharacters();

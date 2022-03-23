@@ -7,7 +7,7 @@ import { Character } from '../models/character';
 })
 export class CharacterService {
   public characters: Character[];
-  public character: any;
+  public character: Character;
   public life: number;
   constructor(private http: HttpClient) {}
 
