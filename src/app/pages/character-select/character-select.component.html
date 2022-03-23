@@ -41,7 +41,7 @@
         "
         class="img_container"
       >
-        <img src="{{ character.imagen }}" alt="" />
+        <img src="{{ character.image }}" alt="" />
         <div #sombra class="sombra"></div>
       </div>
     </section>
@@ -93,7 +93,12 @@
         </div>
       </div>
       <div class="imgStats">
-        <img #img class="imagen" src="../../../assets/images/characters/personajeMisterioso.jpg" alt="" />
+        <img
+          #img
+          class="imagen"
+          src="../../../assets/images/characters/personajeMisterioso.jpg"
+          alt=""
+        />
         <p #name></p>
       </div>
       <div class="stats2">
@@ -107,7 +112,10 @@
         </div>
         <div class="statAlt">
           <div id="stats2_title">Equipo</div>
-          <div class="equipo" #equipo> <p>?</p><p>?</p> </div>
+          <div class="equipo" #equipo>
+            <p>?</p>
+            <p>?</p>
+          </div>
         </div>
       </div>
     </section>
@@ -120,23 +128,24 @@
           <div class="lore_section">
             <p>Rasgos Personales:</p>
             <div #rasgos>¿Y tu quien eres? No se donde estoy ni que hago</div>
-
-            
           </div>
           <div class="lore_section">
             <p>Ideales:</p>
-            <div #ideales>Cuando crees que dejas algo en el mundo el conjunto crece y lo absorbe hasta que solo es un punto y desaparece...</div>
-            
+            <div #ideales>
+              Cuando crees que dejas algo en el mundo el conjunto crece y lo
+              absorbe hasta que solo es un punto y desaparece...
+            </div>
           </div>
           <div class="lore_section">
             <p>Vinculos:</p>
-            <div #vinculos>No puedo evitar mirar por mí y por los míos, al fin y al cabo, son una prolongación de mí mismo pero...¿Quien soy?</div>
-            
+            <div #vinculos>
+              No puedo evitar mirar por mí y por los míos, al fin y al cabo, son
+              una prolongación de mí mismo pero...¿Quien soy?
+            </div>
           </div>
           <div class="lore_section">
             <p>Defectos:</p>
             <div #defectos>Vamos a dejarlo...</div>
-
           </div>
         </div>
       </div>
@@ -150,7 +159,14 @@
     </section>
     <div class="button_container">
       <button class="button" routerLink="/campaing">Regresar</button>
-      <button #button [ngClass]="button.disabled == true ? 'button_disabled' : 'button'" disabled routerLink="/player">Elegir</button>
+      <button
+        #button
+        [ngClass]="button.disabled == true ? 'button_disabled' : 'button'"
+        disabled
+        routerLink="/player"
+      >
+        Elegir
+      </button>
     </div>
   </article>
 </main>

@@ -3,87 +3,88 @@
     <div class="stats">
       <div class="stat">
         <div id="name"><p>Fuerza</p></div>
-        <p class="value">{{this.character.fuerzaMod |transformAtt}}</p>
-        <div class="circle">{{this.character.fuerza}}</div>
+        <p class="value">{{ this.character.strengthMod | transformAtt }}</p>
+        <div class="circle">{{ this.character.strength }}</div>
       </div>
       <div class="stat">
         <div id="name"><p>Destreza</p></div>
-        <p class="value">{{this.character.destrezaMod |transformAtt}}</p>
-        <div class="circle">{{this.character.destreza}}</div>
+        <p class="value">{{ this.character.dexterityMod | transformAtt }}</p>
+        <div class="circle">{{ this.character.dexterity }}</div>
       </div>
       <div class="stat">
         <div id="name"><p>Constitución</p></div>
-        <p class="value">{{this.character.constitucionMod |transformAtt}}</p>
-        <div class="circle">{{this.character.constitucion}}</div>
+        <p class="value">{{ this.character.constitutionMod | transformAtt }}</p>
+        <div class="circle">{{ this.character.constitution }}</div>
       </div>
       <div class="stat">
         <div id="name"><p>Inteligencia</p></div>
-        <p class="value">{{this.character.inteligenciaMod |transformAtt}}</p>
-        <div class="circle">{{this.character.inteligencia}}</div>
+        <p class="value">{{ this.character.inteligenceMod | transformAtt }}</p>
+        <div class="circle">{{ this.character.inteligence }}</div>
       </div>
       <div class="stat">
         <div id="name"><p>Sabiduría</p></div>
-        <p class="value">{{this.character.sabiduriaMod |transformAtt}}</p>
-        <div class="circle">{{this.character.sabiduria}}</div>
+        <p class="value">{{ this.character.wisdomMod | transformAtt }}</p>
+        <div class="circle">{{ this.character.wisdom }}</div>
       </div>
       <div class="stat">
         <div id="name"><p>Carisma</p></div>
-        <p class="value">{{this.character.carismaMod |transformAtt}}</p>
-        <div class="circle">{{this.character.carisma}}</div>
+        <p class="value">{{ this.character.charismaMod | transformAtt }}</p>
+        <div class="circle">{{ this.character.charisma }}</div>
       </div>
     </div>
     <div class="contenedor_imagen">
-      <img
-        class="character_img"
-        src={{this.character.imagen}}
-        alt=""
-      />
+      <img class="character_img" src="{{ this.character.image }}" alt="" />
     </div>
   </div>
   <div class="character_below">
     <div class="statsAlt">
       <div class="stat2">
         <div id="name"><p>Iniciativa</p></div>
-        <p class="value">{{this.character.iniciativa}}</p>
+        <p class="value">{{ this.character.initiative }}</p>
       </div>
       <div class="stat2">
         <div id="name"><p>Armadura</p></div>
-        <p class="value">{{this.character.armadura}}</p>
+        <p class="value">{{ this.character.armor }}</p>
       </div>
       <div class="stat2">
         <div id="name"><p>Velocidad</p></div>
-        <p class="value">{{this.character.velocidad}}</p>
+        <p class="value">{{ this.character.speed }}</p>
       </div>
-      <div class="vida_container"><label class="hp" for="vida">Hp:</label> <div #vida class="vida"><p>{{this.lifePoints}}</p></div></div>
+      <div class="vida_container">
+        <label class="hp" for="vida">Hp:</label>
+        <div #vida class="vida">
+          <p>{{ this.lifePoints }}</p>
+        </div>
+      </div>
     </div>
-    
+
     <div class="salvacion_container">
       <div class="salvacion_title">Tiradas de salvación</div>
       <div class="salvacion_stat">
         <p>Fuerza</p>
-        <p>+5</p>
+        <p>{{ this.character.strengthST | transformAtt }}</p>
       </div>
       <div class="salvacion_stat">
         <p>Destreza</p>
-        <p>-1</p>
+        <p>{{ this.character.dexterityST | transformAtt }}</p>
       </div>
       <div class="salvacion_stat">
         <p>Constitución</p>
-        <p>+4</p>
+        <p>{{ this.character.constitutionST | transformAtt }}</p>
       </div>
       <div class="salvacion_stat">
         <p>Inteligencia</p>
-        <p>+0</p>
+        <p>{{ this.character.inteligenceST | transformAtt }}</p>
       </div>
       <div class="salvacion_stat">
         <p>Sabiduría</p>
-        <p>+1</p>
+        <p>{{ this.character.wisdomST | transformAtt }}</p>
       </div>
       <div class="salvacion_stat">
         <p>Carisma</p>
-        <p>+1</p>
+        <p>{{ this.character.charismaST | transformAtt }}</p>
       </div>
     </div>
   </div>
-  <button (click)="hit(vida)"  class="test">Hit</button>
+  <button (click)="hit(vida)" class="test">Hit</button>
 </article>
