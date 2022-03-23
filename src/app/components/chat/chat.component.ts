@@ -14,7 +14,7 @@ import { MensajesChatService } from '../../shared/mensajes-chat.service';
 export class ChatComponent implements OnInit {
 
   private delayKeyUp: any;
-
+ 
   constructor(public ps: PlayersService,
               public us: UserService,
               public mcs: MensajesChatService,
