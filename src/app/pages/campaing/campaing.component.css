@@ -122,6 +122,7 @@ main {
   width: 100%;
   margin-top: 5px;
 }
+
 .campaings_items div {
   display: flex;
   align-items: center;
@@ -149,6 +150,10 @@ main {
 .campaings_items:hover {
   background-color: #c4c4c41c;
   cursor: pointer;
+}
+
+.campaings_items:focus{
+  background-color: var(--bluemainT);
 }
 
 .code_container {
@@ -183,12 +188,30 @@ main {
   text-align: center;
   border-radius: 10px;
   opacity: 0.7;
-  letter-spacing: 2px;
-  
+  letter-spacing: 2px;  
 }
+
 .join:hover {
   opacity: 1;
 }
+
+.join_disabled{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 8vw;
+  height: 4vw;
+  border: 3px solid whitesmoke;
+  background: none;
+  color: whitesmoke;
+  font-size: 2rem;
+  text-align: center;
+  border-radius: 10px;
+  opacity: 0.7;
+  letter-spacing: 2px;
+  opacity: (.7);
+}
+
 /*********Modal**********/
 #modal {
   background-color: rgba(0, 0, 0, 0.4);
@@ -205,7 +228,7 @@ main {
   display: flex;
   flex-direction: column;
   width: 40vw;
-  height: 30vh;
+  /* height: 40vh; */
   background-color: aliceblue;
   margin-bottom: 10vh;
   padding-top: 4vh;
@@ -254,11 +277,24 @@ main {
   width: 10vw;
   height: 3vw;
   font-size: 2rem;
-  margin-top: 2vh;
+  margin-top: 1vh;
   color: white;
   border: none;
   background-color: var(--redmain);
+  border-radius: .5vw;
+  margin-bottom: 4vh;
 }
+
+.id_error {
+  visibility: hidden;
+  font-size: 1rem;
+  color: var(--redmain)
+}
+
+.modalButton:hover {
+  filter: brightness(1.1);
+}
+
 .closeModal:hover {
   color: var(--redmain);
 }

@@ -11,6 +11,7 @@ export class HomePageComponent implements OnInit {
 
   public letrero: string = "assets/images/letrero.png"
   public partidas: CampaignHome[];
+  
   constructor(private chs: CampaignHomeService) { 
     this.mostarPartidas();
   }

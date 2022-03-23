@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CampaignHome } from '../models/campaign-home';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +13,7 @@ export class CampaignHomeService {
   }
 
   getLastCampaigns() {
-    return this.http.get(this.url + `/homepage`)
+    console.log(this.url + '/homepage')
+    return this.http.get(this.url + '/homepage')
   }
 }
