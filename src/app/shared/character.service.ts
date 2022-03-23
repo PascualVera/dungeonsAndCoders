@@ -1,17 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { Character } from 'src/app/models/character';
-import { CharacterService } from 'src/app/shared/character.service';
+import { Injectable } from '@angular/core';
+import { Character } from '../models/character';
 
-@Component({
-  selector: 'app-character-select',
-  templateUrl: './character-select.component.html',
-  styleUrls: ['./character-select.component.css'],
+@Injectable({
+  providedIn: 'root'
 })
-export class CharacterSelectComponent implements OnInit {
-  public scrollCount: number;
-  public characters: Character[];
-  constructor(public characterService:CharacterService) {
-    this.scrollCount = 0;
+export class CharacterService {
+  public characters: Character[]
+  public character: Character
+  public life:number
+  constructor() {
+    
     this.characters = [
       new Character(
         'Rogue',
@@ -153,7 +151,7 @@ export class CharacterSelectComponent implements OnInit {
       new Character(
         'Ranger',
         '../../../assets/images/characters/archer.png',
-        12,
+        +12,
         10,
         16,
         10,
@@ -209,101 +207,8 @@ defectos o la posibilidad de fracasar.`,
         '1d10'
       ),
     ];
-  }
-
-  //Metodos de visual
-  loreScrollDown(lore: any, buttomUp: any, buttomDown: any) {
-    this.scrollCount++;
-    lore.style.transform = `translateY(${this.scrollCount * -20}vh)`;
-    buttomDown.disabled = this.scrollCount == 3 ? true : false;
-    buttomUp.disabled = this.scrollCount == 0 ? true : false;
-  }
-  loreScrollUp(lore: any, buttomUp: any, buttomDown: any) {
-    this.scrollCount--;
-    lore.style.transform = `translateY(${this.scrollCount * -20}vh)`;
-    buttomDown.disabled = this.scrollCount == 3 ? true : false;
-    buttomUp.disabled = this.scrollCount == 0 ? true : false;
-  }
-  showCharacter(
-    character: Character,
-    rasgos: HTMLElement,
-    ideales: HTMLElement,
-    vinculos: HTMLElement,
-    defectos: HTMLElement,
-    name: HTMLElement,
-    img: any,
-    fuerzaMod: any,
-    fuerza: any,
-    intMod: any,
-    int: any,
-    dexMod: any,
-    dex: any,
-    sabMod: any,
-    sab: any,
-    constMod: any,
-    constitucion: any,
-    carMod: any,
-    car: any,
-    speed: any,
-    armor: any,
-    iniciativa: any,
-    golpe: any,
-    dados: any,
-    equipo: any,
-    index: number,
-    button:any
-  ) {
-    let armas = '';
-    for (const arma of character.equipo) {
-      armas += `<div class='equipo_item'>${arma}<div>`;
-    }
-
-    rasgos.innerHTML = character.rasgos;
-    ideales.innerHTML = character.ideales;
-    vinculos.innerHTML = character.vinculos;
-    defectos.innerHTML = character.defectos;
-    name.innerHTML = character.clase;
-    fuerzaMod.innerHTML = character.fuerzaMod;
-    fuerza.innerHTML = character.fuerza;
-    intMod.innerHTML = character.inteligenciaMod;
-    int.innerHTML = character.inteligencia;
-    dexMod.innerHTML = character.destrezaMod;
-    dex.innerHTML = character.destreza;
-    sabMod.innerHTML = character.sabiduriaMod;
-    sab.innerHTML = character.sabiduria;
-    constMod.innerHTML = character.constitucionMod;
-    constitucion.innerHTML = character.constitucion;
-    carMod.innerHTML = character.carismaMod;
-    car.innerHTML = character.carisma;
-    speed.innerHTML = character.velocidad;
-    armor.innerHTML = character.armadura;
-    iniciativa.innerHTML = character.iniciativa;
-    golpe.innerHTML = character.golpe;
-    dados.innerHTML = character.dados;
-    equipo.innerHTML = armas;
-    img.src = character.imagen;
-    img.style.display = 'block';
-    ////Mostrar Imagen Effects////
-    this.shadow(img, index);
-    //Cargar personaje///
-    this.characterService.character = character
-    button.disabled = false
-  }
-  shadow(img: any, index: number) {
-    console.log(index);
-    if (index == 0) {
-      img.setAttribute('class', 'imagen_rogue');
-    } else if (index == 1) {
-      img.setAttribute('class', 'imagen_warrior');
-    } else if (index == 2) {
-      img.setAttribute('class', 'imagen_cleric');
-    } else if (index == 3) {
-      img.setAttribute('class', 'imagen_mage');
-    } else if (index == 4) {
-      img.setAttribute('class', 'imagen_ranger');
-    } else if (index == 5) {
-      img.setAttribute('class', 'imagen_barbarian');
-    }
-  }
-  ngOnInit(): void {}
+    this.character = this.characters[0]
+    this.life = this.character.golpe
+   }
+   
 }

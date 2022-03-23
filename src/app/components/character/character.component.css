@@ -70,20 +70,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding-top: 0.7vh;
 }
 .character_below {
   display: flex;
   justify-content: space-around;
   align-items: center;
-
   height: 27vh;
   width: 100%;
 }
 .statsAlt {
   display: flex;
   width: 50%;
+  flex-wrap: wrap;
   justify-content: space-between;
   height: 21vh;
 }
@@ -101,6 +101,40 @@
   align-items: center;
   border-bottom-left-radius: 50%;
   border-bottom-right-radius: 50%;
+}
+.vida_container{
+  background-color: var(--redmain);
+  width: 100%;
+  height: 20%;
+  display: flex;
+}
+.hp{
+  height: 100%;
+  padding: 0vh 1vh 0vh 1vh;
+  width: fit-content;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  width: 20%;
+  
+}
+.vida{
+  width: 80%;
+  background: rgb(0,255,0);
+  background: linear-gradient(90deg, rgba(0,255,0,1) 100%, rgba(255,255,255,0) 100%);
+  border: 0.5vh solid var(--redmain);
+  display: flex;
+  align-items: center;
+}
+.vida p{
+  margin: 0;
+  font-size: 1.2rem;
+  margin-left: 1vh;
+  padding: 0;
+  
 }
 .salvacion_container {
   width: 28%;

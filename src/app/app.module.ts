@@ -24,6 +24,7 @@ import { HttpClientModule} from '@angular/common/http'
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { MapaComponent } from './components/mapa/mapa.component';
+import { TransformAttPipe } from './pipes/transform-att.pipe';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -45,7 +46,8 @@ registerLocaleData(localeEs, 'es');
     CharacterComponent,
     GameHeaderComponent,
     DadosComponent,
-    MapaComponent
+    MapaComponent,
+    TransformAttPipe
   ],
   imports: [
     BrowserModule,
