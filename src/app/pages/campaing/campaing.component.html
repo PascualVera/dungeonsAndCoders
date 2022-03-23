@@ -3,8 +3,9 @@
   <article #modal id="modal">
     <div class="codeModal">
       <label for="code">Introduce el código de la sala</label>
-      <input type="text" />
-      <button routerLink="/characterList" class="modalButton">Unirse</button>
+      <input #unirseCodigo (focus)="quitarError(idError)" (keyup.enter)="validarCodigoUnirse(unirseCodigo.value, idError)" type="text" />
+      <p #idError class="id_error">Código de sala no encontrado</p>
+      <button (click)="validarCodigoUnirse(unirseCodigo.value, idError)" class="modalButton">Unirse</button>
       <button (click)="closeModal(modal)" class="closeModal">
         <i class="fa-solid fa-square-xmark"></i>
       </button>
@@ -22,120 +23,32 @@
   </span>
   <article class="campaing_list">
     <span class="header_list">
-      <div><p>Nombre</p></div>
-      <div><p>Campaña</p></div>
-      <div><p>Jugadores</p></div>
-    </span>
-    <span class="campaings_items">
       <div>
-        <p>Friendly kill goblins</p>
+        <p>Nombre</p>
       </div>
       <div>
-        <p>La espada del destino</p>
+        <p>Campaña</p>
       </div>
       <div>
-        <p>3/6</p>
+        <p>Jugadores</p>
       </div>
     </span>
-    <span class="campaings_items">
-      <div>
-        <p>Friendly kill goblins</p>
-      </div>
-      <div>
-        <p>La espada del destino</p>
-      </div>
-      <div>
-        <p>3/6</p>
-      </div> </span
-    ><span class="campaings_items">
-      <div>
-        <p>Friendly kill goblins</p>
-      </div>
-      <div>
-        <p>La espada del destino</p>
-      </div>
-      <div>
-        <p>3/6</p>
-      </div> </span
-    ><span class="campaings_items">
-      <div>
-        <p>Friendly kill goblins</p>
-      </div>
-      <div>
-        <p>La espada del destino</p>
-      </div>
-      <div>
-        <p>3/6</p>
-      </div> </span
-    ><span class="campaings_items">
-      <div>
-        <p>Friendly kill goblins</p>
-      </div>
-      <div>
-        <p>La espada del destino</p>
-      </div>
-      <div>
-        <p>3/6</p>
-      </div>
-    </span>
-    <span class="campaings_items">
-      <div>
-        <p>Friendly kill goblins</p>
-      </div>
-      <div>
-        <p>La espada del destino</p>
-      </div>
-      <div>
-        <p>3/6</p>
-      </div>
-    </span>
-    <span class="campaings_items">
-      <div>
-        <p>Friendly kill goblins</p>
-      </div>
-      <div>
-        <p>La espada del destino</p>
-      </div>
-      <div>
-        <p>3/6</p>
-      </div>
-    </span>
-    <span class="campaings_items">
-      <div>
-        <p>Friendly kill goblins</p>
-      </div>
-      <div>
-        <p>La espada del destino</p>
-      </div>
-      <div>
-        <p>3/6</p>
-      </div>
-    </span>
-    <span class="campaings_items">
-      <div>
-        <p>Friendly kill goblins</p>
-      </div>
-      <div>
-        <p>La espada del destino</p>
-      </div>
-      <div>
-        <p>3/6</p>
-      </div>
-    </span>
-    <span class="campaings_items">
-      <div>
-        <p>Friendly kill goblins</p>
-      </div>
-      <div>
-        <p>La espada del destino</p>
-      </div>
-      <div>
-        <p>3/6</p>
-      </div>
-    </span>
+    <ng-container *ngFor="let campaign of allCampaigns">
+      <span tabindex="0" *ngIf="campaign.public" (click)="selectCampaign(campaign)" class="campaings_items">
+        <div>
+          <p>{{campaign.campaignName}}</p>
+        </div>
+        <div>
+          <p>{{campaign.campaignNamePre}}</p>
+        </div>
+        <div>
+          <p>{{campaign.numPlayer}} - (entre {{campaign.playerMin}} y {{campaign.playerMax}})</p>
+        </div>
+      </span>
+    </ng-container>
   </article>
   <div class="code_container">
     <button (click)="openModal(modal)">Unirse con código</button>
   </div>
-  <button routerLink="/characterList" class="join">JOIN</button>
+  <button (click)="joinCampaign()" [ngClass]="(!selectedCampaign) ? 'join_disabled' : 'join'" [disabled]="!selectedCampaign">JOIN</button>
 </main>
