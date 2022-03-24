@@ -12,10 +12,13 @@ export class MasterService {
   public enemyCampign: Enemy []
   public enemySpel: Spell []
   public enemyWeapon: Weapon []
+  public url: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.url = 'https://dungeons-and-coders-api.herokuapp.com'
+  }
 
   getAllEnemy(idCampaignPre: number) {
-    return this.http.get('https://dungeons-and-coders-api.herokuapp.com/vistaMaster')
+    return this.http.get(this.url+'/vistaMaster?id='+idCampaignPre)
   }
 }

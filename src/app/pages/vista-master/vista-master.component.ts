@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Enemy } from 'src/app/models/enemy';
 import { CampaingService } from 'src/app/shared/campaing.service';
 import { CharacterService } from 'src/app/shared/character.service';
+import { MasterService } from 'src/app/shared/master.service';
 
 
 @Component({
@@ -9,10 +11,18 @@ import { CharacterService } from 'src/app/shared/character.service';
   styleUrls: ['./vista-master.component.css']
 })
 export class VistaMasterComponent implements OnInit {
- 
-  constructor(public campaingService:CampaingService, public characterService:CharacterService) { }
+  public enemyCampaignPre: Enemy [];
+  @ViewChild('indexenemy') indexEnemy!: ElementRef;
+  public idEnemy: number = this.indexEnemy.nativeElement.value
+  constructor(public campaingService:CampaingService, public characterService:CharacterService, public masterEnemies: MasterService) { }
 
   ngOnInit(): void {
+  }
+
+  enemiesCampaign(idCampignPre:number){
+    this.masterEnemies.getAllEnemy(idCampignPre).subscribe((data:any) =>{
+      this.enemyCampaignPre = data;
+    })
   }
 
   modalEnemigos(modalEnemigos: HTMLElement, visible: boolean) {

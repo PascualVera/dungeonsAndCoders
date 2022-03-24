@@ -12,13 +12,8 @@
                 <section class="fichas">
                     <section class="enemigos">
                         <label type="button" (click)="modalEnemigos(modalEnemy, true)" >Monstruos: </label>
-                        <select name="enemigos"> <!--Desplegable con los enemigos *-->
-                            <option value="1">enemigo 1</option> 
-                            <option value="2">enemigo 2</option> 
-                            <option value="3">enemigo 3</option>
-                            <option value="4">enemigo 4</option> 
-                            <option value="5">enemigo 5</option> 
-                            <option value="6">enemigo 6</option> 
+                        <select #indexEnemy *ngFor="let enemigo of enemyCampaignPre" name="enemigos"> <!--Desplegable con los enemigos *-->
+                            <option [value]="enemigo">{{enemiesCampaign.name}}</option> 
                          </select>
                     </section>
                     <section class="heroes" >
@@ -95,7 +90,7 @@
     <div class="enemyInfo">
         <div class="left">
             <div class="nombre">
-                <label><b>Ion </b> <span>(Humanoide Pequeño (trasgo), neutral malvado)</span></label> 
+                <label><b>{{enemiesCampaign[idEnemy].name}} </b> <span>({{enemiesCampaign[idEnemy].race}})</span></label> 
             </div>
             <div class="info">
                 <ul>
