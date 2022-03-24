@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Campaing } from '../../models/campaing';
 import { CampaingService } from '../../shared/campaing.service';
 import { Router } from '@angular/router';
+import { CharacterService } from 'src/app/shared/character.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-campaing',
@@ -16,7 +18,7 @@ export class CampaingComponent implements OnInit {
   public allCampaignsFiltered: Campaing[];
   public selectedCampaign: string;
 
-  constructor(private campaignService: CampaingService, private router: Router) {
+  constructor(private campaignService: CampaingService, private router: Router, public characterService:CharacterService) {
     this.getAllCampaigns();
   }
   
@@ -69,7 +71,16 @@ export class CampaingComponent implements OnInit {
 
   joinCampaign() {
     this.campaignService.idCampaign = this.selectedCampaign;
-    this.router.navigate(['/characterList'])
+    this.characterService.getCharactersInGame(this.campaignService.idCampaign).subscribe((data:any)=>{
+      this.characterService.charactersInGame = []
+      for(const id of data.respuesta){
+        this.characterService.charactersInGame.push(id.idCharacter)
+      }
+      console.log(this.characterService.charactersInGame)
+      this.router.navigate(['/characterList'])
+      
+    })
+    
   }
 
   filtrar(filtro: string) {
