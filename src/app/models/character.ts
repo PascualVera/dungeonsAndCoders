@@ -21,6 +21,7 @@ export class Character {
   public initiative: number;
   public hitPoint: number;
   public hitDice: string;
+  public spellMod:number;
   public language: string;
   public acrobatic: number;
   public athletics: number;
@@ -50,6 +51,7 @@ export class Character {
   public ideales: string;
   public vinculos: string;
   public defectos: string;
-
+  public spell: any[]
+  public weapon: any[]
   constructor() {}
 }

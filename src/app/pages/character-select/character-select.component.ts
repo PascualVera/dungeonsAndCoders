@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from 'src/app/models/character';
+import { Player } from 'src/app/models/player';
+import { CampaingService } from 'src/app/shared/campaing.service';
 import { CharacterService } from 'src/app/shared/character.service';
+import { PlayersService } from 'src/app/shared/players.service';
+import { UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'app-character-select',
@@ -10,7 +14,8 @@ import { CharacterService } from 'src/app/shared/character.service';
 export class CharacterSelectComponent implements OnInit {
   public scrollCount: number;
   public characters: Character[];
-  constructor(public characterService: CharacterService) {
+  
+  constructor(public characterService: CharacterService,public playerService:PlayersService, public userService: UserService, public campaingService:CampaingService) {
     this.scrollCount = 0;
     this.getCharacters();
   }
@@ -58,13 +63,20 @@ export class CharacterSelectComponent implements OnInit {
     button: any
   ) {
     this.characterService.character = character;
+    this.characterService.getSpell(character.idCharacter).subscribe((data:any)=>{
+      this.characterService.character.spell = data.resultado
+      console.log(this.characterService.character.spell)
+    })
+    this.characterService.getWeapon(character.idCharacter).subscribe((data:any)=>{
+      this.characterService.character.weapon = data.resultado
+    })
     img.src = this.characterService.character.image;
     console.log(this.characterService.character.image);
     rasgos.innerHTML = this.characterService.character.rasgos;
     ideales.innerHTML = this.characterService.character.ideales;
     vinculos.innerHTML = this.characterService.character.vinculos;
     defectos.innerHTML = this.characterService.character.defectos;
-    name.innerHTML = this.characterService.character.name;
+    name.innerHTML = this.characterService.character.class;
     fuerzaMod.innerHTML = this.characterService.character.strengthMod;
     fuerza.innerHTML = this.characterService.character.strength;
     intMod.innerHTML = this.characterService.character.inteligenceMod;
@@ -89,7 +101,7 @@ export class CharacterSelectComponent implements OnInit {
     //Cargar personaje///
 
     button.disabled = false;
-    console.log(this.characters);
+    console.log(this.characterService.character);
   }
 
   getCharacters() {
@@ -99,19 +111,32 @@ export class CharacterSelectComponent implements OnInit {
   }
   shadow(img: any, index: number) {
     console.log(index);
-    if (index == 0) {
+    if (index == 2) {
       img.setAttribute('class', 'imagen_rogue');
-    } else if (index == 1) {
+    } else if (index == 0) {
       img.setAttribute('class', 'imagen_warrior');
-    } else if (index == 2) {
+    } else if (index == 1) {
       img.setAttribute('class', 'imagen_cleric');
     } else if (index == 3) {
       img.setAttribute('class', 'imagen_mage');
-    } else if (index == 4) {
-      img.setAttribute('class', 'imagen_ranger');
     } else if (index == 5) {
+      img.setAttribute('class', 'imagen_ranger');
+    } else if (index == 4) {
       img.setAttribute('class', 'imagen_barbarian');
     }
+  }
+  postPlayer(){
+    this.playerService.player = new Player (this.characterService.character.hitPoint,
+                                            this.characterService.character.idCharacter,
+                                            this.userService.user.idUser,
+                                            this.campaingService.idCampaign)
+
+    console.log(this.playerService.player)
+    this.playerService.createPlayers(this.playerService.player).subscribe((data)=>{
+      console.log(data)
+    })
+    
+    
   }
   ngOnInit(): void {}
 }
