@@ -12,8 +12,8 @@
                 <section class="fichas">
                     <section class="enemigos">
                         <label type="button" (click)="modalEnemigos(modalEnemy, true)" >Monstruos: </label>
-                        <select #indexEnemy *ngFor="let enemigo of enemyCampaignPre" name="enemigos"> <!--Desplegable con los enemigos *-->
-                            <option [value]="enemigo">{{enemiesCampaign.name}}</option> 
+                        <select #enemy  name="enemigos"> <!--Desplegable con los enemigos *-->
+                            <option *ngFor="let enemigo of enemyCampaignPre; let i = index" [value]="i">{{enemigo.name}}</option> 
                          </select>
                     </section>
                     <section class="heroes" >
@@ -90,45 +90,45 @@
     <div class="enemyInfo">
         <div class="left">
             <div class="nombre">
-                <label><b>{{enemiesCampaign[idEnemy].name}} </b> <span>({{enemiesCampaign[idEnemy].race}})</span></label> 
+                <label><b>{{enemyCampaignPre[index].name}} </b> <span>({{enemyCampaignPre[index].race}})</span></label> 
             </div>
             <div class="info">
                 <ul>
-                    <li><b>Clase de armadura: </b> {{enemiesCampaign[idEnemy].armor}}</li>
-                    <li><b>Puntos de golpe: </b> {{enemiesCampaign[idEnemy].hitPoints}}</li>
-                    <li><b>Velocidad: </b> {{enemiesCampaign[idEnemy].speed}}</li>
+                    <li><b>Clase de armadura: </b> {{enemyCampaignPre[index].armor}}</li>
+                    <li><b>Puntos de golpe: </b> {{enemyCampaignPre[index].hitPoints}}</li>
+                    <li><b>Velocidad: </b>{{enemyCampaignPre[index].speed}}</li>
                 </ul>
             </div>
             <div class="atributos">
                 <div>
                     <section>FUE:</section>
-                    <section> {{enemiesCampaign[idEnemy].strength}} ({{enemiesCampaign[idEnemy].strengthMod}})</section>
+                    <section> {{enemyCampaignPre[index].strength}} ({{enemyCampaignPre[index].strengthMod}})</section>
                 </div>
                 <div>
                     <section>DES:</section>
-                    <section> {{enemiesCampaign[idEnemy].dexterity}} ({{enemiesCampaign[idEnemy].dexterityMod}})</section>
+                    <section> {{enemyCampaignPre[index].dexterity}} ({{enemyCampaignPre[index].dexterityMod}})</section>
                 </div>
                 <div>
                     <section>CON:</section>
-                    <section> {{enemiesCampaign[idEnemy].constitution}} ({{enemiesCampaign[idEnemy].constitutionMod}})</section>
+                    <section> {{enemyCampaignPre[index].constitution}} ({{enemyCampaignPre[index].constitutionMod}})</section>
                 </div>
                 <div>
                     <section>INT:</section>
-                    <section> {{enemiesCampaign[idEnemy].inteligence}} ({{enemiesCampaign[idEnemy].inteligenceMod}})</section>
+                    <section> {{enemyCampaignPre[index].inteligence}} ({{enemyCampaignPre[index].inteligenceMod}})</section>
                 </div>
                 <div>
                     <section>SAB:</section>
-                    <section> {{enemiesCampaign[idEnemy].wisdom}} ({{enemiesCampaign[idEnemy].wisdomMod}})</section>
+                    <section> {{enemyCampaignPre[index].wisdom}} ({{enemyCampaignPre[index].wisdomMod}})</section>
                 </div>
                 <div>
                     <section>CAR:</section>
-                    <section> {{enemiesCampaign[idEnemy].charisma}} ({{enemiesCampaign[idEnemy].charismaMod}})</section>
+                    <section> {{enemyCampaignPre[index].charisma}} ({{enemyCampaignPre[index].charismaMod}})</section>
                 </div>
             </div>
             <div class="habilidades">
                 <ul>
-                    <li><b>Sentidos: </b> {{enemiesCampaign[idEnemy].senses}}</li>
-                    <li><b>Idiomas: </b> {{enemiesCampaign[idEnemy].language}}</li>
+                    <li><b>Sentidos: </b> {{enemyCampaignPre[index].senses}}</li>
+                    <li><b>Idiomas: </b> {{enemyCampaignPre[index].language}}</li>
                 </ul>
             </div>
         </div>

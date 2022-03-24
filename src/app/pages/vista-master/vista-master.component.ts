@@ -12,21 +12,26 @@ import { MasterService } from 'src/app/shared/master.service';
 })
 export class VistaMasterComponent implements OnInit {
   public enemyCampaignPre: Enemy [];
-  @ViewChild('indexenemy') indexEnemy!: ElementRef;
-  public idEnemy: number = this.indexEnemy.nativeElement.value
-  constructor(public campaingService:CampaingService, public characterService:CharacterService, public masterEnemies: MasterService) { }
+  @ViewChild('enemy') enemy: ElementRef;
+  public index: number = 0;
+  constructor(public campaingService:CampaingService, public characterService:CharacterService, public masterEnemies: MasterService) { 
+    this.enemiesCampaign(1)
+  }
 
   ngOnInit(): void {
   }
 
   enemiesCampaign(idCampignPre:number){
     this.masterEnemies.getAllEnemy(idCampignPre).subscribe((data:any) =>{
-      this.enemyCampaignPre = data;
+      this.enemyCampaignPre = data.resultado;
+      console.log(data.resultado)
     })
+    
   }
 
   modalEnemigos(modalEnemigos: HTMLElement, visible: boolean) {
     modalEnemigos.style.display = (visible) ? 'flex' : 'none';
+    this.index = this.enemy.nativeElement.value
   }
 
   modalPersonaje(modalPersonaje: HTMLElement, visible: boolean) {
