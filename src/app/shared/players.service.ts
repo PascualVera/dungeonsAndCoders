@@ -15,12 +15,6 @@ export class PlayersService {
     this.url = 'http://localhost:4000'
     this.players = [
       { name: '[System]', escribiendo: false },
-      { name: 'player1', escribiendo: false },
-      { name: 'player2', escribiendo: false },
-      { name: 'player3', escribiendo: false },
-      { name: 'player4', escribiendo: false },
-      { name: 'player5', escribiendo: false },
-      { name: 'player6', escribiendo: false },
     ];
     this.playerColors = ['#8b0000', '#e7623e', '#7f513e', '#2a50a1', '#507f62', '#91a1b2', '#555752'];
   }
@@ -41,5 +35,12 @@ export class PlayersService {
   }
   createPlayers(player:any) {
     return this.http.post(this.url + '/player', player)
+  }
+  inGamePlayer(idCampaign:string){
+    return this.http.get(this.url + `/player?id=${idCampaign}` )
+  }
+  initPlayers(){
+    this.players = [{name:'System' , escribiendo: false}];
+
   }
 }

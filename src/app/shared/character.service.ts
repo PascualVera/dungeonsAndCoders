@@ -10,6 +10,7 @@ export class CharacterService {
   public character: Character;
   public life: number;
   public url:string
+  public charactersInGame:number[]
   constructor(private http: HttpClient) {
     // this.url = 'https://dungeons-and-coders-api.herokuapp.com'
     this.url = 'http://localhost:4000'
@@ -23,5 +24,8 @@ export class CharacterService {
   }
   getWeapon(idCharacter:number){
     return this.http.get(this.url + '/equip?idCharacter=' + String(idCharacter))
+  }
+  getCharactersInGame(idCampaign:string){
+    return this.http.get(this.url + `/characterInGame?id=${idCampaign}`)
   }
 }

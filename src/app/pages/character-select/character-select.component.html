@@ -7,7 +7,7 @@
       <div
         tabindex="0"
         #container
-        *ngFor="let character of this.characters; let i = index"
+        *ngFor="let character of this.characters; let i = index;"
         (click)="
           showCharacter(
             character,
@@ -39,8 +39,7 @@
             button
           )
         "
-        class="img_container"
-      >
+        [ngClass]="this.characterService.charactersInGame.includes(i+1) ? 'img_container_disabled':'img_container'">
         <img src="{{ character.image }}" alt="" />
         <div #sombra class="sombra"></div>
       </div>

@@ -60,6 +60,13 @@ img {
   position: relative;
   display: inline-block;
 }
+.img_container_disabled {
+  overflow: visible;
+  position: relative;
+  display: inline-block;
+  filter: grayscale(100);
+  pointer-events: none;
+}
 .sombra {
   position: absolute;
   top: 0;
