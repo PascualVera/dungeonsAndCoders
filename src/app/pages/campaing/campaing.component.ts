@@ -10,12 +10,17 @@ import { Router } from '@angular/router';
 })
 export class CampaingComponent implements OnInit {
 
+  public delayKeyUp: any; // para controlar el temporizador de pulsaciones al filtrar
+
   public allCampaigns: Campaing[];
+  public allCampaignsFiltered: Campaing[];
   public selectedCampaign: string;
 
   constructor(private campaignService: CampaingService, private router: Router) {
     this.getAllCampaigns();
   }
+  
+  ngOnInit(): void {}
 
   openModal(modal: any) {
     modal.style.display = 'flex';
@@ -23,13 +28,15 @@ export class CampaingComponent implements OnInit {
   closeModal(modal: any) {
     modal.style.display = 'none';
   }
-  ngOnInit(): void {}
 
+  // **********************************
   // De aquí para abajo hecho por Ander
+  // **********************************
   getAllCampaigns() {
     this.campaignService.getAllCampaigns().subscribe((resp: any) => 
     { 
-      this.allCampaigns = resp.resultado
+      this.allCampaigns = resp.resultado;
+      this.allCampaignsFiltered = this.allCampaigns;
     })
   }
 
@@ -63,5 +70,20 @@ export class CampaingComponent implements OnInit {
   joinCampaign() {
     this.campaignService.idCampaign = this.selectedCampaign;
     this.router.navigate(['/characterList'])
+  }
+
+  filtrar(filtro: string) {
+    if (this.delayKeyUp) {
+      clearTimeout(this.delayKeyUp)
+    }
+    this.delayKeyUp = setTimeout(() => {
+        if (!filtro) {
+          this.allCampaignsFiltered = this.allCampaigns;
+        } else {
+          this.allCampaignsFiltered = this.allCampaigns.filter((campaign) => {
+            return campaign.campaignName.toLowerCase().startsWith(filtro.toLowerCase())
+          })
+        }
+    }, 300);
   }
 }

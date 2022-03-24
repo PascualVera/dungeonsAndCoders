@@ -18,7 +18,7 @@
       <button class="filtrar">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
-      <input type="text" placeholder="Filtrar" />
+      <input #inputFiltrar (keyup)="filtrar(inputFiltrar.value)" type="text" placeholder="Filtrar" />
     </div>
   </span>
   <article class="campaing_list">
@@ -33,7 +33,7 @@
         <p>Jugadores</p>
       </div>
     </span>
-    <ng-container *ngFor="let campaign of allCampaigns">
+    <ng-container *ngFor="let campaign of allCampaignsFiltered">
       <span tabindex="0" *ngIf="campaign.public" (click)="selectCampaign(campaign)" class="campaings_items">
         <div>
           <p>{{campaign.campaignName}}</p>
