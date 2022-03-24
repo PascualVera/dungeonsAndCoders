@@ -22,6 +22,7 @@
     background-color: rgba(163, 76, 80, .85);
     color: var(--textMain);
     display: flex;
+    justify-content: center;
     align-items: center;
     font-size: 1.8rem;
     height: 6vh;
@@ -31,18 +32,26 @@
 .resumen {
     width: 45vw;
     height: 65vh;
-    background-color: rgba(196, 196, 196, 0.2);
+  }
+  
+  .resumenCuerpo {
+  padding: 5vh;
+  color: var(--textMain);
+  width: 100%;
+  height: 59vh;
+  background-color: rgba(196, 196, 196, 0.2);
+  overflow-y: scroll;
 }
 
-.resumenCuerpo {
-    font-size: 2.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--textMain);
-    width: 100%;
-    height: 59vh;
-    overflow-y: scroll;
+.resumenCuerpo p{
+  font-family: 'fable';
+  font-size: 1.2rem;
+  text-align: justify;
+  text-indent: 3vw;
+}
+
+.resumenCuerpo p::first-letter {
+  font-size: 2rem;
 }
 
 .campaingItem {
@@ -59,6 +68,10 @@
 
 .campaingItem:hover {
     background-color: rgba(196, 196, 196, 0.5);
+}
+
+.campaingItem:focus{
+  background-color: var(--bluemainT);
 }
 
 .volver {
@@ -98,9 +111,27 @@
     letter-spacing: .1vw;
 }
 
-.iniciar {
+.crear_disabled {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    margin-top: 4vh;
+    width: 9vw;
+    height: 5vw;
+    border: 0.25vw solid whitesmoke;
+    background: none;
+    color: whitesmoke;
+    font-size: 2rem;
+    text-align: center;
+    border-radius: .75vw;
+    opacity: 0.7;
+    letter-spacing: .1vw;
+}
+
+.crearCampaign {
   border-style: none;
-  width: 15vw;
+  width: 17vw;
   height: 7vh;
   font-size: 2rem;
   color: var(--textMain);
@@ -109,15 +140,15 @@
   -webkit-text-stroke: 0.05rem black;
 }
 
-.iniciar:active {
+.crearCampaign:active {
   box-shadow: 0 0 10px black;
 }
 
-.iniciar:hover {
+.crearCampaign:hover {
   filter: brightness(1.1);
 }
 
-.volver:hover, .crear:hover, .iniciar:hover {
+.volver:hover, .crear:hover, .crearCampaign:hover {
     opacity: 1;
 }
 
@@ -143,6 +174,7 @@
     align-items: center;
     width: 25vw;
     height: 40vh;
+    margin-bottom: 15vh;
     background-image: url('../../../assets/images/pergamine.jpg');
     background-size: 100% 100%;
     border: .75vh solid var(--bluemain);
@@ -170,14 +202,36 @@
     margin: 0 1vw;
   }
 
+  .inputNombre {
+    width: 17vw;
+    height: 5vh;
+    padding: 0 1vw;
+    background-color: var(--inputBg);
+    color: white;
+    font-size: 1.2rem;
+    border-style: none;
+    border-radius: 0.8vh;
+    border: 0.5vh solid var(--redmain);
+    letter-spacing: .1vw
+  }
+  
+  .inputNombre::placeholder {
+    color: var(--placeHolder);
+  }
+
 /* Select players */
 .selectPlayers {
-  width: 15vw;
+  width: 17vw;
   height: 5vh;
   font-size: 1.2rem;
   background-color: var(--bluemain);
   color: var(--textMain);
   padding: 0 1vw;
+}
+
+.error {
+  font-size: 1.2rem;
+  color: var(--redmain);
 }
 
 /* Switch tipo partida */
@@ -206,7 +260,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--redmain);
+    background-color: var(--bluemain);
     -webkit-transition: .4s;
     transition: .4s;
   }
@@ -218,13 +272,13 @@
     width: 1.3vw;
     left: 0.2vw;
     bottom: 0.2vw;
-    background-color: black;
+    background-color: var(--textMain);
     -webkit-transition: .4s;
     transition: .4s;
   }
 
   .inputPublica:checked + .slider {
-    background-color: var(--bluemain);
+    background-color: var(--redmain);
   }
 
   .inputPublica:checked + .slider:before {
@@ -245,3 +299,22 @@
   .slider.round:before {
     border-radius: 50%;
   }
+
+  /***********ScrollBar specs*********/
+
+::-webkit-scrollbar {
+  width: 0.8vw;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f17a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bluemain);
+  opacity: 0.7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

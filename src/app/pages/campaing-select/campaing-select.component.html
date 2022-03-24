@@ -5,26 +5,24 @@
         <div class="titulo">
             Seleccionar Campaña
         </div>
-        <div class="campaingItem">
-            Campaña 1
+        <div tabindex="0"
+             (click)="selectCampaignPre(campaignPre, resumenCuerpo)"
+             *ngFor="let campaignPre of allCampaignsPre"
+             class="campaingItem">
+            {{campaignPre.campaignName}}
         </div>
-        <div class="campaingItem">
-            Campaña 2
-        </div>
-        <div class="campaingItem">
-            Campaña 3
-        </div>
-        <div class="campaingItem">
-            Campaña 4
-        </div>
-        <button (click)="modalCrear(veloModalCrear, true)" class="crear">Crear</button>
+        <button (click)="modalCrear(veloModalCrear, true)"
+                [ngClass]="(!selectedCampaignPre.idCampaignPre) ? 'crear_disabled' : 'crear'"
+                [disabled]="!selectedCampaignPre.idCampaignPre">
+            Crear
+        </button>
     </div>
     <div class="resumen">
         <div class="titulo">
             Resumen de la campaña
         </div>
-        <div class="resumenCuerpo">
-            Resumen de la campaña
+        <div #resumenCuerpo class="resumenCuerpo">
+            <p>{{selectedCampaignPre.synopsis}}</p>
         </div>
     </div>
     <button routerLink="/campaing" class="volver">Volver</button>
@@ -32,55 +30,23 @@
 
 <div #veloModalCrear class="veloModalCrear">
     <div class="modalOpciones">
-        <button (click)="modalCrear(veloModalCrear, false)" class="closeModal">
+        <button (click)="modalCrear(veloModalCrear, false, inputNombre, selectPlayers)" class="closeModal">
             <i class="fa-solid fa-square-xmark closeModal"></i>
         </button>
         <div class="divSwitch">
-            <span class="textSwitch">Pública</span>
+            <span class="textSwitch">Privada</span>
             <label class="switch">
-                <input class="inputPublica" type="checkbox" checked>
+                <input #checkTipo class="inputPublica" type="checkbox">
                 <span class="slider round"></span>
             </label>
-            <span class="textSwitch">Privada</span>
+            <span class="textSwitch">Pública</span>
         </div>
-        <select class="selectPlayers">
-            <option selected value="">Número de jugadores</option>
-            <option value="1">1 Jugador</option>
-            <option value="2">2 Jugadores</option>
-            <option value="3">3 Jugadores</option>
-            <option value="4">4 Jugadores</option>
-            <option value="5">5 Jugadores</option>
-            <option value="6">6 Jugadores</option>
+        <input #inputNombre type="text" class="inputNombre" placeholder="*Nombre de campaña">
+        <select #selectPlayers class="selectPlayers">
+            <option selected value="">*Número de jugadores</option>
+            <option *ngFor="let jugadores of rangoJugadores" [value]="jugadores">{{jugadores}} Jugadores</option>
         </select>
-        <button routerLink="/master" class="iniciar">Iniciar campaña</button>
+        <span #error class="error" style="visibility: hidden;">Obligatorio todos los datos</span>
+        <button (click)="crearCampaign(checkTipo.value, inputNombre.value, selectPlayers.value, error)" class="crearCampaign">Crear campaña</button>
     </div>
 </div>
-<!-- <div #veloModalCrear class="veloModalCrear">
-    <div class="modalCrear">
-        <div class="modalResumen">
-            <button (click)="modalCrear(veloModalCrear, false)" class="closeModal">
-                <i class="fa-solid fa-square-xmark closeModal"></i>
-            </button>
-        </div>
-        <div class="modalOpciones">
-            <div class="divSwitch">
-                <span class="textSwitch">Pública</span>
-                <label class="switch">
-                    <input class="inputPublica" type="checkbox" checked>
-                    <span class="slider round"></span>
-                </label>
-                <span class="textSwitch">Privada</span>
-            </div>
-            <select class="selectPlayers">
-                <option selected value="">Número de jugadores</option>
-                <option value="1">1 Jugador</option>
-                <option value="2">2 Jugadores</option>
-                <option value="3">3 Jugadores</option>
-                <option value="4">4 Jugadores</option>
-                <option value="5">5 Jugadores</option>
-                <option value="6">6 Jugadores</option>
-            </select>
-            <button routerLink="/master" class="iniciar">Iniciar campaña</button>
-        </div>
-    </div>
-</div> -->
