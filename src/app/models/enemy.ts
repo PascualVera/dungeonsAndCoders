@@ -1,5 +1,5 @@
 export class Enemy {
-
+    public cantidad: number;
     public idEnemyPre: number;
     public race: string;
     public name:string;

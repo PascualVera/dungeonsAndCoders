@@ -94,42 +94,41 @@
             </div>
             <div class="info">
                 <ul>
-                    <li><b>Clase de armadura: </b> 13 (armadura de cuero)</li>
-                    <li><b>Puntos de golpe: </b> 8 (2d6)</li>
-                    <li><b>Velocidad: </b> 30 pies</li>
+                    <li><b>Clase de armadura: </b> {{enemiesCampaign[idEnemy].armor}}</li>
+                    <li><b>Puntos de golpe: </b> {{enemiesCampaign[idEnemy].hitPoints}}</li>
+                    <li><b>Velocidad: </b> {{enemiesCampaign[idEnemy].speed}}</li>
                 </ul>
             </div>
             <div class="atributos">
                 <div>
                     <section>FUE:</section>
-                    <section> 8 (-1)</section>
+                    <section> {{enemiesCampaign[idEnemy].strength}} ({{enemiesCampaign[idEnemy].strengthMod}})</section>
                 </div>
                 <div>
                     <section>DES:</section>
-                    <section> 14 (+2)</section>
+                    <section> {{enemiesCampaign[idEnemy].dexterity}} ({{enemiesCampaign[idEnemy].dexterityMod}})</section>
                 </div>
                 <div>
                     <section>CON:</section>
-                    <section> 10 (+0)</section>
+                    <section> {{enemiesCampaign[idEnemy].constitution}} ({{enemiesCampaign[idEnemy].constitutionMod}})</section>
                 </div>
                 <div>
                     <section>INT:</section>
-                    <section> 10 (+0)</section>
+                    <section> {{enemiesCampaign[idEnemy].inteligence}} ({{enemiesCampaign[idEnemy].inteligenceMod}})</section>
                 </div>
                 <div>
                     <section>SAB:</section>
-                    <section> 10 (+0)</section>
+                    <section> {{enemiesCampaign[idEnemy].wisdom}} ({{enemiesCampaign[idEnemy].wisdomMod}})</section>
                 </div>
                 <div>
                     <section>CAR:</section>
-                    <section> 8 (-1)</section>
+                    <section> {{enemiesCampaign[idEnemy].charisma}} ({{enemiesCampaign[idEnemy].charismaMod}})</section>
                 </div>
             </div>
             <div class="habilidades">
                 <ul>
-                    <li><b>Habilidades: </b> Sigilo +6</li>
-                    <li><b>Sentidos: </b> visión en la oscuridad 60 pies, Percepción pasiva 10</li>
-                    <li><b>Idiomas: </b> común, goblin</li>
+                    <li><b>Sentidos: </b> {{enemiesCampaign[idEnemy].senses}}</li>
+                    <li><b>Idiomas: </b> {{enemiesCampaign[idEnemy].language}}</li>
                 </ul>
             </div>
         </div>
