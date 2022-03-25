@@ -13,24 +13,19 @@ export class CharacterComponent implements OnInit {
   public characters: Character[]
   public dataIndex:number
   constructor(public characterService: CharacterService) {
-    
-    this.dataIndex = 2
-    characterService.getAll().subscribe((data:Character[])=>{
-      this.characters = data
-      characterService.getSpell(4).subscribe((data:any)=>{
-        this.characters[3].spell = data.resultado
-        console.log(this.characters[3])
-        characterService.getWeapon(4).subscribe((data:any)=>{
-          this.characters[3].weapon = data.resultado
-        })
-      })
-    })
+    this.dataIndex = 0
   }
   showCharacter(){
     this.dataIndex = 0
   }
   showSkills(){
     this.dataIndex = 1
+  }
+  showSpell(){
+    this.dataIndex = 2
+  }
+  showWeapons(){
+    this.dataIndex = 3
   }
   hit(lifeBar: any) {
     this.lifePoints--;

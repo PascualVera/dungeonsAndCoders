@@ -170,6 +170,7 @@ img {
   width: 10vw;
   border-top-left-radius: 50%;
   border-top-right-radius: 50%;
+  mix-blend-mode: luminosity;
 }
 .imgStats p {
   font-size: 2.3rem;

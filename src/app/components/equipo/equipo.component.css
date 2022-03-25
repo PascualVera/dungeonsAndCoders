@@ -1,0 +1,29 @@
+
+
+
+.container_main {
+  height: 62vh;
+  width: 100%;
+  background-image: url('../../../assets/images/pergamine2.png'); 
+  display: flex;
+  flex-direction: column;
+}
+
+section{
+  width: 100%;
+  background-color: #cec2ae7e;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  gap:1vh
+}
+p{
+  padding: 0 3vh 0 3vh;
+  font-size: 1.2rem;
+  margin: 0;
+}
+section p:first-child{
+  background-color: var(--bluemain);
+  font-size: 1.5rem;
+  color: white
+}
