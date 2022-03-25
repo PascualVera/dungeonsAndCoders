@@ -9,7 +9,6 @@ export class Campaing {
   public maxPlayer: number;
   public public: number;
   public closed: number;
-
   public campaignNamePre: string;
   public playerMin: number;
 

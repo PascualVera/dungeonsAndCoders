@@ -70,7 +70,6 @@ export class CampaingComponent implements OnInit {
 
   joinCampaign() {
     this.campaignService.idCampaign = this.selectedCampaign.idCampaign; //Quitar tras refactorizar todo a actualCampaign del servicio
-
     this.campaignService.actualCampaign = this.selectedCampaign; 
     this.router.navigate(['/characterList'])
   }

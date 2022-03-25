@@ -50,4 +50,8 @@ export class CampaingService {
   postCampaign(campaign: Campaing) {
     return this.http.post(this.url + '/campaign', campaign)
   }
+
+  putCampaing(campaign:object){
+    return this.http.put(this.url + '/campaign', campaign)
+  }
 }
