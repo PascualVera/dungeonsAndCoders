@@ -6,9 +6,7 @@ import { Campaing } from '../models/campaing';
   providedIn: 'root'
 })
 export class CampaingService {
-
   public idCampaign: string; // Tendrá el idCampaign despues de join o unirse por código TODO: cambiar a objeto: Campaign
-
   public actualCampaign: Campaing;
   private url: string;
 

@@ -32,6 +32,9 @@ export class CharacterComponent implements OnInit {
   showSkills(){
     this.dataIndex = 1
   }
+  showSpell(){
+    this.dataIndex = 2
+  }
   hit(lifeBar: any) {
     this.lifePoints--;
     let lifePoints = this.lifePoints;

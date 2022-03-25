@@ -1,6 +1,6 @@
 <article class="container_main">
-  <section *ngFor="let spell of this.characters[3].spell" class="spell_container">
-    <p>{{spell.spellName}}</p>
+  <section  *ngFor="let spell of this.characters[3].spell;  let e = even" class="spell_container">
+    <p [ngClass]="e ? 'odd' : 'even' ">{{spell.spellName}}</p>
     <p>Tiempo de casteo: {{spell.duration}}</p>
     <p>Alcance: {{spell.reach}}</p>
     <p>{{spell.description}}</p>

@@ -2,10 +2,25 @@
   height: 62vh;
   width: 100%;
   background-color: #cec2ae;
+  background-image: url('../../../assets/images/pergamine2.png');
   overflow-y: scroll;
-  padding: 2vh;
+  
+}
+section{
+  background-color: #cec2ae7e;
 }
 
+section p {
+  padding: 0vh 2vh 0vh 2vh;
+  font-size: 1rem;
+}
+section p:first-child{
+  font-size: 1.3rem;
+  color: white;
+}
+section p:nth-child(4){
+  mix-blend-mode: color-burn;
+}
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
@@ -26,3 +41,12 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.odd{
+  background-color: #264c5e;
+
+}
+.even{
+  background-color: #a34c50
+}
+
