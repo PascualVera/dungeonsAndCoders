@@ -26,4 +26,5 @@ export class MasterService {
   getAllSpell(idEnemyPre: number){
     return this.http.get(this.url+'/spell/enemy?id='+idEnemyPre)
   }
+
 }

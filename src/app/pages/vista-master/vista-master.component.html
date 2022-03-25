@@ -18,13 +18,8 @@
                     </section>
                     <section class="heroes" >
                         <label type="button" (click)="modalPersonaje(modalHero, true)"  >Personajes: </label>
-                        <select name="personajes"> <!--Desplegable con los jugadores *-->
-                            <option value="1">personaje 1</option> 
-                            <option value="2">personaje 2</option> 
-                            <option value="3">personaje 3</option>
-                            <option value="4">personaje 4</option> 
-                            <option value="5">personaje 5</option> 
-                            <option value="6">personaje 6</option> 
+                        <select #player name="personajes"> <!--Desplegable con los jugadores *-->
+                            <option *ngFor="let player of characterCampaign; let j = index" [value]="j">{{player.name}}</option> 
                          </select>
                     </section>
                 </section>
@@ -173,42 +168,42 @@
     <div class="enemyInfo">
         <div class="left">
             <div class="nombre">
-                <label><b>Picaro </b> <span>(Mediano piesligeros)</span></label> 
+                <label><b>{{characterCampaign[index2].name}} </b> <span>({{characterCampaign[index2].class}})</span></label> 
             </div>
             <div class="info">
                 <ul>
-                    <li><b>Clase de armadura: </b> 14 (armadura de cuero)</li>
-                    <li><b>Iniciativa: </b> +3</li>
-                    <li><b>Velocidad: </b> 25 pies</li>
-                    <li><b>Dados de Golpe: </b> 1d8</li>
-                    <li><b>Puntos de golpe máximos: </b> 9</li>
+                    <li><b>Clase de armadura: </b> {{characterCampaign[index2].armor}}</li>
+                    <li><b>Iniciativa: </b> {{characterCampaign[index2].initiative}}</li>
+                    <li><b>Velocidad: </b> {{characterCampaign[index2].speed}}</li>
+                    <li><b>Dados de Golpe: </b> {{characterCampaign[index2].hitDice}}</li>
+                    <li><b>Puntos de golpe máximos: </b> {{characterCampaign[index2].hitPoint}}</li>
                     <li><b>Puntos de golpe actuales: </b> 9</li>
                 </ul>
             </div>
             <div class="atributos">
                 <div>
                     <section>FUE:</section>
-                    <section> 8 (-1)</section>
+                    <section> {{characterCampaign[index2].strength}} ({{characterCampaign[index2].strengthMod}})</section>
                 </div>
                 <div>
                     <section>DES:</section>
-                    <section> 16 (+3)</section>
+                    <section> {{characterCampaign[index2].dexterity}} ({{characterCampaign[index2].dexterityMod}})</section>
                 </div>
                 <div>
                     <section>CON:</section>
-                    <section> 12 (+1)</section>
+                    <section> {{characterCampaign[index2].constitution}} ({{characterCampaign[index2].constitutionMod}})</section>
                 </div>
                 <div>
                     <section>INT:</section>
-                    <section> 13 (+1)</section>
+                    <section> {{characterCampaign[index2].inteligence}} ({{characterCampaign[index2].inteligenceMod}})</section>
                 </div>
                 <div>
                     <section>SAB:</section>
-                    <section> 10 (+0)</section>
+                    <section> {{characterCampaign[index2].wisdom}} ({{characterCampaign[index2].wisdomMod}})</section>
                 </div>
                 <div>
                     <section>CAR:</section>
-                    <section> 16 (+3)</section>
+                    <section> {{characterCampaign[index2].charisma}} ({{characterCampaign[index2].charismaMod}})</section>
                 </div>
             </div>
             <div class="habilidades">
@@ -216,37 +211,39 @@
                     <li>
                         <b>Tiradas de salvacion: </b>
                         <select name="tSalvacion"  style="width: 9vw;">
-                            <option value="1">Fuerza: -1</option> 
-                            <option value="2"><b>Destreza: </b> +5</option> 
-                            <option value="3">Constitución: +1</option>
-                            <option value="4"><b>Inteligencia: </b>+3</option> 
-                            <option value="5">Sabiduria: +0</option> 
-                            <option value="6">Carisma: +3</option> 
+                            <option value="0">Tiradas</option>
+                            <option value="1">Fuerza: {{characterCampaign[index2].strengthST}}</option> 
+                            <option value="2">Destreza: {{characterCampaign[index2].dexterityST}}</option> 
+                            <option value="3">Constitución: {{characterCampaign[index2].constitutionST}}</option>
+                            <option value="4">Inteligencia: {{characterCampaign[index2].inteligenceST}}</option> 
+                            <option value="5">Sabiduria: {{characterCampaign[index2].wisdomST}}</option> 
+                            <option value="6">Carisma: {{characterCampaign[index2].charismaST}}</option> 
                          </select>
                     </li>
                     <li><b>Habilidades: </b>
                         <select name="habilidades"  style="width: 9vw;">
-                            <option value="1"><b>Acrobacias: </b> +5 (Des)</option> 
-                            <option value="2">Atletismo: -1 (Fue)</option> 
-                            <option value="3">C. Arcano: +1 (Int)</option>
-                            <option value="4"><b>Engaño: </b>+5 (Car)</option> 
-                            <option value="5">Historia: +1 (Int)</option> 
-                            <option value="6"><b>Interpretacion:</b> +5 (Car)</option>
-                            <option value="7">Intimidación: +3 (Car)</option>  
-                            <option value="8"><b>Investigación:</b> +3 (Int)</option> 
-                            <option value="9"><b>Juego de Manos:</b> +5 (Des)</option> 
-                            <option value="10">Medicina: +0 (Sab)</option> 
-                            <option value="11">Naturaleza: +1 (Int)</option>
-                            <option value="12">Percepción: +0 (Sab)</option> 
-                            <option value="13">Perpicacia: +0 (Sab)</option> 
-                            <option value="14">Persuasión: +3 (Car)</option> 
-                            <option value="15">Religión: +1 (Int)</option> 
-                            <option value="16"><b>Sigilo: </b> +7 (Des)</option> 
-                            <option value="17">Supervivencia: +0 (Sab)</option> 
-                            <option value="18">T. con Animales: +0 (Sab)</option> 
+                            <option value="0">Habilidades</option>
+                            <option value="1">Acrobacias: {{characterCampaign[index2].acrobatic}} (Des)</option> 
+                            <option value="2">Atletismo: {{characterCampaign[index2].athletics}} (Fue)</option> 
+                            <option value="3">C. Arcano: {{characterCampaign[index2].arcana}} (Int)</option>
+                            <option value="4">Engaño: {{characterCampaign[index2].deception}} (Car)</option> 
+                            <option value="5">Historia: {{characterCampaign[index2].history}} (Int)</option> 
+                            <option value="6">Interpretacion: {{characterCampaign[index2].performance}} (Car)</option>
+                            <option value="7">Intimidación: {{characterCampaign[index2].intimidation}} (Car)</option>  
+                            <option value="8">Investigación: {{characterCampaign[index2].investigation}}(Int)</option> 
+                            <option value="9">Juego de Manos: {{characterCampaign[index2].sleightOfHand}} (Des)</option> 
+                            <option value="10">Medicina: {{characterCampaign[index2].medicine}} (Sab)</option> 
+                            <option value="11">Naturaleza: {{characterCampaign[index2].nature}} (Int)</option>
+                            <option value="12">Percepción: {{characterCampaign[index2].persuasion}} (Sab)</option> 
+                            <option value="13">Perpicacia: {{characterCampaign[index2].insight}} (Sab)</option> 
+                            <option value="14">Persuasión: {{characterCampaign[index2].persuasion}} (Car)</option> 
+                            <option value="15">Religión: {{characterCampaign[index2].religion}} (Int)</option> 
+                            <option value="16">Sigilo: {{characterCampaign[index2].stealth}} (Des)</option> 
+                            <option value="17">Supervivencia: {{characterCampaign[index2].survival}} (Sab)</option> 
+                            <option value="18">T. con Animales: {{characterCampaign[index2].animalHandling}} (Sab)</option> 
                          </select> 
                     </li>
-                    <li><b>Idiomas: </b> común, mediano</li>
+                    <li><b>Idiomas: </b> {{characterCampaign[index2].language}}</li>
                 </ul>
             </div>
         </div>
