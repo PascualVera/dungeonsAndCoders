@@ -1,0 +1,25 @@
+.container_main {
+  height: 62vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 1vh;
+  font-size: 1.5rem;
+  align-items: center;
+  background-image: url('../../../assets/images/pergamine2.png'); 
+}
+
+section{
+  display: flex;
+  gap: 1vh;
+  width: 40%;
+  border-bottom: 0.5vh solid var(--bluemain);
+}
+section p:first-child {
+  margin: 0;
+  width: 80%;
+}
+section p:nth-child(2){
+  margin:0;
+}

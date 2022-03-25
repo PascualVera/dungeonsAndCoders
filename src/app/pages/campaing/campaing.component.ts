@@ -71,15 +71,7 @@ export class CampaingComponent implements OnInit {
 
   joinCampaign() {
     this.campaignService.idCampaign = this.selectedCampaign;
-    this.characterService.getCharactersInGame(this.campaignService.idCampaign).subscribe((data:any)=>{
-      this.characterService.charactersInGame = []
-      for(const id of data.respuesta){
-        this.characterService.charactersInGame.push(id.idCharacter)
-      }
-      console.log(this.characterService.charactersInGame)
-      this.router.navigate(['/characterList'])
-      
-    })
+   
     
   }
 

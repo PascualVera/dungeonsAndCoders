@@ -25,6 +25,8 @@ import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { MapaComponent } from './components/mapa/mapa.component';
 import { TransformAttPipe } from './pipes/transform-att.pipe';
+import { SpellAtacksComponent } from './components/spell-atacks/spell-atacks.component';
+import { HabilidadesComponent } from './components/habilidades/habilidades.component';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -47,7 +49,9 @@ registerLocaleData(localeEs, 'es');
     GameHeaderComponent,
     DadosComponent,
     MapaComponent,
-    TransformAttPipe
+    TransformAttPipe,
+    SpellAtacksComponent,
+    HabilidadesComponent
   ],
   imports: [
     BrowserModule,

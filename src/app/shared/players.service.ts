@@ -11,8 +11,8 @@ export class PlayersService {
   private url:string
   public player:Player
   constructor(private http:HttpClient) {
-    // this.url = 'https://dungeons-and-coders-api.herokuapp.com'
-    this.url = 'http://localhost:4000'
+     this.url = 'https://dungeons-and-coders-api.herokuapp.com'
+    // this.url = 'http://localhost:4000'
     this.players = [
       { name: '[System]', escribiendo: false },
     ];
