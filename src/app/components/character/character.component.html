@@ -92,8 +92,9 @@
 </article>
 <app-habilidades *ngIf="dataIndex == 1" class="skills"></app-habilidades>
 <app-spell-atacks *ngIf="dataIndex == 2"></app-spell-atacks>
+<app-equipo *ngIf="dataIndex == 3"></app-equipo>
 <div class="habilidades">
-  <div class="info">
+  <div (click)="showWeapons()" class="info">
       <section class="equipo">
         Equipo
       </section>

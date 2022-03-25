@@ -1,0 +1,8 @@
+<article  class="container_main">
+  <section *ngFor="let equip of this.characterService.character.weapon">
+    <p>{{equip.nameEquip}}</p>
+    <p>Bonificador: +{{equip.bonusEquip}}</p>
+    <p>Tipo de daño: {{equip.damageType}}</p>
+    <p>{{equip.anotacion}}</p>
+  </section>
+</article>

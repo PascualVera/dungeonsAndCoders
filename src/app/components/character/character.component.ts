@@ -14,7 +14,7 @@ export class CharacterComponent implements OnInit {
   public dataIndex:number
   constructor(public characterService: CharacterService) {
     
-    this.dataIndex = 2
+    this.dataIndex = 0
     characterService.getAll().subscribe((data:Character[])=>{
       this.characters = data
       characterService.getSpell(4).subscribe((data:any)=>{
@@ -34,6 +34,9 @@ export class CharacterComponent implements OnInit {
   }
   showSpell(){
     this.dataIndex = 2
+  }
+  showWeapons(){
+    this.dataIndex = 3
   }
   hit(lifeBar: any) {
     this.lifePoints--;
