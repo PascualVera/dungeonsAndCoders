@@ -12,13 +12,8 @@
                 <section class="fichas">
                     <section class="enemigos">
                         <label type="button" (click)="modalEnemigos(modalEnemy, true)" >Monstruos: </label>
-                        <select name="enemigos"> <!--Desplegable con los enemigos *-->
-                            <option value="1">enemigo 1</option> 
-                            <option value="2">enemigo 2</option> 
-                            <option value="3">enemigo 3</option>
-                            <option value="4">enemigo 4</option> 
-                            <option value="5">enemigo 5</option> 
-                            <option value="6">enemigo 6</option> 
+                        <select #enemy  name="enemigos"> <!--Desplegable con los enemigos *-->
+                            <option *ngFor="let enemigo of enemyCampaignPre; let i = index" [value]="i">{{enemigo.name}}</option> 
                          </select>
                     </section>
                     <section class="heroes" >
@@ -85,21 +80,6 @@
                 <section class="chat">
                     <app-chat></app-chat>
                 </section>
-                <!-- Comentado por Ander por traslado a chat component -->
-                <!-- <section class="players" style=" height: 30vh; width: 20%;">
-                    <div>
-                        <label style="color: var(--barbarian);" for="player 1">Player 1 <i class="fa-thin fa-square"></i></label>
-                    </div>
-                    <div>
-                        <label style="color: var(--wizard);" for="player 2">Player 1</label>
-                    </div>
-                    <div>
-                        <label style="color: var(--ranger);" for="player 3">Player 1</label>
-                    </div>
-                    <div>
-                        <label style="color: var(--cleric);" for="player 4">Player 1</label>
-                    </div>
-                </section> -->
             </div>
         </div>
     </div>
@@ -110,70 +90,78 @@
     <div class="enemyInfo">
         <div class="left">
             <div class="nombre">
-                <label><b>Ion </b> <span>(Humanoide Pequeño (trasgo), neutral malvado)</span></label> 
+                <label><b>{{enemyCampaignPre[index].name}} </b> <span>({{enemyCampaignPre[index].race}})</span></label> 
             </div>
             <div class="info">
                 <ul>
-                    <li><b>Clase de armadura: </b> 13 (armadura de cuero)</li>
-                    <li><b>Puntos de golpe: </b> 8 (2d6)</li>
-                    <li><b>Velocidad: </b> 30 pies</li>
+                    <li><b>Clase de armadura: </b> {{enemyCampaignPre[index].armor}}</li>
+                    <li><b>Puntos de golpe: </b> {{enemyCampaignPre[index].hitPoint}}</li>
+                    <li><b>Velocidad: </b>{{enemyCampaignPre[index].speed}}</li>
                 </ul>
             </div>
             <div class="atributos">
                 <div>
                     <section>FUE:</section>
-                    <section> 8 (-1)</section>
+                    <section> {{enemyCampaignPre[index].strength}} ({{enemyCampaignPre[index].strengthMod}})</section>
                 </div>
                 <div>
                     <section>DES:</section>
-                    <section> 14 (+2)</section>
+                    <section> {{enemyCampaignPre[index].dexterity}} ({{enemyCampaignPre[index].dexterityMod}})</section>
                 </div>
                 <div>
                     <section>CON:</section>
-                    <section> 10 (+0)</section>
+                    <section> {{enemyCampaignPre[index].constitution}} ({{enemyCampaignPre[index].constitutionMod}})</section>
                 </div>
                 <div>
                     <section>INT:</section>
-                    <section> 10 (+0)</section>
+                    <section> {{enemyCampaignPre[index].inteligence}} ({{enemyCampaignPre[index].inteligenceMod}})</section>
                 </div>
                 <div>
                     <section>SAB:</section>
-                    <section> 10 (+0)</section>
+                    <section> {{enemyCampaignPre[index].wisdom}} ({{enemyCampaignPre[index].wisdomMod}})</section>
                 </div>
                 <div>
                     <section>CAR:</section>
-                    <section> 8 (-1)</section>
+                    <section> {{enemyCampaignPre[index].charisma}} ({{enemyCampaignPre[index].charismaMod}})</section>
                 </div>
             </div>
             <div class="habilidades">
                 <ul>
-                    <li><b>Habilidades: </b> Sigilo +6</li>
-                    <li><b>Sentidos: </b> visión en la oscuridad 60 pies, Percepción pasiva 10</li>
-                    <li><b>Idiomas: </b> común, goblin</li>
+                    <li><b>Sentidos: </b> {{enemyCampaignPre[index].senses}}</li>
+                    <li><b>Idiomas: </b> {{enemyCampaignPre[index].language}}</li>
                 </ul>
             </div>
         </div>
         <div class="right">
             <div class="conjuros">
                 <ul>
-                    <li><b>Huida veloz. </b> Ion puede, en cada uno de sus
-                        turnos, usar una acción adicional para
-                        Destrabarse o Esconderse.
+                    <li *ngFor="let spell of spellEnemy"><b>{{spell.spellName}}:</b> {{spell.description}} &nbsp;
+                        <b>Alcance: </b> {{spell.reach}} &nbsp;
+                        <b>Tiempo de lanzamiento: </b> {{spell.timeSpell}}&nbsp;
+                        <b>Duración: </b> {{spell.duration}}&nbsp;
                     </li>
                 </ul>
             </div>
             <div class="acciones">
-            <span>
-                <b>- Cimitarra.</b> Ataque con arma cuerpo a cuerpo: +4 a
-                impactar, alcance 5 pies, un objetivo. Impacto: 5
-                (1d6 + 2) de daño cortante.
-            </span>
-            <span>
-                <b>- Arco corto.</b> Ataque con arma a distancia: +4 a
-                impactar, alcance 80/320 pies, un objetivo.
-                Impacto: 5 (1d6 + 2) de daño perforante.
-            </span>
-            </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 18%;">Nombre</th>
+                            <th style="width: 18%;">Bonificador</th>
+                            <th style="width: 18%;">Daño/Tipo</th>
+                            <th style="width: 46%;"> Anotación</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let weapon of equipEnemy">
+                        <tr>
+                            <td>{{weapon.nameEquip}}</td>
+                            <td>+ {{weapon.bonusEquip}}</td>
+                            <td>{{weapon.damageType}}</td>
+                            <td>{{weapon.anotacion}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
             <button class="cerrarModal" type="button" (click)="modalEnemigos(modalEnemy, false)">Cerrar</button>
         </div>
     </div>

@@ -254,8 +254,9 @@
 
 .enemyInfo{
     position: absolute;
-    width: 40vw;
+    width: 50vw;
     height: auto;
+    max-width: 70vw;
     z-index: 1;
     background-image: url(../../../assets/images/pergamine2.png);
     background-size: cover;
@@ -350,6 +351,9 @@
     border-image: linear-gradient(to right, var(--redmain), var(--bluemain)) 1;
 }
 
+.acciones table tr td{
+    border: 3px solid transparent;
+}
 .cerrarModal{
     cursor: pointer;
     margin: 0.5rem;
