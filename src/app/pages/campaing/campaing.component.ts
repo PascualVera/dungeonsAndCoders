@@ -3,7 +3,6 @@ import { Campaing } from '../../models/campaing';
 import { CampaingService } from '../../shared/campaing.service';
 import { Router } from '@angular/router';
 import { CharacterService } from 'src/app/shared/character.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-campaing',
@@ -16,7 +15,7 @@ export class CampaingComponent implements OnInit {
 
   public allCampaigns: Campaing[];
   public allCampaignsFiltered: Campaing[];
-  public selectedCampaign: string;
+  public selectedCampaign: Campaing;
 
   constructor(private campaignService: CampaingService, private router: Router, public characterService:CharacterService) {
     this.getAllCampaigns();
@@ -43,26 +42,26 @@ export class CampaingComponent implements OnInit {
   }
 
   selectCampaign(campaign: Campaing) {
-    this.selectedCampaign = campaign.idCampaign;
+    this.selectedCampaign = campaign;
   }
   
   validarCodigoUnirse(idCampaign: string, idError: any) {
-    let indice: number = 0;
-    let encontrado: boolean = false;
-    while (indice < this.allCampaigns.length && !encontrado) {
-      if (this.allCampaigns[indice].idCampaign == idCampaign && !this.allCampaigns[indice].public) {
-        encontrado = true
+    this.campaignService.getCampaignById(idCampaign)
+    .subscribe((resp: any) => {
+      if (resp.ok) {
+        this.campaignService.actualCampaign = resp.resultado[0];
+        const { closed, numPlayer, maxPlayer} = resp.resultado[0]
+        if ( resp.resultado[0].public == 1 && closed == 0 && numPlayer < maxPlayer){
+          this.joinCampaign();
+        } else {
+          idError.style.visibility = 'visible'
+          idError.setAttribute('value', '');
+        }
       } else {
-        indice++
+        idError.style.visibility = 'visible'
+        idError.setAttribute('value', '');
       }
-    }
-    if (encontrado) {
-      this.selectedCampaign = this.allCampaigns[indice].idCampaign;
-      this.joinCampaign();
-    }else {
-      idError.style.visibility = 'visible'
-      idError.setAttribute('value', '');
-    }
+    })
   }
 
   quitarError(idError: any) {
@@ -70,17 +69,10 @@ export class CampaingComponent implements OnInit {
   }
 
   joinCampaign() {
-    this.campaignService.idCampaign = this.selectedCampaign;
-    this.characterService.getCharactersInGame(this.campaignService.idCampaign).subscribe((data:any)=>{
-      this.characterService.charactersInGame = []
-      for(const id of data.respuesta){
-        this.characterService.charactersInGame.push(id.idCharacter)
-      }
-      console.log(this.characterService.charactersInGame)
-      this.router.navigate(['/characterList'])
-      
-    })
-    
+    this.campaignService.idCampaign = this.selectedCampaign.idCampaign; //Quitar tras refactorizar todo a actualCampaign del servicio
+
+    this.campaignService.actualCampaign = this.selectedCampaign; 
+    this.router.navigate(['/characterList'])
   }
 
   filtrar(filtro: string) {

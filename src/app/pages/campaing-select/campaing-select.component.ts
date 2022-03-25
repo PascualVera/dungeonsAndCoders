@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { CampaignPreService } from '../../shared/campaign-pre.service';
 import { CampaignPre } from '../../models/campaign-pre';
 import { Campaing } from 'src/app/models/campaing';
+import { CampaingService } from '../../shared/campaing.service';
+import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'app-campaing-select',
@@ -16,7 +18,10 @@ export class CampaingSelectComponent implements OnInit {
   public selectedCampaignPre: CampaignPre;
   public rangoJugadores: number[];
 
-  constructor(private campaignPreService: CampaignPreService, private router: Router) {
+  constructor(private campaignPreService: CampaignPreService,
+              private campaignService: CampaingService,
+              private userService: UserService,
+              private router: Router) {
     this.selectedCampaignPre = new CampaignPre();
     this.getAllCampaigns()
   }
@@ -44,7 +49,7 @@ export class CampaingSelectComponent implements OnInit {
     })
   }
 
-  selectCampaignPre(campaignPre: CampaignPre, resumenCuerpo: HTMLElement) {
+  selectCampaignPre(campaignPre: CampaignPre) {
     this.selectedCampaignPre = campaignPre;
     this.rangoJugadores = [];
     for (let i = this.selectedCampaignPre.playerMin; i <= this.selectedCampaignPre.playerMax; i++) {
@@ -52,15 +57,15 @@ export class CampaingSelectComponent implements OnInit {
     }
   }
 
-  crearCampaign(checkTipo: string, inputNombre: string, selectPlayers: string, error: HTMLSpanElement) {
+  crearCampaign(checkPublica: boolean, inputNombre: string, selectPlayers: string, error: HTMLSpanElement) {
     if (!inputNombre || !selectPlayers) {
       error.style.visibility = 'visible'
     } else {
-      this.campaignToCreate = new Campaing();
       
       let idAleatorio: string;
       let charAleatorio: number;
-      
+      let idLibre: boolean = false;
+
       do {
         idAleatorio = '';  
         while (idAleatorio.length < 8) {
@@ -73,22 +78,28 @@ export class CampaingSelectComponent implements OnInit {
           }
         }
         
-      } while (false);
+        this.campaignService.getCampaignById(idAleatorio)
+        .subscribe((resp: any) => {
+          if (!resp.ok) {
+            idLibre = true;
+          }
+        })
+      } while (idLibre);
 
-      // TODO: Como comprobar que no exista
-      console.log(idAleatorio);
+      this.campaignService.actualCampaign.idCampaign = idAleatorio;
+      this.campaignService.actualCampaign.campaignName = inputNombre;
+      this.campaignService.actualCampaign.idCampaignPre = this.selectedCampaignPre.idCampaignPre;
+      this.campaignService.actualCampaign.idMaster = this.userService.user.idUser;
+      this.campaignService.actualCampaign.date = new Date();
+      this.campaignService.actualCampaign.numPlayer = 0;
+      this.campaignService.actualCampaign.maxPlayer = parseInt(selectPlayers);;
+      (checkPublica) ? this.campaignService.actualCampaign.public = 1 : this.campaignService.actualCampaign.public = 0;
+      this.campaignService.actualCampaign.closed = 0;
 
-      // idCampaign
-      // campaignName
-      // idCampaignPre
-      // idMaster
-      // date
-      // numPlayer
-      // maxPlayer
-      // public
-      // closed
+      this.campaignService.postCampaign(this.campaignService.actualCampaign)
+      .subscribe(() => {})
 
-      // this.router.navigate(['/master'])
+      this.router.navigate(['/master'])
     }
   }
 }

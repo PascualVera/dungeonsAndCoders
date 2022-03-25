@@ -7,7 +7,9 @@ import { Campaing } from '../models/campaing';
 })
 export class CampaingService {
 
-  public idCampaign: string; // Tendrá el idCampaign despues de join o unirse por código
+  public idCampaign: string; // Tendrá el idCampaign despues de join o unirse por código TODO: cambiar a objeto: Campaign
+
+  public actualCampaign: Campaing;
   private url: string;
 
   // para refactorizar
@@ -17,6 +19,8 @@ export class CampaingService {
   constructor(private http: HttpClient) {
     this.url = 'https://dungeons-and-coders-api.herokuapp.com';
     // this.url = 'http://localhost:4000';
+
+    this.actualCampaign = new Campaing();
 
     // Provisonal para hardcorear los mapas: luego en servicios map con su endpoint
     this.campaingCode = 'Campaña prueba'
@@ -43,5 +47,9 @@ export class CampaingService {
   
   getCampaignById(idCampaign: string) {
     return this.http.get(this.url + '/campaign?idCampaign=' + idCampaign)
+  }
+  
+  postCampaign(campaign: Campaing) {
+    return this.http.post(this.url + '/campaign', campaign)
   }
 }
