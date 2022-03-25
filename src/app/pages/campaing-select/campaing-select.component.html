@@ -6,14 +6,14 @@
             Seleccionar Campaña
         </div>
         <div tabindex="0"
-             (click)="selectCampaignPre(campaignPre, resumenCuerpo)"
+             (click)="selectCampaignPre(campaignPre)"
              *ngFor="let campaignPre of allCampaignsPre"
              class="campaingItem">
             {{campaignPre.campaignName}}
         </div>
         <button (click)="modalCrear(veloModalCrear, true)"
-                [ngClass]="(!selectedCampaignPre.idCampaignPre) ? 'crear_disabled' : 'crear'"
-                [disabled]="!selectedCampaignPre.idCampaignPre">
+                [ngClass]="(selectedCampaignPre.idCampaignPre == undefined) ? 'crear_disabled' : 'crear'"
+                [disabled]="selectedCampaignPre.idCampaignPre == undefined">
             Crear
         </button>
     </div>
@@ -36,7 +36,7 @@
         <div class="divSwitch">
             <span class="textSwitch">Privada</span>
             <label class="switch">
-                <input #checkTipo class="inputPublica" type="checkbox">
+                <input #checkPublica class="inputPublica" type="checkbox">
                 <span class="slider round"></span>
             </label>
             <span class="textSwitch">Pública</span>
@@ -47,6 +47,6 @@
             <option *ngFor="let jugadores of rangoJugadores" [value]="jugadores">{{jugadores}} Jugadores</option>
         </select>
         <span #error class="error" style="visibility: hidden;">Obligatorio todos los datos</span>
-        <button (click)="crearCampaign(checkTipo.value, inputNombre.value, selectPlayers.value, error)" class="crearCampaign">Crear campaña</button>
+        <button (click)="crearCampaign(checkPublica.checked, inputNombre.value, selectPlayers.value, error)" class="crearCampaign">Crear campaña</button>
     </div>
 </div>
