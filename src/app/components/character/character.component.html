@@ -6,57 +6,57 @@
     <div class="stats">
       <div class="stat">
         <div id="name"><p>Fuerza</p></div>
-        <p class="value">{{this.characters[3].strengthMod | transformAtt}}</p>
-        <div class="circle">{{this.characters[3].strength}}</div>
+        <p class="value">{{this.characterService.character.strengthMod | transformAtt}}</p>
+        <div class="circle">{{this.characterService.character.strength}}</div>
       </div>
       <div class="stat">
         <div id="name"><p>Destreza</p></div>
-        <p class="value">{{this.characters[3].dexterityMod | transformAtt}}</p>
-        <div class="circle">{{this.characters[3].dexterity}}</div>
+        <p class="value">{{this.characterService.character.dexterityMod | transformAtt}}</p>
+        <div class="circle">{{this.characterService.character.dexterity}}</div>
       </div>
       <div class="stat">
         <div id="name"><p>Constitución</p></div>
-        <p class="value">{{this.characters[3].constitutionMod | transformAtt}}</p>
-        <div class="circle">{{this.characters[3].constitution}}</div>
+        <p class="value">{{this.characterService.character.constitutionMod | transformAtt}}</p>
+        <div class="circle">{{this.characterService.character.constitution}}</div>
       </div>
       <div class="stat">
         <div id="name"><p>Inteligencia</p></div>
-        <p class="value">{{this.characters[3].inteligenceMod | transformAtt}}</p>
-        <div class="circle">{{this.characters[3].inteligence}}</div>
+        <p class="value">{{this.characterService.character.inteligenceMod | transformAtt}}</p>
+        <div class="circle">{{this.characterService.character.inteligence}}</div>
       </div>
       <div class="stat">
         <div id="name"><p>Sabiduría</p></div>
-        <p class="value">{{this.characters[3].wisdomMod | transformAtt}}</p>
-        <div class="circle">{{this.characters[3].wisdom}}</div>
+        <p class="value">{{this.characterService.character.wisdomMod | transformAtt}}</p>
+        <div class="circle">{{this.characterService.character.wisdom}}</div>
       </div>
       <div class="stat">
         <div id="name"><p>Carisma</p></div>
-        <p class="value">{{this.characters[3].charismaMod | transformAtt}}</p>
-        <div class="circle">{{this.characters[3].charisma}}</div>
+        <p class="value">{{this.characterService.character.charismaMod | transformAtt}}</p>
+        <div class="circle">{{this.characterService.character.charisma}}</div>
       </div>
     </div>
     <div class="contenedor_imagen">
-      <img class="character_img" src={{this.characters[3].image}} alt="" />
+      <img class="character_img" src={{this.characterService.character.image}} alt="" />
     </div>
   </div>
   <div class="character_below">
     <div class="statsAlt">
       <div class="stat2">
         <div id="name"><p>Iniciativa</p></div>
-        <p class="value">{{this.characters[3].initiative}}</p>
+        <p class="value">{{this.characterService.character.initiative}}</p>
       </div>
       <div class="stat2">
         <div id="name"><p>Armadura</p></div>
-        <p class="value">{{this.characters[3].armor}}</p>
+        <p class="value">{{this.characterService.character.armor}}</p>
       </div>
       <div class="stat2">
         <div id="name"><p>Velocidad</p></div>
-        <p class="value">{{this.characters[3].speed}}</p>
+        <p class="value">{{this.characterService.character.speed}}</p>
       </div>
       <div class="vida_container">
         <label class="hp" for="vida">Hp:</label>
         <div #vida class="vida">
-          <p>{{this.characters[3].hitPoint}}</p>
+          <p>{{this.characterService.character.hitPoint}}</p>
         </div>
       </div>
     </div>
@@ -65,27 +65,27 @@
       <div class="salvacion_title">Tiradas de salvación</div>
       <div class="salvacion_stat">
         <p>Fuerza</p>
-        <p>{{this.characters[3].strengthST | transformAtt}}</p>
+        <p>{{this.characterService.character.strengthST | transformAtt}}</p>
       </div>
       <div class="salvacion_stat">
         <p>Destreza</p>
-        <p>{{this.characters[3].dexterityST | transformAtt}}</p>
+        <p>{{this.characterService.character.dexterityST | transformAtt}}</p>
       </div>
       <div class="salvacion_stat">
         <p>Constitución</p>
-        <p>{{this.characters[3].constitutionST | transformAtt}}</p>
+        <p>{{this.characterService.character.constitutionST | transformAtt}}</p>
       </div>
       <div class="salvacion_stat">
         <p>Inteligencia</p>
-        <p>{{this.characters[3].inteligenceST | transformAtt}}</p>
+        <p>{{this.characterService.character.inteligenceST | transformAtt}}</p>
       </div>
       <div class="salvacion_stat">
         <p>Sabiduría</p>
-        <p>{{this.characters[3].wisdomST | transformAtt}}</p>
+        <p>{{this.characterService.character.wisdomST | transformAtt}}</p>
       </div>
       <div class="salvacion_stat">
         <p>Carisma</p>
-        <p>{{this.characters[3].charismaST | transformAtt}}</p>
+        <p>{{this.characterService.character.charismaST | transformAtt}}</p>
       </div>
     </div>
   </div>

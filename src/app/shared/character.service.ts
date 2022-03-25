@@ -14,17 +14,7 @@ export class CharacterService {
   constructor(private http: HttpClient) {
     this.url = 'https://dungeons-and-coders-api.herokuapp.com'
     // this.url = 'http://localhost:4000'
-    this.getAll().subscribe((data:Character[])=>{
-      this.characters = data
-      this.getSpell(5).subscribe((data:any)=>{
-        this.characters[4].spell = data.resultado
-        this.getWeapon(5).subscribe((data:any)=>{
-          this.characters[4].weapon = data.resultado
-          console.log(this.characters[4].weapon)
-          this.character = this.characters[4]
-        })
-      })
-    })
+    
     
   }
 

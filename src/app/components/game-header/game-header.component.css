@@ -13,16 +13,18 @@
     position: relative;
     overflow: visible;
     display: flex;
-    width: 23vw;
+    width: max-content;
     height: 8vh;
+    padding-left: 3vh;
   }
   .codigoSala{
     display: flex;
     color: white;
     height: 8vh;
-    width: 13vw;
+    width: max-content;
     justify-content: center;
     align-items: center;
+
   }
   .codigo{
     color: var(--redmain);
@@ -50,7 +52,7 @@
     
   }
   #copyClip{
-    width:  10vw;
+    width:  max-content;
     height: 5vh;
     position: absolute;
     top:1vh;
@@ -64,6 +66,7 @@
     color: black;
     font-size: 1.4rem;
     visibility: hidden;
+
   }
   #copyClip p{
     margin: 0;
