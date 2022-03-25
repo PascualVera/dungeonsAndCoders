@@ -5,6 +5,7 @@ import { UserService } from '../../shared/user.service';
 import { PlayersService } from '../../shared/players.service';
 import { WebSocketService } from 'src/app/shared/web-socket.service';
 import { MensajesChatService } from '../../shared/mensajes-chat.service';
+import { CampaingService } from '../../shared/campaing.service';
 
 @Component({
   selector: 'app-chat',
@@ -17,24 +18,69 @@ export class ChatComponent implements OnInit {
  
   constructor(public ps: PlayersService,
               public us: UserService,
+              public cs: CampaingService,
               public mcs: MensajesChatService,
               private wss: WebSocketService
               ) {
+
+    // TODO: Esto está hardcoreado
+    this.us.user.name = 'ajurado';
+    this.cs.actualCampaign.idCampaign = 'pEHsDfpd';
+    this.cs.actualCampaign.campaignName = 'Campaña de prueba';
+    this.cs.actualCampaign.idCampaignPre = 3,
+    this.cs.actualCampaign.idMaster = 14,
+    this.cs.actualCampaign.date = new Date("2022-03-25");
+    this.cs.actualCampaign.numPlayer = 6;
+    this.cs.actualCampaign.maxPlayer = 6;
+    this.cs.actualCampaign.public = 0;
+    this.cs.actualCampaign.closed = 0;
+    
+    this.ps.master.name = 'ajurado';
+    let playersNames = ['pascual', 'jose', 'pedro', 'juan', 'edgar,', 'ruben'];
+    playersNames.forEach((name) =>{
+      this.ps.players.push({ name: name, escribiendo: false })
+    })
+    
+    // Esto si vale
+    this.mcs.getCampaignMessages(this.cs.actualCampaign.idCampaign)
+      .subscribe((resp: any) => {
+        if (resp.ok) {      
+          resp.resultado.forEach((item) => {
+            const { campaignCode, emisor, mensaje, fecha } = item;
+            let mensajeChat = {
+              campaignCode: campaignCode,
+              emisor: emisor,
+              mensaje: mensaje,
+              fecha: new Date(fecha)
+            }
+            this.mcs.mensajesChat.push(mensajeChat);
+          })
+        }
+      })
   }
 
   ngOnInit(): void {
     this.wss.escucha('new-message').subscribe((data: any) => {
       const { campaignCode, emisor, mensaje, fecha } = data;
-      this.mcs.mensajesChat.push(new MensajeChat(campaignCode, emisor, mensaje, new Date(fecha)));
+      if (campaignCode == this.cs.actualCampaign.idCampaign) {
+        this.mcs.mensajesChat.push(new MensajeChat(campaignCode, emisor, mensaje, new Date(fecha)));
+      }
     })  
     this.wss.escucha('new-escribiendo').subscribe((data: any) => {
       const { campaignCode, player, estado } = data;
-      this.ps.setEscribiendo(campaignCode, player, estado);
+      if (campaignCode == this.cs.actualCampaign.idCampaign) {
+        this.ps.setEscribiendo(player, estado);
+      }
     })  
   }
 
   getColorEmisor(emisor: string): string {
-    let color = this.ps.playerColors[this.ps.players.findIndex((usuario) => usuario.name == emisor)];
+    let color: string;
+    if (emisor == this.ps.master.name || emisor == this.ps.system) {
+      color = 'white';
+    } else {
+      color = this.ps.playerColors[this.ps.players.findIndex((usuario) => usuario.name == emisor)];
+    }
     return color;
   }
 
@@ -61,7 +107,7 @@ export class ChatComponent implements OnInit {
         clearTimeout(this.delayKeyUp);
     };
     let estadoEscribiento = {
-      campaignCode: 'campañaPrueba',
+      campaignCode: this.cs.actualCampaign.idCampaign,
       player: this.us.user.name,
       estado: true
     };
@@ -71,7 +117,7 @@ export class ChatComponent implements OnInit {
       this.wss.emite('send-escribiendo', estadoEscribiento);
       if ((!tecla) || (tecla == 13)) {
         let mensajeChat = {
-          campaignCode: 'campañaPrueba',
+          campaignCode: this.cs.actualCampaign.idCampaign,
           emisor: this.us.user.name,
           mensaje: input.value,
           fecha: new Date()
@@ -79,6 +125,7 @@ export class ChatComponent implements OnInit {
         this.mcs.mensajesChat.push(mensajeChat);
         this.wss.emite('send-message', mensajeChat);
         input.value = '';
+        this.mcs.postChatMessage(mensajeChat).subscribe(() => { });
       }
     }, 250)
   }
@@ -87,13 +134,14 @@ export class ChatComponent implements OnInit {
     this.modalDados(veloModalDados, false);
     if (tirada.valor != 0) {
       let mensajeChat = {
-        campaignCode: 'campañaPrueba',
-        emisor: '[System]',
+        campaignCode: this.cs.actualCampaign.idCampaign,
+        emisor: this.ps.system,
         mensaje: `Resultado tirada '${tirada.cantidad}d${tirada.caras}' para '${this.us.user.name}': ${tirada.valor}`,
         fecha: new Date()
       }
       this.mcs.mensajesChat.push(mensajeChat);
       this.wss.emite('send-message', mensajeChat);
+      this.mcs.postChatMessage(mensajeChat).subscribe(() => { });
     }
   }
 

@@ -6,31 +6,32 @@ import { Player } from '../models/player';
   providedIn: 'root',
 })
 export class PlayersService {
+
+  public master: any;
+  public system: string;
+
   public players: any[];
   public playerColors: string[];
   private url:string
   public player:Player
   constructor(private http:HttpClient) {
+    this.master = { name: '', escribiendo: false };
+    this.system = '[System]';
+
      this.url = 'https://dungeons-and-coders-api.herokuapp.com'
     // this.url = 'http://localhost:4000'
-    this.players = [
-      { name: '[System]', escribiendo: false },
-    ];
-    this.playerColors = ['#8b0000', '#e7623e', '#7f513e', '#2a50a1', '#507f62', '#91a1b2', '#555752'];
+    this.players = [];
+    this.playerColors = ['#e7623e', '#7f513e', '#2a50a1', '#507f62', '#208820', '#555752'];
   }
 
-  setEscribiendo(campaignCode: string, player: string, estado: boolean) {
-    let indice: number = 1;
-    let encontrado: boolean = false;
-    while (indice < this.players.length && !encontrado) {
-      if (this.players[indice].name == player) {
-        encontrado = true;
-      } else {
-        indice++;
+  setEscribiendo(player: string, estado: boolean) {
+    if (player == this.master.name) {
+      this.master.escribiendo = estado;
+    } else  {
+      let indice = this.players.findIndex((item) => item.name == player);     
+      if (indice > -1) {
+        this.players[indice].escribiendo = estado;
       }
-    }
-    if (indice > -1) {
-      this.players[indice].escribiendo = estado;
     }
   }
   createPlayers(player:any) {
