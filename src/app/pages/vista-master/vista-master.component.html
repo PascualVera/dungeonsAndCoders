@@ -95,7 +95,7 @@
             <div class="info">
                 <ul>
                     <li><b>Clase de armadura: </b> {{enemyCampaignPre[index].armor}}</li>
-                    <li><b>Puntos de golpe: </b> {{enemyCampaignPre[index].hitPoints}}</li>
+                    <li><b>Puntos de golpe: </b> {{enemyCampaignPre[index].hitPoint}}</li>
                     <li><b>Velocidad: </b>{{enemyCampaignPre[index].speed}}</li>
                 </ul>
             </div>
@@ -135,24 +135,33 @@
         <div class="right">
             <div class="conjuros">
                 <ul>
-                    <li><b>Huida veloz. </b> Ion puede, en cada uno de sus
-                        turnos, usar una acción adicional para
-                        Destrabarse o Esconderse.
+                    <li *ngFor="let spell of spellEnemy"><b>{{spell.spellName}}:</b> {{spell.description}} &nbsp;
+                        <b>Alcance: </b> {{spell.reach}} &nbsp;
+                        <b>Tiempo de lanzamiento: </b> {{spell.timeSpell}}&nbsp;
+                        <b>Duración: </b> {{spell.duration}}&nbsp;
                     </li>
                 </ul>
             </div>
             <div class="acciones">
-            <span>
-                <b>- Cimitarra.</b> Ataque con arma cuerpo a cuerpo: +4 a
-                impactar, alcance 5 pies, un objetivo. Impacto: 5
-                (1d6 + 2) de daño cortante.
-            </span>
-            <span>
-                <b>- Arco corto.</b> Ataque con arma a distancia: +4 a
-                impactar, alcance 80/320 pies, un objetivo.
-                Impacto: 5 (1d6 + 2) de daño perforante.
-            </span>
-            </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 18%;">Nombre</th>
+                            <th style="width: 18%;">Bonificador</th>
+                            <th style="width: 18%;">Daño/Tipo</th>
+                            <th style="width: 46%;"> Anotación</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let weapon of equipEnemy">
+                        <tr>
+                            <td>{{weapon.nameEquip}}</td>
+                            <td>+ {{weapon.bonusEquip}}</td>
+                            <td>{{weapon.damageType}}</td>
+                            <td>{{weapon.anotacion}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
             <button class="cerrarModal" type="button" (click)="modalEnemigos(modalEnemy, false)">Cerrar</button>
         </div>
     </div>

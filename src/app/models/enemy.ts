@@ -17,7 +17,7 @@ export class Enemy {
     public charismaMod: number;
     public armor: number;
     public speed: number;
-    public hitPoints: number;
+    public hitPoint: number;
     public spellMod: number;
     public senses: string;
     public language: string;

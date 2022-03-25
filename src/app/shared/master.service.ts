@@ -9,9 +9,6 @@ import { Weapon } from '../models/weapon';
 })
 export class MasterService {
 
-  public enemyCampign: Enemy []
-  public enemySpel: Spell []
-  public enemyWeapon: Weapon []
   public url: string;
 
   constructor(private http: HttpClient) { 
@@ -20,5 +17,13 @@ export class MasterService {
 
   getAllEnemy(idCampaignPre: number) {
     return this.http.get(this.url+'/vistaMaster?id='+idCampaignPre)
+  }
+
+  getAllEquip(idEnemyPre: number){
+    return this.http.get(this.url+'/equip/enemy?id='+idEnemyPre)
+  }
+
+  getAllSpell(idEnemyPre: number){
+    return this.http.get(this.url+'/spell/enemy?id='+idEnemyPre)
   }
 }
