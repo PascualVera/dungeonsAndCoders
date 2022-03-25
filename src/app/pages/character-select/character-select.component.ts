@@ -15,9 +15,18 @@ export class CharacterSelectComponent implements OnInit {
   public scrollCount: number;
   public characters: Character[];
   
-  constructor(public characterService: CharacterService,public playerService:PlayersService, public userService: UserService, public campaingService:CampaingService) {
+  constructor(public characterService: CharacterService,public playerService:PlayersService, public userService: UserService, public campaignService:CampaingService) {
     this.scrollCount = 0;
     this.getCharacters();
+    this.characterService.getCharactersInGame(this.campaignService.idCampaign).subscribe((data:any)=>{
+      this.characterService.charactersInGame = []
+      for(const id of data.respuesta){
+        this.characterService.charactersInGame.push(id.idCharacter)
+      }
+      console.log(this.characterService.charactersInGame)
+      
+      
+    })
   }
 
   //Metodos de visual
@@ -131,12 +140,12 @@ export class CharacterSelectComponent implements OnInit {
     this.playerService.player = new Player (this.characterService.character.hitPoint,
                                             this.characterService.character.idCharacter,
                                             this.userService.user.idUser,
-                                            this.campaingService.idCampaign)
+                                            this.campaignService.idCampaign)
 
     console.log(this.playerService.player)
     this.playerService.createPlayers(this.playerService.player).subscribe((data)=>{
       console.log(data)
-      this.playerService.inGamePlayer(this.campaingService.idCampaign).subscribe((data:any)=>{
+      this.playerService.inGamePlayer(this.campaignService.idCampaign).subscribe((data:any)=>{
         for(const player of data.resultado){
           this.playerService.players.push({name: player.name, escribiendo: false})
         }

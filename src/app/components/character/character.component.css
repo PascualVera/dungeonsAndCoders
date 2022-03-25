@@ -3,11 +3,22 @@
   padding: 0;
   margin: 0;
 }
+.nombre{
+  width: 100%;
+  height: 6vh;
+  font-size: 1.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: var(--redmain);
+}
 .character_body {
   height: 62vh;
   width: 100%;
-  background-color: #cec2ae9c;
+  background-color: #cec2ae;
   backdrop-filter: brightness(0.8);
+  background-image: url('../../../assets/images/pergamine2.png');
 }
 .character_upper {
   width: 100%;
@@ -165,3 +176,27 @@
   width: 50%;
   text-align: center;
 }
+.habilidades{
+  background-color: var(--redmain);
+  height: 24vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+  gap: 0.5vh;
+}
+
+.info{
+  width: 100%;
+  height: 27%;
+  background-color:var(--bluemain);
+  color: aliceblue;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  padding-left: 2vw;
+}
+.info:hover{
+  filter: brightness(1.3);
+  cursor: pointer;
+}
+
