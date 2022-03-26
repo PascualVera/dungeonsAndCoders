@@ -18,7 +18,6 @@ export class PlayersService {
     ];
     this.playerColors = ['#8b0000', '#e7623e', '#7f513e', '#2a50a1', '#507f62', '#91a1b2', '#555752'];
   }
-
   setEscribiendo(campaignCode: string, player: string, estado: boolean) {
     let indice: number = 1;
     let encontrado: boolean = false;
