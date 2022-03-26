@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Campaing } from 'src/app/models/campaing';
 import { User } from 'src/app/models/user';
+import { CampaingService } from 'src/app/shared/campaing.service';
+import { PlayersService } from 'src/app/shared/players.service';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({
@@ -17,7 +20,9 @@ export class PerfilComponent implements OnInit {
   public avatarSeleccionado: boolean = false;
   public arrayAvatares: string[];
   public user: User;
-  constructor(public userService: UserService) {
+  public masterCampaign:Campaing[]
+  public playerCampaign:Campaing[]
+  constructor(public userService: UserService, public campaignService:CampaingService,public playerService:PlayersService) {
     this.user = userService.user;
     this.urlAvatar = this.user.urlAvatar;
     this.opcionActiva = 1;
@@ -34,6 +39,16 @@ export class PerfilComponent implements OnInit {
       '../../../assets/images/avatares/avatar09.png',
       '../../../assets/images/avatares/avatar10.png',
     ];
+    this.userService.getMaster().subscribe((data:any)=>{
+     
+      this.masterCampaign = data.resultado
+      
+    })
+    this.userService.getPlayer().subscribe((data:any)=>{
+      
+      this.playerCampaign = data.resultado
+     
+    })
   }
 
   ngOnInit(): void {}
@@ -163,4 +178,26 @@ export class PerfilComponent implements OnInit {
         return false
       }
     }
+
+   getCampaignMaster(game:Campaing){
+    this.campaignService.actualCampaign = game
+    this.playerService.inGamePlayer(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
+      for(const player of data.resultado){
+        this.playerService.players.push({name: player.name, escribiendo: false}) 
+      } 
+    })
+      
+   }
+   getCampaignPlayer(game:Campaing){
+    this.campaignService.actualCampaign = game
+    this.playerService.inGamePlayer(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
+      for(const player of data.resultado){
+        this.playerService.players.push({name: player.name, escribiendo: false})
+      }
+    
+    })
+   }
+   
 }
+
+

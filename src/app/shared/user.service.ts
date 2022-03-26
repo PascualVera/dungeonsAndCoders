@@ -10,10 +10,12 @@ export class UserService {
   public users : User[]
   public logueado: boolean
   public user: User
+
   constructor(private http: HttpClient) { 
-    this.users = [new User('pelagatos12','juancho@gmail.com','Contraseña1')]
+    
     this.logueado = false
-    this.url = 'https://dungeons-and-coders-api.herokuapp.com'
+    // this.url = 'https://dungeons-and-coders-api.herokuapp.com'
+    this.url = 'http://localhost:4000'
     this.user = new User('','','')
     
   }
@@ -31,5 +33,11 @@ export class UserService {
   }
    recuperarPass(mail:object){
     return this.http.post(this.url + `/sendMail`, mail)
+  }
+  getMaster(){
+    return this.http.get(this.url + '/getMaster?id='+ this.user.idUser)
+  }
+  getPlayer(){
+    return this.http.get(this.url + '/getPlayer?id='+ this.user.idUser )
   }
 }
