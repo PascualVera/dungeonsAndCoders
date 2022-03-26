@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from 'src/app/models/character';
 import { CharacterService } from 'src/app/shared/character.service';
+import { PlayersService } from 'src/app/shared/players.service';
 
 @Component({
   selector: 'app-character',
@@ -12,8 +13,12 @@ export class CharacterComponent implements OnInit {
   public lifePoints: number;
   public characters: Character[]
   public dataIndex:number
-  constructor(public characterService: CharacterService) {
+  constructor(public characterService: CharacterService, public playerService:PlayersService) {
     this.dataIndex = 0
+    characterService.getAll().subscribe((data:Character[])=>{
+      this.characterService.character = data[playerService.player.idCharacter - 1]
+      console.log(characterService.character)
+    })
   }
   showCharacter(){
     this.dataIndex = 0
