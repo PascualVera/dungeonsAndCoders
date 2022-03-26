@@ -40,6 +40,5 @@ export class PlayersService {
   }
   initPlayers(){
     this.players = [{name:'System' , escribiendo: false}];
-
   }
 }
