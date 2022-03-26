@@ -192,9 +192,8 @@ export class PerfilComponent implements OnInit {
     this.playerService.inGamePlayer(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
       for(const player of data.resultado){
         if(player.name == this.userService.user.name){
-          
           this.playerService.player = player
-          console.log(player)
+          
         }
         this.playerService.players.push({name: player.name, escribiendo: false}) 
         
