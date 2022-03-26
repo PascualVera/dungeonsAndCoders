@@ -6,10 +6,8 @@ import { Player } from '../models/player';
   providedIn: 'root',
 })
 export class PlayersService {
-
   public master: any;
   public system: string;
-
   public players: any[];
   public playerColors: string[];
   private url:string
