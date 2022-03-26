@@ -21,22 +21,19 @@ export class CampaingService {
     this.actualCampaign = new Campaing();
 
     // Provisonal para hardcorear los mapas: luego en servicios map con su endpoint
-    this.campaingCode = 'Campaña prueba'
-    this.campaing = new Campaing('Ladrones de sueños', [{
-      name: 'Tybra',
-      url: '../../assets/images/Mapas/ladronesDeSueños/Tybra.png'
-    }, {
-      name: 'Camino',
-      url: '../../assets/images/Mapas/ladronesDeSueños/Camino.png'
-    }, {
-      name: 'Mansion',
-      url: '../../assets/images/Mapas/ladronesDeSueños/mansion.png'
-    }])
-    this.activeMap = this.campaing.maps[0]
+    // this.campaingCode = 'Campaña prueba'
+    // this.campaing = new Campaing('Ladrones de sueños', [{
+    //   name: 'Tybra',
+    //   url: '../../assets/images/Mapas/ladronesDeSueños/Tybra.png'
+    // }, {
+    //   name: 'Camino',
+    //   url: '../../assets/images/Mapas/ladronesDeSueños/Camino.png'
+    // }, {
+    //   name: 'Mansion',
+    //   url: '../../assets/images/Mapas/ladronesDeSueños/mansion.png'
+    // }])
+    // this.activeMap = this.campaing.maps[0]
   }
-
-
-
 
   //Recuperar todas las campañas
   getAllCampaigns() {

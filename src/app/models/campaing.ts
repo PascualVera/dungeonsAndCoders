@@ -12,7 +12,8 @@ export class Campaing {
   public campaignNamePre: string;
   public playerMin: number;
 
-  constructor(public name?:string,public maps?:any[]){ // provisional para hardcorear los mapas: luego al servicio map con su endpoint
+  constructor(){ }
+  // constructor(public name?:string,public maps?:any[]){ // provisional para hardcorear los mapas: luego al servicio map con su endpoint
 
-  }
+  // }
 }

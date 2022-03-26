@@ -23,25 +23,6 @@ export class ChatComponent implements OnInit {
               private wss: WebSocketService
               ) {
 
-    // TODO: Esto está hardcoreado
-    this.us.user.name = 'ajurado';
-    this.cs.actualCampaign.idCampaign = 'pEHsDfpd';
-    this.cs.actualCampaign.campaignName = 'Campaña de prueba';
-    this.cs.actualCampaign.idCampaignPre = 3,
-    this.cs.actualCampaign.idMaster = 14,
-    this.cs.actualCampaign.date = new Date("2022-03-25");
-    this.cs.actualCampaign.numPlayer = 6;
-    this.cs.actualCampaign.maxPlayer = 6;
-    this.cs.actualCampaign.public = 0;
-    this.cs.actualCampaign.closed = 0;
-    
-    this.ps.master.name = 'ajurado';
-    let playersNames = ['pascual', 'jose', 'pedro', 'juan', 'edgar,', 'ruben'];
-    playersNames.forEach((name) =>{
-      this.ps.players.push({ name: name, escribiendo: false })
-    })
-    
-    // Esto si vale
     this.mcs.getCampaignMessages(this.cs.actualCampaign.idCampaign)
       .subscribe((resp: any) => {
         if (resp.ok) {      
