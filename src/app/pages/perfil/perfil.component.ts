@@ -179,6 +179,7 @@ export class PerfilComponent implements OnInit {
     this.campaignService.actualCampaign = game
     this.playerService.initPlayers()
     this.playerService.inGamePlayer(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
+      this.playerService.master.name = this.userService.user.name
       for(const player of data.resultado){
         this.playerService.players.push({name: player.name, escribiendo: false}) 
         this.router.navigate(['/master'])
@@ -191,11 +192,14 @@ export class PerfilComponent implements OnInit {
     this.playerService.inGamePlayer(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
       for(const player of data.resultado){
         if(player.name == this.userService.user.name){
+          
           this.playerService.player = player
+          console.log(player)
         }
         this.playerService.players.push({name: player.name, escribiendo: false}) 
+        
       }
-      this.router.navigate(['/player'])
+       this.router.navigate(['/player'])
     })
    }
    
