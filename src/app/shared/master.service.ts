@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Enemy } from '../models/enemy';
-import { Spell } from '../models/spell';
-import { Weapon } from '../models/weapon';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +7,13 @@ import { Weapon } from '../models/weapon';
 export class MasterService {
 
   public url: string;
+  public hitPoints: any[];
+  public characterPlayer: any [];
 
   constructor(private http: HttpClient) { 
-    this.url = 'https://dungeons-and-coders-api.herokuapp.com'
+    this.url = 'https://dungeons-and-coders-api.herokuapp.com';
+    this.hitPoints= [{idEnemy: 0,idPlayer: 0, name: '', character: '', hitPoints: 0}];
+    this.characterPlayer = [{nameCharacter: '', namePlayer: ''}]
   }
 
   getAllEnemy(idCampaignPre: number) {

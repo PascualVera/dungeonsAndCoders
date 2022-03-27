@@ -2,12 +2,13 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Character } from 'src/app/models/character';
 import { Enemy } from 'src/app/models/enemy';
 import { EnemyHitPoints } from 'src/app/models/enemy-hit-points';
-import { Player } from 'src/app/models/player';
 import { Spell } from 'src/app/models/spell';
 import { Weapon } from 'src/app/models/weapon';
 import { CampaingService } from 'src/app/shared/campaing.service';
 import { CharacterService } from 'src/app/shared/character.service';
 import { MasterService } from 'src/app/shared/master.service';
+import { PlayersService } from 'src/app/shared/players.service';
+import { CampaignMapService } from 'src/app/shared/campaign-map.service';
 
 
 @Component({
@@ -23,37 +24,57 @@ export class VistaMasterComponent implements OnInit {
   public equipCharacter: Weapon [];
   public characterCampaign: Character [];
   public hitPointsEnemy: EnemyHitPoints [];
-  public hitPointsPlayer: Player [];
+  public hitPointsPlayer: any [];
+  public maps: any [];
   @ViewChild('enemy') enemy: ElementRef;
   @ViewChild('player') player: ElementRef;
   @ViewChild('calc') calc: ElementRef;
   public index: number = 0;
   public index2: number = 0;
+  public indexCalc: number = 0;
   public idEnemy: number;
   public idCharacter: number;
   public idCampaignPre: number;
   public idCampaignActual: string;
-  constructor(public campaingService:CampaingService, public characterService:CharacterService, public master: MasterService) { 
+  public campaignTitle: string;
+  constructor(public campaingService:CampaingService, public characterService:CharacterService, public master: MasterService, public playersService: PlayersService, public mapService: CampaignMapService) { 
     
-    this.idCampaignPre = this.campaingService.actualCampaign.idCampaignPre
-    this.idCampaignActual = this.campaingService.actualCampaign.idCampaign
+    this.idCampaignPre = this.campaingService.actualCampaign.idCampaignPre;
+    this.idCampaignActual = this.campaingService.actualCampaign.idCampaign;
+    this.campaignTitle = this.campaingService.actualCampaign.campaignNamePre;
+    this.mapService.getMaps(this.idCampaignPre).subscribe((data:any) =>{
+      this.maps = data;
+    })
     this.characterCampaign = [new Character ()]
     this.enemyCampaignPre = [new Enemy ()]
     this.enemiesCampaign(this.idCampaignPre)
     this.playerInGame(this.idCampaignActual)
+    this.playerHitPoints(this.idCampaignActual)
     this.enemyHitPoints(this.idCampaignActual)
-
-    console.log('hola')
+    this.playersService.players = [0];
+    this.playersService.master.name = '';
+    this.playersService.inGamePlayer(this.campaingService.actualCampaign.idCampaign)
+    .subscribe((resp: any) => {
+      resp.resultado.forEach((item: any) => {
+        this.playersService.players.push({ name: item.name, escribiendo: false})
+      })
+    })
+    this.campaingService.getCampaignById(this.campaingService.actualCampaign.idCampaign)
+    .subscribe((resp: any) => {
+      this.playersService.master.name = resp.resultado[0].name
+    })
         
   }
 
   ngOnInit(): void {
   }
 
+
+///Player nad Enemy in game
+
   playerInGame(idCampaign:string){
     this.characterService.getCharactersInGame(idCampaign).subscribe((data:any)=>{
       this.characterCampaign = data.respuesta;
-      console.log(this.characterCampaign)
     })
   }
 
@@ -89,27 +110,36 @@ export class VistaMasterComponent implements OnInit {
     })
   }
 
-///HitPoints Enemigos
+///GetHitPoints Enemigy and Player
 
 enemyHitPoints(idCampaign:string){
   this.master.getEnemyHitPoints(idCampaign).subscribe((data:any) =>{
     this.hitPointsEnemy = data.resultado;
+    for(let i=0; i<this.hitPointsEnemy.length; i++)
+    {
+      this.master.hitPoints.push({idEnemy: this.hitPointsEnemy[i].idEnemy,idPlayer: 0, name: this.hitPointsEnemy[i].name, hitPoints: this.hitPointsEnemy[i].hitPoints})
+    }
   })
 }
 
 playerHitPoints(idCampaign: string){
-  this.master.getPlayerHitPoints(idCampaign).subscribe((data:any) =>{
+  this.playersService.inGamePlayer(idCampaign).subscribe((data:any) =>{
     this.hitPointsPlayer = data.resultado;
-  })
+    this.master.characterPlayer = [];
+    this.master.hitPoints = []
+    for(let i=0; i<this.hitPointsPlayer.length; i++)
+    {
+      this.master.hitPoints.push({idEnemy: 0,idPlayer: this.hitPointsPlayer[i].idPlayer, name: this.hitPointsPlayer[i].name, hitPoints: this.hitPointsPlayer[i].hitPoints})
+      this.master.characterPlayer.push({nameCharacter: this.characterCampaign[i].name, namePlayer: this.hitPointsPlayer[i].name})
+    }
+     })
 }
-
   modalEnemigos(modalEnemigos: HTMLElement, visible: boolean) {
     modalEnemigos.style.display = (visible) ? 'flex' : 'none';
     this.index = this.enemy.nativeElement.value;
     this.idEnemy = this.enemyCampaignPre[this.index].idEnemyPre;
     this.enemySpell(this.idEnemy);
     this.enemyEquip(this.idEnemy);
-    console.log(this.calc.nativeElement.value)
   }
 
   modalPersonaje(modalPersonaje: HTMLElement, visible: boolean) {
@@ -118,6 +148,5 @@ playerHitPoints(idCampaign: string){
     this.idCharacter = this.characterCampaign[this.index2].idCharacter
     this.characterSpell(this.idCharacter);
     this.characterEquip(this.idCharacter);
-    console.log(this.player.nativeElement.value)
   }
 }
