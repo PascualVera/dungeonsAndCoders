@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlayersService } from 'src/app/shared/players.service';
 import { CampaingService } from '../../shared/campaing.service';
+import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'app-game-header',
@@ -11,7 +12,8 @@ import { CampaingService } from '../../shared/campaing.service';
 export class GameHeaderComponent implements OnInit {
 
   constructor(public router:Router,
-              private ps: PlayersService, // hardcoreado
+              private ps: PlayersService,
+              private userService: UserService,
               public campaignService: CampaingService,
               ) { 
 
@@ -57,9 +59,16 @@ export class GameHeaderComponent implements OnInit {
   }
 
   endCampaign() {
+    // TODO: Redireccionar players por sockets a perfil
     this.campaignService.deleteCampaign(this.campaignService.actualCampaign.idCampaign)
     .subscribe(()=>{})
-    // TODO: Eliminar players y redirecionarlos por sockets a perfil
+  }
+
+  leaveCampaign() {
+    let numPlayer= {numPlayer: this.campaignService.actualCampaign.numPlayer - 1, idCampaign: this.campaignService.actualCampaign.idCampaign}
+      this.campaignService.putCampaing(numPlayer).subscribe(()=>{})
+    this.ps.deletePlayer(this.userService.user.idUser, this.campaignService.actualCampaign.idCampaign)
+      .subscribe(()=>{})
   }
 
 }

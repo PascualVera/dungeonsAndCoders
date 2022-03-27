@@ -136,8 +136,6 @@ export class CharacterSelectComponent implements OnInit {
     }
   }
   postPlayer(){
-    this.playerService.initPlayers()
-    // this.playerService.players.push({name: this.campaingService.}) Insertar master en el siguiente pull
     this.playerService.player = new Player (this.characterService.character.hitPoint,
                                             this.characterService.character.idCharacter,
                                             this.userService.user.idUser,
