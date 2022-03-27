@@ -1,36 +1,34 @@
 <header class="cabecera">
   <div class="sala">
-      <span class="codigoSala">Código de sala:</span>
-      <span class="codigo"><p>{{codigoSala}}</p><span class="code_copy" (click)="copyCode(confirmCopy)">
+    <span class="codigoSala">Código de sala:</span>
+    <span class="codigo">
+      <p>{{campaignService.actualCampaign.idCampaign}}</p><span class="code_copy" (click)="copyCode(confirmCopy)">
         <i class="fas fa-copy"></i></span>
-        <div id="copyClip"><p #confirmCopy>Copiar código</p> 
+      <div id="copyClip">
+        <p #confirmCopy>Copiar código</p>
         <div>
         </div>
       </div>
     </span>
   </div>
   <div class="navbar_contenedor">
-    <div *ngIf="this.router.url == '/master'" class="pausar">Pausar</div>
-    <div
-      *ngIf="this.router.url == '/master'"
-      (click)="modal(veloModalFinalizar, true)"
-      class="opcion">
-      Finalizar
-    </div>
+    <ng-container *ngIf="this.router.url == '/master'">
+      <div *ngIf="!campaignService.actualCampaign.closed; else pausar" (click)="startCampaign(veloModalMinimo)"
+        class="pausar">Iniciar</div>
+      <ng-template #pausar>
+        <div routerLink="/perfil" class="pausar">Pausar</div>
+      </ng-template>
+      <div (click)="modal(veloModalFinalizar, true)" class="opcion">Finalizar</div>
+    </ng-container>
     <div *ngIf="this.router.url == '/player'" routerLink="/perfil" class="opcion">Salir</div>
-    <div *ngIf="this.router.url == '/player'"
-         (click)="modal(veloModalAbandonar, true)"
-         class="opcion">Abandonar</div>
+    <div *ngIf="this.router.url == '/player'" (click)="modal(veloModalAbandonar, true)" class="opcion">Abandonar</div>
   </div>
 </header>
 
 <!-- Modal finalizar campaña -->
 <div #veloModalFinalizar class="veloModalFinalizar">
   <div class="modalFinalizar">
-    <button
-      (click)="modal(veloModalFinalizar, false)"
-      class="closeModal"
-    >
+    <button (click)="modal(veloModalFinalizar, false)" class="closeModal">
       <i class="fa-solid fa-square-xmark closeModal"></i>
     </button>
     <div class="modalResumen">
@@ -48,7 +46,7 @@
       </div>
     </div>
     <div class="modalOpciones">
-      <button routerLink="/perfil" class="botonModal">Finalizar campaña</button>
+      <button routerLink="/perfil" (click)="endCampaign()" class="botonModal">Finalizar campaña</button>
       <button class="botonModal">Guardar historial</button>
     </div>
   </div>
@@ -61,14 +59,35 @@
       <div class="texto">
         <span>¡ Advertencia !</span>
         <p>
-          Si pulsa <b>Abandonar campaña</b> será eliminado de esta campaña definitivamente sin opción de volver a retomarla.
+          Si pulsa <b>Abandonar campaña</b> será eliminado de esta campaña definitivamente sin opción de volver a
+          retomarla.
         </p>
         <span>¿Desea abandonar la campaña?</span>
       </div>
     </div>
-    <div class="modalOpciones">      
-      <button routerLink="/perfil" class="botonModal">Abandonar campaña</button>
+    <div class="modalOpciones">
+      <button routerLink="/perfil" (click)="leaveCampaign()" lass="botonModal">Abandonar campaña</button>
       <button (click)="modal(veloModalAbandonar, false)" class="botonModal">Volver</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal minimo campaña -->
+<div #veloModalMinimo class="veloModalAbandonar">
+  <div class="modalAbandonar">
+    <button (click)="modal(veloModalFinalizar, false)" class="closeModal">
+      <i class="fa-solid fa-square-xmark closeModal"></i>
+    </button>
+    <div class="modalResumen">
+      <div class="texto">
+        <span>¡ Advertencia !</span>
+        <p>
+          Actualmente hay <b>{{campaignService.actualCampaign.numPlayer}}</b> jugador/es apuntado/s y el mínimo para esta campaña es de <b>{{campaignService.actualCampaign.playerMin}}</b> jugadores. No puede iniciar la campaña hasta que se cumpla el mínimo de jugadores exigido.
+        </p>
+      </div>
+    </div>
+    <div class="modalOpciones">
+      <button (click)="modal(veloModalMinimo, false)" class="botonModal">Cerrar</button>
     </div>
   </div>
 </div>

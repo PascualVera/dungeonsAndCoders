@@ -12,9 +12,5 @@ export class VistaPlayerComponent implements OnInit {
   constructor(private wss: WebSocketService, private cs: CampaingService) { }
 
   ngOnInit(): void {
-    this.wss.escucha('new-map').subscribe((data: any) => {
-      const { campaingCode, activeMap } = data;
-      this.cs.activeMap = activeMap;
-    })  
   }
 }
