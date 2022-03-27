@@ -53,19 +53,6 @@ export class VistaMasterComponent implements OnInit {
       this.enemyCampaignPre = data.resultado;
     })
   }
-
-  // characterPlaying(idCampaign:string):any{
-  //   this.characterService.getCharactersInGame(idCampaign).subscribe((data:any) =>{
-  //     if(data.resultado = [])
-  //     {
-  //       console.log('No hay personajes')
-  //     }
-  //     else{
-  //       this.characterCampaign = data.resultado;
-  //       console.log(data.resultado)
-  //     }
-  //   })
-  // }
 //Conjuros y Equipo de los enemigos
   enemySpell(idEnemyPre:number):any{
     this.masterEnemies.getAllSpell(idEnemyPre).subscribe((data:any) =>{
