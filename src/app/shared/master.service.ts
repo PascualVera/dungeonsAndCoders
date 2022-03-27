@@ -16,7 +16,7 @@ export class MasterService {
   }
 
   getAllEnemy(idCampaignPre: number) {
-    return this.http.get(this.url+'/vistaMaster?id='+idCampaignPre)
+    return this.http.get(this.url+'/enemigo?id='+idCampaignPre)
   }
 
   getAllEquip(idEnemyPre: number){
@@ -27,4 +27,11 @@ export class MasterService {
     return this.http.get(this.url+'/spell/enemy?id='+idEnemyPre)
   }
 
+  getPlayerHitPoints(idCampaign:string){
+    return this.http.get(this.url+'/vistaMaster/player?id='+idCampaign)
+  }
+
+  getEnemyHitPoints(idCampaign: string){
+    return this.http.get(this.url+'/vistaMaster/enemy?id='+idCampaign)
+  }
 }

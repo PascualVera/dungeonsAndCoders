@@ -30,9 +30,9 @@
                         <label style="width: 5vw;">Defensor: &nbsp;</label>
                         <select name="personajes"  style="width: 9vw;">
                             <option disabled>Enemigos</option>
-                            <option *ngFor="let enemigo of enemyCampaignPre; let i = index" [value]="i">{{enemigo.name}}</option>
+                            <option #calc *ngFor="let enemigo of hitPointsEnemy; let i = index" [value]="i">{{enemigo.name}}</option>
                             <option disabled >Personajes</option>
-                            <option *ngFor="let player of characterCampaign; let j = index" [value]="j">{{player.name}}</option> 
+                            <option *ngFor="let player of hitPointsPlayer; let i = index" [value]="i">{{player.idUser}}</option>
                          </select>
                     </section>
                     <section style="padding-top: 1.5rem; font-size: 1.5rem;">
@@ -40,11 +40,11 @@
                     </section>
                     <section class="atacante">
                         <label style="width: 5vw;">Atacante: &nbsp;</label>
-                        <select name="personajes"  style="width: 9vw;">
+                        <select  name="personajes"  style="width: 9vw;">
                             <option disabled>Enemigos</option>
-                            <option *ngFor="let enemigo of enemyCampaignPre; let i = index" [value]="i">{{enemigo.name}}</option>
+                            <option #calc *ngFor="let enemigo of hitPointsEnemy; let i = index" [value]="i">{{enemigo.name}}</option>
                             <option disabled >Personajes</option>
-                            <option *ngFor="let player of characterCampaign; let j = index" [value]="j">{{player.name}}</option>
+                            <option *ngFor="let player of hitPointsPlayer; let i = index" [value]="i">{{player.idUser}}</option>
                          </select>
                     </section>
                 </div>
