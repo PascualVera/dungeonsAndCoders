@@ -5,6 +5,7 @@ import { CampaignPre } from '../../models/campaign-pre';
 import { Campaing } from 'src/app/models/campaing';
 import { CampaingService } from '../../shared/campaing.service';
 import { UserService } from '../../shared/user.service';
+import { PlayersService } from 'src/app/shared/players.service';
 
 @Component({
   selector: 'app-campaing-select',
@@ -21,6 +22,7 @@ export class CampaingSelectComponent implements OnInit {
   constructor(private campaignPreService: CampaignPreService,
               private campaignService: CampaingService,
               private userService: UserService,
+              private playersService: PlayersService,
               private router: Router) {
     this.selectedCampaignPre = new CampaignPre();
     this.getAllCampaigns()
@@ -85,16 +87,19 @@ export class CampaingSelectComponent implements OnInit {
           }
         })
       } while (idLibre);
-
+      
       this.campaignService.actualCampaign.idCampaign = idAleatorio;
       this.campaignService.actualCampaign.campaignName = inputNombre;
       this.campaignService.actualCampaign.idCampaignPre = this.selectedCampaignPre.idCampaignPre;
       this.campaignService.actualCampaign.idMaster = this.userService.user.idUser;
       this.campaignService.actualCampaign.date = new Date();
       this.campaignService.actualCampaign.numPlayer = 0;
-      this.campaignService.actualCampaign.maxPlayer = parseInt(selectPlayers);;
+      this.campaignService.actualCampaign.maxPlayer = parseInt(selectPlayers);
+      this.campaignService.actualCampaign.playerMin = this.selectedCampaignPre.playerMin;
       (checkPublica) ? this.campaignService.actualCampaign.public = 1 : this.campaignService.actualCampaign.public = 0;
       this.campaignService.actualCampaign.closed = 0;
+
+      this.playersService.master.name = this.userService.user.name;
 
       this.campaignService.postCampaign(this.campaignService.actualCampaign)
       .subscribe(() => {})
