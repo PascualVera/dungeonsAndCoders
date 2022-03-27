@@ -16,8 +16,8 @@ export class PlayersService {
     this.master = { name: '', escribiendo: false };
     this.system = '[System]';
 
-    // this.url = 'https://dungeons-and-coders-api.herokuapp.com'
-     this.url = 'http://localhost:4000'
+    this.url = 'https://dungeons-and-coders-api.herokuapp.com'
+    //  this.url = 'http://localhost:4000'
 
     this.players = [];
     this.playerColors = ['#e7623e', '#7f513e', '#2a50a1', '#507f62', '#208820', '#555752'];
