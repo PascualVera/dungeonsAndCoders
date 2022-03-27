@@ -16,8 +16,7 @@ export class MapaComponent implements OnInit {
               public router: Router,
               public campaignMapService: CampaignMapService,
               private wss: WebSocketService) {
-
-  this.campaignMapService.getMaps(campaingService.actualCampaign.idCampaignPre)
+  this.campaignMapService.getMaps(this.campaingService.actualCampaign.idCampaignPre)
   .subscribe((resp: any) => {
     if (resp.resultado.length > 0) {
       this.campaignMapService.campaignMaps = resp.resultado;

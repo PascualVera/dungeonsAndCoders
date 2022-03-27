@@ -19,7 +19,7 @@ export class CharacterSelectComponent implements OnInit {
   constructor(public characterService: CharacterService,public playerService:PlayersService, public userService: UserService, public campaignService:CampaingService, private router:Router) {
     this.scrollCount = 0;
     this.getCharacters();
-    this.characterService.getCharactersInGame(this.campaignService.idCampaign).subscribe((data:any)=>{
+    this.characterService.getCharactersInGame(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
       this.characterService.charactersInGame = []
       for(const id of data.respuesta){
         this.characterService.charactersInGame.push(id.idCharacter)
@@ -37,7 +37,7 @@ export class CharacterSelectComponent implements OnInit {
     this.playerService.player = new Player (this.characterService.character.hitPoint,
                                             this.characterService.character.idCharacter,
                                             this.userService.user.idUser,
-                                            this.campaignService.idCampaign)
+                                            this.campaignService.actualCampaign.idCampaign)
     this.campaignService.getCampaignById(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
       console.log(data)
       if(data.resultado[0].numPlayer < data.resultado[0].maxPlayer){
