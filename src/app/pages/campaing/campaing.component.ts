@@ -3,6 +3,7 @@ import { Campaing } from '../../models/campaing';
 import { CampaingService } from '../../shared/campaing.service';
 import { Router } from '@angular/router';
 import { CharacterService } from 'src/app/shared/character.service';
+import { UserService } from 'src/app/shared/user.service';
 
 @Component({
   selector: 'app-campaing',
@@ -12,13 +13,25 @@ import { CharacterService } from 'src/app/shared/character.service';
 export class CampaingComponent implements OnInit {
 
   public delayKeyUp: any; // para controlar el temporizador de pulsaciones al filtrar
-
+  public campaignsIds:string[]
   public allCampaigns: Campaing[];
   public allCampaignsFiltered: Campaing[];
   public selectedCampaign: Campaing;
 
-  constructor(private campaignService: CampaingService, private router: Router, public characterService:CharacterService) {
+  constructor(private campaignService: CampaingService, private router: Router, public characterService:CharacterService,public userService:UserService) {
     this.getAllCampaigns();
+    this.campaignsIds =[]
+    this.userService.getCampaignMaster(this.userService.user.idUser).subscribe((data:any)=>{
+      for(let id of data.resultado){
+        this.campaignsIds.push(id.idCampaign)
+      }
+    })
+    this.userService.getCampaignPlayer().subscribe((data:any)=>{
+      for(let id of data.resultado){
+        this.campaignsIds.push(id.idCampaign)
+      }
+      console.log(this.campaignsIds)
+    })
   }
   
   ngOnInit(): void {}
@@ -42,7 +55,9 @@ export class CampaingComponent implements OnInit {
   }
 
   selectCampaign(campaign: Campaing) {
+    console.log(campaign)
     this.selectedCampaign = campaign;
+  
   }
   
   validarCodigoUnirse(idCampaign: string, idError: any) {
