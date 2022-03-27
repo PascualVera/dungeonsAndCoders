@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Character } from 'src/app/models/character';
 import { Enemy } from 'src/app/models/enemy';
+import { EnemyHitPoints } from 'src/app/models/enemy-hit-points';
+import { Player } from 'src/app/models/player';
 import { Spell } from 'src/app/models/spell';
 import { Weapon } from 'src/app/models/weapon';
 import { CampaingService } from 'src/app/shared/campaing.service';
@@ -20,8 +22,11 @@ export class VistaMasterComponent implements OnInit {
   public spellCharacter: Spell [];
   public equipCharacter: Weapon [];
   public characterCampaign: Character [];
+  public hitPointsEnemy: EnemyHitPoints [];
+  public hitPointsPlayer: Player [];
   @ViewChild('enemy') enemy: ElementRef;
   @ViewChild('player') player: ElementRef;
+  @ViewChild('calc') calc: ElementRef;
   public index: number = 0;
   public index2: number = 0;
   public idEnemy: number;
@@ -31,14 +36,14 @@ export class VistaMasterComponent implements OnInit {
   constructor(public campaingService:CampaingService, public characterService:CharacterService, public master: MasterService) { 
     
     this.idCampaignPre = this.campaingService.actualCampaign.idCampaignPre
+    this.idCampaignActual = this.campaingService.actualCampaign.idCampaign
 
-    this.enemiesCampaign(2)
-    // this.characterPlaying('asdfg123')
-    this.characterService.getCharactersInGame('0bXu2k4W').subscribe((data:any)=>{
-      // this.characterService.charactersInGame = []
-      // for(const id of data.respuesta){
-      //   this.characterService.charactersInGame.push(id)
-      // }
+    this.enemiesCampaign(this.idCampaignPre)
+    this.enemyHitPoints(this.idCampaignActual)
+
+    console.log(this.hitPointsEnemy)
+    
+    this.characterService.getCharactersInGame(this.idCampaignActual).subscribe((data:any)=>{
       this.characterCampaign = data.respuesta;
       console.log(this.characterCampaign)
     })
@@ -84,7 +89,13 @@ export class VistaMasterComponent implements OnInit {
 
 enemyHitPoints(idCampaign:string){
   this.master.getEnemyHitPoints(idCampaign).subscribe((data:any) =>{
+    this.hitPointsEnemy = data.resultado;
+  })
+}
 
+playerHitPoints(idCampaign: string){
+  this.master.getPlayerHitPoints(idCampaign).subscribe((data:any) =>{
+    this.hitPointsPlayer = data.resultado;
   })
 }
 
@@ -94,7 +105,7 @@ enemyHitPoints(idCampaign:string){
     this.idEnemy = this.enemyCampaignPre[this.index].idEnemyPre;
     this.enemySpell(this.idEnemy);
     this.enemyEquip(this.idEnemy);
-    console.log(this.enemy.nativeElement.value)
+    console.log(this.calc.nativeElement.value)
   }
 
   modalPersonaje(modalPersonaje: HTMLElement, visible: boolean) {
