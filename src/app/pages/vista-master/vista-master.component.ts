@@ -19,7 +19,7 @@ export class VistaMasterComponent implements OnInit {
   public equipEnemy: Weapon [];
   public spellCharacter: Spell [];
   public equipCharacter: Weapon [];
-  public characterCampaign: Character []
+  public characterCampaign: Character [];
   @ViewChild('enemy') enemy: ElementRef;
   @ViewChild('player') player: ElementRef;
   public index: number = 0;
@@ -28,13 +28,13 @@ export class VistaMasterComponent implements OnInit {
   public idCharacter: number;
   public idCampaignPre: number;
   public idCampaignActual: string;
-  constructor(public campaingService:CampaingService, public characterService:CharacterService, public masterEnemies: MasterService) { 
+  constructor(public campaingService:CampaingService, public characterService:CharacterService, public master: MasterService) { 
     
     this.idCampaignPre = this.campaingService.actualCampaign.idCampaignPre
 
     this.enemiesCampaign(2)
     // this.characterPlaying('asdfg123')
-    this.characterService.getCharactersInGame('asdfg123').subscribe((data:any)=>{
+    this.characterService.getCharactersInGame('0bXu2k4W').subscribe((data:any)=>{
       // this.characterService.charactersInGame = []
       // for(const id of data.respuesta){
       //   this.characterService.charactersInGame.push(id)
@@ -49,19 +49,19 @@ export class VistaMasterComponent implements OnInit {
   }
 
   enemiesCampaign(idCampignPre:number):any{
-    this.masterEnemies.getAllEnemy(idCampignPre).subscribe((data:any) =>{
+    this.master.getAllEnemy(idCampignPre).subscribe((data:any) =>{
       this.enemyCampaignPre = data.resultado;
     })
   }
 //Conjuros y Equipo de los enemigos
   enemySpell(idEnemyPre:number):any{
-    this.masterEnemies.getAllSpell(idEnemyPre).subscribe((data:any) =>{
+    this.master.getAllSpell(idEnemyPre).subscribe((data:any) =>{
       this.spellEnemy = data.resultado;
     })
   }
 
   enemyEquip(idEnemyPre:number):any{
-    this.masterEnemies.getAllEquip(idEnemyPre).subscribe((data:any) =>{
+    this.master.getAllEquip(idEnemyPre).subscribe((data:any) =>{
       this.equipEnemy = data.resultado;
     })
   }
@@ -79,6 +79,15 @@ export class VistaMasterComponent implements OnInit {
       this.equipCharacter = data.resultado;
     })
   }
+
+///HitPoints Enemigos
+
+enemyHitPoints(idCampaign:string){
+  this.master.getEnemyHitPoints(idCampaign).subscribe((data:any) =>{
+
+  })
+}
+
   modalEnemigos(modalEnemigos: HTMLElement, visible: boolean) {
     modalEnemigos.style.display = (visible) ? 'flex' : 'none';
     this.index = this.enemy.nativeElement.value;
