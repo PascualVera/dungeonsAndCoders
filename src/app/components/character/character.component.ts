@@ -28,7 +28,6 @@ export class CharacterComponent implements OnInit {
           this.characterService.character = character
         })
       })
-      console.log(characterService.character)
     })
   }
   showCharacter(){

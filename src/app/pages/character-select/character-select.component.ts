@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Character } from 'src/app/models/character';
 import { Player } from 'src/app/models/player';
 import { CampaingService } from 'src/app/shared/campaing.service';
@@ -15,7 +16,7 @@ export class CharacterSelectComponent implements OnInit {
   public scrollCount: number;
   public characters: Character[];
   
-  constructor(public characterService: CharacterService,public playerService:PlayersService, public userService: UserService, public campaignService:CampaingService) {
+  constructor(public characterService: CharacterService,public playerService:PlayersService, public userService: UserService, public campaignService:CampaingService, private router:Router) {
     this.scrollCount = 0;
     this.getCharacters();
     this.characterService.getCharactersInGame(this.campaignService.idCampaign).subscribe((data:any)=>{
@@ -23,13 +24,41 @@ export class CharacterSelectComponent implements OnInit {
       for(const id of data.respuesta){
         this.characterService.charactersInGame.push(id.idCharacter)
       }
-      console.log(this.characterService.charactersInGame)
-      this.reserva()
-      
-      
     })
   }
 
+  //Metodos logicos
+  getCharacters() {
+    this.characterService.getAll().subscribe((data: any) => {
+      this.characters = data;
+    });
+  }
+  postPlayer(){
+    this.playerService.player = new Player (this.characterService.character.hitPoint,
+                                            this.characterService.character.idCharacter,
+                                            this.userService.user.idUser,
+                                            this.campaignService.idCampaign)
+    this.campaignService.getCampaignById(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
+      console.log(data)
+      if(data.resultado[0].numPlayer < data.resultado[0].maxPlayer){
+        console.log('funciona')
+        this.reserva()
+        this.playerService.createPlayers(this.playerService.player).subscribe(()=>{
+          this.router.navigate(['/player'])
+        })
+      }else{
+        this.router.navigate(['/campaing'])
+      }
+    })
+  }
+
+  reserva(){
+      let numPlayer= {numPlayer: this.campaignService.actualCampaign.numPlayer +1, idCampaign: this.campaignService.actualCampaign.idCampaign}
+      this.campaignService.putCampaing(numPlayer).subscribe(()=>{
+        console.log('reserva funcionando')
+      })
+   }
+   
   //Metodos de visual
   loreScrollDown(lore: any, buttomUp: any, buttomDown: any) {
     this.scrollCount++;
@@ -105,22 +134,11 @@ export class CharacterSelectComponent implements OnInit {
     golpe.innerHTML = this.characterService.character.hitPoint;
     dados.innerHTML = this.characterService.character.hitDice;
 
-    img.style.display = 'block';
-    ////Mostrar Imagen Effects////
-    this.shadow(img, index);
-    //Cargar personaje///
-
+    this.shadow(img, index)
     button.disabled = false;
-    console.log(this.characterService.character);
-  }
-
-  getCharacters() {
-    this.characterService.getAll().subscribe((data: any) => {
-      this.characters = data;
-    });
+    
   }
   shadow(img: any, index: number) {
-    console.log(index);
     if (index == 2) {
       img.setAttribute('class', 'imagen_rogue');
     } else if (index == 0) {
@@ -135,40 +153,6 @@ export class CharacterSelectComponent implements OnInit {
       img.setAttribute('class', 'imagen_barbarian');
     }
   }
-  postPlayer(){
-    this.playerService.player = new Player (this.characterService.character.hitPoint,
-                                            this.characterService.character.idCharacter,
-                                            this.userService.user.idUser,
-                                            this.campaignService.idCampaign)
-
-    console.log(this.playerService.player)
-    this.playerService.createPlayers(this.playerService.player).subscribe((data)=>{
-      console.log(data)
-      this.playerService.inGamePlayer(this.campaignService.idCampaign).subscribe((data:any)=>{
-        
-        for(const player of data.resultado){
-          this.playerService.players.push({name: player.name, escribiendo: false})
-        }
-        
-      })
-    })
-  }
-
-  reserva(){
-      let numPlayer= {numPlayer: this.campaignService.actualCampaign.numPlayer +1, idCampaign: this.campaignService.actualCampaign.idCampaign}
-      this.campaignService.putCampaing(numPlayer).subscribe((data)=>{
-        console.log(data)
-        console.log(this.campaignService.actualCampaign)
-      })
-    
-   }
-   cancelarReserva(){
-    let numPlayer= {numPlayer: this.campaignService.actualCampaign.numPlayer ,idCampaign: this.campaignService.actualCampaign.idCampaign}
-      this.campaignService.putCampaing(numPlayer).subscribe((data)=>{
-        console.log(data)
-        console.log(this.campaignService.actualCampaign.numPlayer)
-      })
-    
-   }
+ 
   ngOnInit(): void {}
 }
