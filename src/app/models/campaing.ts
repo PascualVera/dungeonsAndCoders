@@ -9,11 +9,11 @@ export class Campaing {
   public maxPlayer: number;
   public public: number;
   public closed: number;
-
   public campaignNamePre: string;
   public playerMin: number;
 
-  constructor(public name?:string,public maps?:any[]){ // provisional para hardcorear los mapas: luego al servicio map con su endpoint
+  constructor(){ }
+  // constructor(public name?:string,public maps?:any[]){ // provisional para hardcorear los mapas: luego al servicio map con su endpoint
 
-  }
+  // }
 }

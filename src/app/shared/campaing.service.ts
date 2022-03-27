@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Campaing } from '../models/campaing';
 
@@ -6,37 +6,17 @@ import { Campaing } from '../models/campaing';
   providedIn: 'root'
 })
 export class CampaingService {
-  public idCampaign: string; // Tendrá el idCampaign despues de join o unirse por código TODO: cambiar a objeto: Campaign
+  public idCampaign: string; // TODO: Eliminar cuando no tenga referencias
   public actualCampaign: Campaing;
   private url: string;
 
-  // para refactorizar
-  public campaing: Campaing
-  public activeMap: any
-  public campaingCode: string
   constructor(private http: HttpClient) {
     this.url = 'https://dungeons-and-coders-api.herokuapp.com';
     // this.url = 'http://localhost:4000';
 
     this.actualCampaign = new Campaing();
-
-    // Provisonal para hardcorear los mapas: luego en servicios map con su endpoint
-    this.campaingCode = 'Campaña prueba'
-    this.campaing = new Campaing('Ladrones de sueños', [{
-      name: 'Tybra',
-      url: '../../assets/images/Mapas/ladronesDeSueños/Tybra.png'
-    }, {
-      name: 'Camino',
-      url: '../../assets/images/Mapas/ladronesDeSueños/Camino.png'
-    }, {
-      name: 'Mansion',
-      url: '../../assets/images/Mapas/ladronesDeSueños/mansion.png'
-    }])
-    this.activeMap = this.campaing.maps[0]
+   
   }
-
-
-
 
   //Recuperar todas las campañas
   getAllCampaigns() {
@@ -50,4 +30,17 @@ export class CampaingService {
   postCampaign(campaign: Campaing) {
     return this.http.post(this.url + '/campaign', campaign)
   }
+
+  putCampaing(campaign:object){
+    return this.http.put(this.url + '/campaign', campaign)
+  }
+  
+  deleteCampaign(idCampaign: string) {
+    const options = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'}),
+      body: { idCampaign: idCampaign},
+    };
+    return this.http.delete(this.url + '/campaign', options)
+  }
+
 }

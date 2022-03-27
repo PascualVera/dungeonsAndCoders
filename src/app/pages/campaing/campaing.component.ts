@@ -51,8 +51,8 @@ export class CampaingComponent implements OnInit {
       if (resp.ok) {
         this.campaignService.actualCampaign = resp.resultado[0];
         const { closed, numPlayer, maxPlayer} = resp.resultado[0]
-        if ( resp.resultado[0].public == 1 && closed == 0 && numPlayer < maxPlayer){
-          this.joinCampaign();
+        if ( resp.resultado[0].public == 0 && closed == 0 && numPlayer < maxPlayer){
+          this.router.navigate(['/characterList'])
         } else {
           idError.style.visibility = 'visible'
           idError.setAttribute('value', '');
@@ -70,7 +70,6 @@ export class CampaingComponent implements OnInit {
 
   joinCampaign() {
     this.campaignService.idCampaign = this.selectedCampaign.idCampaign; //Quitar tras refactorizar todo a actualCampaign del servicio
-
     this.campaignService.actualCampaign = this.selectedCampaign; 
     this.router.navigate(['/characterList'])
   }

@@ -1,7 +1,7 @@
 <article class="map">
-  <img class="img" src={{this.campaingService.activeMap.url}} alt="">
-  <div *ngIf="this.router.url == '/master'"   class="button_container">
-    <button (click)="changeImg(map)" class="button" *ngFor="let map of this.campaingService.campaing.maps">{{map.name}}</button>
+  <img class="img" src={{campaignMapService.activeMap.urlMap}} alt="">
+  <div *ngIf="this.router.url == '/master'" class="button_container">
+    <button (click)="changeImg(map)" class="button" *ngFor="let map of campaignMapService.campaignMaps">{{map.mapName}}</button>
   </div>
-  <div *ngIf="this.router.url == '/player'" class="map_name">{{this.campaingService.activeMap.name}}</div>
+  <div *ngIf="this.router.url == '/player'" class="map_name">{{campaignMapService.activeMap.mapName}}</div>
 </article>

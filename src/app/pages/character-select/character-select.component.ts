@@ -24,6 +24,7 @@ export class CharacterSelectComponent implements OnInit {
         this.characterService.charactersInGame.push(id.idCharacter)
       }
       console.log(this.characterService.charactersInGame)
+      this.reserva()
       
       
     })
@@ -149,11 +150,26 @@ export class CharacterSelectComponent implements OnInit {
         for(const player of data.resultado){
           this.playerService.players.push({name: player.name, escribiendo: false})
         }
-        console.log(this.playerService.players)
+        
       })
     })
-   
-    
   }
+
+  reserva(){
+      let numPlayer= {numPlayer: this.campaignService.actualCampaign.numPlayer +1, idCampaign: this.campaignService.actualCampaign.idCampaign}
+      this.campaignService.putCampaing(numPlayer).subscribe((data)=>{
+        console.log(data)
+        console.log(this.campaignService.actualCampaign)
+      })
+    
+   }
+   cancelarReserva(){
+    let numPlayer= {numPlayer: this.campaignService.actualCampaign.numPlayer ,idCampaign: this.campaignService.actualCampaign.idCampaign}
+      this.campaignService.putCampaing(numPlayer).subscribe((data)=>{
+        console.log(data)
+        console.log(this.campaignService.actualCampaign.numPlayer)
+      })
+    
+   }
   ngOnInit(): void {}
 }

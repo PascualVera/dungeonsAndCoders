@@ -1,3 +1,5 @@
+// TODO: Esta clase es necesaria?
+
 export class CampaignPlayin {
     public masterName: string
     public campaignName: string
