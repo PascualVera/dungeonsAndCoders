@@ -37,20 +37,24 @@ export class VistaMasterComponent implements OnInit {
     
     this.idCampaignPre = this.campaingService.actualCampaign.idCampaignPre
     this.idCampaignActual = this.campaingService.actualCampaign.idCampaign
-
+    this.characterCampaign = [new Character ()]
+    this.enemyCampaignPre = [new Enemy ()]
     this.enemiesCampaign(this.idCampaignPre)
+    this.playerInGame(this.idCampaignActual)
     this.enemyHitPoints(this.idCampaignActual)
 
-    console.log(this.hitPointsEnemy)
-    
-    this.characterService.getCharactersInGame(this.idCampaignActual).subscribe((data:any)=>{
-      this.characterCampaign = data.respuesta;
-      console.log(this.characterCampaign)
-    })
-    
+    console.log('hola')
+        
   }
 
   ngOnInit(): void {
+  }
+
+  playerInGame(idCampaign:string){
+    this.characterService.getCharactersInGame(idCampaign).subscribe((data:any)=>{
+      this.characterCampaign = data.respuesta;
+      console.log(this.characterCampaign)
+    })
   }
 
   enemiesCampaign(idCampignPre:number):any{
