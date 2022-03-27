@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from 'src/app/models/character';
-import { Spell } from 'src/app/models/spell';
 import { CharacterService } from 'src/app/shared/character.service';
 import { PlayersService } from 'src/app/shared/players.service';
 
@@ -18,10 +17,10 @@ export class CharacterComponent implements OnInit {
     this.dataIndex = 0
     characterService.getAll().subscribe((data:Character[])=>{
       let character = data[playerService.player.idCharacter - 1]
-      this.characterService.getSpell(character.idCharacter).subscribe((data:any)=>{
+      this.characterService.getSpell(character.idCharacter).subscribe((data:any)=>{ //<== Introducir hechizos
         console.log(data)
         character.spell = data.resultado
-        this.characterService.getWeapon(character.idCharacter).subscribe((data:any)=>{
+        this.characterService.getWeapon(character.idCharacter).subscribe((data:any)=>{  //<== Introducir equipo
           character.weapon = data.resultado
           console.log(data)
           this.characterService.character = character

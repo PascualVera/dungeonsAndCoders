@@ -39,10 +39,10 @@ export class PerfilComponent implements OnInit {
       '../../../assets/images/avatares/avatar09.png',
       '../../../assets/images/avatares/avatar10.png',
     ];
-    this.userService.getMaster().subscribe((data:any)=>{
+    this.userService.getCampaignMaster().subscribe((data:any)=>{
       this.masterCampaign = data.resultado  
     })
-    this.userService.getPlayer().subscribe((data:any)=>{ 
+    this.userService.getCampaignPlayer().subscribe((data:any)=>{ 
       this.playerCampaign = data.resultado 
     })
   }
@@ -176,14 +176,16 @@ export class PerfilComponent implements OnInit {
     }
 
    getCampaignMaster(game:Campaing){
+     console.log('error')
     this.campaignService.actualCampaign = game
     this.playerService.initPlayers()
     this.playerService.inGamePlayer(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
       this.playerService.master.name = this.userService.user.name
       for(const player of data.resultado){
         this.playerService.players.push({name: player.name, escribiendo: false}) 
-        this.router.navigate(['/master'])
+        
       } 
+      this.router.navigate(['/master'])
     })   
    }
    getCampaignPlayer(game:Campaing){

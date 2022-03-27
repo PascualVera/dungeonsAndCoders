@@ -34,10 +34,10 @@ export class UserService {
    recuperarPass(mail:object){
     return this.http.post(this.url + `/sendMail`, mail)
   }
-  getMaster(){
+  getCampaignMaster(){
     return this.http.get(this.url + '/getMaster?id='+ this.user.idUser)
   }
-  getPlayer(){
+  getCampaignPlayer(){
     return this.http.get(this.url + '/getPlayer?id='+ this.user.idUser )
   }
 }
