@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Campaing } from 'src/app/models/campaing';
 import { User } from 'src/app/models/user';
+import { CampaingService } from 'src/app/shared/campaing.service';
+import { PlayersService } from 'src/app/shared/players.service';
 import { UserService } from 'src/app/shared/user.service';
-
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -9,7 +12,7 @@ import { UserService } from 'src/app/shared/user.service';
 })
 export class PerfilComponent implements OnInit {
   // TODO: Provisional para alternar true false entre elección de detalles y campañas
-  public detalles: boolean = true;
+  public detalles: boolean = false;
   public opcionActiva: number;
   public ultimaOpcionActiva: number;
   public urlAvatar: string;
@@ -17,11 +20,13 @@ export class PerfilComponent implements OnInit {
   public avatarSeleccionado: boolean = false;
   public arrayAvatares: string[];
   public user: User;
-  constructor(public userService: UserService) {
+  public masterCampaign:Campaing[]
+  public playerCampaign:Campaing[]
+  constructor(public userService: UserService, public campaignService:CampaingService,public playerService:PlayersService, private router:Router) {
     this.user = userService.user;
     this.urlAvatar = this.user.urlAvatar;
-    this.opcionActiva = 1;
-    this.ultimaOpcionActiva = 1;
+    this.opcionActiva = 2;
+    this.ultimaOpcionActiva = 2;
     this.arrayAvatares = [
       '../../../assets/images/avatares/avatar01.png',
       '../../../assets/images/avatares/avatar02.png',
@@ -34,6 +39,12 @@ export class PerfilComponent implements OnInit {
       '../../../assets/images/avatares/avatar09.png',
       '../../../assets/images/avatares/avatar10.png',
     ];
+    this.userService.getCampaignMaster().subscribe((data:any)=>{
+      this.masterCampaign = data.resultado  
+    })
+    this.userService.getCampaignPlayer().subscribe((data:any)=>{ 
+      this.playerCampaign = data.resultado 
+    })
   }
 
   ngOnInit(): void {}
@@ -163,4 +174,36 @@ export class PerfilComponent implements OnInit {
         return false
       }
     }
+
+   getCampaignMaster(game:Campaing){
+     console.log('error')
+    this.campaignService.actualCampaign = game
+    
+    this.playerService.inGamePlayer(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
+      this.playerService.master.name = this.userService.user.name
+      for(const player of data.resultado){
+        this.playerService.players.push({name: player.name, escribiendo: false}) 
+        
+      } 
+      this.router.navigate(['/master'])
+    })   
+   }
+   getCampaignPlayer(game:Campaing){
+    
+    this.campaignService.actualCampaign = game
+    this.playerService.inGamePlayer(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
+      for(const player of data.resultado){
+        if(player.name == this.userService.user.name){
+          this.playerService.player = player
+          
+        }
+        this.playerService.players.push({name: player.name, escribiendo: false}) 
+        
+      }
+       this.router.navigate(['/player'])
+    })
+   }
+   
 }
+
+
