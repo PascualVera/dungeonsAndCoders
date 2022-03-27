@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Player } from '../models/player';
 
@@ -6,10 +6,8 @@ import { Player } from '../models/player';
   providedIn: 'root',
 })
 export class PlayersService {
-
   public master: any;
   public system: string;
-
   public players: any[];
   public playerColors: string[];
   private url:string
@@ -18,8 +16,9 @@ export class PlayersService {
     this.master = { name: '', escribiendo: false };
     this.system = '[System]';
 
-     this.url = 'https://dungeons-and-coders-api.herokuapp.com'
+    this.url = 'https://dungeons-and-coders-api.herokuapp.com'
     // this.url = 'http://localhost:4000'
+
     this.players = [];
     this.playerColors = ['#e7623e', '#7f513e', '#2a50a1', '#507f62', '#208820', '#555752'];
   }
@@ -40,8 +39,13 @@ export class PlayersService {
   inGamePlayer(idCampaign:string){
     return this.http.get(this.url + `/player?id=${idCampaign}` )
   }
-  initPlayers(){
-    this.players = [{name:'System' , escribiendo: false}];
 
-  }
+deletePlayer(idUser: number, idCampaign: string){
+  const options = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'}),
+    body: { idUser: idUser, idCampaign: idCampaign},
+  };
+  return this.http.delete(this.url + '/player', options)
+}
+
 }

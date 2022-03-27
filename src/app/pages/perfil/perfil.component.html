@@ -52,32 +52,16 @@
         </div>
         <div class="campaignsCuerpo">
             <table class="tabla">
-                <tr class="filas">
-                    <td class="columna1">Lorem ipsum dolor sit</td>
+                <tr *ngFor="let game of this.masterCampaign" class="filas">
+                    <td class="columna1">{{game.campaignName}}</td>
                     <td class="columna2">Master</td>
-                    <td class="columna3"><button routerLink="/master" class="botonEntrar" type="button">Entrar</button></td>
+                    <td class="columna3"><button (click)="getCampaignMaster(game)"  class="botonEntrar" type="button">Entrar</button></td>
                 </tr>
-                <tr class="filas">
-                    <td class="columna1">Consectetur adipisicing elit</td>
+                <tr *ngFor="let game of this.playerCampaign" class="filas">
+                    <td class="columna1">{{game.campaignName}}</td>
                     <td class="columna2">Player</td>
-                    <td class="columna3"><button routerLink="/player" class="botonEntrar" type="button">Entrar</button></td>
+                    <td class="columna3"><button  (click)="getCampaignPlayer(game)" class="botonEntrar"  type="button">Entrar</button></td>
                 </tr>
-                <tr class="filas">
-                    <td class="columna1">Voluptates aut vero tempore</td>
-                    <td class="columna2">Master</td>
-                    <td class="columna3"><button routerLink="/master" class="botonEntrar" type="button">Entrar</button></td>
-                </tr>
-                <tr class="filas">
-                    <td class="columna1">Alias velit qui dolor</td>
-                    <td class="columna2">Player</td>
-                    <td class="columna3"><button routerLink="/player" class="botonEntrar" type="button">Entrar</button></td>
-                </tr>
-                <tr class="filas">
-                    <td class="columna1">Voluptates aut vero tempore</td>
-                    <td class="columna2">Player</td>
-                    <td class="columna3"><button routerLink="/player" class="botonEntrar" type="button">Entrar</button></td>
-                </tr>
-             
             </table>
         </div>
     </div>

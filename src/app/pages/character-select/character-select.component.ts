@@ -136,8 +136,6 @@ export class CharacterSelectComponent implements OnInit {
     }
   }
   postPlayer(){
-    this.playerService.initPlayers()
-    // this.playerService.players.push({name: this.campaingService.}) Insertar master en el siguiente pull
     this.playerService.player = new Player (this.characterService.character.hitPoint,
                                             this.characterService.character.idCharacter,
                                             this.userService.user.idUser,
@@ -147,6 +145,7 @@ export class CharacterSelectComponent implements OnInit {
     this.playerService.createPlayers(this.playerService.player).subscribe((data)=>{
       console.log(data)
       this.playerService.inGamePlayer(this.campaignService.idCampaign).subscribe((data:any)=>{
+        
         for(const player of data.resultado){
           this.playerService.players.push({name: player.name, escribiendo: false})
         }
