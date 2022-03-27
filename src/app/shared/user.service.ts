@@ -12,13 +12,10 @@ export class UserService {
   public user: User
 
   constructor(private http: HttpClient) { 
-    
     this.logueado = false
     // this.url = 'https://dungeons-and-coders-api.herokuapp.com'
     this.url = 'http://localhost:4000'
-    
     this.user = new User('','','')
-    
   }
    getUsers(){
     return this.http.get(this.url+ `/usuario`)

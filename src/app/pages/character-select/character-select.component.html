@@ -157,8 +157,8 @@
       </button>
     </section>
     <div class="button_container">
-      <button (click)="cancelarReserva()" class="button" routerLink="/campaing">Regresar</button>
-      <button (click)="postPlayer()" #button [ngClass]="button.disabled == true ? 'button_disabled' : 'button'" disabled routerLink="/player">Elegir</button>
+      <button class="button" routerLink="/campaing">Regresar</button>
+      <button (click)="postPlayer()" #button [ngClass]="button.disabled == true ? 'button_disabled' : 'button'" disabled >Elegir</button>
     </div>
   </article>
 </main>

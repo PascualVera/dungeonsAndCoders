@@ -39,9 +39,12 @@ export class PerfilComponent implements OnInit {
       '../../../assets/images/avatares/avatar09.png',
       '../../../assets/images/avatares/avatar10.png',
     ];
+
+    //Cargar partidas de master
     this.userService.getCampaignMaster(this.userService.user.idUser).subscribe((data:any)=>{
       this.masterCampaign = data.resultado
     })
+    //Cargar partidas de player
     this.userService.getCampaignPlayer().subscribe((data:any)=>{ 
       this.playerCampaign = data.resultado 
     }) 
@@ -176,12 +179,14 @@ export class PerfilComponent implements OnInit {
       }
     }
 
-   getCampaignMaster(game:Campaing){
-     
+  //Obtiene los datos de la campaña en juego como master
+   getCampaignMaster(game:Campaing){  
     this.campaignService.actualCampaign = game
     let arrPlayers = []
     this.playerService.inGamePlayer(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
+      //Inicializar master
       this.playerService.master.name = this.userService.user.name
+      //Inicializar players
       for(const player of data.resultado){
         arrPlayers.push({name: player.name, escribiendo: false})  
       } 
@@ -189,13 +194,16 @@ export class PerfilComponent implements OnInit {
       this.router.navigate(['/master'])
     })   
    }
+   //Obtiene los datos de la campaña en juego como player
    getCampaignPlayer(game:any){
     this.campaignService.actualCampaign = game
+    let arrPlayers = []
+    //Inicializar master
     this.userService.getCampaignMaster(this.campaignService.actualCampaign.idMaster).subscribe((data:any)=>{
       console.log(data)
       this.playerService.master.name = data.resultado[0].master
     })
-    let arrPlayers = []
+    //Inicializar players
     this.playerService.inGamePlayer(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
       for(const player of data.resultado){
         if(player.name == this.userService.user.name){
