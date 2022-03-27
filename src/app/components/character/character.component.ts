@@ -15,6 +15,8 @@ export class CharacterComponent implements OnInit {
   public dataIndex:number
   constructor(public characterService: CharacterService, public playerService:PlayersService) {
     this.dataIndex = 0
+    this.characterService.character = new Character();
+    console.log('ajurado', this.characterService.character)
     characterService.getAll().subscribe((data:Character[])=>{
       let character = data[playerService.player.idCharacter - 1]
       this.characterService.getSpell(character.idCharacter).subscribe((data:any)=>{ //<== Introducir hechizos
@@ -26,7 +28,6 @@ export class CharacterComponent implements OnInit {
           this.characterService.character = character
         })
       })
-      console.log(characterService.character)
     })
   }
   showCharacter(){
