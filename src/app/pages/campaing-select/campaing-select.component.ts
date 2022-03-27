@@ -88,6 +88,8 @@ export class CampaingSelectComponent implements OnInit {
         })
       } while (idLibre);
       
+      this.campaignService.idCampaign = idAleatorio; // TODO: quitar tras refactorizar
+
       this.campaignService.actualCampaign.idCampaign = idAleatorio;
       this.campaignService.actualCampaign.campaignName = inputNombre;
       this.campaignService.actualCampaign.idCampaignPre = this.selectedCampaignPre.idCampaignPre;

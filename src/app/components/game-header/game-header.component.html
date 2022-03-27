@@ -66,7 +66,7 @@
       </div>
     </div>
     <div class="modalOpciones">
-      <button routerLink="/perfil" class="botonModal">Abandonar campaña</button>
+      <button routerLink="/perfil" (click)="leaveCampaign()" lass="botonModal">Abandonar campaña</button>
       <button (click)="modal(veloModalAbandonar, false)" class="botonModal">Volver</button>
     </div>
   </div>
