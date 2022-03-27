@@ -14,7 +14,8 @@ export class UserService {
   constructor(private http: HttpClient) { 
     
     this.logueado = false
-    this.url = 'https://dungeons-and-coders-api.herokuapp.com'
+    // this.url = 'https://dungeons-and-coders-api.herokuapp.com'
+    this.url = 'http://localhost:4000'
     
     this.user = new User('','','')
     
@@ -34,8 +35,8 @@ export class UserService {
    recuperarPass(mail:object){
     return this.http.post(this.url + `/sendMail`, mail)
   }
-  getCampaignMaster(){
-    return this.http.get(this.url + '/getMaster?id='+ this.user.idUser)
+  getCampaignMaster(id:any){
+    return this.http.get(this.url + '/getMaster?id='+ id)
   }
   getCampaignPlayer(){
     return this.http.get(this.url + '/getPlayer?id='+ this.user.idUser )

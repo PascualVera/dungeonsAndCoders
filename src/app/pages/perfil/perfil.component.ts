@@ -39,12 +39,13 @@ export class PerfilComponent implements OnInit {
       '../../../assets/images/avatares/avatar09.png',
       '../../../assets/images/avatares/avatar10.png',
     ];
-    this.userService.getCampaignMaster().subscribe((data:any)=>{
-      this.masterCampaign = data.resultado  
+    this.userService.getCampaignMaster(this.userService.user.idUser).subscribe((data:any)=>{
+      this.masterCampaign = data.resultado
     })
     this.userService.getCampaignPlayer().subscribe((data:any)=>{ 
       this.playerCampaign = data.resultado 
-    })
+    }) 
+    this.playerService.players = []
   }
 
   ngOnInit(): void {}
@@ -176,31 +177,34 @@ export class PerfilComponent implements OnInit {
     }
 
    getCampaignMaster(game:Campaing){
-     console.log('error')
+     
     this.campaignService.actualCampaign = game
-    
+    let arrPlayers = []
     this.playerService.inGamePlayer(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
       this.playerService.master.name = this.userService.user.name
       for(const player of data.resultado){
-        this.playerService.players.push({name: player.name, escribiendo: false}) 
-        
+        arrPlayers.push({name: player.name, escribiendo: false})  
       } 
+      this.playerService.players = arrPlayers
       this.router.navigate(['/master'])
     })   
    }
-   getCampaignPlayer(game:Campaing){
-    
+   getCampaignPlayer(game:any){
     this.campaignService.actualCampaign = game
+    this.userService.getCampaignMaster(this.campaignService.actualCampaign.idMaster).subscribe((data:any)=>{
+      console.log(data)
+      this.playerService.master.name = data.resultado[0].master
+    })
+    let arrPlayers = []
     this.playerService.inGamePlayer(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
       for(const player of data.resultado){
         if(player.name == this.userService.user.name){
-          this.playerService.player = player
-          
+          this.playerService.player = player 
         }
-        this.playerService.players.push({name: player.name, escribiendo: false}) 
-        
+        arrPlayers.push({name: player.name, escribiendo: false}) 
       }
-       this.router.navigate(['/player'])
+      this.playerService.players = arrPlayers
+      this.router.navigate(['/player'])
     })
    }
    

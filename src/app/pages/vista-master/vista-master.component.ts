@@ -29,9 +29,7 @@ export class VistaMasterComponent implements OnInit {
   public idCampaignPre: number;
   public idCampaignActual: string;
   constructor(public campaingService:CampaingService, public characterService:CharacterService, public masterEnemies: MasterService) { 
-    
     this.idCampaignPre = this.campaingService.actualCampaign.idCampaignPre
-
     this.enemiesCampaign(2)
     // this.characterPlaying('asdfg123')
     this.characterService.getCharactersInGame('asdfg123').subscribe((data:any)=>{
