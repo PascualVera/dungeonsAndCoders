@@ -27,6 +27,12 @@ export class VistaPlayerComponent implements OnInit {
     .subscribe((resp: any) => {
       this.playersService.master.name = resp.resultado[0].name
     })
+    if(this.redirect()!=null){
+      router.navigate(['/perfil'])
+    }
+  }
+  redirect(){
+   return sessionStorage.getItem('user')
   }
 
   ngOnInit(): void {

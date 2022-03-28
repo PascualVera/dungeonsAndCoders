@@ -22,7 +22,6 @@ export class PlayersService {
     this.players = [];
     this.playerColors = ['#e7623e', '#7f513e', '#2a50a1', '#507f62', '#208820', '#555752'];
   }
-
   setEscribiendo(player: string, estado: boolean) {
     if (player == this.master.name) {
       this.master.escribiendo = estado;
