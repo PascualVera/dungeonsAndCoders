@@ -183,36 +183,20 @@ export class PerfilComponent implements OnInit {
   //Obtiene los datos de la campaña en juego como master
    getCampaignMaster(game:Campaing){  
     this.campaignService.actualCampaign = game
-    let arrPlayers = []
-    this.playerService.inGamePlayer(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
-      //Inicializar master
-      this.playerService.master.name = this.userService.user.name
-      //Inicializar players
-      for(const player of data.resultado){
-        arrPlayers.push({name: player.name, escribiendo: false})  
-      } 
-      this.playerService.players = arrPlayers
       this.router.navigate(['/master'])
-    })   
+
    }
    //Obtiene los datos de la campaña en juego como player
    getCampaignPlayer(game:any){
     this.campaignService.actualCampaign = game
-    let arrPlayers = []
-    //Inicializar master
-    this.userService.getCampaignMaster(this.campaignService.actualCampaign.idMaster).subscribe((data:any)=>{
-      console.log(data)
-      this.playerService.master.name = data.resultado[0].master
-    })
     //Inicializar players
     this.playerService.inGamePlayer(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
       for(const player of data.resultado){
         if(player.name == this.userService.user.name){
           this.playerService.player = player 
         }
-        arrPlayers.push({name: player.name, escribiendo: false}) 
       }
-      this.playerService.players = arrPlayers
+      
       this.router.navigate(['/player'])
     })
    }
