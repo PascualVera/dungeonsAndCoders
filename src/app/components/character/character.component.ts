@@ -13,9 +13,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./character.component.css'],
 })
 export class CharacterComponent implements OnInit, OnDestroy {
-
   private escuchaHitPoints: Subscription;
-
   public character: Character;
   public lifePoints: number;
   public characters: Character[]
