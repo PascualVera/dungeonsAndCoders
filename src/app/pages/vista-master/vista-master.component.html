@@ -6,8 +6,8 @@
                 <p>{{campaignTitle}}</p>
             </header>
             <div class="campain">
-                <iframe  id="guia" src='../../../assets/images/avatares/avatar00.png' type="application/pdf" width="100%" height="100%" ></iframe> En proceso
-                <!-- <embed src="{{masterManual}}" type="application/pdf" width="100%" height="600px" /> -->
+                <iframe  id="guia" [src]="masterManual | safe" type="application/pdf"></iframe> 
+                <!-- <embed [src]="masterManual | safe" type="application/pdf"  /> -->
                 <!-- <iframe [src]="masterManual | safe"  type="application/pdf" width="100%" height="100%" ></iframe> -->
             </div>
             <div>
@@ -163,8 +163,12 @@
 <!-- Modal personajes -->
 
 
+
 <div #modalHero class="veloModal">
-    <div *ngIf="characterCampaign">
+    <div *ngIf="characterCampaign.length <= 0; else modalPersonajes">
+        <div>No hay Jugadores</div>
+    </div>
+    <ng-template #modalPersonajes>
         <div class="enemyInfo">
             <div class="left">
                 <div class="nombre">
@@ -218,7 +222,7 @@
                                 <option value="4">Inteligencia: {{characterCampaign[index2].inteligenceST}}</option> 
                                 <option value="5">Sabiduria: {{characterCampaign[index2].wisdomST}}</option> 
                                 <option value="6">Carisma: {{characterCampaign[index2].charismaST}}</option> 
-                             </select>
+                                </select>
                         </li>
                         <li><b>Habilidades: </b>
                             <select name="habilidades"  style="width: 9vw;">
@@ -241,7 +245,7 @@
                                 <option value="16">Sigilo: {{characterCampaign[index2].stealth}} (Des)</option> 
                                 <option value="17">Supervivencia: {{characterCampaign[index2].survival}} (Sab)</option> 
                                 <option value="18">T. con Animales: {{characterCampaign[index2].animalHandling}} (Sab)</option> 
-                             </select> 
+                                </select> 
                         </li>
                         <li><b>Idiomas: </b> {{characterCampaign[index2].language}}</li>
                     </ul>
@@ -280,5 +284,5 @@
                 <button class="cerrarModal" type="button" (click)="modalPersonaje(modalHero, false)">Cerrar</button>
             </div>
         </div>
-    </div>
+    </ng-template>
 </div>

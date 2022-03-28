@@ -51,7 +51,7 @@ export class VistaMasterComponent implements OnInit {
     this.playerInGame(this.idCampaignActual)
     this.playerHitPoints(this.idCampaignActual)
     this.enemyHitPoints(this.idCampaignActual)
-    this.masterManual(this.idCampaignActual)
+    
     this.playersService.players = [0];
     this.playersService.master.name = '';
     this.playersService.inGamePlayer(this.campaingService.actualCampaign.idCampaign)
@@ -90,6 +90,7 @@ export class VistaMasterComponent implements OnInit {
     this.characterService.getCharactersInGame(idCampaign).subscribe((data:any)=>{
       this.characterCampaign = data.respuesta;
     })
+    this.masterManual(this.idCampaignActual)
   }
 
   enemiesCampaign(idCampignPre:number):any{
