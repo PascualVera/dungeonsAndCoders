@@ -216,7 +216,9 @@ export class PerfilComponent implements OnInit {
       this.router.navigate(['/player'])
     })
    }
-   
+   logOut(){
+     sessionStorage.clear()
+   }
 }
 
 
