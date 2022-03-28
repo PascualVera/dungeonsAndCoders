@@ -42,6 +42,7 @@ export class PerfilComponent implements OnInit {
 
     //Cargar partidas de master
     this.userService.getCampaignMaster(this.userService.user.idUser).subscribe((data:any)=>{
+      console.log(data)
       this.masterCampaign = data.resultado
     })
     //Cargar partidas de player
