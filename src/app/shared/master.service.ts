@@ -11,7 +11,8 @@ export class MasterService {
   public characterPlayer: any [];
 
   constructor(private http: HttpClient) { 
-    this.url = 'https://dungeons-and-coders-api.herokuapp.com';
+    // this.url = 'https://dungeons-and-coders-api.herokuapp.com';
+    this.url = 'http://localhost:4000'
     this.hitPoints= [{idEnemy: 0,idPlayer: 0, name: '', character: '', hitPoints: 0}];
     this.characterPlayer = [{nameCharacter: '', namePlayer: ''}]
   }
@@ -51,12 +52,10 @@ export class MasterService {
   }
 
   putPlayerHitPoints(hP:number, idPl:number, idCam:string){
-    const options = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'}),
-      body: { hitPoints: hP,
-              idEnemy: idPl,
-              idCampaign: idCam},
-    };
+    const options = { hitPoints: hP,
+                     idPlayer: idPl,
+                      idCampaign: idCam}
+    
     return this.http.put(this.url+"/vistaMaster/player", options)
   }
 }

@@ -87,7 +87,7 @@ damageCalc(lifePoints:number){
   {
     this.master.putPlayerHitPoints(this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idPlayer, this.master.hitPoints[this.indexCalc].idCampaign)
     .subscribe((data:any) =>{
-      console.log('Player Updated', data.respuesta)
+      console.log('Player Updated', data)
     })
   }
 }

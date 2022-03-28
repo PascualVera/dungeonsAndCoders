@@ -39,12 +39,12 @@ export class PlayersService {
     return this.http.get(this.url + `/player?id=${idCampaign}` )
   }
 
-deletePlayer(idUser: number, idCampaign: string){
-  const options = {
+  deletePlayer(idUser: number, idCampaign: string){
+   const options = {
     headers: new HttpHeaders({'Content-Type': 'application/json'}),
     body: { idUser: idUser, idCampaign: idCampaign},
-  };
-  return this.http.delete(this.url + '/player', options)
-}
+   };
+   return this.http.delete(this.url + '/player', options)
+  }
 
 }
