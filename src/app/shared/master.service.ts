@@ -54,7 +54,7 @@ export class MasterService {
     const options = {
       headers: new HttpHeaders({'Content-Type': 'application/json'}),
       body: { hitPoints: hP,
-              idEnemy: idPl,
+              idPlayer: idPl,
               idCampaign: idCam},
     };
     return this.http.put(this.url+"/vistaMaster/player", options)
