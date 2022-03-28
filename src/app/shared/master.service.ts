@@ -40,23 +40,21 @@ export class MasterService {
     return this.http.get(this.url+'/vistaMaster?id='+idCampaign)
   }
 
-  putEnemyHitPoints(hP:number, idEn:number, idCam:string){
+  putEnemyHitPoints(hP:number, idEn:number){
     const options = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'}),
-      body: { hitPoints: hP,
-              idEnemy: idEn,
-              idCampaign: idCam},
-    };
+                      hitPoints: hP,
+                      idEnemy: idEn
+                      };
+    console.log(options)
     return this.http.put(this.url+"/vistaMaster/enemy", options)
   }
 
-  putPlayerHitPoints(hP:number, idPl:number, idCam:string){
+  putPlayerHitPoints(hP:number, idPl:number){
     const options = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'}),
-      body: { hitPoints: hP,
-              idPlayer: idPl,
-              idCampaign: idCam},
-    };
+                    hitPoints: hP,
+                    idPlayer: idPl
+                    };
+    console.log(options)
     return this.http.put(this.url+"/vistaMaster/player", options)
   }
 }
