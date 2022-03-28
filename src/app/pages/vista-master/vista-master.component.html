@@ -6,7 +6,7 @@
                 <p>{{campaignTitle}}</p>
             </header>
             <div class="campain">
-                <iframe  id="guia" [src]="masterManual | safe" type="application/pdf"></iframe> 
+                <iframe  id="guia" [src]="manualMaster | safe" type="application/pdf"></iframe> 
                 <!-- <embed [src]="masterManual | safe" type="application/pdf"  /> -->
                 <!-- <iframe [src]="masterManual | safe"  type="application/pdf" width="100%" height="100%" ></iframe> -->
             </div>
@@ -50,16 +50,16 @@
                 <div class="inferiror">
                     <div class="valor">
                         <div>
-                            <input type="text" value="{{master.hitPoints[indexCalc].hitPoints}}" disabled="true">
+                            <input #lifePoints type="number"  value="{{master.hitPoints[indexCalc].hitPoints}}" disabled="true">
                         </div>
-                        <button class="fantasy">
+                        <button (click)="damageCalc(lp.nativeElement.value)">
                             Dañar
                         </button>
-                        <button>
+                        <button (click)="healingCalc()">
                             Sanar
                         </button>
                         <div>
-                            <input type="text">
+                            <input #lifeMod type="number" >
                         </div>
                     </div>
                 </div>
@@ -166,7 +166,16 @@
 
 <div #modalHero class="veloModal">
     <div *ngIf="characterCampaign.length <= 0; else modalPersonajes">
-        <div>No hay Jugadores</div>
+        <div class="enemyInfo">
+            <div class="left">
+                <div class="nombre">
+                    <label><b>No hay Jugadores apuntados</b></label> 
+                </div>
+            </div>
+            <div class="right">
+                <button class="cerrarModal" type="button" (click)="modalPersonaje(modalHero, false)">Cerrar</button>
+            </div>
+        </div>
     </div>
     <ng-template #modalPersonajes>
         <div class="enemyInfo">
@@ -181,7 +190,7 @@
                         <li><b>Velocidad: </b> {{characterCampaign[index2].speed}}</li>
                         <li><b>Dados de Golpe: </b> {{characterCampaign[index2].hitDice}}</li>
                         <li><b>Puntos de golpe máximos: </b> {{characterCampaign[index2].hitPoint}}</li>
-                        <li><b>Puntos de golpe actuales: </b> 9</li>
+                        <li><b>Puntos de golpe actuales: </b> {{master.hitPoints[index2].hitPoints}}</li>
                     </ul>
                 </div>
                 <div class="atributos">

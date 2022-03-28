@@ -29,6 +29,7 @@ export class VistaMasterComponent implements OnInit {
   @ViewChild('enemy') enemy: ElementRef;
   @ViewChild('player') player: ElementRef;
   @ViewChild('calc') calc: ElementRef;
+  @ViewChild('lifeMod') lp : ElementRef;
   public index: number = 0;
   public index2: number = 0;
   public indexCalc: number = 0;
@@ -51,14 +52,14 @@ export class VistaMasterComponent implements OnInit {
     this.playerInGame(this.idCampaignActual)
     this.playerHitPoints(this.idCampaignActual)
     this.enemyHitPoints(this.idCampaignActual)
-    
+    this.masterManual(this.idCampaignActual)
     this.playersService.players = [0];
     this.playersService.master.name = '';
     this.playersService.inGamePlayer(this.campaingService.actualCampaign.idCampaign)
     .subscribe((resp: any) => {
       this.playersService.players = [];
       resp.resultado.forEach((item: any) => {
-        this.playersService.players.push({ name: item.name, escribiendo: false, playing: false})
+        this.playersService.players.push({ name: item.name, escribiendo: false, playing:false})
       })
     })
     this.campaingService.getCampaignById(this.campaingService.actualCampaign.idCampaign)
@@ -71,6 +72,43 @@ export class VistaMasterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+//Calculadora Dañar y Sanar
+
+damageCalc(lifePoints:number){
+  this.master.hitPoints[this.indexCalc].hitPoints = this.master.hitPoints[this.indexCalc].hitPoints - lifePoints;
+  if(this.master.hitPoints[this.indexCalc].idEnemy > 0)
+  {
+    this.master.putEnemyHitPoints(this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idEnemy, this.master.hitPoints[this.indexCalc].idCampaign)
+    .subscribe((data: any) => {
+      console.log('Enemy Updated',data.respuesta)
+    })
+  }
+  else
+  {
+    this.master.putPlayerHitPoints(this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idPlayer, this.master.hitPoints[this.indexCalc].idCampaign)
+    .subscribe((data:any) =>{
+      console.log('Player Updated', data.respuesta)
+    })
+  }
+}
+
+healingCalc(){
+  this.master.hitPoints[this.indexCalc].hitPoints= Number(this.master.hitPoints[this.indexCalc].hitPoints) + Number(this.lp.nativeElement.value);
+  if(this.master.hitPoints[this.indexCalc].idEnemy > 0)
+  {
+    this.master.putEnemyHitPoints(this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idEnemy, this.master.hitPoints[this.indexCalc].idCampaign)
+    .subscribe((data: any) => {
+      console.log('Enemy Updated',data.respuesta)
+    })
+  }
+  else
+  {
+    this.master.putPlayerHitPoints(this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idPlayer, this.master.hitPoints[this.indexCalc].idCampaign)
+    .subscribe((data:any) =>{
+      console.log('Player Updated', data.respuesta)
+    })
+  }
+}
 ///Master Manual
   masterManual(idCampaign:string){
     this.master.getManual(idCampaign).subscribe((data:any) =>{
@@ -90,7 +128,7 @@ export class VistaMasterComponent implements OnInit {
     this.characterService.getCharactersInGame(idCampaign).subscribe((data:any)=>{
       this.characterCampaign = data.respuesta;
     })
-    this.masterManual(this.idCampaignActual)
+    
   }
 
   enemiesCampaign(idCampignPre:number):any{

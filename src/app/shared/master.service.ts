@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +38,25 @@ export class MasterService {
 
   getManual(idCampaign:string){
     return this.http.get(this.url+'/vistaMaster?id='+idCampaign)
+  }
+
+  putEnemyHitPoints(hP:number, idEn:number, idCam:string){
+    const options = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'}),
+      body: { hitPoints: hP,
+              idEnemy: idEn,
+              idCampaign: idCam},
+    };
+    return this.http.put(this.url+"/vistaMaster/enemy", options)
+  }
+
+  putPlayerHitPoints(hP:number, idPl:number, idCam:string){
+    const options = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'}),
+      body: { hitPoints: hP,
+              idEnemy: idPl,
+              idCampaign: idCam},
+    };
+    return this.http.put(this.url+"/vistaMaster/player", options)
   }
 }
