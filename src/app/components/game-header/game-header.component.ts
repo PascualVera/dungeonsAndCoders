@@ -71,6 +71,13 @@ export class GameHeaderComponent implements OnInit {
   }
 
   leaveCampaign() {
+    let masmenosPlayer = {
+      campaignCode: this.campaignService.actualCampaign.idCampaign,
+      player: this.userService.user.name,
+      viene: false
+    }
+    this.wss.emite('send-masmenosplayer', masmenosPlayer);
+
     this.campaignService.getCampaignById(this.campaignService.actualCampaign.idCampaign)
       .subscribe((resp: any) => {
         if (resp.ok) {

@@ -7,6 +7,7 @@ import { CampaingService } from 'src/app/shared/campaing.service';
 import { CharacterService } from 'src/app/shared/character.service';
 import { PlayersService } from 'src/app/shared/players.service';
 import { UserService } from 'src/app/shared/user.service';
+import { WebSocketService } from '../../shared/web-socket.service';
 
 @Component({
   selector: 'app-character-select',
@@ -18,6 +19,7 @@ export class CharacterSelectComponent implements OnInit {
   public characters: Character[];
   
   constructor(public characterService: CharacterService,
+    private wss: WebSocketService,
     public playerService:PlayersService,
     public userService: UserService,
     public campaignService:CampaingService,
@@ -40,6 +42,13 @@ export class CharacterSelectComponent implements OnInit {
     });
   }
   postPlayer(){
+    let masmenosPlayer = {
+      campaignCode: this.campaignService.actualCampaign.idCampaign,
+      player: this.userService.user.name,
+      viene: true
+    }
+    this.wss.emite('send-masmenosplayer', masmenosPlayer);
+    
     this.playerService.player = new Player (this.characterService.character.hitPoint,
                                             this.characterService.character.idCharacter,
                                             this.userService.user.idUser,

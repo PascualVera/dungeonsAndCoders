@@ -23,6 +23,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   private escuchaPlaying: Subscription;
   private escuchaMessage: Subscription;
   private escuchaEscribiendo: Subscription;
+  private escuchaMasmenosplayer: Subscription;
  
   constructor(public ps: PlayersService,
               public us: UserService,
@@ -63,6 +64,21 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.ps.setEscribiendo(player, estado);
       }
     });
+    this.escuchaMasmenosplayer = this.wss.escucha('new-masmenosplayer').subscribe((data: any) => {
+      const { campaignCode, player, viene } = data;
+      if (campaignCode == this.cs.actualCampaign.idCampaign) {
+        if (viene) {
+          this.ps.players.push({name: player, escribiendo: false, playing: true});
+          this.cs.actualCampaign.numPlayer++
+        } else {
+          let indice = this.ps.players.findIndex(item => item.name == player)
+          if (indice >= 0) {
+            this.ps.players.splice(indice, 1);
+            this.cs.actualCampaign.numPlayer--
+          }
+        }
+      }
+    });
     this.escuchaPlaying = this.wss.escucha('new-playing').subscribe((data: any) => {
       const { campaignCode, name } = data;
       if (campaignCode == this.cs.actualCampaign.idCampaign) {
@@ -87,7 +103,9 @@ export class ChatComponent implements OnInit, OnDestroy {
             }
             this.delayPlayingPlayer[indice] = setTimeout(() => {
               let i = indice;
-              this.ps.players[i].playing = false;
+              if (this.ps.players[i]) {
+                this.ps.players[i].playing = false;
+              }
             }, 1100);
           }
         }
@@ -102,6 +120,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.escuchaPlaying.unsubscribe();
     this.escuchaMessage.unsubscribe();
     this.escuchaEscribiendo.unsubscribe();
+    this.escuchaMasmenosplayer.unsubscribe();
     clearTimeout(this.delayPlayingMaster);
     this.delayPlayingPlayer.forEach((delay, indice) => {
       if (delay) {
