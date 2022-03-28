@@ -43,7 +43,6 @@ export class CharacterComponent implements OnInit {
     this.dataIndex = 3
   }
   hit(lifeBar: any) {
-    this.lifePoints--;
     let lifePoints = this.lifePoints;
     let total = this.character.hitPoint;
     let modificador = (100 * lifePoints) / total;

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from './models/user';
 import { UserService } from './shared/user.service';
 
@@ -9,8 +10,11 @@ import { UserService } from './shared/user.service';
 })
 export class AppComponent {
   title = 'dungeonsAndCoder';
-  constructor(public userService:UserService){
+  constructor(public userService:UserService,private router:Router){
     this.userService.user = JSON.parse(this.getUser())
+    if(this.getUser() == null){
+      router.navigate([''])
+    }
   }
   getUser(){
     return sessionStorage.getItem('user') 
