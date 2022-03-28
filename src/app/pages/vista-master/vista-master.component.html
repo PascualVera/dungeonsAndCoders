@@ -52,10 +52,14 @@
                         <div>
                             <input #lifePoints type="number"  value="{{master.hitPoints[indexCalc].hitPoints}}" disabled="true">
                         </div>
-                        <button (click)="damageCalc(lp.nativeElement.value)">
+                        <button [ngClass]="(campaingService.actualCampaign.closed == 1) ? 'valorButton' : 'valorButtonDisable'" 
+                                (click)="damageCalc(lp.nativeElement.value)"
+                                [disabled]="campaingService.actualCampaign.closed == 0">
                             Dañar
                         </button>
-                        <button (click)="healingCalc()">
+                        <button [ngClass]="(campaingService.actualCampaign.closed == 1) ? 'valorButton' : 'valorButtonDisable'"
+                                (click)="healingCalc()"
+                                [disabled]="campaingService.actualCampaign.closed == 0">
                             Sanar
                         </button>
                         <div>

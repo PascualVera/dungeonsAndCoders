@@ -104,9 +104,9 @@ export class CampaingSelectComponent implements OnInit {
       this.playersService.master.name = this.userService.user.name;
 
       this.campaignService.postCampaign(this.campaignService.actualCampaign)
-      .subscribe(() => {})
-
-      this.router.navigate(['/master'])
+      .subscribe(() => {
+        this.router.navigate(['/master'])
+      })
     }
   }
 }

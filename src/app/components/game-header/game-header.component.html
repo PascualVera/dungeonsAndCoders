@@ -13,11 +13,8 @@
   </div>
   <div class="navbar_contenedor">
     <ng-container *ngIf="this.router.url == '/master'">
-      <div *ngIf="!campaignService.actualCampaign.closed; else pausar" (click)="startCampaign(veloModalMinimo)"
-        class="pausar">Iniciar</div>
-      <ng-template #pausar>
-        <div routerLink="/perfil" class="pausar">Pausar</div>
-      </ng-template>
+      <div *ngIf="!campaignService.actualCampaign.closed" (click)="startCampaign(veloModalMinimo)" class="pausar">Iniciar</div>
+      <div routerLink="/perfil" class="pausar">Salir</div>
       <div (click)="modal(veloModalFinalizar, true)" class="opcion">Finalizar</div>
     </ng-container>
     <div *ngIf="this.router.url == '/player'" routerLink="/perfil" class="opcion">Salir</div>
@@ -82,7 +79,9 @@
       <div class="texto">
         <span>¡ Advertencia !</span>
         <p>
-          Actualmente hay <b>{{campaignService.actualCampaign.numPlayer}}</b> jugador/es apuntado/s y el mínimo para esta campaña es de <b>{{campaignService.actualCampaign.playerMin}}</b> jugadores. No puede iniciar la campaña hasta que se cumpla el mínimo de jugadores exigido.
+          Actualmente hay <b>{{campaignService.actualCampaign.numPlayer}}</b> jugador/es apuntado/s y el mínimo para
+          esta campaña es de <b>{{campaignService.actualCampaign.playerMin}}</b> jugadores. No puede iniciar la campaña
+          hasta que se cumpla el mínimo de jugadores exigido.
         </p>
       </div>
     </div>

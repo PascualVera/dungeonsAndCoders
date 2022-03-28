@@ -192,7 +192,7 @@
     text-align: center;
 }
 
-.valor button {
+.valorButton {
     cursor: pointer;
     text-align: center;
     width: auto;
@@ -208,7 +208,24 @@
     box-shadow: 0 0 10px rgb(0, 0, 0);
 }
 
-.valor button:hover{
+.valorButtonDisable {
+    cursor: pointer;
+    text-align: center;
+    width: auto;
+    height: 1.5rem;
+    font-size: 1rem;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+    color: var(--textMain);
+    background-color: var(--redmain);
+    border-radius: 0.8vh;
+    border-style: none;
+    -webkit-text-stroke: 0.05rem black;
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+    opacity: .7;
+}
+
+.valorButton:hover{
     box-shadow: 0 0 10px lightyellow;
 }
 
