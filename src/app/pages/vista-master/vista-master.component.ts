@@ -58,7 +58,7 @@ export class VistaMasterComponent implements OnInit {
     .subscribe((resp: any) => {
       this.playersService.players = [];
       resp.resultado.forEach((item: any) => {
-        this.playersService.players.push({ name: item.name, escribiendo: false})
+        this.playersService.players.push({ name: item.name, escribiendo: false, playing: false})
       })
     })
     this.campaingService.getCampaignById(this.campaingService.actualCampaign.idCampaign)
