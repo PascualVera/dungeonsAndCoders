@@ -26,6 +26,7 @@ export class CharacterComponent implements OnInit, OnDestroy {
               private userService: UserService,
               private wss: WebSocketService,
               private campaignService: CampaingService) {
+    
     this.dataIndex = 0
     this.characterService.character = new Character();
     console.log('ajurado', this.characterService.character)
@@ -38,6 +39,7 @@ export class CharacterComponent implements OnInit, OnDestroy {
           character.weapon = data.resultado
           console.log(data)
           this.characterService.character = character
+          this.hit()
         })
       })
     })
