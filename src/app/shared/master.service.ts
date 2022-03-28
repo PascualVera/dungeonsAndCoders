@@ -11,8 +11,8 @@ export class MasterService {
   public characterPlayer: any [];
 
   constructor(private http: HttpClient) { 
-    // this.url = 'https://dungeons-and-coders-api.herokuapp.com';
-    this.url = 'http://localhost:4000'
+    this.url = 'https://dungeons-and-coders-api.herokuapp.com';
+     
     this.hitPoints= [{idEnemy: 0,idPlayer: 0, name: '', character: '', hitPoints: 0}];
     this.characterPlayer = [{nameCharacter: '', namePlayer: ''}]
   }
