@@ -28,6 +28,7 @@ import { TransformAttPipe } from './pipes/transform-att.pipe';
 import { SpellAtacksComponent } from './components/spell-atacks/spell-atacks.component';
 import { HabilidadesComponent } from './components/habilidades/habilidades.component';
 import { EquipoComponent } from './components/equipo/equipo.component';
+import { SafePipe } from './pipes/safe.pipe';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -53,7 +54,9 @@ registerLocaleData(localeEs, 'es');
     TransformAttPipe,
     SpellAtacksComponent,
     HabilidadesComponent,
-    EquipoComponent
+    EquipoComponent,
+    SafePipe,
+    
   ],
   imports: [
     BrowserModule,

@@ -3,10 +3,12 @@
     <div class="contenedor" >
         <div style="height: 100%; width: 35%;">
             <header class="titulo">
-                <p>Titulo</p>
+                <p>{{campaignTitle}}</p>
             </header>
             <div class="campain">
-                <iframe id="guia" src="" scrolling="no"  frameborder="0"></iframe> <!-- En proceso -->
+                <iframe  id="guia" src='../../../assets/images/avatares/avatar00.png' type="application/pdf" width="100%" height="100%" ></iframe> En proceso
+                <!-- <embed src="{{masterManual}}" type="application/pdf" width="100%" height="600px" /> -->
+                <!-- <iframe [src]="masterManual | safe"  type="application/pdf" width="100%" height="100%" ></iframe> -->
             </div>
             <div>
                 <section class="fichas">
@@ -19,7 +21,7 @@
                     <section class="heroes" >
                         <label type="button" (click)="modalPersonaje(modalHero, true)"  >Personajes: </label>
                         <select #player name="personajes"> <!--Desplegable con los jugadores *-->
-                            <option *ngFor="let player of master.characterPlayer; let j = index" [value]="j">{{player.nameCharacter}} <small>{{player.namePlayer}}</small> </option> 
+                            <option *ngFor="let player of master.characterPlayer; let j = index" [value]="j">{{player.nameCharacter}} - <small>{{player.namePlayer}}</small> </option> 
                          </select>
                     </section>
                 </section>
@@ -28,7 +30,7 @@
                 <div class="superior">
                     <section class="defensor">
                         <label style="width: 5vw;">Defensor: &nbsp;</label>
-                        <select #calc name="personajes"  style="width: 11vw;">
+                        <select #calc (click)="select()" name="personajes"  style="width: 11vw;">
                             <option *ngFor="let hp of master.hitPoints; let i = index" [value]="i">{{hp.name}} ({{hp.hitPoints}})</option>
                          </select>
                     </section>
@@ -39,7 +41,7 @@
                         <label style="width: 5vw;">Atacante: &nbsp;</label>
                         <select  name="personajes"  style="width: 11vw;">
                             <option disabled >Personajes</option>
-                            <option *ngFor="let player of hitPointsPlayer; let i = index" [value]="i">{{player.idCharacter}} ({{player.hitPoints}})</option>
+                            <option *ngFor="let player of master.characterPlayer; let i = index" [value]="i">{{player.nameCharacter}} ({{player.hitPoints}})</option>
                             <option disabled>Enemigos</option>
                             <option #calc *ngFor="let enemigo of hitPointsEnemy; let i = index" [value]="i">{{enemigo.name}} ({{enemigo.hitPoints}})</option>
                          </select>
@@ -48,10 +50,13 @@
                 <div class="inferiror">
                     <div class="valor">
                         <div>
-                            <input type="text" value="{{master.hitPoints[0].hitPoints}}" disabled="true">
+                            <input type="text" value="{{master.hitPoints[indexCalc].hitPoints}}" disabled="true">
                         </div>
                         <button class="fantasy">
-                            Calcular
+                            Dañar
+                        </button>
+                        <button>
+                            Sanar
                         </button>
                         <div>
                             <input type="text">
@@ -74,7 +79,7 @@
 </div>
 
 <!-- Modal enemigos -->
-<div #modalEnemy class="veloModal">
+<div #modalEnemy class="veloModal" >
     <div class="enemyInfo">
         <div class="left">
             <div class="nombre">
@@ -157,120 +162,123 @@
 
 <!-- Modal personajes -->
 
+
 <div #modalHero class="veloModal">
-    <div class="enemyInfo">
-        <div class="left">
-            <div class="nombre">
-                <label><b>{{characterCampaign[index2].name}} </b> <span>({{characterCampaign[index2].class}})</span></label> 
+    <div *ngIf="characterCampaign">
+        <div class="enemyInfo">
+            <div class="left">
+                <div class="nombre">
+                    <label><b>{{characterCampaign[index2].name}} </b> <span>({{characterCampaign[index2].class}})</span></label> 
+                </div>
+                <div class="info">
+                    <ul>
+                        <li><b>Clase de armadura: </b> {{characterCampaign[index2].armor}}</li>
+                        <li><b>Iniciativa: </b> {{characterCampaign[index2].initiative}}</li>
+                        <li><b>Velocidad: </b> {{characterCampaign[index2].speed}}</li>
+                        <li><b>Dados de Golpe: </b> {{characterCampaign[index2].hitDice}}</li>
+                        <li><b>Puntos de golpe máximos: </b> {{characterCampaign[index2].hitPoint}}</li>
+                        <li><b>Puntos de golpe actuales: </b> 9</li>
+                    </ul>
+                </div>
+                <div class="atributos">
+                    <div>
+                        <section>FUE:</section>
+                        <section> {{characterCampaign[index2].strength}} ({{characterCampaign[index2].strengthMod}})</section>
+                    </div>
+                    <div>
+                        <section>DES:</section>
+                        <section> {{characterCampaign[index2].dexterity}} ({{characterCampaign[index2].dexterityMod}})</section>
+                    </div>
+                    <div>
+                        <section>CON:</section>
+                        <section> {{characterCampaign[index2].constitution}} ({{characterCampaign[index2].constitutionMod}})</section>
+                    </div>
+                    <div>
+                        <section>INT:</section>
+                        <section> {{characterCampaign[index2].inteligence}} ({{characterCampaign[index2].inteligenceMod}})</section>
+                    </div>
+                    <div>
+                        <section>SAB:</section>
+                        <section> {{characterCampaign[index2].wisdom}} ({{characterCampaign[index2].wisdomMod}})</section>
+                    </div>
+                    <div>
+                        <section>CAR:</section>
+                        <section> {{characterCampaign[index2].charisma}} ({{characterCampaign[index2].charismaMod}})</section>
+                    </div>
+                </div>
+                <div class="habilidades">
+                    <ul>
+                        <li>
+                            <b>Tiradas de salvacion: </b>
+                            <select name="tSalvacion"  style="width: 9vw;">
+                                <option value="0">Tiradas</option>
+                                <option value="1">Fuerza: {{characterCampaign[index2].strengthST}}</option> 
+                                <option value="2">Destreza: {{characterCampaign[index2].dexterityST}}</option> 
+                                <option value="3">Constitución: {{characterCampaign[index2].constitutionST}}</option>
+                                <option value="4">Inteligencia: {{characterCampaign[index2].inteligenceST}}</option> 
+                                <option value="5">Sabiduria: {{characterCampaign[index2].wisdomST}}</option> 
+                                <option value="6">Carisma: {{characterCampaign[index2].charismaST}}</option> 
+                             </select>
+                        </li>
+                        <li><b>Habilidades: </b>
+                            <select name="habilidades"  style="width: 9vw;">
+                                <option value="0">Habilidades</option>
+                                <option value="1">Acrobacias: {{characterCampaign[index2].acrobatic}} (Des)</option> 
+                                <option value="2">Atletismo: {{characterCampaign[index2].athletics}} (Fue)</option> 
+                                <option value="3">C. Arcano: {{characterCampaign[index2].arcana}} (Int)</option>
+                                <option value="4">Engaño: {{characterCampaign[index2].deception}} (Car)</option> 
+                                <option value="5">Historia: {{characterCampaign[index2].history}} (Int)</option> 
+                                <option value="6">Interpretacion: {{characterCampaign[index2].performance}} (Car)</option>
+                                <option value="7">Intimidación: {{characterCampaign[index2].intimidation}} (Car)</option>  
+                                <option value="8">Investigación: {{characterCampaign[index2].investigation}}(Int)</option> 
+                                <option value="9">Juego de Manos: {{characterCampaign[index2].sleightOfHand}} (Des)</option> 
+                                <option value="10">Medicina: {{characterCampaign[index2].medicine}} (Sab)</option> 
+                                <option value="11">Naturaleza: {{characterCampaign[index2].nature}} (Int)</option>
+                                <option value="12">Percepción: {{characterCampaign[index2].persuasion}} (Sab)</option> 
+                                <option value="13">Perpicacia: {{characterCampaign[index2].insight}} (Sab)</option> 
+                                <option value="14">Persuasión: {{characterCampaign[index2].persuasion}} (Car)</option> 
+                                <option value="15">Religión: {{characterCampaign[index2].religion}} (Int)</option> 
+                                <option value="16">Sigilo: {{characterCampaign[index2].stealth}} (Des)</option> 
+                                <option value="17">Supervivencia: {{characterCampaign[index2].survival}} (Sab)</option> 
+                                <option value="18">T. con Animales: {{characterCampaign[index2].animalHandling}} (Sab)</option> 
+                             </select> 
+                        </li>
+                        <li><b>Idiomas: </b> {{characterCampaign[index2].language}}</li>
+                    </ul>
+                </div>
             </div>
-            <div class="info">
-                <ul>
-                    <li><b>Clase de armadura: </b> {{characterCampaign[index2].armor}}</li>
-                    <li><b>Iniciativa: </b> {{characterCampaign[index2].initiative}}</li>
-                    <li><b>Velocidad: </b> {{characterCampaign[index2].speed}}</li>
-                    <li><b>Dados de Golpe: </b> {{characterCampaign[index2].hitDice}}</li>
-                    <li><b>Puntos de golpe máximos: </b> {{characterCampaign[index2].hitPoint}}</li>
-                    <li><b>Puntos de golpe actuales: </b> 9</li>
-                </ul>
+            <div class="right">
+                <div class="conjuros">
+                    <ul>
+                        <li *ngFor="let spell of spellCharacter"><b>{{spell.spellName}}:</b> {{spell.description}} &nbsp;
+                            <b>Alcance: </b> {{spell.reach}} &nbsp;
+                            <b>Tiempo de lanzamiento: </b> {{spell.timeSpell}}&nbsp;
+                            <b>Duración: </b> {{spell.duration}}&nbsp;
+                        </li>
+                    </ul>
+                </div>
+                <div class="acciones">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 18%;">Nombre</th>
+                                <th style="width: 18%;">Bonificador</th>
+                                <th style="width: 18%;">Daño/Tipo</th>
+                                <th style="width: 46%;"> Anotación</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let weapon of equipCharacter">
+                            <tr>
+                                <td>{{weapon.nameEquip}}</td>
+                                <td>{{weapon.bonusEquip}}</td>
+                                <td>{{weapon.damageType}}</td>
+                                <td>{{weapon.anotacion}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                <button class="cerrarModal" type="button" (click)="modalPersonaje(modalHero, false)">Cerrar</button>
             </div>
-            <div class="atributos">
-                <div>
-                    <section>FUE:</section>
-                    <section> {{characterCampaign[index2].strength}} ({{characterCampaign[index2].strengthMod}})</section>
-                </div>
-                <div>
-                    <section>DES:</section>
-                    <section> {{characterCampaign[index2].dexterity}} ({{characterCampaign[index2].dexterityMod}})</section>
-                </div>
-                <div>
-                    <section>CON:</section>
-                    <section> {{characterCampaign[index2].constitution}} ({{characterCampaign[index2].constitutionMod}})</section>
-                </div>
-                <div>
-                    <section>INT:</section>
-                    <section> {{characterCampaign[index2].inteligence}} ({{characterCampaign[index2].inteligenceMod}})</section>
-                </div>
-                <div>
-                    <section>SAB:</section>
-                    <section> {{characterCampaign[index2].wisdom}} ({{characterCampaign[index2].wisdomMod}})</section>
-                </div>
-                <div>
-                    <section>CAR:</section>
-                    <section> {{characterCampaign[index2].charisma}} ({{characterCampaign[index2].charismaMod}})</section>
-                </div>
-            </div>
-            <div class="habilidades">
-                <ul>
-                    <li>
-                        <b>Tiradas de salvacion: </b>
-                        <select name="tSalvacion"  style="width: 9vw;">
-                            <option value="0">Tiradas</option>
-                            <option value="1">Fuerza: {{characterCampaign[index2].strengthST}}</option> 
-                            <option value="2">Destreza: {{characterCampaign[index2].dexterityST}}</option> 
-                            <option value="3">Constitución: {{characterCampaign[index2].constitutionST}}</option>
-                            <option value="4">Inteligencia: {{characterCampaign[index2].inteligenceST}}</option> 
-                            <option value="5">Sabiduria: {{characterCampaign[index2].wisdomST}}</option> 
-                            <option value="6">Carisma: {{characterCampaign[index2].charismaST}}</option> 
-                         </select>
-                    </li>
-                    <li><b>Habilidades: </b>
-                        <select name="habilidades"  style="width: 9vw;">
-                            <option value="0">Habilidades</option>
-                            <option value="1">Acrobacias: {{characterCampaign[index2].acrobatic}} (Des)</option> 
-                            <option value="2">Atletismo: {{characterCampaign[index2].athletics}} (Fue)</option> 
-                            <option value="3">C. Arcano: {{characterCampaign[index2].arcana}} (Int)</option>
-                            <option value="4">Engaño: {{characterCampaign[index2].deception}} (Car)</option> 
-                            <option value="5">Historia: {{characterCampaign[index2].history}} (Int)</option> 
-                            <option value="6">Interpretacion: {{characterCampaign[index2].performance}} (Car)</option>
-                            <option value="7">Intimidación: {{characterCampaign[index2].intimidation}} (Car)</option>  
-                            <option value="8">Investigación: {{characterCampaign[index2].investigation}}(Int)</option> 
-                            <option value="9">Juego de Manos: {{characterCampaign[index2].sleightOfHand}} (Des)</option> 
-                            <option value="10">Medicina: {{characterCampaign[index2].medicine}} (Sab)</option> 
-                            <option value="11">Naturaleza: {{characterCampaign[index2].nature}} (Int)</option>
-                            <option value="12">Percepción: {{characterCampaign[index2].persuasion}} (Sab)</option> 
-                            <option value="13">Perpicacia: {{characterCampaign[index2].insight}} (Sab)</option> 
-                            <option value="14">Persuasión: {{characterCampaign[index2].persuasion}} (Car)</option> 
-                            <option value="15">Religión: {{characterCampaign[index2].religion}} (Int)</option> 
-                            <option value="16">Sigilo: {{characterCampaign[index2].stealth}} (Des)</option> 
-                            <option value="17">Supervivencia: {{characterCampaign[index2].survival}} (Sab)</option> 
-                            <option value="18">T. con Animales: {{characterCampaign[index2].animalHandling}} (Sab)</option> 
-                         </select> 
-                    </li>
-                    <li><b>Idiomas: </b> {{characterCampaign[index2].language}}</li>
-                </ul>
-            </div>
-        </div>
-        <div class="right">
-            <div class="conjuros">
-                <ul>
-                    <li *ngFor="let spell of spellCharacter"><b>{{spell.spellName}}:</b> {{spell.description}} &nbsp;
-                        <b>Alcance: </b> {{spell.reach}} &nbsp;
-                        <b>Tiempo de lanzamiento: </b> {{spell.timeSpell}}&nbsp;
-                        <b>Duración: </b> {{spell.duration}}&nbsp;
-                    </li>
-                </ul>
-            </div>
-            <div class="acciones">
-                <table>
-                    <thead>
-                        <tr>
-                            <th style="width: 18%;">Nombre</th>
-                            <th style="width: 18%;">Bonificador</th>
-                            <th style="width: 18%;">Daño/Tipo</th>
-                            <th style="width: 46%;"> Anotación</th>
-                        </tr>
-                    </thead>
-                    <tbody *ngFor="let weapon of equipCharacter">
-                        <tr>
-                            <td>{{weapon.nameEquip}}</td>
-                            <td>{{weapon.bonusEquip}}</td>
-                            <td>{{weapon.damageType}}</td>
-                            <td>{{weapon.anotacion}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                </div>
-            <button class="cerrarModal" type="button" (click)="modalPersonaje(modalHero, false)">Cerrar</button>
         </div>
     </div>
 </div>
