@@ -78,14 +78,15 @@ damageCalc(lifePoints:number){
   this.master.hitPoints[this.indexCalc].hitPoints = this.master.hitPoints[this.indexCalc].hitPoints - lifePoints;
   if(this.master.hitPoints[this.indexCalc].idEnemy > 0)
   {
-    this.master.putEnemyHitPoints(this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idEnemy, this.master.hitPoints[this.indexCalc].idCampaign)
+    console.log('Esto son los parametros',this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idEnemy)
+    this.master.putEnemyHitPoints(this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idEnemy)
     .subscribe((data: any) => {
-      console.log('Enemy Updated',data.respuesta)
+      console.log('Enemy Updated',data)
     })
   }
   else
   {
-    this.master.putPlayerHitPoints(this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idPlayer, this.master.hitPoints[this.indexCalc].idCampaign)
+    this.master.putPlayerHitPoints(this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idPlayer)
     .subscribe((data:any) =>{
       console.log('Player Updated', data)
     })
@@ -96,14 +97,17 @@ healingCalc(){
   this.master.hitPoints[this.indexCalc].hitPoints= Number(this.master.hitPoints[this.indexCalc].hitPoints) + Number(this.lp.nativeElement.value);
   if(this.master.hitPoints[this.indexCalc].idEnemy > 0)
   {
-    this.master.putEnemyHitPoints(this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idEnemy, this.master.hitPoints[this.indexCalc].idCampaign)
+    console.log(this.master.hitPoints[this.indexCalc].idEnemy)
+    console.log(Number(this.master.hitPoints[this.indexCalc].hitPoints))
+    console.log(this.master.hitPoints[this.indexCalc].idCampaign)
+    this.master.putEnemyHitPoints(Number(this.master.hitPoints[this.indexCalc].hitPoints), this.master.hitPoints[this.indexCalc].idEnemy)
     .subscribe((data: any) => {
       console.log('Enemy Updated',data.respuesta)
     })
   }
   else
   {
-    this.master.putPlayerHitPoints(this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idPlayer, this.master.hitPoints[this.indexCalc].idCampaign)
+    this.master.putPlayerHitPoints(Number(this.master.hitPoints[this.indexCalc].hitPoints), this.master.hitPoints[this.indexCalc].idPlayer)
     .subscribe((data:any) =>{
       console.log('Player Updated', data.respuesta)
     })

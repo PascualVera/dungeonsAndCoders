@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Character } from 'src/app/models/character';
 import { CharacterService } from 'src/app/shared/character.service';
 import { PlayersService } from 'src/app/shared/players.service';
@@ -20,6 +20,7 @@ export class CharacterComponent implements OnInit, OnDestroy {
   public lifePoints: number;
   public characters: Character[]
   public dataIndex:number
+  @ViewChild('vida')lifebar:ElementRef
   constructor(public characterService: CharacterService,
               public playerService:PlayersService,
               private userService: UserService,
@@ -40,6 +41,7 @@ export class CharacterComponent implements OnInit, OnDestroy {
         })
       })
     })
+    
   }
   showCharacter(){
     this.dataIndex = 0
@@ -53,14 +55,11 @@ export class CharacterComponent implements OnInit, OnDestroy {
   showWeapons(){
     this.dataIndex = 3
   }
-  hit(lifeBar: any) {
-    let lifePoints = this.lifePoints;
-    let total = this.character.hitPoint;
+  hit() {
+    let lifePoints = this.playerService.player.hitPoints;
+    let total = this.characterService.character.hitPoint;
     let modificador = (100 * lifePoints) / total;
-    console.log(total);
-    console.log(lifePoints);
-    console.log(modificador);
-    lifeBar.style = `background: rgb(0,255,0);
+    this.lifebar.nativeElement.style = `background: rgb(0,255,0);
      background: linear-gradient(90deg, rgba(0,255,0,1) ${modificador}%, rgba(255,255,255,0) ${modificador}%); width: 80%`;
   }
  
@@ -69,6 +68,7 @@ export class CharacterComponent implements OnInit, OnDestroy {
       const { campaignCode, userName, hitPoints } = data;
       if (campaignCode == this.campaignService.actualCampaign.idCampaign && userName == this.userService.user.name) {
         this.playerService.player.hitPoints = hitPoints;
+        this.hit()
       }
     }) 
   }
