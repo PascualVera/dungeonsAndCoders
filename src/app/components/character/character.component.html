@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="contenedor_imagen">
-      <img class="character_img" src={{this.characterService.character.image}} alt="" />
+      <img [ngClass]="this.playerService.player.hitPoints > 0 ? 'character_img' : 'dead_img'" src={{this.characterService.character.image}} alt="" />
     </div>
   </div>
   <div class="character_below">

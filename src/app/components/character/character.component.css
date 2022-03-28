@@ -34,6 +34,11 @@
   width: 100%;
   height: auto;
 }
+.dead_img {
+  width: 100%;
+  height: auto;
+  filter: grayscale(100);
+}
 .stats {
   display: flex;
   width: 50%;

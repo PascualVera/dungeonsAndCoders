@@ -61,8 +61,16 @@ export class CharacterComponent implements OnInit, OnDestroy {
     let lifePoints = this.playerService.player.hitPoints;
     let total = this.characterService.character.hitPoint;
     let modificador = (100 * lifePoints) / total;
-    this.lifebar.nativeElement.style = `background: rgb(0,255,0);
-     background: linear-gradient(90deg, rgba(0,255,0,1) ${modificador}%, rgba(255,255,255,0) ${modificador}%); width: 80%`;
+    if(modificador > 66){
+    this.lifebar.nativeElement.style = `background: #7df9ff;
+     background: linear-gradient(90deg, #7df9ff ${modificador}%, rgba(255,255,255,0) ${modificador}%); width: 80%`;
+    }else if(modificador > 33){
+      this.lifebar.nativeElement.style = `background: var(--beige);
+       background: linear-gradient(90deg, var(--beige) ${modificador}%, rgba(255,255,255,0) ${modificador}%); width: 80%`;
+      } else if(modificador >= 0){
+        this.lifebar.nativeElement.style = `background: var(--auxiliarRed);
+         background: linear-gradient(90deg, var(--auxiliarRed) ${modificador}%, rgba(255,255,255,0) ${modificador}%); width: 80%`;
+        }
   }
  
   ngOnInit(): void {
