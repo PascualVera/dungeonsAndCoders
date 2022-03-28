@@ -13,9 +13,7 @@ export class CampaingService {
   constructor(private http: HttpClient) {
     this.url = 'https://dungeons-and-coders-api.herokuapp.com';
     // this.url = 'http://localhost:4000';
-
     this.actualCampaign = new Campaing();
-   
   }
 
   //Recuperar todas las campañas

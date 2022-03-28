@@ -41,7 +41,6 @@ export class CharacterSelectComponent implements OnInit {
     this.campaignService.getCampaignById(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
       console.log(data)
       if(data.resultado[0].numPlayer < data.resultado[0].maxPlayer){
-        console.log('funciona')
         this.reserva()
         this.playerService.createPlayers(this.playerService.player).subscribe(()=>{
           this.router.navigate(['/player'])

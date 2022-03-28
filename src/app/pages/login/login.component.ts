@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/shared/user.service';
 
 @Component({
@@ -25,8 +26,9 @@ export class LoginComponent implements OnInit {
       };
       this.userService.login(user).subscribe((data: any) => {
         if (data.ok) {
-          this.router.navigate(['/inicio']);
           this.userService.user = data.resultado;
+          this.save(this.userService.user)
+          this.router.navigate(['/inicio']);
         } else {
           identificador.setAttribute('class', 'error');
           pass.setAttribute('class', 'error');
@@ -60,6 +62,9 @@ export class LoginComponent implements OnInit {
         });
       });
     });
+  }
+  save(user:User){
+    sessionStorage.setItem('user', JSON.stringify(user))
   }
 
   ngOnInit(): void {}

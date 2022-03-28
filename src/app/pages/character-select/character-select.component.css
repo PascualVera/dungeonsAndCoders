@@ -159,7 +159,7 @@ img {
   border: 1px solid black;
 }
 .imgStats {
-  display: flex;
+  display: block;
   flex-direction: column;
   align-items: center;
   width: 14vw;

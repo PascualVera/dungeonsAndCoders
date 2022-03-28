@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { User } from './models/user';
+import { UserService } from './shared/user.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'dungeonsAndCoder';
+  constructor(public userService:UserService){
+    this.userService.user = JSON.parse(this.getUser())
+  }
+  getUser(){
+    return sessionStorage.getItem('user') 
+  }
 }
