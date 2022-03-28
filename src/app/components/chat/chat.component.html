@@ -25,14 +25,18 @@
     <div class="chatPlayers">
         <div class="master">
             <div
-                [ngClass]="(ps.master.escribiendo) ? 'playerWriting' : '' || (ps.master.name == us.user.name && !ps.master.escribiendo) ? 'masterBorder' : ''">
+                [ngClass]="(ps.master.escribiendo) ? 'playerWriting' : '' || 
+                (ps.master.name == us.user.name && !ps.master.escribiendo) ? 'masterBorder' : ''|| 
+                (!ps.master.playing) ? 'out' : ''">
                 <span [ngStyle]="{'color': getColorEmisor(ps.master.name)}">MASTER > {{ps.master.name}}</span>
             </div>
         </div>
         <div class="players">
             <ng-container *ngFor="let item of ps.players, let i = index">
                 <div
-                    [ngClass]="(item.escribiendo) ? 'playerWriting' : '' || (item.name == us.user.name && !item.escribiendo) ? 'playerBorder' : ''">
+                    [ngClass]="(item.escribiendo) ? 'playerWriting' : '' || 
+                    (item.name == us.user.name && !item.escribiendo) ? 'playerBorder' : ''|| 
+                    (!item.playing) ? 'out' : ''">
                     <span [ngStyle]="{'color': getColorEmisor(item.name)}">{{item.name}}</span>
                 </div>
             </ng-container>
