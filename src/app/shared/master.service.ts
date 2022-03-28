@@ -35,4 +35,8 @@ export class MasterService {
   getEnemyHitPoints(idCampaign: string){
     return this.http.get(this.url+'/vistaMaster/enemy?id='+idCampaign)
   }
+
+  getManual(idCampaign:string){
+    return this.http.get(this.url+'/vistaMaster?id='+idCampaign)
+  }
 }
