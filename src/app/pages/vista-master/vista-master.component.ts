@@ -9,6 +9,7 @@ import { CharacterService } from 'src/app/shared/character.service';
 import { MasterService } from 'src/app/shared/master.service';
 import { PlayersService } from 'src/app/shared/players.service';
 import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
+import { WebSocketService } from '../../shared/web-socket.service';
 
 
 @Component({
@@ -39,7 +40,12 @@ export class VistaMasterComponent implements OnInit {
   public idCampaignActual: string;
   public campaignTitle: string = '';
   public manualMaster: string = '';
-  constructor(public campaingService:CampaingService, public characterService:CharacterService, public master: MasterService, public playersService: PlayersService, public sanitizer : DomSanitizer) { 
+  constructor(public campaingService:CampaingService,
+              private wss: WebSocketService,
+              public characterService:CharacterService,
+              public master: MasterService,
+              public playersService: PlayersService,
+              public sanitizer : DomSanitizer) { 
     
     this.idCampaignPre = this.campaingService.actualCampaign.idCampaignPre;
     this.idCampaignActual = this.campaingService.actualCampaign.idCampaign;
@@ -78,15 +84,24 @@ damageCalc(lifePoints:number){
   this.master.hitPoints[this.indexCalc].hitPoints = this.master.hitPoints[this.indexCalc].hitPoints - lifePoints;
   if(this.master.hitPoints[this.indexCalc].idEnemy > 0)
   {
-    this.master.putEnemyHitPoints(this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idEnemy, this.master.hitPoints[this.indexCalc].idCampaign)
+    console.log('Esto son los parametros',this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idEnemy)
+    this.master.putEnemyHitPoints(this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idEnemy)
     .subscribe((data: any) => {
-      console.log('Enemy Updated',data.respuesta)
+      console.log('Enemy Updated',data)
     })
   }
   else
   {
-    this.master.putPlayerHitPoints(this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idPlayer, this.master.hitPoints[this.indexCalc].idCampaign)
-    .subscribe((data:any) =>{
+    this.master.putPlayerHitPoints(this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idPlayer)
+      .subscribe((data: any) => {
+
+        let puntosVida = {
+          campaignCode: this.campaingService.actualCampaign.idCampaign,
+          userName: this.master.hitPoints[this.indexCalc].name,
+          hitPoints: this.master.hitPoints[this.indexCalc].hitPoints
+        }
+        this.wss.emite('send-hitpoints', puntosVida);
+
       console.log('Player Updated', data)
     })
   }
@@ -96,15 +111,26 @@ healingCalc(){
   this.master.hitPoints[this.indexCalc].hitPoints= Number(this.master.hitPoints[this.indexCalc].hitPoints) + Number(this.lp.nativeElement.value);
   if(this.master.hitPoints[this.indexCalc].idEnemy > 0)
   {
-    this.master.putEnemyHitPoints(this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idEnemy, this.master.hitPoints[this.indexCalc].idCampaign)
+    console.log(this.master.hitPoints[this.indexCalc].idEnemy)
+    console.log(Number(this.master.hitPoints[this.indexCalc].hitPoints))
+    console.log(this.master.hitPoints[this.indexCalc].idCampaign)
+    this.master.putEnemyHitPoints(Number(this.master.hitPoints[this.indexCalc].hitPoints), this.master.hitPoints[this.indexCalc].idEnemy)
     .subscribe((data: any) => {
       console.log('Enemy Updated',data.respuesta)
     })
   }
   else
   {
-    this.master.putPlayerHitPoints(this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idPlayer, this.master.hitPoints[this.indexCalc].idCampaign)
+    this.master.putPlayerHitPoints(Number(this.master.hitPoints[this.indexCalc].hitPoints), this.master.hitPoints[this.indexCalc].idPlayer)
     .subscribe((data:any) =>{
+
+      let puntosVida = {
+        campaignCode: this.campaingService.actualCampaign.idCampaign,
+        userName: this.master.hitPoints[this.indexCalc].name,
+        hitPoints: this.master.hitPoints[this.indexCalc].hitPoints
+      }
+      this.wss.emite('send-hitpoints', puntosVida);
+      
       console.log('Player Updated', data.respuesta)
     })
   }
