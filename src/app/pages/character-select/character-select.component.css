@@ -171,10 +171,12 @@ img {
   border-top-left-radius: 50%;
   border-top-right-radius: 50%;
   mix-blend-mode: luminosity;
+  
 }
 .imgStats p {
   font-size: 2.3rem;
   color: white;
+  text-transform: capitalize;
 }
 .stats2 {
   display: flex;
@@ -205,18 +207,24 @@ img {
   flex-direction: column;
   align-items: center;
 }
-.statAlt p {
+.statAlt span {
   font-size: 2rem;
+  text-align: start;
 }
 .statAlt:last-child p {
   font-size: 1.1rem;
+  
 }
 .equipo {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   height: 10vh;
   width: 10vh;
+}
+.equipo p {
+  margin: 0px;
+  padding: 0;
 }
 
 .character_lore {

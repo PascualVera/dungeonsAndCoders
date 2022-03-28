@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Tirada } from 'src/app/models/tirada';
 import { MensajeChat } from '../../models/mensaje-chat';
 import { UserService } from '../../shared/user.service';
@@ -6,27 +6,37 @@ import { PlayersService } from '../../shared/players.service';
 import { WebSocketService } from 'src/app/shared/web-socket.service';
 import { MensajesChatService } from '../../shared/mensajes-chat.service';
 import { CampaingService } from '../../shared/campaing.service';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
 
   private delayKeyUp: any;
+  private delayPlayingMaster: any;
+  private delayPlayingPlayer: any[] = [null, null, null, null, null, null];
+  private intervaloPlaying: any;
+  private escuchaPlaying: Subscription;
+  private escuchaMessage: Subscription;
+  private escuchaEscribiendo: Subscription;
  
   constructor(public ps: PlayersService,
               public us: UserService,
               public cs: CampaingService,
               public mcs: MensajesChatService,
+              private router: Router,
               private wss: WebSocketService
               ) {
 
     this.mcs.getCampaignMessages(this.cs.actualCampaign.idCampaign)
       .subscribe((resp: any) => {
-        if (resp.ok) {      
-          resp.resultado.forEach((item) => {
+        if (resp.ok) {  
+          this.mcs.mensajesChat = [];
+          resp.resultado.forEach((item: MensajeChat) => {
             const { campaignCode, emisor, mensaje, fecha } = item;
             let mensajeChat = {
               campaignCode: campaignCode,
@@ -41,18 +51,64 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.wss.escucha('new-message').subscribe((data: any) => {
+    this.escuchaMessage = this.wss.escucha('new-message').subscribe((data: any) => {
       const { campaignCode, emisor, mensaje, fecha } = data;
       if (campaignCode == this.cs.actualCampaign.idCampaign) {
         this.mcs.mensajesChat.push(new MensajeChat(campaignCode, emisor, mensaje, new Date(fecha)));
       }
     })  
-    this.wss.escucha('new-escribiendo').subscribe((data: any) => {
+    this.escuchaEscribiendo = this.wss.escucha('new-escribiendo').subscribe((data: any) => {
       const { campaignCode, player, estado } = data;
       if (campaignCode == this.cs.actualCampaign.idCampaign) {
         this.ps.setEscribiendo(player, estado);
       }
-    })  
+    });
+    this.escuchaPlaying = this.wss.escucha('new-playing').subscribe((data: any) => {
+      const { campaignCode, name } = data;
+      if (campaignCode == this.cs.actualCampaign.idCampaign) {
+        if (this.ps.master.name == name) {
+          if (this.delayPlayingMaster) {
+            clearTimeout(this.delayPlayingMaster);
+          }
+          this.delayPlayingMaster = setTimeout(() => {
+            this.ps.master.playing = false;            
+          }, 1100);
+          this.ps.master.playing = true;
+        } else {
+          let indice = this.ps.players.findIndex(item => item.name == name);
+          if (indice >= 0) {
+            if (this.delayPlayingPlayer[indice]) {
+              clearTimeout(this.delayPlayingPlayer[indice])
+            };
+            this.ps.players[indice].playing = true;
+            if (this.delayPlayingPlayer[indice]) {
+              clearTimeout(this.delayPlayingPlayer[indice]);
+              this.delayPlayingPlayer[indice] = null;
+            }
+            this.delayPlayingPlayer[indice] = setTimeout(() => {
+              let i = indice;
+              this.ps.players[i].playing = false;
+            }, 1100);
+          }
+        }
+      }
+    });
+    this.playing();
+    this.intervaloPlaying = setInterval(() => { this.playing() }, 1000);
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.intervaloPlaying);
+    this.escuchaPlaying.unsubscribe();
+    this.escuchaMessage.unsubscribe();
+    this.escuchaEscribiendo.unsubscribe();
+    clearTimeout(this.delayPlayingMaster);
+    this.delayPlayingPlayer.forEach((delay, indice) => {
+      if (delay) {
+        clearTimeout(delay);
+        this.delayPlayingPlayer[indice] = null;
+      }
+    })
   }
 
   getColorEmisor(emisor: string): string {
@@ -124,6 +180,14 @@ export class ChatComponent implements OnInit {
       this.wss.emite('send-message', mensajeChat);
       this.mcs.postChatMessage(mensajeChat).subscribe(() => { });
     }
+  }
+
+  playing() {
+    let playing = {
+      campaignCode: this.cs.actualCampaign.idCampaign,
+      name: this.us.user.name
+    }
+    this.wss.emite('send-playing', playing);
   }
 
   // para abrir modal

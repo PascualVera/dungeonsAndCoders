@@ -126,8 +126,17 @@
     border-radius: .2vw;
 }
 
+.playerBorder {
+    outline:.2vw solid var(--redmain) !important;
+}
+
 .masterBorder {
     border:.2vw solid var(--bluemain) !important;
+}
+
+.out {
+    border: none !important;
+    background-color: gray !important;
 }
 
 .players{

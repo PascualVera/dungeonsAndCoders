@@ -9,7 +9,7 @@
             <a (click)="activarOpcion(1)" [ngClass]="{'opcionActiva': opcionActiva == 1}">Detalles de la cuenta</a>
             <a (click)="activarOpcion(2)" [ngClass]="{'opcionActiva': opcionActiva == 2}">Tus campañas</a>
             <a (click)="modalAvatar(veloModalAvatar, true)" [ngClass]="{'opcionActiva': opcionActiva == 3}">Cambiar Avatar</a>
-            <a routerLink="">Cerrar sesión</a>
+            <a (click)="logOut()" routerLink="">Cerrar sesión</a>
         </div>
     </div>
     <div *ngIf="detalles" class="detalles">

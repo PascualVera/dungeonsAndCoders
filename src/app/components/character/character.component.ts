@@ -1,19 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Character } from 'src/app/models/character';
 import { CharacterService } from 'src/app/shared/character.service';
 import { PlayersService } from 'src/app/shared/players.service';
+import { CampaingService } from '../../shared/campaing.service';
+import { UserService } from '../../shared/user.service';
+import { WebSocketService } from '../../shared/web-socket.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-character',
   templateUrl: './character.component.html',
   styleUrls: ['./character.component.css'],
 })
-export class CharacterComponent implements OnInit {
+export class CharacterComponent implements OnInit, OnDestroy {
+
+  private escuchaHitPoints: Subscription;
+
   public character: Character;
   public lifePoints: number;
   public characters: Character[]
   public dataIndex:number
-  constructor(public characterService: CharacterService, public playerService:PlayersService) {
+  constructor(public characterService: CharacterService,
+              public playerService:PlayersService,
+              private userService: UserService,
+              private wss: WebSocketService,
+              private campaignService: CampaingService) {
     this.dataIndex = 0
     this.characterService.character = new Character();
     console.log('ajurado', this.characterService.character)
@@ -43,7 +54,6 @@ export class CharacterComponent implements OnInit {
     this.dataIndex = 3
   }
   hit(lifeBar: any) {
-    this.lifePoints--;
     let lifePoints = this.lifePoints;
     let total = this.character.hitPoint;
     let modificador = (100 * lifePoints) / total;
@@ -54,5 +64,16 @@ export class CharacterComponent implements OnInit {
      background: linear-gradient(90deg, rgba(0,255,0,1) ${modificador}%, rgba(255,255,255,0) ${modificador}%); width: 80%`;
   }
  
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.escuchaHitPoints = this.wss.escucha('new-hitpoints').subscribe((data: any) => {
+      const { campaignCode, userName, hitPoints } = data;
+      if (campaignCode == this.campaignService.actualCampaign.idCampaign && userName == this.userService.user.name) {
+        this.playerService.player.hitPoints = hitPoints;
+      }
+    }) 
+  }
+
+  ngOnDestroy(): void {
+    this.escuchaHitPoints.unsubscribe();
+  }
 }

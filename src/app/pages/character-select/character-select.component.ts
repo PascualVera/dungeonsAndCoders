@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Character } from 'src/app/models/character';
 import { Player } from 'src/app/models/player';
+import { Weapon } from 'src/app/models/weapon';
 import { CampaingService } from 'src/app/shared/campaing.service';
 import { CharacterService } from 'src/app/shared/character.service';
 import { PlayersService } from 'src/app/shared/players.service';
@@ -41,7 +42,6 @@ export class CharacterSelectComponent implements OnInit {
     this.campaignService.getCampaignById(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
       console.log(data)
       if(data.resultado[0].numPlayer < data.resultado[0].maxPlayer){
-        console.log('funciona')
         this.reserva()
         this.playerService.createPlayers(this.playerService.player).subscribe(()=>{
           this.router.navigate(['/player'])
@@ -104,13 +104,17 @@ export class CharacterSelectComponent implements OnInit {
     this.characterService.character = character;
     this.characterService.getSpell(character.idCharacter).subscribe((data:any)=>{
       this.characterService.character.spell = data.resultado
-      console.log(this.characterService.character.spell)
+     
     })
     this.characterService.getWeapon(character.idCharacter).subscribe((data:any)=>{
       this.characterService.character.weapon = data.resultado
+      equipo.innerHTML = ''
+      for(const weapon of data.resultado){
+        equipo.innerHTML += `<span>${weapon.nameEquip}</span> `
+      }
     })
     img.src = this.characterService.character.image;
-    console.log(this.characterService.character.image);
+    img.style.display='block'
     rasgos.innerHTML = this.characterService.character.rasgos;
     ideales.innerHTML = this.characterService.character.ideales;
     vinculos.innerHTML = this.characterService.character.vinculos;
