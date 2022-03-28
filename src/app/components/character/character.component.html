@@ -94,22 +94,22 @@
 <app-spell-atacks *ngIf="dataIndex == 2"></app-spell-atacks>
 <app-equipo *ngIf="dataIndex == 3"></app-equipo>
 <div class="habilidades">
-  <div [ngClass]="dataIndex == 3 ? 'selected_att': '' " (click)="showWeapons()" class="info">
+  <div [ngClass]="dataIndex == 3 ? 'selected_att': 'info' " (click)="showWeapons()" >
       <section class="equipo">
         Equipo
       </section>
   </div>
-  <div [ngClass]="dataIndex == 2 ? 'selected_att': '' " (click)="showSpell()" class="info"> 
+  <div [ngClass]="dataIndex == 2 ? 'selected_att': 'info' " (click)="showSpell()" > 
       <section>  
         Ataques y Hechizos
       </section>
   </div>
-  <div [ngClass]="dataIndex == 1 ? 'selected_att': '' " (click)="showSkills()" class="info">
+  <div [ngClass]="dataIndex == 1 ? 'selected_att': 'info' " (click)="showSkills()" >
       <section>
         Habilidades
       </section>
   </div>
-  <div [ngClass]="dataIndex == 0 ? 'selected_att': '' " (click)="showCharacter()" class="info">
+  <div [ngClass]="dataIndex == 0 ? 'selected_att': 'info' " (click)="showCharacter()" >
     <section>
     Personaje
     </section>
