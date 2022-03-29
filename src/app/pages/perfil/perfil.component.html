@@ -28,7 +28,7 @@
                 <div class="pasCuerpo">
                     <label class="pasLabel">Antigua contraseña</label>
                     <input (keyup)="changePass(oldPass,newPass,newPass2,verify, $event.keyCode)"
-                            #oldPass class="pasInput" type="password">
+                            #oldPass class="pasInput" autofocus type="password">
 
                     <label class="pasLabel">Nueva contraseña</label>
                     <input (keyup)="validatePassword(newPass,oldPass,verify)"

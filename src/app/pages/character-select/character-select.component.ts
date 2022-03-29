@@ -42,13 +42,6 @@ export class CharacterSelectComponent implements OnInit {
     });
   }
   postPlayer(){
-    let masmenosPlayer = {
-      campaignCode: this.campaignService.actualCampaign.idCampaign,
-      player: this.userService.user.name,
-      viene: true
-    }
-    this.wss.emite('send-masmenosplayer', masmenosPlayer);
-    
     this.playerService.player = new Player (this.characterService.character.hitPoint,
                                             this.characterService.character.idCharacter,
                                             this.userService.user.idUser,
@@ -57,6 +50,12 @@ export class CharacterSelectComponent implements OnInit {
       if(data.resultado[0].numPlayer < data.resultado[0].maxPlayer){
         this.insertPlayer()
         this.playerService.createPlayers(this.playerService.player).subscribe(()=>{
+          let masmenosPlayer = {
+            campaignCode: this.campaignService.actualCampaign.idCampaign,
+            player: this.userService.user.name,
+            viene: true
+          }
+          this.wss.emite('send-masmenosplayer', masmenosPlayer);
           this.router.navigate(['/player'])
         })
       }else{

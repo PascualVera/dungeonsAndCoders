@@ -12,11 +12,11 @@
                         {{item.mensaje}}
                     </p>
                 </div>
-                <ng-container [ngClass]="(i == mcs.mensajesChat.length -1) ? scrollAbajo(mensajes) : ''"></ng-container>
+                <ng-container [ngClass]="(i == (mcs.mensajesChat.length -1) && nuevoMensaje) ? scrollAbajo(mensajes) : ''"></ng-container>
             </ng-container>
         </div>
         <div class="enviarMensaje">
-            <input #mensaje (keyup)="enviarMensaje(mensaje, $event.keyCode)" type="text" class="inputMensaje"
+            <input #mensaje autofocus (keyup)="enviarMensaje(mensaje, $event.keyCode)" type="text" class="inputMensaje"
                 placeholder="Introduzca Mensaje...">
             <button (click)="enviarMensaje(mensaje)" class="botonEnviar">Enviar</button>
         </div>

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Tirada } from 'src/app/models/tirada';
 import { MensajeChat } from '../../models/mensaje-chat';
 import { UserService } from '../../shared/user.service';
@@ -24,6 +24,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   private escuchaMessage: Subscription;
   private escuchaEscribiendo: Subscription;
   private escuchaMasmenosplayer: Subscription;
+  public nuevoMensaje: boolean = true;
  
   constructor(public ps: PlayersService,
               public us: UserService,
@@ -56,6 +57,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       const { campaignCode, emisor, mensaje, fecha } = data;
       if (campaignCode == this.cs.actualCampaign.idCampaign) {
         this.mcs.mensajesChat.push(new MensajeChat(campaignCode, emisor, mensaje, new Date(fecha)));
+        this.nuevoMensaje = true;
       }
     })  
     this.escuchaEscribiendo = this.wss.escucha('new-escribiendo').subscribe((data: any) => {
@@ -154,6 +156,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   scrollAbajo(mensajes: any): string {
     mensajes.scrollTop = mensajes.scrollHeight;
+    this.nuevoMensaje = false;
     return ''
   }
 
@@ -181,7 +184,9 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.mcs.mensajesChat.push(mensajeChat);
         this.wss.emite('send-message', mensajeChat);
         input.value = '';
-        this.mcs.postChatMessage(mensajeChat).subscribe(() => { });
+        this.mcs.postChatMessage(mensajeChat).subscribe(() => { 
+          this.nuevoMensaje = true;
+        });
       }
     }, 250)
   }

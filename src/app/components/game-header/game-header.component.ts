@@ -71,20 +71,20 @@ export class GameHeaderComponent implements OnInit {
   }
 
   leaveCampaign() {
-    let masmenosPlayer = {
-      campaignCode: this.campaignService.actualCampaign.idCampaign,
-      player: this.userService.user.name,
-      viene: false
-    }
-    this.wss.emite('send-masmenosplayer', masmenosPlayer);
-
     this.campaignService.getCampaignById(this.campaignService.actualCampaign.idCampaign)
       .subscribe((resp: any) => {
         if (resp.ok) {
           let numPlayer = { numPlayer: resp.resultado[0].numPlayer - 1, idCampaign: this.campaignService.actualCampaign.idCampaign }
-          this.campaignService.putCampaing(numPlayer).subscribe(() => { })
+          this.campaignService.putCampaing(numPlayer).subscribe(() => { 
+          })
           this.ps.deletePlayer(this.userService.user.idUser, this.campaignService.actualCampaign.idCampaign)
             .subscribe(() => {
+              let masmenosPlayer = {
+                campaignCode: this.campaignService.actualCampaign.idCampaign,
+                player: this.userService.user.name,
+                viene: false
+              }
+              this.wss.emite('send-masmenosplayer', masmenosPlayer);
               this.router.navigate(['/perfil'])
              });
         }

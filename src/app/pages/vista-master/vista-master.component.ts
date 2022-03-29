@@ -244,6 +244,12 @@ select(){
   }
   //Redirgir al actualizar
   ngOnInit(): void {
+    this.escuchaMasmenosplayer = this.wss.escucha('new-masmenosplayer').subscribe((data: any) => {
+      const { campaignCode, player, viene } = data;
+      if (campaignCode == this.campaingService.actualCampaign.idCampaign) {
+        // TODO: Actualizar de bbdd por cambios en cantidad de players
+      }
+    }) 
     if(this.campaingService.actualCampaign.idCampaign == undefined){
       this.router.navigate(['/perfil'])
     }
