@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Character } from 'src/app/models/character';
 import { Enemy } from 'src/app/models/enemy';
 import { EnemyHitPoints } from 'src/app/models/enemy-hit-points';
@@ -10,6 +10,7 @@ import { MasterService } from 'src/app/shared/master.service';
 import { PlayersService } from 'src/app/shared/players.service';
 import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 import { WebSocketService } from '../../shared/web-socket.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { WebSocketService } from '../../shared/web-socket.service';
   templateUrl: './vista-master.component.html',
   styleUrls: ['./vista-master.component.css']
 })
-export class VistaMasterComponent implements OnInit {
+export class VistaMasterComponent implements OnInit, OnDestroy {
   public enemyCampaignPre: Enemy [];
   public spellEnemy: Spell [];
   public equipEnemy: Weapon [];
@@ -40,6 +41,7 @@ export class VistaMasterComponent implements OnInit {
   public idCampaignActual: string;
   public campaignTitle: string = '';
   public manualMaster: string = '';
+  private escuchaMasmenosplayer: Subscription;
   constructor(public campaingService:CampaingService,
               private wss: WebSocketService,
               public characterService:CharacterService,
@@ -74,13 +76,25 @@ export class VistaMasterComponent implements OnInit {
     })
         
   }
-
+  
   ngOnInit(): void {
-  }
+    this.escuchaMasmenosplayer = this.wss.escucha('new-masmenosplayer').subscribe((data: any) => {
+      const { campaignCode, player, viene } = data;
+      if (campaignCode == this.idCampaignActual) {
+        if (viene) {
+          this.playerHitPoints(this.idCampaignActual)
+        }else{
+          let indice = this.master.characterPlayer.findIndex(item => item.namePlayer == player)
+          if (indice >= 0) {
+            this.master.characterPlayer.splice(indice, 1);
+          }
+        } 
+      }})  
+  };
 
 //Calculadora Dañar y Sanar
 
-damageCalc(lifePoints:number){
+damageCalc(lifePoints:number): void{
   this.master.hitPoints[this.indexCalc].hitPoints = this.master.hitPoints[this.indexCalc].hitPoints - lifePoints;
   if(this.master.hitPoints[this.indexCalc].idEnemy > 0)
   {
@@ -239,5 +253,9 @@ select(){
     this.idCharacter = this.characterCampaign[this.index2].idCharacter
     this.characterSpell(this.idCharacter);
     this.characterEquip(this.idCharacter);
+  }
+
+  ngOnDestroy(): void {
+    this.escuchaMasmenosplayer.unsubscribe();
   }
 }

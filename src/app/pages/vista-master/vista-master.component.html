@@ -7,8 +7,6 @@
             </header>
             <div class="campain">
                 <iframe  id="guia" [src]="manualMaster | safe" type="application/pdf"></iframe> 
-                <!-- <embed [src]="masterManual | safe" type="application/pdf"  /> -->
-                <!-- <iframe [src]="masterManual | safe"  type="application/pdf" width="100%" height="100%" ></iframe> -->
             </div>
             <div>
                 <section class="fichas">
@@ -21,7 +19,13 @@
                     <section class="heroes" >
                         <label type="button" (click)="modalPersonaje(modalHero, true)"  >Personajes: </label>
                         <select #player name="personajes"> <!--Desplegable con los jugadores *-->
-                            <option *ngFor="let player of master.characterPlayer; let j = index" [value]="j">{{player.nameCharacter}} - <small>{{player.namePlayer}}</small> </option> 
+                            <ng-container *ngIf="master.characterPlayer.length > 0; else arrayPersonaje">
+                                <option *ngFor="let player of master.characterPlayer; let j = index" [value]="j">{{player.nameCharacter}} - <small>{{player.namePlayer}}</small> </option> 
+                            </ng-container>
+                            <ng-template #arrayPersonaje>
+                                <option value="0">No hay jugadores</option>
+                            </ng-template>
+                            
                          </select>
                     </section>
                 </section>
