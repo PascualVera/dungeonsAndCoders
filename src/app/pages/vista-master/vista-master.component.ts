@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Character } from 'src/app/models/character';
 import { Enemy } from 'src/app/models/enemy';
@@ -10,6 +10,7 @@ import { CharacterService } from 'src/app/shared/character.service';
 import { MasterService } from 'src/app/shared/master.service';
 import { PlayersService } from 'src/app/shared/players.service';
 import { WebSocketService } from '../../shared/web-socket.service';
+import { Subscription } from 'rxjs';
 
 
 
@@ -18,7 +19,7 @@ import { WebSocketService } from '../../shared/web-socket.service';
   templateUrl: './vista-master.component.html',
   styleUrls: ['./vista-master.component.css']
 })
-export class VistaMasterComponent implements OnInit {
+export class VistaMasterComponent implements OnInit, OnDestroy {
   public enemyCampaignPre: Enemy [];
   public spellEnemy: Spell [];
   public equipEnemy: Weapon [];
@@ -41,6 +42,7 @@ export class VistaMasterComponent implements OnInit {
   public idCampaignActual: string;
   public campaignTitle: string = '';
   public manualMaster: string = '';
+  private escuchaMasmenosplayer: Subscription;
   constructor(public campaingService:CampaingService,
               private wss: WebSocketService,
               public characterService:CharacterService,
@@ -237,6 +239,9 @@ select(){
     this.characterEquip(this.idCharacter);
   }
 
+  ngOnDestroy(): void {
+    this.escuchaMasmenosplayer.unsubscribe();
+  }
   //Redirgir al actualizar
   ngOnInit(): void {
     if(this.campaingService.actualCampaign.idCampaign == undefined){
