@@ -40,6 +40,9 @@ export class VistaPlayerComponent implements OnInit, OnDestroy {
         this.router.navigate(['/perfil'])
       }
     }) 
+    if(this.campaignService.actualCampaign.idCampaign == undefined){
+      this.router.navigate(['/perfil'])
+    }
   }
 
   ngOnDestroy(): void {

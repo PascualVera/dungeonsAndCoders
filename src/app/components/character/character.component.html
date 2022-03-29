@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="contenedor_imagen">
-      <img class="character_img" src={{this.characterService.character.image}} alt="" />
+      <img [ngClass]="this.playerService.player.hitPoints > 0 ? 'character_img' : 'dead_img'" src={{this.characterService.character.image}} alt="" />
     </div>
   </div>
   <div class="character_below">
@@ -94,22 +94,22 @@
 <app-spell-atacks *ngIf="dataIndex == 2"></app-spell-atacks>
 <app-equipo *ngIf="dataIndex == 3"></app-equipo>
 <div class="habilidades">
-  <div (click)="showWeapons()" class="info">
+  <div [ngClass]="dataIndex == 3 ? 'selected_att': 'info' " (click)="showWeapons()" >
       <section class="equipo">
         Equipo
       </section>
   </div>
-  <div (click)="showSpell()" class="info"> 
+  <div [ngClass]="dataIndex == 2 ? 'selected_att': 'info' " (click)="showSpell()" > 
       <section>  
         Ataques y Hechizos
       </section>
   </div>
-  <div (click)="showSkills()" class="info">
+  <div [ngClass]="dataIndex == 1 ? 'selected_att': 'info' " (click)="showSkills()" >
       <section>
         Habilidades
       </section>
   </div>
-  <div (click)="showCharacter()" class="info">
+  <div [ngClass]="dataIndex == 0 ? 'selected_att': 'info' " (click)="showCharacter()" >
     <section>
     Personaje
     </section>
