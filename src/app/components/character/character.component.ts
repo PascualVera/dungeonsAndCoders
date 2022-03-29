@@ -65,9 +65,11 @@ export class CharacterComponent implements OnInit, OnDestroy {
     }else if(modificador > 33){
       this.lifebar.nativeElement.style = `background: var(--beige);
        background: linear-gradient(90deg, var(--beige) ${modificador}%, rgba(255,255,255,0) ${modificador}%); width: 80%`;
-      } else if(modificador >= 0){
+      } else if(modificador > 0){
         this.lifebar.nativeElement.style = `background: var(--auxiliarRed);
          background: linear-gradient(90deg, var(--auxiliarRed) ${modificador}%, rgba(255,255,255,0) ${modificador}%); width: 80%`;
+        }else if(modificador <= 0){
+          this.lifebar.nativeElement.style = 'background: none; width: 80%'
         }
   }
  

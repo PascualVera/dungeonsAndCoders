@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Character } from 'src/app/models/character';
 import { Player } from 'src/app/models/player';
@@ -60,6 +60,7 @@ export class CharacterSelectComponent implements OnInit {
           this.router.navigate(['/player'])
         })
       }else{
+        
         this.router.navigate(['/campaing'])
       }
     })
