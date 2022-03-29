@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Character } from 'src/app/models/character';
 import { Enemy } from 'src/app/models/enemy';
 import { EnemyHitPoints } from 'src/app/models/enemy-hit-points';
@@ -8,9 +9,9 @@ import { CampaingService } from 'src/app/shared/campaing.service';
 import { CharacterService } from 'src/app/shared/character.service';
 import { MasterService } from 'src/app/shared/master.service';
 import { PlayersService } from 'src/app/shared/players.service';
-import { DomSanitizer, SafeResourceUrl, SafeUrl} from '@angular/platform-browser';
 import { WebSocketService } from '../../shared/web-socket.service';
 import { Subscription } from 'rxjs';
+
 
 
 @Component({
@@ -47,8 +48,8 @@ export class VistaMasterComponent implements OnInit, OnDestroy {
               public characterService:CharacterService,
               public master: MasterService,
               public playersService: PlayersService,
-              public sanitizer : DomSanitizer) { 
-    
+              private router:Router
+              ) { 
     this.idCampaignPre = this.campaingService.actualCampaign.idCampaignPre;
     this.idCampaignActual = this.campaingService.actualCampaign.idCampaign;
     this.campaignTitle = this.campaingService.actualCampaign.campaignNamePre;
@@ -76,25 +77,10 @@ export class VistaMasterComponent implements OnInit, OnDestroy {
     })
         
   }
-  
-  ngOnInit(): void {
-    this.escuchaMasmenosplayer = this.wss.escucha('new-masmenosplayer').subscribe((data: any) => {
-      const { campaignCode, player, viene } = data;
-      if (campaignCode == this.idCampaignActual) {
-        if (viene) {
-          this.playerHitPoints(this.idCampaignActual)
-        }else{
-          let indice = this.master.characterPlayer.findIndex(item => item.namePlayer == player)
-          if (indice >= 0) {
-            this.master.characterPlayer.splice(indice, 1);
-          }
-        } 
-      }})  
-  };
 
 //Calculadora Dañar y Sanar
-
-damageCalc(lifePoints:number): void{
+  
+damageCalc(lifePoints:number){
   this.master.hitPoints[this.indexCalc].hitPoints = this.master.hitPoints[this.indexCalc].hitPoints - lifePoints;
   if(this.master.hitPoints[this.indexCalc].idEnemy > 0)
   {
@@ -158,9 +144,7 @@ healingCalc(){
     })
   }
 
-  getSanitizedURL() {
-    return this.sanitizer.bypassSecurityTrustUrl(this.manualMaster);
-  }
+  
 
 ///Player and Enemy in game
 
@@ -257,5 +241,11 @@ select(){
 
   ngOnDestroy(): void {
     this.escuchaMasmenosplayer.unsubscribe();
+  }
+  //Redirgir al actualizar
+  ngOnInit(): void {
+    if(this.campaingService.actualCampaign.idCampaign == undefined){
+      this.router.navigate(['/perfil'])
+    }
   }
 }
