@@ -13,10 +13,11 @@ export class HomePageComponent implements OnInit {
   public partidas: CampaignHome[];
   
   constructor(private chs: CampaignHomeService) { 
-    this.mostarPartidas();
+    
   }
  
   ngOnInit(): void {
+    this.mostarPartidas();
   }
   
   ///Mostrar las 5 ultimas partidas

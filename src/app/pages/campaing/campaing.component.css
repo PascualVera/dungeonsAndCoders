@@ -318,20 +318,13 @@ main {
   background: #555;
 }
 
-/**********Media Querys*********/
-/* @media screen and (min-width: 1240px) {
-  html {
-    font-size: 24px;
-  }
+.modal_full_game{
+  position: absolute;
+  top:0px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  border: 1px solid white;
+  z-index: 800;
 }
-@media screen and (min-width: 1920px) {
-  html {
-    font-size: 24px;
-  }
-}
-
-@media screen and (min-width: 3840px) {
-  html {
-    font-size: 48px;
-  }
-} */

@@ -30,7 +30,7 @@ export class CampaingComponent implements OnInit {
       for(let id of data.resultado){
         this.campaignsIds.push(id.idCampaign)
       }
-      console.log(this.campaignsIds)
+      
     })
   }
   
