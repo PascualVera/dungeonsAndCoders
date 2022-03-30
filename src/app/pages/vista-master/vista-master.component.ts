@@ -59,7 +59,7 @@ export class VistaMasterComponent implements OnInit, OnDestroy {
     this.enemyCampaignPre = [new Enemy ()]
     this.enemiesCampaign(this.idCampaignPre)
     this.playerInGame(this.idCampaignActual)
-    this.playerHitPoints(this.idCampaignActual)
+    
     this.enemyHitPoints(this.idCampaignActual)
     this.masterManual(this.idCampaignActual)
     this.playersService.players = [0];
@@ -247,7 +247,14 @@ select(){
     this.escuchaMasmenosplayer = this.wss.escucha('new-masmenosplayer').subscribe((data: any) => {
       const { campaignCode, player, viene } = data;
       if (campaignCode == this.campaingService.actualCampaign.idCampaign) {
-        // TODO: Actualizar de bbdd por cambios en cantidad de players
+        if(viene){
+          this.playerHitPoints(this.idCampaignActual)
+        }else{
+          let indice = this.master.characterPlayer.findIndex(item => item.name == player)
+          if(indice >=0){
+            this.master.characterPlayer.splice(indice,1);
+          }
+        }
       }
     }) 
     if(this.campaingService.actualCampaign.idCampaign == undefined){
