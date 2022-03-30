@@ -11,6 +11,9 @@
       </div>
     </span>
   </div>
+  <div class="actualCampaign">
+    {{campaignService.actualCampaign.campaignName}}
+  </div>
   <div class="navbar_contenedor">
     <ng-container *ngIf="this.router.url == '/master'">
       <div *ngIf="!campaignService.actualCampaign.closed" (click)="startCampaign(veloModalMinimo)" class="pausar">Iniciar</div>
@@ -44,7 +47,7 @@
     </div>
     <div class="modalOpciones">
       <button (click)="endCampaign()" class="botonModal">Finalizar campaña</button>
-      <button class="botonModal">Guardar historial</button>
+      <button (click)="guardarHistorial()" class="botonModal">Guardar historial</button>
     </div>
   </div>
 </div>

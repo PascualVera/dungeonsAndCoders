@@ -41,7 +41,7 @@
             </label>
             <span class="textSwitch">Pública</span>
         </div>
-        <input #inputNombre type="text" class="inputNombre" placeholder="*Nombre de campaña">
+        <input #inputNombre autofocus type="text" class="inputNombre" placeholder="*Nombre de campaña">
         <select #selectPlayers class="selectPlayers">
             <option selected value="">*Número de jugadores</option>
             <option *ngFor="let jugadores of rangoJugadores" [value]="jugadores">{{jugadores}} Jugadores</option>

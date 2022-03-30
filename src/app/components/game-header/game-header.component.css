@@ -9,6 +9,13 @@
   .navbar_contenedor{
     display: flex;
   }
+
+  .actualCampaign{
+    font-family: 'fable';
+    font-size: 1.8rem;
+    color: var(--textMain);
+  }
+
   .sala{
     position: relative;
     overflow: visible;

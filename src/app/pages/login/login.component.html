@@ -5,7 +5,7 @@
         <form>
             <div class="formContainer">
                 <div class="input_container">
-                    <input (keyup)="login(identificador,password,validate, $event.keyCode)" #identificador type="text" placeholder="Usuario o correo">
+                    <input autofocus (keyup)="login(identificador,password,validate, $event.keyCode)" #identificador type="text" placeholder="Usuario o correo">
                     <input (keyup)="login(identificador,password,validate, $event.keyCode)" #password type="password" placeholder="Contraseña">
                     <div #validate class="validate">
                         <i class="fa-solid fa-circle-exclamation"></i> ¡Usuario o contraseña no válidos!

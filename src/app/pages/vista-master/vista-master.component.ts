@@ -59,7 +59,7 @@ export class VistaMasterComponent implements OnInit, OnDestroy {
     this.enemyCampaignPre = [new Enemy ()]
     this.enemiesCampaign(this.idCampaignPre)
     this.playerInGame(this.idCampaignActual)
-    this.playerHitPoints(this.idCampaignActual)
+    
     this.enemyHitPoints(this.idCampaignActual)
     this.masterManual(this.idCampaignActual)
     this.playersService.players = [0];
@@ -244,6 +244,19 @@ select(){
   }
   //Redirgir al actualizar
   ngOnInit(): void {
+    this.escuchaMasmenosplayer = this.wss.escucha('new-masmenosplayer').subscribe((data: any) => {
+      const { campaignCode, player, viene } = data;
+      if (campaignCode == this.campaingService.actualCampaign.idCampaign) {
+        if(viene){
+          this.playerHitPoints(this.idCampaignActual)
+        }else{
+          let indice = this.master.characterPlayer.findIndex(item => item.name == player)
+          if(indice >=0){
+            this.master.characterPlayer.splice(indice,1);
+          }
+        }
+      }
+    }) 
     if(this.campaingService.actualCampaign.idCampaign == undefined){
       this.router.navigate(['/perfil'])
     }
