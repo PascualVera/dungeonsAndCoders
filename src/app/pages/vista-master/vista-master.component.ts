@@ -75,7 +75,7 @@ export class VistaMasterComponent implements OnInit, OnDestroy {
     })
     this.campaingService.getCampaignById(this.campaingService.actualCampaign.idCampaign)
     .subscribe((resp: any) => {
-      if (resp.resultado.length > 0) {
+      if (resp.resultado && resp.resultado.length > 0) {
         this.playersService.master.name = resp.resultado[0].name;
       }
     })
@@ -139,7 +139,7 @@ healingCalc(){
 ///Master Manual
   masterManual(idCampaign:string){
     this.master.getManual(idCampaign).subscribe((data:any) =>{
-      if (data.resultado.length > 0) {
+      if (data.resultado && data.resultado.length > 0) {
         this.campaignTitle = data.resultado[0].campaignName;
         this.manualMaster = String (data.resultado[0].routeMasterManual);
       }
