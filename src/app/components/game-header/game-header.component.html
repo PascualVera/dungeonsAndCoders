@@ -11,6 +11,9 @@
       </div>
     </span>
   </div>
+  <div class="actualCampaign">
+    {{campaignService.actualCampaign.campaignName}}
+  </div>
   <div class="navbar_contenedor">
     <ng-container *ngIf="this.router.url == '/master'">
       <div *ngIf="!campaignService.actualCampaign.closed" (click)="startCampaign(veloModalMinimo)" class="pausar">Iniciar</div>
