@@ -19,7 +19,6 @@ export class CampaingComponent implements OnInit {
   public selectedCampaign: Campaing;
 
   constructor(private campaignService: CampaingService, private router: Router, public characterService:CharacterService,public userService:UserService) {
-    this.getAllCampaigns();
     this.campaignsIds =[]
     this.userService.getCampaignMaster(this.userService.user.idUser).subscribe((data:any)=>{
       for(let id of data.resultado){
@@ -30,6 +29,7 @@ export class CampaingComponent implements OnInit {
       for(let id of data.resultado){
         this.campaignsIds.push(id.idCampaign)
       }
+      this.getAllCampaigns();
       
     })
   }
