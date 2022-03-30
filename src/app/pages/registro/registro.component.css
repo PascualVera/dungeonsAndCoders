@@ -34,6 +34,7 @@
     background-color: var(--bluemain);
     border: 0.8vh solid var(--redmain);
     border-radius: 1vh;
+    position: relative;
 }
 
 .formContainer {
@@ -148,4 +149,12 @@
 
 .formContainer button:hover {
     filter: brightness(1.1);
+  }
+
+.bad_request{
+    color: red;  
+    position: absolute;
+    bottom: 0;
+    display: none;
+    font-size: 1.3rem;
   }

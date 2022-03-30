@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ERROR } from '@angular/compiler-cli/src/ngtsc/logging/src/console_logger';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/shared/user.service';
@@ -11,7 +12,7 @@ import { UserService } from 'src/app/shared/user.service';
 export class RegistroComponent implements OnInit {
 
   public informacion: string[];
-
+  @ViewChild('badreq')badreq:ElementRef
   constructor(public userService:UserService,private router:Router) { 
     this.informacion = [
       'Las cosas han cambiado mucho en el panorama de los juegos de rol y por suerte es, cada vez más y más, una actividad accesible y popular.',
@@ -49,21 +50,14 @@ export class RegistroComponent implements OnInit {
     }
   //Email
    validateEmail(correo:any) {
-    let checkMail = this.userService.users.filter((val)=>{
-      return val.email == correo.value
-    })
-    let check : any= correo.nextSibling
+    let check:any = correo.nextSibling
     let error = check.setAttribute('class','error')
     if(correo.value == ''){
       check.setAttribute('class','check')
       return false
     }
-    
     const validate =/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-     if(checkMail.length != 0){
-      error
-      return false
-    } else if (correo.value.match(validate)) {
+     if (correo.value.match(validate)) {
       check.setAttribute('class','valid')
       return true  
     } else {
@@ -113,9 +107,14 @@ export class RegistroComponent implements OnInit {
     if( this.validateUser(nombre) && this.validatePassword(pass) && this.validateEmail(correo) && this.validatePassword2(pass,passConf) ){
       let user = new User(nombre.value,correo.value.toLowerCase(), pass.value)
       user.urlAvatar = '../../../assets/images/avatares/avatar00.png'
-      this.userService.register(user).subscribe(() => {
+      this.userService.register(user).subscribe((data:any) => {
+        if(data.ok){
         this.router.navigate(['/login'])
-      })
+        }else{
+        this.badreq.nativeElement.style.display = 'block'
+        }
+      }
+    )
     }
   }
   ngOnInit(): void {
