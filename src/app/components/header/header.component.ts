@@ -18,9 +18,7 @@ export class HeaderComponent implements OnInit {
    
       home.setAttribute('class','navItemAlt')
       campaing.setAttribute('class','navItem')
-      perfil.setAttribute('class','navItem')
-      console.log(this.router.routerState.snapshot.url)
-    
+      perfil.setAttribute('class','navItem')    
   }
   switchCampaing( home: HTMLElement, campaing: HTMLElement, perfil: HTMLElement) {
       home.setAttribute('class','navItem')

@@ -57,7 +57,6 @@ export class LoginComponent implements OnInit {
           }
         }
         this.userService.userEdit(addTempPass).subscribe((data) => {
-          console.log(data);
           verify.style.visibility = 'visible';
         });
       });

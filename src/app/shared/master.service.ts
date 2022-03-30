@@ -46,7 +46,6 @@ export class MasterService {
                       hitPoints: hP,
                       idEnemy: idEn
                       };
-    console.log(options)
     return this.http.put(this.url+"/vistaMaster/enemy", options)
   }
 
@@ -55,7 +54,6 @@ export class MasterService {
                     hitPoints: hP,
                     idPlayer: idPl
                     };
-    console.log(options)
     return this.http.put(this.url+"/vistaMaster/player", options)
   }
 }

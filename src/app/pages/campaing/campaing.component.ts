@@ -30,7 +30,6 @@ export class CampaingComponent implements OnInit {
       for(let id of data.resultado){
         this.campaignsIds.push(id.idCampaign)
       }
-      console.log(this.campaignsIds)
     })
   }
   
@@ -55,7 +54,6 @@ export class CampaingComponent implements OnInit {
   }
 
   selectCampaign(campaign: Campaing) {
-    console.log(campaign)
     this.selectedCampaign = campaign;
   
   }
