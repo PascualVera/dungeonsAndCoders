@@ -59,7 +59,7 @@ export class VistaMasterComponent implements OnInit, OnDestroy {
     this.enemyCampaignPre = [new Enemy ()]
     this.enemiesCampaign(this.idCampaignPre)
     this.playerInGame(this.idCampaignActual)
-    
+    this.playerHitPoints(this.idCampaignActual)
     this.enemyHitPoints(this.idCampaignActual)
     this.masterManual(this.idCampaignActual)
     this.playersService.players = [0];
@@ -113,9 +113,6 @@ healingCalc(){
   this.master.hitPoints[this.indexCalc].hitPoints= Number(this.master.hitPoints[this.indexCalc].hitPoints) + Number(this.lp.nativeElement.value);
   if(this.master.hitPoints[this.indexCalc].idEnemy > 0)
   {
-    console.log(this.master.hitPoints[this.indexCalc].idEnemy)
-    console.log(Number(this.master.hitPoints[this.indexCalc].hitPoints))
-    console.log(this.master.hitPoints[this.indexCalc].idCampaign)
     this.master.putEnemyHitPoints(Number(this.master.hitPoints[this.indexCalc].hitPoints), this.master.hitPoints[this.indexCalc].idEnemy)
     .subscribe((data: any) => {
       console.log('Enemy Updated',data.respuesta)
@@ -144,7 +141,6 @@ healingCalc(){
         this.campaignTitle = data.resultado[0].campaignName;
         this.manualMaster = String (data.resultado[0].routeMasterManual);
       }
-      console.log(this.manualMaster)
     })
   }
 
