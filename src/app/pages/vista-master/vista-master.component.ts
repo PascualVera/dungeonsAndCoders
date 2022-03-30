@@ -11,6 +11,7 @@ import { MasterService } from 'src/app/shared/master.service';
 import { PlayersService } from 'src/app/shared/players.service';
 import { WebSocketService } from '../../shared/web-socket.service';
 import { Subscription } from 'rxjs';
+import { UserService } from '../../shared/user.service';
 
 
 
@@ -48,6 +49,7 @@ export class VistaMasterComponent implements OnInit, OnDestroy {
               public characterService:CharacterService,
               public master: MasterService,
               public playersService: PlayersService,
+              private userService: UserService,
               private router:Router
               ) { 
     this.idCampaignPre = this.campaingService.actualCampaign.idCampaignPre;
@@ -63,7 +65,7 @@ export class VistaMasterComponent implements OnInit, OnDestroy {
     this.enemyHitPoints(this.idCampaignActual)
     this.masterManual(this.idCampaignActual)
     this.playersService.players = [0];
-    this.playersService.master.name = '';
+    this.playersService.master.name = this.userService.user.name;
     this.playersService.inGamePlayer(this.campaingService.actualCampaign.idCampaign)
     .subscribe((resp: any) => {
       this.playersService.players = [];

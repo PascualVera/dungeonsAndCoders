@@ -38,6 +38,17 @@ export class ChatComponent implements OnInit, OnDestroy {
       .subscribe((resp: any) => {
         if (resp.ok) {  
           this.mcs.mensajesChat = [];
+          if (this.us.user.name == this.ps.master.name && this.cs.actualCampaign.numPlayer == 0) {
+            let mensajeChat = {
+              campaignCode: this.cs.actualCampaign.idCampaign,
+              emisor: this.ps.system,
+              mensaje: `Hola GM ${this.ps.master.name}. Este mensaje es solo para ti: Tu campaña "${this.cs.actualCampaign.campaignName}" está a la espera de jugadores. Te recomendamos dejar en el chat unas breves instrucciones con las pautas a seguir para proceder al incio de la campaña. Estas serán de gran utilidad para todo aquel que vaya uniendose a la misma. Gracias y que disfrutéis de la aventura...`,
+              fecha: new Date()
+            }
+            this.mcs.mensajesChat.push(mensajeChat);
+          }
+      
+
           resp.resultado.forEach((item: MensajeChat) => {
             const { campaignCode, emisor, mensaje, fecha } = item;
             let mensajeChat = {
