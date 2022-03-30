@@ -59,7 +59,7 @@ export class VistaMasterComponent implements OnInit, OnDestroy {
     this.enemyCampaignPre = [new Enemy ()]
     this.enemiesCampaign(this.idCampaignPre)
     this.playerInGame(this.idCampaignActual)
-    
+    this.playerHitPoints(this.idCampaignActual)
     this.enemyHitPoints(this.idCampaignActual)
     this.masterManual(this.idCampaignActual)
     this.playersService.players = [0];
@@ -73,7 +73,9 @@ export class VistaMasterComponent implements OnInit, OnDestroy {
     })
     this.campaingService.getCampaignById(this.campaingService.actualCampaign.idCampaign)
     .subscribe((resp: any) => {
-      this.playersService.master.name = resp.resultado[0].name;
+      if (resp.resultado.length > 0) {
+        this.playersService.master.name = resp.resultado[0].name;
+      }
     })
         
   }
@@ -111,9 +113,6 @@ healingCalc(){
   this.master.hitPoints[this.indexCalc].hitPoints= Number(this.master.hitPoints[this.indexCalc].hitPoints) + Number(this.lp.nativeElement.value);
   if(this.master.hitPoints[this.indexCalc].idEnemy > 0)
   {
-    console.log(this.master.hitPoints[this.indexCalc].idEnemy)
-    console.log(Number(this.master.hitPoints[this.indexCalc].hitPoints))
-    console.log(this.master.hitPoints[this.indexCalc].idCampaign)
     this.master.putEnemyHitPoints(Number(this.master.hitPoints[this.indexCalc].hitPoints), this.master.hitPoints[this.indexCalc].idEnemy)
     .subscribe((data: any) => {
       console.log('Enemy Updated',data.respuesta)
@@ -138,9 +137,10 @@ healingCalc(){
 ///Master Manual
   masterManual(idCampaign:string){
     this.master.getManual(idCampaign).subscribe((data:any) =>{
-      this.campaignTitle = data.resultado[0].campaignName;
-      this.manualMaster = String (data.resultado[0].routeMasterManual);
-      console.log(this.manualMaster)
+      if (data.resultado.length > 0) {
+        this.campaignTitle = data.resultado[0].campaignName;
+        this.manualMaster = String (data.resultado[0].routeMasterManual);
+      }
     })
   }
 

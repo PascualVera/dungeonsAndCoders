@@ -42,7 +42,6 @@ export class PerfilComponent implements OnInit {
 
     //Cargar partidas de master
     this.userService.getCampaignMaster(this.userService.user.idUser).subscribe((data:any)=>{
-      console.log(data)
       this.masterCampaign = data.resultado
     })
     //Cargar partidas de player
@@ -88,10 +87,8 @@ export class PerfilComponent implements OnInit {
       idUser: this.user.idUser,
       urlAvatar: this.urlAvatar,
     };
-    console.log(avatar);
     let edit = this.userService.userEdit(avatar);
     edit.subscribe((data) => {
-      console.log(data);
     });
   }
 
@@ -115,14 +112,12 @@ export class PerfilComponent implements OnInit {
             password: oldPass.value
           }
           this.userService.login(credentials).subscribe((data: any) => {
-            console.log(data)
             if (data.ok) {
               let changPass = {
                 idUser: this.user.idUser,
                 password: newPass.value
               }
               this.userService.userEdit(changPass).subscribe((data) => {
-                console.log(data)
                 verify.style.visibility = 'visible'
                 verify.innerHTML = 'Tu constraseña ha sido actualizada correctamente'
                 verify.style.background = 'rgba(0, 128, 0, 0.692)'

@@ -274,15 +274,19 @@
     width: 50vw;
     height: auto;
     max-width: 70vw;
+    max-height: 80vh;
     z-index: 1;
     background-image: url(../../../assets/images/pergamine2.png);
     background-size: cover;
     border: 0.2rem solid var(--bluemain);
+    overflow: scroll;
     /* font-size: 1rem; */
 }
 
 .enemyInfo b{
     letter-spacing: 2px;
+    color: var(--redmain);
+    stroke: var(--bluemain);
 }
 
 .enemyInfo ul{

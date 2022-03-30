@@ -55,7 +55,6 @@ export class CampaingComponent implements OnInit {
   }
 
   selectCampaign(campaign: Campaing) {
-    console.log(campaign)
     this.selectedCampaign = campaign;
   
   }
