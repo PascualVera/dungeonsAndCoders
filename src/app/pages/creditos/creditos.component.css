@@ -31,17 +31,17 @@
   align-items: center;
 }
 .img_container{
-  width: 12vw;
-  height: 12vw;
+  width: 70%;
+  height: 20vw;
   z-index: 2;
-  border-radius: 50%;
   overflow: hidden;
-  
+  display: flex;
+  justify-content: center;
+  margin-top: 1vh;
 }
 .img{
-  width: 12vw;
-  object-fit: contain;
-  object-position: 0vh -5vh;
+ height: 100%;
+ width: auto; 
 }
 
 .description{
