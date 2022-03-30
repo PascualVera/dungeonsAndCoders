@@ -6,6 +6,10 @@
   height: 10vh;
   background-color: var(--bluemain);
   padding: 0 0 0 1vw;
+  position: sticky;
+  top:0;
+  z-index: 2;
+  
 }
 
 .logodyc {

@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(public userService:UserService,private router:Router){
     this.userService.user = JSON.parse(this.getUser())
     if(this.getUser() == null){
-      router.navigate([''])
+      this.router.navigate([''])
     }
   }
   getUser(){
