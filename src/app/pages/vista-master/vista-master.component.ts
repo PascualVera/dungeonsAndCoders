@@ -73,7 +73,9 @@ export class VistaMasterComponent implements OnInit, OnDestroy {
     })
     this.campaingService.getCampaignById(this.campaingService.actualCampaign.idCampaign)
     .subscribe((resp: any) => {
-      this.playersService.master.name = resp.resultado[0].name;
+      if (resp.resultado.length > 0) {
+        this.playersService.master.name = resp.resultado[0].name;
+      }
     })
         
   }
@@ -138,8 +140,10 @@ healingCalc(){
 ///Master Manual
   masterManual(idCampaign:string){
     this.master.getManual(idCampaign).subscribe((data:any) =>{
-      this.campaignTitle = data.resultado[0].campaignName;
-      this.manualMaster = String (data.resultado[0].routeMasterManual);
+      if (data.resultado.length > 0) {
+        this.campaignTitle = data.resultado[0].campaignName;
+        this.manualMaster = String (data.resultado[0].routeMasterManual);
+      }
       console.log(this.manualMaster)
     })
   }

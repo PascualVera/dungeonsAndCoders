@@ -13,7 +13,6 @@ export class CampaignHomeService {
   }
 
   getLastCampaigns() {
-    console.log(this.url + '/homepage')
     return this.http.get(this.url + '/homepage')
   }
 }
