@@ -11,7 +11,6 @@ import { Router } from '@angular/router'
   styleUrls: ['./perfil.component.css'],
 })
 export class PerfilComponent implements OnInit {
-  // TODO: Provisional para alternar true false entre elección de detalles y campañas
   public detalles: boolean = false;
   public opcionActiva: number;
   public ultimaOpcionActiva: number;
@@ -82,6 +81,7 @@ export class PerfilComponent implements OnInit {
 
   elegirAvatar(veloModalAvatar: HTMLElement) {
     this.urlAvatar = this.arrayAvatares[this.indiceAvatarSeleccionado];
+    this.userService.user.urlAvatar = this.urlAvatar;
     this.modalAvatar(veloModalAvatar, false);
     let avatar = {
       idUser: this.user.idUser,
