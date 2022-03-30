@@ -199,7 +199,6 @@ export class CharacterSelectComponent implements OnInit, OnDestroy {
        const { campaignCode, idPersonaje } = data;
       if (campaignCode == this.campaignService.actualCampaign.idCampaign) {
         this.characterService.charactersInGame[0] = idPersonaje
-        
       }
     })
     // ***************************************************
