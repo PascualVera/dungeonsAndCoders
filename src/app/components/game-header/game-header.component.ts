@@ -6,7 +6,6 @@ import { UserService } from '../../shared/user.service';
 import { WebSocketService } from '../../shared/web-socket.service';
 import { Img, PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
 import * as pdfFonts from '../../../assets/fontspdf/vfs_fonts';
-// import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import { CampaignPreService } from '../../shared/campaign-pre.service';
 import { CampaignPre } from 'src/app/models/campaign-pre';
 import { MensajesChatService } from '../../shared/mensajes-chat.service';
@@ -122,35 +121,29 @@ export class GameHeaderComponent implements OnInit {
         bold: "Fable_W01_Smooth.ttf",
         italics: "Fable_W01_Smooth.ttf",
         bolditalics: "Fable_W01_Smooth.ttf"
-      },
+      },      
       Roboto: {
         normal: "Roboto-Regular.ttf",
         bold: "Roboto-Bold.ttf",
-        italics: "DwarvenAxe.ttf",
-        bolditalics: "Fable_W01_Smooth.ttf"
+        italics: "Roboto-Italic.ttf",
+        bolditalics: "Roboto-BoldItalic.ttf"
       }
-      // Roboto: {
-      //   normal: "Roboto-Regular.ttf",
-      //   bold: "Roboto-Bold.ttf",
-      //   italics: "Roboto-Italic.ttf",
-      //   bolditalics: "Roboto-BoldItalic.ttf"
-      // }
     });
-
+    
     const historial = new PdfMakeWrapper();
     const bg = await new Img("../../../assets/images/pergaminepdf.png").build();
-
+    
     // Backgroung
     historial.background(bg);
     // Formato página
     historial.pageSize('A4');
     // historial.pageMargins(70);
-
+    
     // Contenido
-    let texto = new Txt(campaignName).alignment('center').fontSize(48).italics().margin([0,60,0,0]).end;
+    let texto = new Txt(campaignName).alignment('center').fontSize(48).font('dwarf').margin([0,60,0,0]).end;
     historial.add(texto);
-
-    texto = new Txt(synopsis).alignment('justify').margin([10, 40]).bold().italics().fontSize(16).end;
+    
+    texto = new Txt(synopsis).alignment('justify').margin([10, 40]).font('fable').fontSize(16).end;
     historial.add(texto);
 
 
@@ -179,7 +172,7 @@ export class GameHeaderComponent implements OnInit {
 
     historial.add(tabla);
 
-    texto = new Txt('HISTORIAL DEL CHAT').alignment('center').fontSize(24).italics().margin([0, 20, 0, 0]).pageBreak('before').end;
+    texto = new Txt('HISTORIAL DEL CHAT').alignment('center').fontSize(24).font('dwarf').margin([0, 20, 0, 0]).pageBreak('before').end;
     historial.add(texto);
 
     let mensajes = this.mcs.mensajesChat.map((item) => {
