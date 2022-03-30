@@ -1,7 +1,8 @@
 <header class="nombre">
   <p>{{this.characterService.character.name}}</p>
 </header>
-<article *ngIf="dataIndex == 0" class="character_body">
+<!-- <article *ngIf="dataIndex == 0" class="character_body"> -->
+<article #personaje class="character_body">
   <div class="character_upper">
     <div class="stats">
       <div class="stat">
@@ -94,22 +95,22 @@
 <app-spell-atacks *ngIf="dataIndex == 2"></app-spell-atacks>
 <app-equipo *ngIf="dataIndex == 3"></app-equipo>
 <div class="habilidades">
-  <div [ngClass]="dataIndex == 3 ? 'selected_att': 'info' " (click)="showWeapons()" >
+  <div [ngClass]="dataIndex == 3 ? 'selected_att': 'info' " (click)="showWeapons(personaje)" >
       <section class="equipo">
         Equipo
       </section>
   </div>
-  <div [ngClass]="dataIndex == 2 ? 'selected_att': 'info' " (click)="showSpell()" > 
+  <div [ngClass]="dataIndex == 2 ? 'selected_att': 'info' " (click)="showSpell(personaje)" > 
       <section>  
         Ataques y Hechizos
       </section>
   </div>
-  <div [ngClass]="dataIndex == 1 ? 'selected_att': 'info' " (click)="showSkills()" >
+  <div [ngClass]="dataIndex == 1 ? 'selected_att': 'info' " (click)="showSkills(personaje)" >
       <section>
         Habilidades
       </section>
   </div>
-  <div [ngClass]="dataIndex == 0 ? 'selected_att': 'info' " (click)="showCharacter()" >
+  <div [ngClass]="dataIndex == 0 ? 'selected_att': 'info' " (click)="showCharacter(personaje)" >
     <section>
     Personaje
     </section>

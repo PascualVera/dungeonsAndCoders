@@ -213,7 +213,9 @@ export class ChatComponent implements OnInit, OnDestroy {
       }
       this.mcs.mensajesChat.push(mensajeChat);
       this.wss.emite('send-message', mensajeChat);
-      this.mcs.postChatMessage(mensajeChat).subscribe(() => { });
+      this.mcs.postChatMessage(mensajeChat).subscribe(() => { 
+        this.nuevoMensaje = true;
+      });
     }
   }
 
