@@ -66,14 +66,13 @@
   align-items: center;
   height: 100%;
   padding: 0 2vw;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: var(--textMain);
 }
 
 .creditos:hover {
   background-color: var(--redmain);
 }
 
-.creditos a {
-  font-size: 1.2rem;
-  text-decoration: none;
-  color: var(--textMain);
-}
+

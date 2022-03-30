@@ -29,6 +29,7 @@ import { SpellAtacksComponent } from './components/spell-atacks/spell-atacks.com
 import { HabilidadesComponent } from './components/habilidades/habilidades.component';
 import { EquipoComponent } from './components/equipo/equipo.component';
 import { SafePipe } from './pipes/safe.pipe';
+import { CreditosComponent } from './pages/creditos/creditos.component';
 registerLocaleData(localeEs, 'es');
 
 @NgModule({
@@ -56,6 +57,7 @@ registerLocaleData(localeEs, 'es');
     HabilidadesComponent,
     EquipoComponent,
     SafePipe,
+    CreditosComponent,
     
   ],
   imports: [
