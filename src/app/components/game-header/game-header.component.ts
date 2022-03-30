@@ -140,10 +140,12 @@ export class GameHeaderComponent implements OnInit {
     // historial.pageMargins(70);
     
     // Contenido
-    let texto = new Txt(campaignName).alignment('center').fontSize(48).font('dwarf').margin([0,60,0,0]).end;
+    const logo = await new Img("../../../assets/images/dcLogoHeader.png").width(250).alignment('center').build();
+    historial.add(logo);
+    let texto = new Txt(campaignName).alignment('center').fontSize(36).font('dwarf').margin([0,10,0,0]).end;
     historial.add(texto);
     
-    texto = new Txt(synopsis).alignment('justify').margin([10, 40]).font('fable').fontSize(16).end;
+    texto = new Txt(synopsis).alignment('justify').margin([10, 20]).font('fable').fontSize(16).end;
     historial.add(texto);
 
 
@@ -168,7 +170,7 @@ export class GameHeaderComponent implements OnInit {
         new Txt('JUGADORES').bold().end,
         players
       ]
-    ]).layout('noBorders').widths([80, '*']).margin([20, 0, 0, 0]).end;
+    ]).layout('noBorders').widths([80, '*']).margin([10, 0, 0, 0]).end;
 
     historial.add(tabla);
 
