@@ -34,7 +34,7 @@
       </div>
     </span>
     <ng-container *ngFor="let campaign of allCampaignsFiltered">
-      <span tabindex="0" *ngIf="campaign.public && campaignsIds.includes(campaign.idCampaign) == false" (click)="selectCampaign(campaign)" class="campaings_items">
+      <span tabindex="0" *ngIf="campaign.public && !campaignsIds.includes(campaign.idCampaign)" (click)="selectCampaign(campaign)" class="campaings_items">
         <div>
           <p>{{campaign.campaignName}}</p>
         </div>
