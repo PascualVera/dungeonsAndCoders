@@ -30,7 +30,6 @@ main {
 img {
   width: 100%;
   filter: brightness(1.1);
-  
   transform: rotateZ(-0.6deg);
 }
 

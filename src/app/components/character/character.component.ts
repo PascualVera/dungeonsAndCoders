@@ -27,24 +27,25 @@ export class CharacterComponent implements OnInit, OnDestroy {
     
     this.dataIndex = 0
     this.characterService.character = new Character();
-    console.log('ajurado', this.characterService.character)
     characterService.getAll().subscribe((data:Character[])=>{
       let character = data[playerService.player.idCharacter - 1]
       this.characterService.getSpell(character.idCharacter).subscribe((data:any)=>{ //<== Introducir hechizos
-        console.log(data)
         character.spell = data.resultado
         this.characterService.getWeapon(character.idCharacter).subscribe((data:any)=>{  //<== Introducir equipo
           character.weapon = data.resultado
-          console.log(data)
           this.characterService.character = character
           this.hit()
         })
       })
     })
+   
+      
+    
     
   }
   showCharacter(){
     this.dataIndex = 0
+    this.hit()
   }
   showSkills(){
     this.dataIndex = 1
