@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Character } from 'src/app/models/character';
 import { Player } from 'src/app/models/player';
@@ -8,15 +8,17 @@ import { CharacterService } from 'src/app/shared/character.service';
 import { PlayersService } from 'src/app/shared/players.service';
 import { UserService } from 'src/app/shared/user.service';
 import { WebSocketService } from '../../shared/web-socket.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-character-select',
   templateUrl: './character-select.component.html',
   styleUrls: ['./character-select.component.css'],
 })
-export class CharacterSelectComponent implements OnInit {
+export class CharacterSelectComponent implements OnInit, OnDestroy {
   public scrollCount: number;
   public characters: Character[];
+  private escuchaSelectdCharacter: Subscription;
   
   constructor(public characterService: CharacterService,
     private wss: WebSocketService,
@@ -113,6 +115,14 @@ export class CharacterSelectComponent implements OnInit {
     index: number,
     button: any
   ) {
+
+    // ***************************************************
+    let personajeSeleccionado = {
+      campaignCode: this.campaignService.actualCampaign.idCampaign
+    }
+    this.wss.emite('send-personaje', personajeSeleccionado);
+    // ***************************************************
+
     this.characterService.character = character;
     this.characterService.getSpell(character.idCharacter).subscribe((data:any)=>{
       this.characterService.character.spell = data.resultado
@@ -171,6 +181,17 @@ export class CharacterSelectComponent implements OnInit {
   }
  
   ngOnInit(): void {
+
+    // ***************************************************
+    this.escuchaSelectdCharacter = this.wss.escucha('new-personaje').subscribe((data: any) => {
+      const { campaignCode } = data;
+      if (campaignCode == this.campaignService.actualCampaign.idCampaign) {
+
+      }
+    })
+    // ***************************************************
+
+    
     this.userService.getCampaignPlayer().subscribe((data:any)=>{
       for(const id of data.resultado){
         if(id.idCampaign == this.campaignService.actualCampaign.idCampaign){
@@ -178,5 +199,9 @@ export class CharacterSelectComponent implements OnInit {
         }
       }
     })
+  }
+
+  ngOnDestroy(): void {
+    this.escuchaSelectdCharacter.unsubscribe();
   }
 }

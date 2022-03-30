@@ -43,17 +43,21 @@ export class CharacterComponent implements OnInit, OnDestroy {
     
     
   }
-  showCharacter(){
+  showCharacter(personaje: HTMLElement){
     this.dataIndex = 0
+    personaje.style.display = 'block';
     this.hit()
   }
-  showSkills(){
+  showSkills(personaje: HTMLElement){
+    personaje.style.display = 'none';
     this.dataIndex = 1
   }
-  showSpell(){
+  showSpell(personaje: HTMLElement){
+    personaje.style.display = 'none';
     this.dataIndex = 2
   }
-  showWeapons(){
+  showWeapons(personaje: HTMLElement){
+    personaje.style.display = 'none';
     this.dataIndex = 3
   }
   hit() {
