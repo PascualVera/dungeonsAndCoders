@@ -18,8 +18,7 @@ import { Subscription } from 'rxjs';
 export class CharacterSelectComponent implements OnInit, OnDestroy {
   public scrollCount: number;
   public characters: Character[];
-  private escuchaSelectdCharacter: Subscription;
-  
+  private escuchaSelectedCharacter: Subscription;
   constructor(public characterService: CharacterService,
     private wss: WebSocketService,
     public playerService:PlayersService,
@@ -28,8 +27,8 @@ export class CharacterSelectComponent implements OnInit, OnDestroy {
     private router:Router) {
       this.scrollCount = 0;
       this.getCharacters();
+      this.characterService.charactersInGame = [0]
       this.characterService.getCharactersInGame(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
-      this.characterService.charactersInGame = []
         for(const id of data.respuesta){
           this.characterService.charactersInGame.push(id.idCharacter)
         }
@@ -42,6 +41,18 @@ export class CharacterSelectComponent implements OnInit, OnDestroy {
     this.characterService.getAll().subscribe((data: any) => {
       this.characters = data;
     });
+  }
+  findCharacterTaken(idCharacter:number){
+    let disponible = true
+    if(this.characterService.charactersInGame[0] == idCharacter){
+      disponible = false
+    }
+    for(let i = 0; i< this.characterService.charactersInGame.length;i++){
+      if(this.characterService.charactersInGame[i] == idCharacter){
+        disponible = false
+      }
+    } 
+    return disponible
   }
   postPlayer(){
     this.playerService.player = new Player (this.characterService.character.hitPoint,
@@ -115,10 +126,11 @@ export class CharacterSelectComponent implements OnInit, OnDestroy {
     index: number,
     button: any
   ) {
-
+    console.log(character.idCharacter)
     // ***************************************************
     let personajeSeleccionado = {
-      campaignCode: this.campaignService.actualCampaign.idCampaign
+      campaignCode: this.campaignService.actualCampaign.idCampaign,
+      idPersonaje: character.idCharacter
     }
     this.wss.emite('send-personaje', personajeSeleccionado);
     // ***************************************************
@@ -183,10 +195,11 @@ export class CharacterSelectComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     // ***************************************************
-    this.escuchaSelectdCharacter = this.wss.escucha('new-personaje').subscribe((data: any) => {
-      const { campaignCode } = data;
+    this.escuchaSelectedCharacter = this.wss.escucha('new-personaje').subscribe((data: any) => {
+       const { campaignCode, idPersonaje } = data;
       if (campaignCode == this.campaignService.actualCampaign.idCampaign) {
-
+        this.characterService.charactersInGame[0] = idPersonaje
+        
       }
     })
     // ***************************************************
@@ -202,6 +215,6 @@ export class CharacterSelectComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.escuchaSelectdCharacter.unsubscribe();
+    this.escuchaSelectedCharacter.unsubscribe();
   }
 }
