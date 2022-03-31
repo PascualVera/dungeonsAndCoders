@@ -1,24 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Campaing } from '../../models/campaing';
 import { CampaingService } from '../../shared/campaing.service';
 import { Router } from '@angular/router';
 import { CharacterService } from 'src/app/shared/character.service';
 import { UserService } from 'src/app/shared/user.service';
+import { Subscription } from 'rxjs';
+import { WebSocketService } from '../../shared/web-socket.service';
 
 @Component({
   selector: 'app-campaing',
   templateUrl: './campaing.component.html',
   styleUrls: ['./campaing.component.css'],
 })
-export class CampaingComponent implements OnInit {
+export class CampaingComponent implements OnInit, OnDestroy {
 
   public delayKeyUp: any; // para controlar el temporizador de pulsaciones al filtrar
   public campaignsIds:string[]
   public allCampaigns: Campaing[];
   public allCampaignsFiltered: Campaing[];
+  private filtroActual: string = '';
   public selectedCampaign: Campaing;
+  public eschuchaMasmenosPlayer: Subscription;
+  private escuchaFinalizar: Subscription;
+  private escuchaPlaying: Subscription;
 
-  constructor(private campaignService: CampaingService, private router: Router, public characterService:CharacterService,public userService:UserService) {
+  constructor(private campaignService: CampaingService,
+              private router: Router,
+              public characterService:CharacterService,
+              private wss: WebSocketService,
+              public userService:UserService) {
     this.campaignsIds =[]
     this.userService.getCampaignMaster(this.userService.user.idUser).subscribe((data:any)=>{
       for(let id of data.resultado){
@@ -30,11 +40,32 @@ export class CampaingComponent implements OnInit {
         this.campaignsIds.push(id.idCampaign)
       }
       this.getAllCampaigns();
-      
     })
   }
   
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.eschuchaMasmenosPlayer = this.wss.escucha('new-masmenosplayer').subscribe((data: any) => {
+      this.getAllCampaigns();
+      this.filtrar(this.filtroActual);
+    });
+    this.escuchaFinalizar = this.wss.escucha('new-finalizar').subscribe((data: any) => {
+      this.getAllCampaigns();
+      this.filtrar(this.filtroActual);
+    });
+    // Emitido con undefined cuando se crea una partida con la intención de actualizar lista de campañas
+    this.escuchaPlaying = this.wss.escucha('new-playing').subscribe((data: any) => {
+      if (!data.campaignCode) {
+        this.getAllCampaigns();
+        this.filtrar(this.filtroActual);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.eschuchaMasmenosPlayer.unsubscribe()
+    this.escuchaFinalizar.unsubscribe()
+    this.escuchaPlaying.unsubscribe()
+  }
 
   openModal(modal: any) {
     modal.style.display = 'flex';
@@ -89,9 +120,12 @@ export class CampaingComponent implements OnInit {
   }
 
   filtrar(filtro: string) {
+    console.log(filtro)
     if (this.delayKeyUp) {
       clearTimeout(this.delayKeyUp)
-    }
+    };
+    this.filtroActual = filtro;
+    console.log(filtro)
     this.delayKeyUp = setTimeout(() => {
         if (!filtro) {
           this.allCampaignsFiltered = this.allCampaigns;
