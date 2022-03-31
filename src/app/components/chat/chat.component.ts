@@ -80,16 +80,20 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.escuchaMasmenosplayer = this.wss.escucha('new-masmenosplayer').subscribe((data: any) => {
       const { campaignCode, player, viene } = data;
       if (campaignCode == this.cs.actualCampaign.idCampaign) {
-        if (viene) {
-          this.ps.players.push({name: player, escribiendo: false, playing: true});
-          this.cs.actualCampaign.numPlayer++
-        } else {
-          let indice = this.ps.players.findIndex(item => item.name == player)
-          if (indice >= 0) {
-            this.ps.players.splice(indice, 1);
-            this.cs.actualCampaign.numPlayer--
+        this.cs.getCampaignById(campaignCode)
+        .subscribe((resp: any) => {
+          if (resp.ok) {
+            this.cs.actualCampaign.numPlayer = resp.resultado[0].numPlayer
+            if (viene) {
+              this.ps.players.push({name: player, escribiendo: false, playing: true});
+            } else {
+              let indice = this.ps.players.findIndex(item => item.name == player)
+              if (indice >= 0) {
+                this.ps.players.splice(indice, 1);
+              }
+            }
           }
-        }
+        })
       }
     });
     this.escuchaPlaying = this.wss.escucha('new-playing').subscribe((data: any) => {

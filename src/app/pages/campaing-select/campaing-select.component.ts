@@ -6,6 +6,7 @@ import { Campaing } from 'src/app/models/campaing';
 import { CampaingService } from '../../shared/campaing.service';
 import { UserService } from '../../shared/user.service';
 import { PlayersService } from 'src/app/shared/players.service';
+import { WebSocketService } from '../../shared/web-socket.service';
 
 @Component({
   selector: 'app-campaing-select',
@@ -23,6 +24,7 @@ export class CampaingSelectComponent implements OnInit {
               private campaignService: CampaingService,
               private userService: UserService,
               private playersService: PlayersService,
+              private wss: WebSocketService,
               private router: Router) {
     this.selectedCampaignPre = new CampaignPre();
     this.getAllCampaigns()
@@ -105,6 +107,11 @@ export class CampaingSelectComponent implements OnInit {
 
       this.campaignService.postCampaign(this.campaignService.actualCampaign)
       .subscribe(() => {
+        let playing = {
+          campaignCode: undefined,
+          name: undefined
+        }
+        this.wss.emite('send-playing', playing);
         this.router.navigate(['/master'])
       })
     }

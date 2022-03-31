@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Campaing } from 'src/app/models/campaing';
 import { User } from 'src/app/models/user';
 import { CampaingService } from 'src/app/shared/campaing.service';
 import { PlayersService } from 'src/app/shared/players.service';
 import { UserService } from 'src/app/shared/user.service';
 import { Router } from '@angular/router'
+import { Subscription } from 'rxjs';
+import { WebSocketService } from '../../shared/web-socket.service';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css'],
 })
-export class PerfilComponent implements OnInit {
+export class PerfilComponent implements OnInit, OnDestroy {
   public detalles: boolean = false;
   public opcionActiva: number;
   public ultimaOpcionActiva: number;
@@ -19,9 +21,15 @@ export class PerfilComponent implements OnInit {
   public avatarSeleccionado: boolean = false;
   public arrayAvatares: string[];
   public user: User;
-  public masterCampaign:Campaing[]
-  public playerCampaign:Campaing[]
-  constructor(public userService: UserService, public campaignService:CampaingService,public playerService:PlayersService, private router:Router) {
+  public masterCampaign:Campaing[];
+  public playerCampaign:Campaing[];
+  private escuchaFinalizar: Subscription;
+
+  constructor(public userService: UserService,
+              public campaignService:CampaingService,
+              public playerService:PlayersService,
+              private wss: WebSocketService,
+              private router:Router) {
     this.user = userService.user;
     this.urlAvatar = this.user.urlAvatar;
     this.opcionActiva = 2;
@@ -50,7 +58,17 @@ export class PerfilComponent implements OnInit {
     this.playerService.players = []
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.escuchaFinalizar = this.wss.escucha('new-finalizar').subscribe((data: any) => {
+      this.userService.getCampaignPlayer().subscribe((data:any)=>{ 
+        this.playerCampaign = data.resultado 
+      }) 
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.escuchaFinalizar.unsubscribe();
+  }
 
   modalAvatar(veloModalAvatar: HTMLElement, visible: boolean) {
     if (visible) {
