@@ -24,7 +24,7 @@
 
 <div #veloModalPass class="veloModalPass">
     <div class="modalPass">
-        <button (click)="modalPass(veloModalPass, false)" class="closeModal">
+        <button (click)="modalPass(veloModalPass, false, mail, verify)" class="closeModal">
             <i class="fa-solid fa-square-xmark closeModal"></i>
         </button>
         <input #mail (keyup.enter)="recuperarPass(mail,verify)" type="email" placeholder="Introduzca correo electrónico">

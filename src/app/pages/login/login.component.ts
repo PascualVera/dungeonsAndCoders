@@ -11,8 +11,12 @@ import { UserService } from 'src/app/shared/user.service';
 export class LoginComponent implements OnInit {
   constructor(public userService: UserService, private router: Router) {}
 
-  modalPass(veloModalPass: HTMLElement, visible: boolean) {
+  modalPass(veloModalPass: HTMLElement, visible: boolean, mail?: HTMLInputElement, verify?: HTMLElement) {
     veloModalPass.style.display = visible ? 'flex' : 'none';
+    if (mail) {
+      mail.value = '';
+      verify.style.visibility = 'hidden';      
+    }
   }
 
   login(identificador: any, pass: any, validate: HTMLElement, tecla?: number) {
@@ -39,29 +43,30 @@ export class LoginComponent implements OnInit {
   }
 
   recuperarPass(mail: HTMLInputElement, verify: HTMLElement) {
-
-    let mailObj = { email: mail.value };
-    let addTempPass = {
-      idUser: '',
-      passTemp: '',
-      passTimeOut: '',
-    };
-
-    this.userService.recuperarPass(mailObj).subscribe((data: any) => {
-      addTempPass.passTemp = String(data.tempPass);
-      addTempPass.passTimeOut = data.timeOutDate;
-      this.userService.getUsers().subscribe((data: any) => {
-        for (const user of data.resultado) {
-          if (user.email == mail.value.toLowerCase()) {
-            addTempPass.idUser = user.idUser;
+    verify.style.visibility = 'visible';
+    this.userService.getUsers()
+      .subscribe((resp: any) => {
+        if (resp.ok) {
+          let usuario = resp.resultado.find(usuario => usuario.email == mail.value)
+          if (usuario) {
+            let mailObj = { email: mail.value };
+            let addTempPass = {
+              idUser: usuario.idUser,
+              passTemp: '',
+              passTimeOut: '',
+            };
+            this.userService.recuperarPass(mailObj)
+              .subscribe((resp: any) => {
+                addTempPass.passTemp = String(resp.tempPass);
+                addTempPass.passTimeOut = resp.timeOutDate;
+                this.userService.userEdit(addTempPass)
+                  .subscribe(() => {})
+              })
           }
         }
-        this.userService.userEdit(addTempPass).subscribe((data) => {
-          verify.style.visibility = 'visible';
-        });
-      });
-    });
+      })
   }
+ 
   save(user:User){
     sessionStorage.setItem('user', JSON.stringify(user))
   }
