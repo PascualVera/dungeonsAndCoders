@@ -19,13 +19,22 @@
   justify-content: center;
   gap: 6vh;
 }
+.title{
+  display: flex;
+  height: fit-content;
+  align-items: baseline;
+  gap: 1vh;
+  width: 100%;
+}
+
+
 .info{
-  width: 22vw;
+  width: 25vw;
   height: 70vh;
   background: grey;
   background: linear-gradient(
-    52.5deg,
-    rgba(50, 50, 50) 47%,
+    55deg,
+    rgba(35, 35, 35) 47%,
     rgb(44, 44, 44) 53%
   );
   z-index: 1;
