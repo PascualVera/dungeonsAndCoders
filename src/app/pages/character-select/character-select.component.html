@@ -39,7 +39,7 @@
             button
           )
         "
-        [ngClass]="this.characterService.charactersInGame.includes(i+1) ? 'img_container_disabled':'img_container'">
+        [ngClass]="this.findCharacterTaken(character.idCharacter) ? 'img_container':'img_container_disabled'">
         <img src="{{ character.image }}" alt="" />
         <div #sombra class="sombra"></div>
       </div>

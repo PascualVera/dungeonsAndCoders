@@ -3,7 +3,7 @@
     <img src="../../../assets/images/dcLogoHeader.png" alt="Logo dyc" />
   </picture>
 
-  <nav *ngIf="(this.router.routerState.snapshot.url != '/login' && this.router.routerState.snapshot.url != '/registro') " class="navHeader">
+  <nav *ngIf="(this.router.routerState.snapshot.url != '/login' && this.router.routerState.snapshot.url != '/registro' && this.router.url != '/creditos') " class="navHeader">
     <ul   class="navList">
       <li [ngStyle]="{background : (this.router.routerState.snapshot.url) === '/inicio' ? '#a34c50':'#264c5e'}" class="navItem">
         <a #home  routerLink="/inicio">Home</a>
