@@ -235,10 +235,14 @@ select(){
 
   modalPersonaje(modalPersonaje: HTMLElement, visible: boolean) {
     modalPersonaje.style.display = (visible) ? 'flex' : 'none';
-    this.index2 = this.player.nativeElement.value;
-    this.idCharacter = this.characterCampaign[this.index2].idCharacter
-    this.characterSpell(this.idCharacter);
-    this.characterEquip(this.idCharacter);
+    if(this.characterCampaign)
+    {
+      this.index2 = this.player.nativeElement.value;
+      this.idCharacter = this.characterCampaign[this.index2].idCharacter
+      this.characterSpell(this.idCharacter);
+      this.characterEquip(this.idCharacter);
+    }
+    
   }
 
   ngOnDestroy(): void {
@@ -251,6 +255,7 @@ select(){
       if (campaignCode == this.campaingService.actualCampaign.idCampaign) {
         if(viene){
           this.playerHitPoints(this.idCampaignActual)
+          this.playerInGame(this.idCampaignActual)
         }else{
           let indice = this.master.characterPlayer.findIndex(item => item.name == player)
           if(indice >=0){
