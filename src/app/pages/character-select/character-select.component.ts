@@ -8,7 +8,7 @@ import { CharacterService } from 'src/app/shared/character.service';
 import { PlayersService } from 'src/app/shared/players.service';
 import { UserService } from 'src/app/shared/user.service';
 import { WebSocketService } from '../../shared/web-socket.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-character-select',
@@ -79,9 +79,18 @@ export class CharacterSelectComponent implements OnInit, OnDestroy {
   }
 
   insertPlayer(){
-      let numPlayer= {numPlayer: this.campaignService.actualCampaign.numPlayer +1, idCampaign: this.campaignService.actualCampaign.idCampaign}
-      this.campaignService.putCampaing(numPlayer).subscribe(()=>{
+    
+    this.campaignService.getCampaignById(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
+      console.log(data)
+      
+      let numPlayer = {numPlayer: data.resultado[0].numPlayer +1, idCampaign: this.campaignService.actualCampaign.idCampaign}
+      console.log(numPlayer)
+      this.campaignService.putCampaing(numPlayer).subscribe((data)=>{
+        console.log(data)
       })
+    })
+      
+    
    }
    
   //Metodos de visual

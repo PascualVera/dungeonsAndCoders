@@ -12,7 +12,8 @@ export class AppComponent {
   title = 'dungeonsAndCoder';
   constructor(public userService:UserService,private router:Router){
     this.userService.user = JSON.parse(this.getUser())
-    if(this.getUser() == null){
+    if(this.getUser() == null && this.router.url != '/'){
+      console.log(this.router.url)
       this.router.navigate([''])
     }
   }

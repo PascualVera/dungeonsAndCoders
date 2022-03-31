@@ -245,6 +245,22 @@ h1 {
   }
   
 }
+.creditos{
+  position: absolute;
+  font-size: 1.8rem;
+  bottom: 4vh;
+  left: 10vh;
+  text-decoration: none;
+  color: white;
+  font-family: fable;
+  letter-spacing: 0.1vh;
+  filter: brightness(1);
+  opacity: 0.8;
+}
+.creditos:hover{
+  opacity: 1;
+  filter: brightness(1.3);
+}
 
 
 @media (min-heigth: 720px) {
