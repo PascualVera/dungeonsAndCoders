@@ -61,7 +61,7 @@ export class VistaMasterComponent implements OnInit, OnDestroy {
     this.enemyCampaignPre = [new Enemy ()]
     this.enemiesCampaign(this.idCampaignPre)
     this.playerInGame(this.idCampaignActual)
-    this.playerHitPoints(this.idCampaignActual)
+    // this.playerHitPoints(this.idCampaignActual)
     this.enemyHitPoints(this.idCampaignActual)
     this.masterManual(this.idCampaignActual)
     this.playersService.players = [0];
@@ -88,11 +88,8 @@ damageCalc(lifePoints:number){
   this.master.hitPoints[this.indexCalc].hitPoints = this.master.hitPoints[this.indexCalc].hitPoints - lifePoints;
   if(this.master.hitPoints[this.indexCalc].idEnemy > 0)
   {
-    console.log('Esto son los parametros',this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idEnemy)
     this.master.putEnemyHitPoints(this.master.hitPoints[this.indexCalc].hitPoints, this.master.hitPoints[this.indexCalc].idEnemy)
-    .subscribe((data: any) => {
-      console.log('Enemy Updated',data)
-    })
+    .subscribe((data: any) => {})
   }
   else
   {
@@ -105,8 +102,6 @@ damageCalc(lifePoints:number){
           hitPoints: this.master.hitPoints[this.indexCalc].hitPoints
         }
         this.wss.emite('send-hitpoints', puntosVida);
-
-      console.log('Player Updated', data)
     })
   }
 }
@@ -116,9 +111,7 @@ healingCalc(){
   if(this.master.hitPoints[this.indexCalc].idEnemy > 0)
   {
     this.master.putEnemyHitPoints(Number(this.master.hitPoints[this.indexCalc].hitPoints), this.master.hitPoints[this.indexCalc].idEnemy)
-    .subscribe((data: any) => {
-      console.log('Enemy Updated',data.respuesta)
-    })
+    .subscribe((data: any) => {})
   }
   else
   {
@@ -131,8 +124,6 @@ healingCalc(){
         hitPoints: this.master.hitPoints[this.indexCalc].hitPoints
       }
       this.wss.emite('send-hitpoints', puntosVida);
-      
-      console.log('Player Updated', data.respuesta)
     })
   }
 }
@@ -153,6 +144,7 @@ healingCalc(){
   playerInGame(idCampaign:string){
     this.characterService.getCharactersInGame(idCampaign).subscribe((data:any)=>{
       this.characterCampaign = data.respuesta;
+      this.playerHitPoints(this.idCampaignActual)
     })
     
   }
@@ -202,23 +194,18 @@ enemyHitPoints(idCampaign:string){
   })
 }
 
-playerHitPoints(idCampaign: string){
-  this.playersService.inGamePlayer(idCampaign).subscribe((data:any) =>{
-    this.hitPointsPlayer = data.resultado;
-    if(!this.hitPointsPlayer)
-    {
-
-    }
-    else{
-      this.master.characterPlayer = []
-      for(let i=0; i<this.hitPointsPlayer.length; i++)
-      {
-        this.master.hitPoints.push({idEnemy: 0,idPlayer: this.hitPointsPlayer[i].idPlayer, name: this.hitPointsPlayer[i].name, hitPoints: this.hitPointsPlayer[i].hitPoints})
-        this.master.characterPlayer.push({nameCharacter: this.characterCampaign[i].name, namePlayer: this.hitPointsPlayer[i].name})
+  playerHitPoints(idCampaign: string) {
+    this.playersService.inGamePlayer(idCampaign).subscribe((data: any) => {
+      this.hitPointsPlayer = data.resultado;
+      if (this.hitPointsPlayer.length >0) {
+        this.master.characterPlayer = []
+        for (let i = 0; i < this.hitPointsPlayer.length; i++) {
+          this.master.hitPoints.push({ idEnemy: 0, idPlayer: this.hitPointsPlayer[i].idPlayer, name: this.hitPointsPlayer[i].name, hitPoints: this.hitPointsPlayer[i].hitPoints })
+          this.master.characterPlayer.push({ nameCharacter: this.characterCampaign[i].name, namePlayer: this.hitPointsPlayer[i].name })
+        }
       }
-    }
-     })
-}
+    })
+  }
 
 select(){
   this.indexCalc = this.calc.nativeElement.value;
@@ -253,15 +240,15 @@ select(){
     this.escuchaMasmenosplayer = this.wss.escucha('new-masmenosplayer').subscribe((data: any) => {
       const { campaignCode, player, viene } = data;
       if (campaignCode == this.campaingService.actualCampaign.idCampaign) {
-        if(viene){
-          this.playerHitPoints(this.idCampaignActual)
+        // if(viene){
+          // this.playerHitPoints(this.idCampaignActual)
           this.playerInGame(this.idCampaignActual)
-        }else{
-          let indice = this.master.characterPlayer.findIndex(item => item.name == player)
-          if(indice >=0){
-            this.master.characterPlayer.splice(indice,1);
-          }
-        }
+        // }else{
+        //   let indice = this.master.characterPlayer.findIndex(item => item.name == player)
+        //   if(indice >=0){
+        //     this.master.characterPlayer.splice(indice,1);
+        //   }
+        // }
       }
     }) 
     if(this.campaingService.actualCampaign.idCampaign == undefined){

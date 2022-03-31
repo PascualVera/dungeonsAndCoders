@@ -80,14 +80,9 @@ export class CharacterSelectComponent implements OnInit, OnDestroy {
 
   insertPlayer(){
     
-    this.campaignService.getCampaignById(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{
-      console.log(data)
-      
+    this.campaignService.getCampaignById(this.campaignService.actualCampaign.idCampaign).subscribe((data:any)=>{      
       let numPlayer = {numPlayer: data.resultado[0].numPlayer +1, idCampaign: this.campaignService.actualCampaign.idCampaign}
-      console.log(numPlayer)
-      this.campaignService.putCampaing(numPlayer).subscribe((data)=>{
-        console.log(data)
-      })
+      this.campaignService.putCampaing(numPlayer).subscribe((data)=>{})
     })
       
     
@@ -135,7 +130,6 @@ export class CharacterSelectComponent implements OnInit, OnDestroy {
     index: number,
     button: any
   ) {
-    console.log(character.idCharacter)
     // ***************************************************
     let personajeSeleccionado = {
       campaignCode: this.campaignService.actualCampaign.idCampaign,

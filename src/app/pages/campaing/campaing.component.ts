@@ -120,12 +120,10 @@ export class CampaingComponent implements OnInit, OnDestroy {
   }
 
   filtrar(filtro: string) {
-    console.log(filtro)
     if (this.delayKeyUp) {
       clearTimeout(this.delayKeyUp)
     };
     this.filtroActual = filtro;
-    console.log(filtro)
     this.delayKeyUp = setTimeout(() => {
         if (!filtro) {
           this.allCampaignsFiltered = this.allCampaigns;

@@ -45,7 +45,7 @@
                         <label style="width: 5vw;">Atacante: &nbsp;</label>
                         <select  name="personajes"  style="width: 11vw;">
                             <option disabled >Personajes</option>
-                            <option *ngFor="let player of master.characterPlayer; let i = index" [value]="i">{{player.nameCharacter}} ({{player.hitPoints}})</option>
+                            <option *ngFor="let player of master.characterPlayer; let i = index" [value]="i">{{player.nameCharacter}}</option>
                             <option disabled>Enemigos</option>
                             <option #calc *ngFor="let enemigo of hitPointsEnemy; let i = index" [value]="i">{{enemigo.name}} ({{enemigo.hitPoints}})</option>
                          </select>
