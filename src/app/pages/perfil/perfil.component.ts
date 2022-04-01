@@ -7,6 +7,7 @@ import { UserService } from 'src/app/shared/user.service';
 import { Router } from '@angular/router'
 import { Subscription } from 'rxjs';
 import { WebSocketService } from '../../shared/web-socket.service';
+import { CharacterService } from 'src/app/shared/character.service';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -29,7 +30,8 @@ export class PerfilComponent implements OnInit, OnDestroy {
               public campaignService:CampaingService,
               public playerService:PlayersService,
               private wss: WebSocketService,
-              private router:Router) {
+              private router:Router,
+              public characterService: CharacterService) {
     this.user = userService.user;
     this.urlAvatar = this.user.urlAvatar;
     this.opcionActiva = 2;
@@ -208,9 +210,20 @@ export class PerfilComponent implements OnInit, OnDestroy {
         if(player.name == this.userService.user.name){
           this.playerService.player = player 
         }
+        this.characterService.getAll().subscribe((data:any)=>{
+          let character = data[this.playerService.player.idCharacter - 1]
+          this.characterService.getSpell(character.idCharacter).subscribe((data:any)=>{ //<== Introducir hechizos
+            character.spell = data.resultado
+            this.characterService.getWeapon(character.idCharacter).subscribe((data:any)=>{  //<== Introducir equipo
+              character.weapon = data.resultado
+              this.characterService.character = character
+              this.router.navigate(['/player'])
+            })
+          })
+        })
       }
       
-      this.router.navigate(['/player'])
+      
     })
    }
    logOut(){

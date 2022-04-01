@@ -26,18 +26,10 @@ export class CharacterComponent implements OnInit, OnDestroy {
               private campaignService: CampaingService) {
     
     this.dataIndex = 0
-    this.characterService.character = new Character();
-    characterService.getAll().subscribe((data:Character[])=>{
-      let character = data[playerService.player.idCharacter - 1]
-      this.characterService.getSpell(character.idCharacter).subscribe((data:any)=>{ //<== Introducir hechizos
-        character.spell = data.resultado
-        this.characterService.getWeapon(character.idCharacter).subscribe((data:any)=>{  //<== Introducir equipo
-          character.weapon = data.resultado
-          this.characterService.character = character
-          this.hit()
-        })
-      })
-    })
+    // this.characterService.character = new Character();
+    setTimeout(()=>{
+      this.hit()
+    },10)
    
       
     
@@ -87,6 +79,7 @@ export class CharacterComponent implements OnInit, OnDestroy {
         this.hit()
       }
     }) 
+    
   }
 
   ngOnDestroy(): void {
